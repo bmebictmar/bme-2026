@@ -1,7 +1,7 @@
 ---
 title: "Bases da Matemática e Estatística (BME)"
 subtitle: "Cronograma: 1º semestre de 2026"
-description: "Materiais, cronograma e recursos da UC Bases da Matemática e Estatística do BICT Mar — Unifesp."
+description: "Materiais, cronograma e recursos."
 tbl-colwidths: [2,1,2,5,5,3,3]
 ---
 
