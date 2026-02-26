@@ -42,23 +42,45 @@ website:
     contents:
       - section: "Informações do curso"
         contents:
-          - href: course-info/syllabus.qmd
-            text: Plano de Ensino
-          - href: index.qmd
-            text: Cronograma
-          - href: course-info/bibliography.qmd
-            text: Bibliografia e Links Úteis
           - href: course-info/uc-id.qmd
             text: Identificação da UC
+            target: "_blank"
+          - href: course-info/syllabus.qmd
+            text: Plano de Ensino
+            target: "_blank"
+          - href: index.qmd
+            text: Cronograma
+            target: "_blank"
+          - href: course-info/ebook-tutorial.pdf
+            text: Minha biblioteca
+            target: "_blank"          
+          - href: "https://moodlegrad.unifesp.br/"
+            text: Moodle Graduação
+            target: "_blank"          
+          - href: course-info/academic-calendar-2026.pdf
+            text: Calendário acadêmico
+            target: "_blank"          
       - section: "Leitura"
         contents:
-          # - href: 
-          #   text: ""
-          #   target: "_blank"
       - section: "Slides"
         contents:
-          - href: "content/reading/pread-01-the-golem-of-prague.qmd"
-            text: "Cap 01"
+          - href: content/slides/modelos-matematicos/funcoes-lineares.pdf
+            text: "Aula 19 - Funções lineares"
+            target: "_blank"
+          - href: content/slides/modelos-matematicos/polinomios.pdf
+            text: "Aula 20 - Polinômios"
+            target: "_blank"
+          - href: content/slides/modelos-matematicos/funcoes-potencias.pdf
+            text: "Aula 26 - Funções potências"
+            target: "_blank"
+          - href: content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf
+            text: "Aulas 26-27 - Funções exponenciais e logarítmicas"
+            target: "_blank"
+          - href: content/slides/modelos-matematicos/funcoes-trigonometricas.pdf
+            text: "Aulas 29-32 - Funções trigonométricas"
+            target: "_blank"
+          - href: content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf
+            text: "Material complementar - Novas funções a partir de conhecidas"
             target: "_blank"
           
       - section: "Lab. Informática"
