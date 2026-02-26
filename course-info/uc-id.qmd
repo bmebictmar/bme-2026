@@ -1,0 +1,39 @@
+---
+title: "Identificação da Unidade Curricular"
+number-sections: false
+---
+
+::: {.callout-important .uc-id-card appearance="minimal"}
+
+::: {.uc-id-grid}
+Campus
+: Baixada Santista
+
+Curso
+: Bacharelado Interdisciplinar em Ciência e Tecnologia do Mar
+
+Unidade Curricular (UC)
+: 9833 - Bases da Matemática e Estatística para Ciências do Mar
+
+Docentes responsáveis
+: Fabio Cop ([fcferreira@unifesp.br](mailto:fcferreira@unifesp.br)) 
+: William Remo Pedroso Conti ([wrpconti@unifesp.br](mailto:wrpconti@unifesp.br))
+
+Ano letivo
+: 2026 - 1$^o$ semestre, Termo 1
+
+Carga horária total
+: 80 h
+
+Dias
+: Terças e Quintas feiras
+: 14h - 15:45h (Vespertino)
+: 19h - 20:45h (Noturno)
+
+Locais
+: Sala 205
+: Laboratório de Informática
+
+:::
+
+:::

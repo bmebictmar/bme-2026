@@ -1,0 +1,64 @@
+---
+title: "Plano de Ensino: BASES DA MATEMÁTICA E ESTATÍSTICA PARA CIÊNCIAS DO MAR"
+number-sections: false
+---
+
+### Ementa
+
+Oferecer letramento quantitativo e habilidades em matemática e estatística que serão aprofundados em unidades curriculares específicas ao longo do curso. O curso pretende discutir i) ferramentas de estatística descritiva para resumo e visualização de dados; ii) modelos matemáticos utilizados para descrever fenômenos científicos; e iii) métodos de ajuste de modelos matemáticos a conjuntos de dados provenientes de experimentos e estudos observacionais.
+
+### Conteúdo programático
+
+1. **Resumo e Descrição de Dados**
+   Descrevendo conjuntos de dados em tabelas e gráficos; medidas de tendência central e de dispersão; descrevendo padrões de distribuição de variáveis: histogramas e gráficos de frequência acumulada; associação entre variáveis: índices de associação e gráficos.
+
+2. **Funções e Modelos**
+   Quatro maneiras de representar uma função; modelos matemáticos: uma lista de funções essenciais; novas funções a partir de conhecidas; calculadoras gráficas e computadores; funções exponenciais; funções inversas e logaritmos; taxas de variação e derivadas.
+
+3. **Organizando Dados em Vetores e Matrizes**
+   Vetores e produto escalar; sistemas de equações lineares; soma de matrizes; multiplicação de uma matriz por um escalar; multiplicação de matrizes; inversão de matrizes.
+
+4. **Aplicações**
+   Ajuste de dados a uma função conhecida: o método dos mínimos quadrados; modelos matriciais: modelo de Markov, modelo de crescimento populacional estruturado, modelo de alocação de recursos.
+
+### Objetivos
+
+#### Gerais
+
+Apresentar e trabalhar os elementos fundamentais do método matemático e estatístico à resolução de problemas relacionados às Ciências do Mar, em especial à análise de dados.
+
+#### Específicos
+
+O aluno será capaz de:
+
+- assimilar os conceitos teóricos e compreender sua inter-relação com as outras áreas da ciência e engenharia;
+- empregar as ferramentas matemáticas e estatísticas aprendidas nas aulas à resolução de problemas na ciência e na engenharia;
+- comunicar-se eficientemente nas formas escrita, oral e gráfica;
+- atuar em equipes interdisciplinares.
+
+### Metodologia de ensino
+
+Atividades teóricas, práticas computacionais, leituras dirigidas, respostas a quizzes, listas de exercícios.
+
+### Avaliação
+
+A avaliação do(a) estudante será feita por meio de listas de exercícios aplicadas a cada aula. A nota final será a média aritmética das notas das listas.
+
+A aprovação do(a) estudante na UC seguirá o descrito nos Artigos 120 a 124 do Regimento Interno da Pró-Reitoria de Graduação.
+
+A frequência na UC seguirá o descrito nas Seções II e III do Capítulo IV do Regimento Interno da Pró-Reitoria de Graduação.
+
+### Bibliografia
+
+#### Básica
+
+1. Gotelli, N. J., & Ellison, A. M. (2015). *Princípios de Estatística em Ecologia*.
+2. Poole, D. (2016). *Álgebra Linear: Uma Introdução Moderna* (Tradução da 4ª ed. norte-americana).
+3. Stewart, J. (2017). *Cálculo - Volume 1* (Tradução da 8ª edição norte-americana).
+4. Triola, M. F. (2017). *Introdução à Estatística* (12a edição). Grupo GEN.
+
+#### Complementar
+
+1. Guidorizzi, H. L. (2018). *Um Curso de Cálculo - Vol. 1* (6ª edição).
+2. Santos, N. M. (2007). *Vetores e Matrizes: Uma introdução à álgebra linear* (4a edição).
+3. Spiegel, M. R., Schiller, J. J., & Srinivasan, R. A. (2015). *Probabilidade e Estatística* (3rd edição). Grupo A.

@@ -1,0 +1,85 @@
+project:
+  type: website
+  output-dir: _site
+lang: pt
+
+publish:
+  method: gh-pages
+  repo: bmebictmar/bme-2026
+
+website:
+  page-navigation: true
+  title: "BASES DA MATEMÁTICA E ESTATÍSTICA (BME)"
+  description: "Materiais, cronograma e recursos da UC Bases da Matemática e Estatística do Bict Mar — Unifesp."
+  site-url: "https://bmebictmar.github.io/bme-2026"
+
+  repo-url: "https://github.com/bmebictmar/bme-2026"
+  open-graph: true
+
+  page-footer:
+    right: "BACHARELADO INTERDISCIPLINAR EM CIÊNCIA E TECNOLOGIA DO MAR — Bict Mar — Unifesp"
+    left: Fabio Cop e William R. Conti
+    background: "#296354"
+
+  sidebar: 
+    background: "#3b8170"
+    logo: "images/logo.png"
+    style: "docked"
+    search: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/bmebictmar/bme-2026
+        text: GitHub da UC
+      - icon: book
+        href: https://moodlegrad.unifesp.br/
+        text: Moodle Graduação
+      - icon: terminal
+        href: https://colab.research.google.com/drive/
+        text: Google Colab
+    
+    collapse-level: 1
+    contents:
+      - section: "Informações do curso"
+        contents:
+          - href: course-info/syllabus.qmd
+            text: Plano de Ensino
+          - href: index.qmd
+            text: Cronograma
+          - href: course-info/bibliography.qmd
+            text: Bibliografia e Links Úteis
+          - href: course-info/uc-id.qmd
+            text: Identificação da UC
+      - section: "Leitura"
+        contents:
+          # - href: 
+          #   text: ""
+          #   target: "_blank"
+      - section: "Slides"
+        contents:
+          # - href: 
+          #   text: ""
+          #   target: "_blank"
+          
+      - section: "Lab. Informática"
+        contents:
+          # - href: 
+          #   text: ""
+          #   target: "_blank"
+
+# Global format configuration
+format:
+  html:
+    theme:
+      light: [cosmo, styles/theme.scss]
+      dark: [cosmo, styles/theme-dark.scss]
+    toc: true
+    number-sections: true
+    code-copy: true
+    code-overflow: wrap
+
+# Configura projeto para ser executado apenas localmente
+execute:
+  freeze: auto
+
+bibliography: references.bib

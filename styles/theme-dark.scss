@@ -1,0 +1,202 @@
+/*-- scss:defaults --*/
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/AtkinsonHyperlegible-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/AtkinsonHyperlegible-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/AtkinsonHyperlegible-BoldItalic.ttf') format('truetype');
+}
+
+$font-family: "Atkinson Hyperlegible", sans-serif;
+
+// Base document colors
+$body-bg: #181818;
+$body-color: white;
+$link-color: #75AADB;
+
+$light: #525252;
+
+// Navigation element colors
+$footer-bg: #242323;
+$navbar-bg: #555252;
+$sidebar-bg: #555252;
+
+// Code blocks
+// $code-block-bg-alpha: -.8;
+$code-block-bg-alpha: -0.6;
+
+// Bootstrap popovers
+$popover-bg: #242424;
+
+// Bootstrap inputs
+$input-bg: #242424;
+
+
+/*-- scss:rules --*/
+
+.layout-example {
+  background: $gray-700;
+}
+
+.cronograma-bme {
+  --c-border: #3f4a54;
+  --c-head-bg: #24323d;
+  --c-pratica-bg: #1f332a;
+  --c-pratica-bd: #7fbe9b;
+  --c-teoria-bg: #27313a;
+  --c-teoria-bd: #7f8f9d;
+  --c-rev-bg: #1d2b2b;
+  --c-same-bg: #222a34;
+}
+
+.cronograma-bme table {
+  font-size: 0.94rem;
+  line-height: 1.35;
+}
+
+.cronograma-bme thead th {
+  background: var(--c-head-bg);
+  border-bottom: 2px solid var(--c-border);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.cronograma-bme td,
+.cronograma-bme th {
+  border-color: var(--c-border);
+  vertical-align: top;
+}
+
+.cronograma-bme td:nth-child(4),
+.cronograma-bme td:nth-child(5) {
+  min-width: 18rem;
+}
+
+.cronograma-bme .aula-celula {
+  display: block;
+  border-left: 4px solid transparent;
+  border-radius: 0.35rem;
+  padding: 0.35rem 0.45rem;
+}
+
+.cronograma-bme .aula-celula.is-pratica {
+  background: var(--c-pratica-bg);
+  border-left-color: var(--c-pratica-bd);
+  font-weight: 600;
+}
+
+.cronograma-bme .aula-celula.is-teoria {
+  background: var(--c-teoria-bg);
+  border-left-color: var(--c-teoria-bd);
+}
+
+.cronograma-bme tr:has(td:nth-child(4) .is-pratica):has(td:nth-child(5) .is-teoria),
+.cronograma-bme tr:has(td:nth-child(4) .is-teoria):has(td:nth-child(5) .is-pratica) {
+  background: var(--c-rev-bg);
+}
+
+.cronograma-bme .aula-idx.dia-revezamento {
+  font-weight: 700;
+}
+
+.cronograma-bme .aula-idx.dia-revezamento::after {
+  content: "  (divide turmas)";
+  font-size: 0.78em;
+  color: #9cd6b3;
+  font-weight: 600;
+}
+
+.cronograma-bme tr:has(.aula-idx.dia-mesma-atividade) {
+  background: var(--c-same-bg);
+}
+
+@media (max-width: 992px) {
+  .cronograma-bme table {
+    font-size: 0.88rem;
+  }
+
+  .cronograma-bme td:nth-child(4),
+  .cronograma-bme td:nth-child(5) {
+    min-width: 12.5rem;
+  }
+
+  .cronograma-bme .aula-celula {
+    padding: 0.3rem 0.35rem;
+  }
+}
+
+.uc-id-card.callout.callout-style-minimal {
+  border: 1px solid #3c5566;
+  border-radius: 0.65rem;
+  background: #1b2731;
+  padding: 0.9rem 1rem;
+}
+
+.uc-id-card .callout-title {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.uc-id-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1rem;
+  row-gap: 0.8rem;
+  margin: 0;
+}
+
+.uc-id-grid dt {
+  display: inline-block;
+  margin: 0 0 0.3rem;
+  padding: 0.12rem 0.52rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #a7d1ea;
+  background: #223644;
+  border: 1px solid #456173;
+  border-radius: 999px;
+}
+
+.uc-id-grid dd {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+  color: #d7e6ef;
+}
+
+.uc-id-grid a {
+  color: #9fd4f6;
+  font-weight: 600;
+  text-decoration-thickness: 1.5px;
+}
+
+@media (max-width: 920px) {
+  .uc-id-grid {
+    grid-template-columns: 1fr;
+  }
+}
