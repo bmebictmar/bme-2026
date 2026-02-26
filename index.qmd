@@ -1,5 +1,5 @@
 ---
-title: "Bases da Matemática e Estatística (BME)"
+title: "Bases da Matemática e Estatística"
 subtitle: "Cronograma: 1º semestre de 2026"
 description: "Materiais, cronograma e recursos."
 tbl-colwidths: [2,1,2,5,5,3,3]
