@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bmebictmar.github.io/bme-2026/index.html</loc>
-    <lastmod>2026-02-26T17:56:57.422Z</lastmod>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/pread-01-the-golem-of-prague.html</loc>
+    <lastmod>2026-02-26T08:03:01.131Z</lastmod>
   </url>
   <url>
-    <loc>https://bmebictmar.github.io/bme-2026/course-info/syllabus.html</loc>
+    <loc>https://bmebictmar.github.io/bme-2026/course-info/uc-id.html</loc>
     <lastmod>2026-02-26T17:53:43.432Z</lastmod>
   </url>
   <url>
@@ -13,7 +13,11 @@
     <lastmod>2026-02-26T17:53:43.432Z</lastmod>
   </url>
   <url>
-    <loc>https://bmebictmar.github.io/bme-2026/course-info/uc-id.html</loc>
+    <loc>https://bmebictmar.github.io/bme-2026/course-info/syllabus.html</loc>
     <lastmod>2026-02-26T17:53:43.432Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/index.html</loc>
+    <lastmod>2026-02-26T20:47:34.668Z</lastmod>
   </url>
 </urlset>

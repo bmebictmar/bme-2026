@@ -57,9 +57,9 @@ website:
           #   target: "_blank"
       - section: "Slides"
         contents:
-          # - href: 
-          #   text: ""
-          #   target: "_blank"
+          - href: "content/reading/pread-01-the-golem-of-prague.qmd"
+            text: "Cap 01"
+            target: "_blank"
           
       - section: "Lab. Informática"
         contents:

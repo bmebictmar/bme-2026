@@ -11,7 +11,7 @@ tbl-colwidths: [2,1,2,5,5,3,3]
 |---|---|---|---|---|---|---|
 |  | 03/03 | Terça-feira | [*Semana de recepção de calouros*]{.aula-celula .is-teoria} |  |  |  |
 |  | 05/03 | Quinta-feira | [*Semana de recepção de calouros*]{.aula-celula .is-teoria} |  |  |  |
-| [1]{.aula-idx .dia-mesma-atividade} | 10/03 | Terça-feira | [Introdução da UC: Matemática e Estatística; Dados e Modelos]{.aula-celula .is-teoria} | [Introdução da UC: Matemática e Estatística; Dados e Modelos]{.aula-celula .is-teoria} |  |  |
+| [1]{.aula-idx .dia-mesma-atividade} | 10/03 | Terça-feira | [Introdução da UC: Matemática e Estatística; Dados e Modelos]{.aula-celula .is-teoria} | [Introdução da UC: Matemática e Estatística; Dados e Modelos]{.aula-celula .is-teoria} | [cap1](content/reading/pread-01-the-golem-of-prague.qmd) |  |
 | [2]{.aula-idx .dia-mesma-atividade} | 12/03 | Quinta-feira | [A geometria e a álgebra de vetores]{.aula-celula .is-teoria} | [A geometria e a álgebra de vetores]{.aula-celula .is-teoria} |  |  |
 | [3]{.aula-idx .dia-mesma-atividade} | 17/03 | Terça-feira | [Comprimento e ângulo: o produto escalar]{.aula-celula .is-teoria} | [Comprimento e ângulo: o produto escalar]{.aula-celula .is-teoria} |  |  |
 | [4]{.aula-idx .dia-revezamento} | 19/03 | Quinta-feira | [Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan]{.aula-celula .is-teoria} | [LAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica]{.aula-celula .is-pratica} |  |  |
