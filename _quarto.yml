@@ -18,7 +18,7 @@ website:
 
   page-footer:
     right: "BACHARELADO INTERDISCIPLINAR EM CIÊNCIA E TECNOLOGIA DO MAR — Bict Mar — Unifesp"
-    left: Fabio Cop e William R. Conti
+    left: Bases da Matemática e Estatística — BM)
     background: "#296354"
 
   sidebar: 
@@ -44,22 +44,16 @@ website:
         contents:
           - href: course-info/uc-id.qmd
             text: Identificação da UC
-            target: "_blank"
           - href: course-info/syllabus.qmd
             text: Plano de Ensino
-            target: "_blank"
           - href: index.qmd
             text: Cronograma
-            target: "_blank"
           - href: course-info/ebook-tutorial.pdf
             text: Minha biblioteca
             target: "_blank"          
           - href: "https://moodlegrad.unifesp.br/"
             text: Moodle Graduação
-            target: "_blank"          
-          - href: course-info/academic-calendar-2026.pdf
-            text: Calendário acadêmico
-            target: "_blank"          
+            target: "_blank"           
       - section: "Leitura"
         contents:
       - section: "Slides"

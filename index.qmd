@@ -1,9 +1,10 @@
 ---
-title: "Bases da Matemática e Estatística"
+title: "10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp"
 subtitle: "Cronograma: 1º semestre de 2026"
-description: "Materiais, cronograma e recursos."
 tbl-colwidths: [2,1,2,5,5,3,3]
 ---
+
+[📄 Calendário Acadêmico 2026 Unifesp (PDF)](course-info/academic-calendar-2026.pdf){target="_blank"}
 
 ::: {.column-screen-inset-right .cronograma-bme}
 

@@ -1,5 +1,6 @@
 ---
-title: "Plano de Ensino: BASES DA MATEMÁTICA E ESTATÍSTICA PARA CIÊNCIAS DO MAR"
+title: "Plano de Ensino"
+subtitle: "10768 - Bases da Matemática e Estatística"
 number-sections: false
 ---
 
