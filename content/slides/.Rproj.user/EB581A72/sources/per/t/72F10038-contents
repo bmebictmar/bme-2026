@@ -1,0 +1,38 @@
+# Abrir dispositivo de saída
+png("imagens/grafico-uniforme-h1.png", width = 800, height = 600, res = 120)
+
+# Seu código do gráfico
+barplot(rep(1/6, 6), names.arg = 1:6, col = "pink", border = "red",
+        main = "", ylim = c(0, 0.20))
+abline(h = 1/6, lty = 2, col = "red", lwd = 4)
+
+# Fechar e salvar
+dev.off()
+
+# Definir tamanho da amostra (ajuste conforme sua turma)
+n <- 50
+
+# Abrir dispositivo PNG
+png("imagens/variabilidade-natural-h1.png", width = 1200, height = 700, res = 120)
+
+# Configurar layout 2x3
+par(mfrow = c(2, 3))
+
+# 5 turmas simuladas
+for (i in 1:5) {
+  amostra <- sample(1:6, n, replace = TRUE)
+  props <- table(factor(amostra, levels = 1:6)) / n
+  barplot(props, col = "grey80",
+          main = paste("Repetição", i), ylim = c(0, 0.35))
+  abline(h = 1/6, lty = 2, col = "red", lwd = 2)
+}
+
+# Modelo teórico
+barplot(rep(1/6, 6), names.arg = 1:6, col = "pink", border = "red",
+        main = "Modelo teórico (H₁)", ylim = c(0, 0.35))
+abline(h = 1/6, lty = 2, col = "red", lwd = 2)
+
+# Fechar e salvar
+dev.off()
+
+

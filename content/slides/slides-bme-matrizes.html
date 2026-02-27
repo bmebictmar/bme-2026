@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrizes - BME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="css/style-classes.css">
+    <style>
+        .reveal .controls { bottom: 60px !important; }
+    </style>
+</head>
+<body>
+
+    <!-- TIMER -->
+    <div class="timer" id="timer">⏱️ 0:00</div>
+
+    <!-- BARRA INFERIOR FIXA — UC BME -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 12px; font-size: 0.95em; color: #ddd; border-top: 2px solid #1a9988; z-index: 10;">
+        <strong>Docente:</strong> Fabio Cop Ferreira e William Remo Pedroso Conti |
+        <strong>Curso:</strong> Bacharelado Interdisciplinar em Ciências do Mar - Bict Mar |
+        <strong>UC:</strong> 9833 - Bases da Matemática e Estatística para Ciências do Mar
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE TÍTULO -->
+            <section data-background-color="#1a9988">
+                <h1 style="color: white; font-size: 2em;">Matrizes</h1>
+                <p style="color: rgba(255,255,255,0.85); font-size: 0.9em;">9833 - Bases da Matemática e Estatística para Ciências do Mar</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.75em;">Fabio Cop Ferreira e William Remo Pedroso Conti</p>
+            </section>
+
+            <!-- Slide: Conteúdo da aula -->
+            <section>
+                <h2>Conteúdo da aula</h2>
+                <ol>
+                    <li>Definição de matriz</li>
+                    <li>Adição de matrizes</li>
+                    <li>Multiplicação por um escalar</li>
+                    <li>Multiplicação de matrizes</li>
+                    <li>Transposta de uma matriz</li>
+                    <li>Álgebra de matrizes</li>
+                    <li>Inversa de uma matriz</li>
+                    <li>Inversa de uma matriz pelo método de Gauss-Jordan</li>
+                    <li>Matrizes elementares</li>
+                    <li>Cadeias de Markov para Recifes de Coral</li>
+                </ol>
+            </section>
+
+            <!-- Slide: Definição de matriz -->
+            <section>
+                <h2>Definição de matriz</h2>
+                $$A_{22} = \begin{bmatrix}
+                1 & 2 \\
+                3 & 4
+                \end{bmatrix};\quad
+                B_{33} = \begin{bmatrix}
+                5 & 6 & 7 \\
+                8 & 9 & 10 \\
+                11 & 12 & 13
+                \end{bmatrix};\quad
+                C_{34} = \begin{bmatrix}
+                14 & 15 & 16 & 17 \\
+                18 & 19 & 20 & 21 \\
+                22 & 23 & 24 & 25
+                \end{bmatrix}$$
+                <hr>
+                <p><strong>Estrutura geral</strong>: Para uma matriz $m \times n$, $A = [a_{ij}]$</p>
+                $$A_{mn} = \begin{bmatrix}
+                a_{11} & a_{12} & \cdots & a_{1n} \\
+                a_{21} & a_{22} & \cdots & a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{m1} & a_{m2} & \cdots & a_{mn}
+                \end{bmatrix}$$
+            </section>
+
+            <!-- Slide: Adição de matrizes -->
+            <section>
+                <h2>Adição de matrizes</h2>
+                <div style="font-size: 0.8em;">
+                    <div style="display: grid; grid-template-columns: 40% 60%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>$A = \begin{bmatrix}
+                            1 & 4 & 7 \\
+                            2 & 5 & 8 \\
+                            3 & 6 & 9
+                            \end{bmatrix};\quad B = \begin{bmatrix}
+                            9 & 8 & 7 \\
+                            6 & 5 & 4 \\
+                            3 & 2 & 1
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>$A + B = \begin{bmatrix}
+                            1 + 9 & 4 + 8 & 7 + 7 \\
+                            2 + 6 & 5 + 5 & 8 + 4 \\
+                            3 + 3 & 6 + 2 & 9 + 1
+                            \end{bmatrix}
+                            = \begin{bmatrix}
+                            10 & 12 & 14 \\
+                            8 & 10 & 12 \\
+                            6 & 8 & 10
+                            \end{bmatrix}$</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p><strong>Estrutura Geral</strong>: Para duas matrizes $m \times n$, $A = [a_{ij}]$ e $B = [b_{ij}]$:</p>
+                $$A + B = [a_{ij} + b_{ij}] = \begin{bmatrix}
+                a_{11} + b_{11} & a_{12} + b_{12} & \cdots & a_{1n} + b_{1n} \\
+                a_{21} + b_{21} & a_{22} + b_{22} & \cdots & a_{2n} + b_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{m1} + b_{m1} & a_{m2} + b_{m2} & \cdots & a_{mn} + b_{mn}
+                \end{bmatrix}$$
+            </section>
+
+            <!-- Slide: Multiplicação por um escalar -->
+            <section>
+                <h2>Multiplicação por um escalar</h2>
+                <div style="font-size: 0.8em;">
+                    <div style="display: grid; grid-template-columns: 30% 70%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Seja $A$ uma matriz $3 \times 3$:</p>
+                            <p>$A = \begin{bmatrix}
+                            1 & 4 & 7 \\
+                            2 & 5 & 8 \\
+                            3 & 6 & 9
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>A multiplicação de $A$ por um escalar $c = 3$:</p>
+                            <p>$cA = 3 \times \begin{bmatrix}
+                            1 & 4 & 7 \\
+                            2 & 5 & 8 \\
+                            3 & 6 & 9
+                            \end{bmatrix}
+                            = \begin{bmatrix}
+                            3 \times 1 & 3 \times 4 & 3 \times 7 \\
+                            3 \times 2 & 3 \times 5 & 3 \times 8 \\
+                            3 \times 3 & 3 \times 6 & 3 \times 9
+                            \end{bmatrix}
+                            = \begin{bmatrix}
+                            3 & 12 & 21 \\
+                            6 & 15 & 24 \\
+                            9 & 18 & 27
+                            \end{bmatrix}$</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p><strong>Estrutura Geral</strong>: Para uma matriz $m \times n$, $A = [a_{ij}]$ e um escalar $c$:</p>
+                $$cA = [c \times a_{ij}] = \begin{bmatrix}
+                c \times a_{11} & c \times a_{12} & \cdots & c \times a_{1n} \\
+                c \times a_{21} & c \times a_{22} & \cdots & c \times a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                c \times a_{m1} & c \times a_{m2} & \cdots & c \times a_{mn}
+                \end{bmatrix}$$
+            </section>
+
+            <!-- Slide: Multiplicação de matrizes (exemplo) -->
+            <section>
+                <h2>Multiplicação de matrizes</h2>
+                <div style="font-size: 0.62em;">
+                    <div style="display: grid; grid-template-columns: 30% 70%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Seja $A$ uma matriz $2 \times 3$:</p>
+                            <p>$A = \begin{bmatrix}
+                            1 & 2 & 3 \\
+                            4 & 5 & 6
+                            \end{bmatrix}$</p>
+                            <p>e $B$ uma matriz $3 \times 2$:</p>
+                            <p>$B = \begin{bmatrix}
+                            7 & 8 \\
+                            9 & 10 \\
+                            11 & 12
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>A multiplicação de $A$ por $B$:</p>
+                            <p>$AB = \begin{bmatrix}
+                            1 \cdot 7 + 2 \cdot 9 + 3 \cdot 11 & 1 \cdot 8 + 2 \cdot 10 + 3 \cdot 12 \\
+                            4 \cdot 7 + 5 \cdot 9 + 6 \cdot 11 & 4 \cdot 8 + 5 \cdot 10 + 6 \cdot 12
+                            \end{bmatrix}
+                            = \begin{bmatrix}
+                            58 & 64 \\
+                            139 & 154
+                            \end{bmatrix}$</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p><strong>Estrutura Geral</strong>: Para uma matriz $m \times n$, $A = [a_{ij}]$, e uma matriz $n \times p$, $B = [b_{ij}]$:</p>
+                $$AB = [c_{ij}] = \begin{bmatrix}
+                \sum_{k=1}^{n} a_{1k} b_{k1} & \sum_{k=1}^{n} a_{1k} b_{k2} & \cdots & \sum_{k=1}^{n} a_{1k} b_{kp} \\
+                \sum_{k=1}^{n} a_{2k} b_{k1} & \sum_{k=1}^{n} a_{2k} b_{k2} & \cdots & \sum_{k=1}^{n} a_{2k} b_{kp} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                \sum_{k=1}^{n} a_{mk} b_{k1} & \sum_{k=1}^{n} a_{mk} b_{k2} & \cdots & \sum_{k=1}^{n} a_{mk} b_{kp}
+                \end{bmatrix}$$
+            </section>
+
+            <!-- Slide: Multiplicação de matrizes (propriedades) -->
+            <section>
+                <h2>Multiplicação de matrizes</h2>
+                <p><strong>Propriedades Algébricas da Multiplicação de Matrizes</strong></p>
+                <div style="font-size: 0.6em;">
+                    <p>Sejam $A$, $B$ e $C$ matrizes (cujas ordens possibilitem que as operações indicadas sejam realizadas) e seja $k$ um escalar. Então:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Propriedade</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>$A(BC) = (AB)C$</td>
+                                <td>Associatividade</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>$A(B + C) = AB + AC$</td>
+                                <td>Distributiva à esquerda</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>$(A + B)C = AC + BC$</td>
+                                <td>Distributiva à direita</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>$k(AB) = (kA)B = A(kB)$</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>$I_m A = A = A I_n$ se $A$ for $m \times n$</td>
+                                <td>Identidade da multiplicação</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Slide: Transposta de uma matriz (exemplo) -->
+            <section>
+                <h2>Transposta de uma matriz</h2>
+                <div style="font-size: 0.7em;">
+                    <div style="display: grid; grid-template-columns: 30% 70%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Seja $A$ uma matriz $2 \times 3$:</p>
+                            <p>$A = \begin{bmatrix}
+                            1 & 2 & 3 \\
+                            4 & 5 & 6
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>A transposta de $A$ é dada por $A^T = [a_{ij}]^T = [a_{ji}]$:</p>
+                            <p>$A^T = \begin{bmatrix}
+                            1 & 4 \\
+                            2 & 5 \\
+                            3 & 6
+                            \end{bmatrix}$</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p><strong>Estrutura Geral</strong>: Para uma matriz $m \times n$, $A = [a_{ij}]$:</p>
+                <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                    <div>
+                        <p>$A = [a_{ij}] = \begin{bmatrix}
+                        a_{11} & a_{21} & \cdots & a_{m1} \\
+                        a_{12} & a_{22} & \cdots & a_{m2} \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        a_{1n} & a_{2n} & \cdots & a_{mn}
+                        \end{bmatrix}$</p>
+                    </div>
+                    <div>
+                        <p>$A^T = [a_{ji}] = \begin{bmatrix}
+                        a_{11} & a_{21} & \cdots & a_{n1} \\
+                        a_{12} & a_{22} & \cdots & a_{n2} \\
+                        \vdots & \vdots & \ddots & \vdots \\
+                        a_{1m} & a_{2m} & \cdots & a_{nm}
+                        \end{bmatrix}$</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide: Transposta de uma matriz (propriedades) -->
+            <section>
+                <h2>Transposta de uma matriz</h2>
+                <p><strong>Propriedades Algébricas da Transposta de Matrizes</strong></p>
+                <div style="font-size: 0.6em;">
+                    <p>Sejam $A$ e $B$ matrizes (cujas ordens são tais que as operações indicadas podem ser realizadas) e seja $k$ um escalar. Então:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Propriedade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>$(A^T)^T = A$</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>$(A + B)^T = A^T + B^T$</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>$(kA)^T = k(A^T)$</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>$(AB)^T = B^T A^T$</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>$(A^r)^T = (A^T)^r$ para todos os inteiros $r$ não negativos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Slide: Álgebra de matrizes -->
+            <section>
+                <h2>Álgebra de matrizes</h2>
+                <p><strong>Propriedades Algébricas da Adição de Matrizes e da Multiplicação por Escalar</strong></p>
+                <div style="font-size: 0.6em;">
+                    <p>Sejam $A$, $B$ e $C$ matrizes de mesma ordem, e $c$ e $d$ escalares. Então:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Propriedade</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>$A + B = B + A$</td><td>Comutatividade</td></tr>
+                            <tr><td>2</td><td>$(A + B) + C = A + (B + C)$</td><td>Associatividade</td></tr>
+                            <tr><td>3</td><td>$A + O = A$</td><td></td></tr>
+                            <tr><td>4</td><td>$A + (-A) = O$</td><td></td></tr>
+                            <tr><td>5</td><td>$c(A + B) = cA + cB$</td><td>Distributividade</td></tr>
+                            <tr><td>6</td><td>$(c + d)A = cA + dA$</td><td>Distributividade</td></tr>
+                            <tr><td>7</td><td>$c(dA) = (cd)A$</td><td></td></tr>
+                            <tr><td>8</td><td>$1A = A$</td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Slide: Combinações lineares em matrizes -->
+            <section>
+                <h2>Combinações lineares em matrizes</h2>
+                <div style="font-size: 0.75em;">
+                    <p>Escrevendo a matriz $B = \begin{bmatrix} 1 & 4 \\ 2 & 1 \end{bmatrix}$ como combinação linear de $A_1 = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$, $A_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$ e $A_3 = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$</p>
+                    <p>temos</p>
+                    $$c_1A_1 + c_2A_2 + c_3A_3 = B$$
+                    $$c_1\begin{bmatrix}
+                    0 & 1 \\
+                    -1 & 0
+                    \end{bmatrix} +
+                    c_2\begin{bmatrix}
+                    1 & 0 \\
+                    0 & 1
+                    \end{bmatrix} +
+                    c_3\begin{bmatrix}
+                    1 & 1 \\
+                    1 & 1
+                    \end{bmatrix} =
+                    \begin{bmatrix}
+                    1 & 4 \\
+                    2 & 1
+                    \end{bmatrix}$$
+                </div>
+                <hr>
+                <div style="font-size: 0.75em;">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>A combinação linear pode ser resolvida pelo sistema:</p>
+                            $$\begin{cases}
+                            c_2 + c_3 = 1 \\
+                            c_1 + c_3 = 4 \\
+                            -c_1 + c_3 = 2 \\
+                            c_2 + c_3 = 1
+                            \end{cases}$$
+                        </div>
+                        <div>
+                            <p>Que tem solução:</p>
+                            $$c_1 = 1$$
+                            $$c_2 = -2$$
+                            $$c_3 = 3$$
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa de uma matriz (definição + exemplo) -->
+            <section>
+                <h2>Inversa de uma matriz</h2>
+                <div style="font-size: 0.6em;">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Seja $A = \begin{bmatrix}
+                            2 & 3 \\
+                            1 & 4
+                            \end{bmatrix}$ e $A^{-1} = \begin{bmatrix}
+                            \frac{4}{5} & -\frac{3}{5} \\
+                            -\frac{1}{5} & \frac{2}{5}
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>Verificamos que $A^{-1}$ é inversa de $A$ pois:</p>
+                            <p>$AA^{-1} = \begin{bmatrix}
+                            2 & 3 \\
+                            1 & 4
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            \frac{4}{5} & -\frac{3}{5} \\
+                            -\frac{1}{5} & \frac{2}{5}
+                            \end{bmatrix} = \begin{bmatrix}
+                            1 & 0 \\
+                            0 & 1
+                            \end{bmatrix} = I$</p>
+                            <p>e</p>
+                            <p>$A^{-1}A = \begin{bmatrix}
+                            \frac{4}{5} & -\frac{3}{5} \\
+                            -\frac{1}{5} & \frac{2}{5}
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            2 & 3 \\
+                            1 & 4
+                            \end{bmatrix} = \begin{bmatrix}
+                            1 & 0 \\
+                            0 & 1
+                            \end{bmatrix} = I$</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="callout callout-note">
+                    <strong>Definição</strong>
+                    <p>Se $A$ é uma matriz $n \times n$, uma inversa de $A$ é uma matriz $n \times n$ $A^{-1}$ que satisfaz:</p>
+                    <p>$$AA^{-1} = I \quad \text{e} \quad A^{-1}A = I$$</p>
+                    <p>sendo $I = I_n$ a matriz identidade $n \times n$. Se existir uma matriz $A^{-1}$ assim, diremos que $A$ é invertível.</p>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa de uma matriz (exercícios) -->
+            <section>
+                <h2>Inversa de uma matriz</h2>
+                <p><strong>Em cada exemplo, verifique se a matriz $B$ é inversa de $A$</strong></p>
+                <div style="font-size: 0.8em;">
+                    <br>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>a)
+                            $A = \begin{bmatrix}
+                            1 & 2 \\
+                            3 & 4
+                            \end{bmatrix}$ e
+                            $B = \begin{bmatrix}
+                            -2 & 1 \\
+                            1.5 & -0.5
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>c)
+                            $A = \begin{bmatrix}
+                            2 & 5 \\
+                            1 & 3
+                            \end{bmatrix}$ e
+                            $B = \begin{bmatrix}
+                            3 & -5 \\
+                            -1 & 1
+                            \end{bmatrix}$</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>b)
+                            $A = \begin{bmatrix}
+                            2 & 1 & 1 \\
+                            1 & 3 & 2 \\
+                            1 & 0 & 0
+                            \end{bmatrix}$ e
+                            $B = \begin{bmatrix}
+                            0 & 0 & 1 \\
+                            -2 & 1 & 3 \\
+                            3 & -1 & -5
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>d)
+                            $A = \begin{bmatrix}
+                            1 & 2 & 3 \\
+                            0 & 1 & 4 \\
+                            5 & 6 & 0
+                            \end{bmatrix}$ e
+                            $B = \begin{bmatrix}
+                            4 & 2 & -2 \\
+                            -1 & 3 & 5 \\
+                            0 & 5 & 1
+                            \end{bmatrix}$</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa de uma matriz (resolução sistema 4x4 — invertível) -->
+            <section>
+                <h2>Inversa de uma matriz</h2>
+                <div style="font-size: 0.65em;">
+                    <div style="display: grid; grid-template-columns: 70% 30%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Verifique que $A = \begin{bmatrix}
+                            2 & 5 \\
+                            1 & 3
+                            \end{bmatrix}$ invertível e pode ser escrita por:</p>
+                            <p>$\begin{bmatrix}
+                            2 & 5 \\
+                            1 & 3
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            w & x \\
+                            y & z
+                            \end{bmatrix} =
+                            \begin{bmatrix}
+                            1 & 0 \\
+                            0 & 1
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>Que resulta no sistema de equações:</p>
+                            <p>$\begin{cases}
+                            2w + 5y = 1 \\
+                            2x + 5z = 0 \\
+                            w + 3y = 0 \\
+                            x + 3z = 1
+                            \end{cases}$</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="font-size: 0.65em;">
+                    <p>Que pode ser resolvido por:</p>
+                    <p>$\left[ \begin{array}{cccc|c}
+                    2 & 0 & 5 & 0 & 1\\
+                    0 & 2 & 0 & 5 & 0\\
+                    1 & 0 & 3 & 0 & 0\\
+                    0 & 1 & 0 & 3 & 1
+                    \end{array} \right]$
+                    $\begin{array}{c}
+                    L_1 \leftrightarrow L_3\\
+                    L_2 \leftrightarrow L_4\\
+                    \phantom{x} \\
+                    \phantom{x}
+                    \end{array}$
+                    $\left[ \begin{array}{cccc|c}
+                    1 & 0 & 3 & 0 & 0\\
+                    0 & 1 & 0 & 3 & 1\\
+                    2 & 0 & 5 & 0 & 1\\
+                    0 & 2 & 0 & 5 & 0
+                    \end{array} \right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    \phantom{x} \\
+                    L_3 - 2L_1 \\
+                    L_4 - 2L_2
+                    \end{array}$
+                    $\left[ \begin{array}{cccc|c}
+                    1 & 0 & 3 & 0 & 0\\
+                    0 & 1 & 0 & 3 & 1\\
+                    0 & 0 & -1 & 0 & 1\\
+                    0 & 0 & 0 & -1 & -2
+                    \end{array} \right]$
+                    $\begin{array}{c}
+                    L_1 + 3L_3 \\
+                    L_2 + 3L_4 \\
+                    -L_3 \\
+                    -L_4
+                    \end{array}$</p>
+                    <p>$\left[ \begin{array}{cccc|c}
+                    1 & 0 & 0 & 0 & 3\\
+                    0 & 1 & 0 & 0 & -5\\
+                    0 & 0 & 1 & 0 & -1\\
+                    0 & 0 & 0 & 1 & 2
+                    \end{array} \right]$
+                    $S = \left[\begin{array}{c}
+                    3 \\
+                    -5 \\
+                    -1 \\
+                    2
+                    \end{array} \right]$ &nbsp; Portanto:
+                    $A^{-1} = \begin{bmatrix}
+                    3 & -5 \\
+                    -1 & 2
+                    \end{bmatrix}$</p>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa de uma matriz (não invertível) -->
+            <section>
+                <h2>Inversa de uma matriz</h2>
+                <div style="font-size: 0.75em;">
+                    <div style="display: grid; grid-template-columns: 70% 30%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Verifique que $B = \begin{bmatrix}
+                            1 & 2 \\
+                            2 & 4
+                            \end{bmatrix}$ <strong>não é</strong> invertível e portanto não pode ser escrita por:</p>
+                            <p>$\begin{bmatrix}
+                            1 & 2 \\
+                            2 & 4
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            w & x \\
+                            y & z
+                            \end{bmatrix} =
+                            \begin{bmatrix}
+                            1 & 0 \\
+                            0 & 1
+                            \end{bmatrix}$</p>
+                        </div>
+                        <div>
+                            <p>O sistema de equações lineares fica:</p>
+                            <p>$\begin{cases}
+                            w + 2y = 1 \\
+                            x + 2z = 0 \\
+                            2w + 4y = 0 \\
+                            2x + 4z = 1
+                            \end{cases}$</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="font-size: 0.8em;">
+                    <p>Que pode ser representado por:</p>
+                    <p>$\left[ \begin{array}{cccc|c}
+                    1 & 0 & 2 & 0 & 1\\
+                    0 & 1 & 0 & 2 & 0\\
+                    2 & 0 & 4 & 0 & 0\\
+                    0 & 2 & 0 & 4 & 1
+                    \end{array} \right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    \phantom{x} \\
+                    L_3 - 2L_1 \\
+                    L_4 - 2L_2
+                    \end{array}$
+                    $\left[ \begin{array}{cccc|c}
+                    1 & 0 & 2 & 0 & 1\\
+                    0 & 1 & 0 & 2 & 0\\
+                    0 & 0 & 0 & 0 & -2\\
+                    0 & 0 & 0 & 0 & -1
+                    \end{array} \right]$</p>
+                    <br>
+                    <p><strong>A matriz na forma escalonada mostra que o sistema não tem solução e portanto a matriz $B$ não é invertível</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa de uma matriz (teorema + propriedades) -->
+            <section>
+                <h2>Inversa de uma matriz</h2>
+                <div style="font-size: 0.72em;">
+                <div class="callout callout-note">
+                    <strong>Teorema</strong>
+                    <p>Se $A$ é uma matriz $n \times n$ invertível, o sistema de equações lineares dado por $A\vec{x} = \vec{b}$ tem uma única solução $\vec{x} = A^{-1}\vec{b}$ para cada $\vec{b}$ em $\mathbb{R}^n$.</p>
+                </div>
+                <div class="callout callout-note">
+                    <strong>Propriedades</strong>
+                    <p>a. Se $A$ é uma matriz invertível, então $A^{-1}$ é invertível e $(A^{-1})^{-1} = A$.</p>
+                    <p>b. Se $A$ é uma matriz invertível e $c$ é um escalar não nulo, então $cA$ é uma matriz invertível e $(cA)^{-1} = \frac{1}{c}A^{-1}$.</p>
+                    <p>c. Se $A$ e $B$ são matrizes invertíveis de mesma ordem, então $AB$ é invertível e $(AB)^{-1} = B^{-1}A^{-1}$.</p>
+                    <p>d. Se $A$ é uma matriz invertível, então $A^T$ é invertível e $(A^T)^{-1} = (A^{-1})^T$.</p>
+                    <p>e. Se $A$ é uma matriz invertível, então, para todo inteiro não negativo $n$, a matriz $A^n$ é invertível e $(A^n)^{-1} = (A^{-1})^n$.</p>
+                </div>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa pelo método de Gauss-Jordan (passos) -->
+            <section>
+                <h2>Inversa de uma matriz pelo método de Gauss-Jordan</h2>
+                <div style="font-size: 0.9em;">
+                    <p>Para encontrar a inversa de uma matriz $A$ usando o método de Gauss-Jordan, seguimos os seguintes passos:</p>
+                    <ol>
+                        <li><strong>Formação da Matriz Aumentada</strong>:<br>
+                        Dada uma matriz $A$ de ordem $n \times n$, formamos a matriz aumentada $[A \mid I]$, onde $I$ é a matriz identidade de ordem $n \times n$.</li>
+                        <li><strong>Aplicação de Operações Elementares</strong>:<br>
+                        Aplicamos operações elementares sobre as linhas da matriz aumentada $[A \mid I]$ para transformar a parte esquerda (a matriz $A$) na matriz identidade $I$.</li>
+                        <li><strong>Obtenção da Inversa</strong>:<br>
+                        Quando a parte esquerda da matriz aumentada se transforma em $I$, a parte direita será a matriz inversa $A^{-1}$. Ou seja, $[I \mid A^{-1}]$.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Slide: Inversa pelo método de Gauss-Jordan (exemplo) -->
+            <section>
+                <h2>Inversa de uma matriz pelo método de Gauss-Jordan</h2>
+                <div style="font-size: 0.6em;">
+                    <p><strong>Exemplo Prático</strong></p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Considere a matriz $A = \begin{bmatrix} 2 & 1 & 1 \\ 1 & 3 & 2 \\ 1 & 0 & 0 \end{bmatrix}$.</p>
+                        </div>
+                        <div>
+                            <p>Que tem a matriz aumentada $[A \mid I]$:</p>
+                            $$\left[\begin{array}{ccc|ccc}
+                            2 & 1 & 1 & 1 & 0 & 0 \\
+                            1 & 3 & 2 & 0 & 1 & 0 \\
+                            1 & 0 & 0 & 0 & 0 & 1
+                            \end{array}\right]$$
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="font-size: 0.6em;">
+                    <p>Aplique operações elementares para transformar a parte esquerda em $I$:</p>
+                    <p>$\left[\begin{array}{ccc|ccc}
+                    2 & 1 & 1 & 1 & 0 & 0 \\
+                    1 & 3 & 2 & 0 & 1 & 0 \\
+                    1 & 0 & 0 & 0 & 0 & 1
+                    \end{array}\right]$
+                    $\begin{array}{c}
+                    L_1 \leftrightarrow L_3\\
+                    \phantom{x} \\
+                    \phantom{x}
+                    \end{array}$
+                    $\left[\begin{array}{ccc|ccc}
+                    1 & 0 & 0 & 0 & 0 & 1 \\
+                    1 & 3 & 2 & 0 & 1 & 0 \\
+                    2 & 1 & 1 & 1 & 0 & 0
+                    \end{array}\right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    L_2 - L_1\\
+                    L_3 - 2L_1
+                    \end{array}$
+                    $\left[\begin{array}{ccc|ccc}
+                    1 & 0 & 0 & 0 & 0 & 1 \\
+                    0 & 3 & 2 & 0 & 1 & -1 \\
+                    0 & 1 & 1 & 1 & 0 & -2
+                    \end{array}\right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    L_2 \leftrightarrow L_3\\
+                    \phantom{x}
+                    \end{array}$
+                    $\left[\begin{array}{ccc|ccc}
+                    1 & 0 & 0 & 0 & 0 & 1 \\
+                    0 & 1 & 1 & 1 & 0 & -2 \\
+                    0 & 3 & 2 & 0 & 1 & -1
+                    \end{array}\right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    \phantom{x} \\
+                    L_3 - 3L_2
+                    \end{array}$</p>
+                    <p>$\left[\begin{array}{ccc|ccc}
+                    1 & 0 & 0 & 0 & 0 & 1 \\
+                    0 & 1 & 1 & 1 & 0 & -2 \\
+                    0 & 0 & -1 & -3 & 1 & 5
+                    \end{array}\right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    \phantom{x} \\
+                    -L_3
+                    \end{array}$
+                    $\left[\begin{array}{ccc|ccc}
+                    1 & 0 & 0 & 0 & 0 & 1 \\
+                    0 & 1 & 1 & 1 & 0 & -2 \\
+                    0 & 0 & 1 & 3 & -1 & -5
+                    \end{array}\right]$
+                    $\begin{array}{c}
+                    \phantom{x} \\
+                    L_2 - L_3\\
+                    \phantom{x}
+                    \end{array}$
+                    $\left[\begin{array}{ccc|ccc}
+                    1 & 0 & 0 & 0 & 0 & 1 \\
+                    0 & 1 & 0 & -2 & 1 & 3 \\
+                    0 & 0 & 1 & 3 & -1 & -5
+                    \end{array}\right]$</p>
+                    <br>
+                    $$A^{-1} = \begin{bmatrix}
+                    0  &  0 &  1 \\
+                    -2 &  1 &  3 \\
+                    3  & -1 & -5
+                    \end{bmatrix}$$
+                </div>
+            </section>
+
+            <!-- Slide: Matrizes Elementares -->
+            <section>
+                <h2>Matrizes Elementares</h2>
+                <div style="font-size: 0.72em;">
+                    <p><strong>Definição:</strong></p>
+                    <p>Matrizes elementares são aquelas obtidas através de operações elementares realizadas sobre a matriz identidade. Elas desempenham um papel fundamental na solução de sistemas lineares e na obtenção da inversa de uma matriz.</p>
+                    <p><strong>Exemplos de Operações Elementares:</strong></p>
+                    <ol>
+                        <li><strong>Troca de Linhas:</strong> Exemplo: Trocar a linha 1 pela linha 2.
+                        $$E = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$$</li>
+                        <li><strong>Multiplicação de uma Linha por um Escalar:</strong> Exemplo: Multiplicar a linha 1 por um escalar $k$.
+                        $$E = \begin{bmatrix} k & 0 \\ 0 & 1 \end{bmatrix}$$</li>
+                        <li><strong>Adição de Múltiplos de Linhas:</strong> Exemplo: Adicionar a linha 2 multiplicada por um escalar $k$ à linha 1.
+                        $$E = \begin{bmatrix} 1 & k \\ 0 & 1 \end{bmatrix}$$</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Slide: Exemplo de Matrizes Elementares (E1-E6) -->
+            <section>
+                <h2>Exemplo de Matrizes Elementares para Calcular a Inversa</h2>
+                <div style="font-size: 0.6em;">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Considere a matriz $A = \begin{bmatrix} 2 & 1 & 1 \\ 1 & 3 & 2 \\ 1 & 0 & 0 \end{bmatrix}$.</p>
+                        </div>
+                        <div>
+                            <p>Que foi resolvida no exemplo anterior pela sequência de operações elementares:</p>
+                            <ol>
+                                <li>$L_1 \leftrightarrow L_3$</li>
+                                <li>$L_2 \rightarrow L_2 - L_1$; $L_3 \rightarrow L_3 - 2L_1$</li>
+                                <li>$L_2 \leftrightarrow L_3$</li>
+                                <li>$L_3 \rightarrow L_3 - 3L_2$</li>
+                                <li>$L_3 \rightarrow -L_3$</li>
+                                <li>$L_2 \rightarrow L_2 - L_3$</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="font-size: 0.6em;">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>1. <strong>Troca de $L_1$ e $L_3$:</strong></p>
+                            $$E_1 = \begin{bmatrix}
+                            0 & 0 & 1 \\
+                            0 & 1 & 0 \\
+                            1 & 0 & 0
+                            \end{bmatrix}$$
+                            <p>2. <strong>$L_2 \rightarrow L_2 - L_1$; $L_3 \rightarrow L_3 - 2L_1$:</strong></p>
+                            $$E_2 = \begin{bmatrix}
+                            1 & 0 & 0 \\
+                            -1 & 1 & 0 \\
+                            -2 & 0 & 1
+                            \end{bmatrix}$$
+                            <p>3. <strong>Troca de $L_2$ e $L_3$:</strong></p>
+                            $$E_3 = \begin{bmatrix}
+                            1 & 0 & 0 \\
+                            0 & 0 & 1 \\
+                            0 & 1 & 0
+                            \end{bmatrix}$$
+                        </div>
+                        <div>
+                            <p>4. <strong>$L_3 \rightarrow L_3 - 3L_2$:</strong></p>
+                            $$E_4 = \begin{bmatrix}
+                            1 & 0 & 0 \\
+                            0 & 1 & 0 \\
+                            0 & -3 & 1
+                            \end{bmatrix}$$
+                            <p>5. <strong>Multiplicação de $L_3$ por $-1$:</strong></p>
+                            $$E_5 = \begin{bmatrix}
+                            1 & 0 & 0 \\
+                            0 & 1 & 0 \\
+                            0 & 0 & -1
+                            \end{bmatrix}$$
+                            <p>6. <strong>$L_2 \rightarrow L_2 - L_3$:</strong></p>
+                            $$E_6 = \begin{bmatrix}
+                            1 & 0 & 0 \\
+                            0 & 1 & -1 \\
+                            0 & 0 & 1
+                            \end{bmatrix}$$
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide: Exemplo de Matrizes Elementares (relação + teorema) -->
+            <section>
+                <h2>Exemplo de Matrizes Elementares para Calcular a Inversa</h2>
+                <div style="font-size: 0.62em;">
+                    <p>Estabelecidas as matrizes elementares $E_1$ a $E_6$, tem-se a seguinte relação:</p>
+                    $$E_6 \times E_5 \times E_4 \times E_3 \times E_2 \times E_1 \times A = I$$
+                    <p>E consequentemente:</p>
+                    $$E_1^{-1} \times E_2^{-1} \times E_3^{-1} \times E_4^{-1} \times E_5^{-1} \times E_6^{-1} = A$$
+                </div>
+                <hr>
+                <div class="callout callout-note">
+                    <strong>O Teorema Fundamental das Matrizes Invertíveis — versão 1</strong>
+                    <p>Seja $A$ uma matriz $n \times n$. As seguintes afirmações são equivalentes:</p>
+                    <p>a. $A$ é invertível.</p>
+                    <p>b. $A\vec{x} = \vec{b}$ tem uma única solução para cada $\vec{b}$ em $\mathbb{R}^n$.</p>
+                    <p>c. $A\vec{x} = 0$ tem apenas a solução trivial.</p>
+                    <p>d. A forma escalonada reduzida de $A$ é $I_n$.</p>
+                    <p>e. $A$ é um produto de matrizes elementares.</p>
+                </div>
+            </section>
+
+            <!-- Slide: Cadeias de Markov — Problema + Estados + Matriz de Transição -->
+            <section>
+                <h2>Exemplo de aplicação: Cadeias de Markov para Recifes de Coral</h2>
+                <div style="font-size: 0.62em;">
+                    <p><strong>Problema</strong></p>
+                    <p>Os recifes de coral enfrentam várias ameaças ambientais, como branqueamento, acidificação dos oceanos e destruição física. Essas ameaças podem ser modeladas usando uma Cadeia de Markov para entender a probabilidade de um recife estar em um certo estado de saúde ao longo do tempo.</p>
+                    <p><strong>Estados</strong></p>
+                    <p>Definimos três estados possíveis para a saúde de um recife de coral:</p>
+                    <ul>
+                        <li><strong>S1:</strong> Saudável</li>
+                        <li><strong>S2:</strong> Moderadamente Degradado</li>
+                        <li><strong>S3:</strong> Severamente Degradado</li>
+                    </ul>
+                    <p><strong>Matriz de Transição</strong></p>
+                    <p>A matriz de transição de estados, $P$, representa as probabilidades de transição entre os estados de saúde de um recife de coral de um período para o outro.</p>
+                    $$P = \begin{bmatrix}
+                    0.7 & 0.3 & 0.1 \\
+                    0.2 & 0.5 & 0.3 \\
+                    0.1 & 0.2 & 0.6
+                    \end{bmatrix}$$
+                    <p>Cada elemento $P_{ij}$ na matriz representa a probabilidade de transição do estado $j$ na coluna para o estado $i$ na linha. Por exemplo, $P_{12} = 0.2$ indica que há uma probabilidade de 20% de um recife saudável ($S1$) passar para o estado moderadamente degradado ($S2$) no próximo período.</p>
+                </div>
+            </section>
+
+            <!-- Slide: Cadeias de Markov — Estado inicial + t+1 -->
+            <section>
+                <h2>Exemplo de aplicação: Cadeias de Markov para Recifes de Coral</h2>
+                <div style="font-size: 0.7em;">
+                    <p><strong>Estado inicial</strong></p>
+                    <p>Vamos considerar que inicialmente no tempo $t_0$ 80% dos recifes estão saudáveis, 15% estão moderadamente degradados e 5% estão severamente degradados. Isso pode ser representado pelo vetor de estado inicial:</p>
+                    $$\vec{v_0} = \begin{bmatrix}
+                    0.8 \\
+                    0.15 \\
+                    0.05
+                    \end{bmatrix}$$
+                    <p><strong>Estado em $t + 1$</strong></p>
+                    <p>Para determinar o estado dos recifes após um período de tempo $t_1$, multiplicamos o vetor de estado inicial pela matriz de transição:</p>
+                    $$\vec{v_1} = P \times \vec{v_0} = \begin{bmatrix}
+                    0.7 & 0.3 & 0.1 \\
+                    0.2 & 0.5 & 0.3 \\
+                    0.1 & 0.2 & 0.6
+                    \end{bmatrix} \times \begin{bmatrix}
+                    0.8 \\
+                    0.15 \\
+                    0.05
+                    \end{bmatrix} = \begin{bmatrix}
+                    0.61 \\
+                    0.25 \\
+                    0.14
+                    \end{bmatrix}$$
+                    <p>Isso significa que, após um período, 61% dos recifes estarão saudáveis, 25% estarão moderadamente degradados e 14% estarão severamente degradados.</p>
+                </div>
+            </section>
+
+            <!-- Slide: Cadeias de Markov — Estado estacionário (equação) -->
+            <section>
+                <h2>Exemplo de aplicação: Cadeias de Markov para Recifes de Coral</h2>
+                <div style="font-size: 0.7em;">
+                    <p><strong>Estado Estacionário</strong></p>
+                    <p>O estado estacionário é um vetor de probabilidades que representa a distribuição dos estados de um sistema em equilíbrio, onde as probabilidades de estar em cada estado não mudam com o tempo. Para uma cadeia de Markov, isso ocorre quando o vetor de estado não muda após uma multiplicação pela matriz de transição.</p>
+                    <p>Se $\vec{v_{ss}}$ é um vetor de estado estacionário e $P$ é a matriz de transição, então:</p>
+                    $$\vec{v_{ss}} = P \times \vec{v_{ss}}$$
+                    <p>Portanto, precisamos resolver o sistema de equações:</p>
+                    $$\begin{bmatrix}
+                    0.7 & 0.3 & 0.1 \\
+                    0.2 & 0.5 & 0.3 \\
+                    0.1 & 0.2 & 0.6
+                    \end{bmatrix} \times \begin{bmatrix}
+                    \pi_1 \\
+                    \pi_2 \\
+                    \pi_3
+                    \end{bmatrix} = \begin{bmatrix}
+                    \pi_1 \\
+                    \pi_2 \\
+                    \pi_3
+                    \end{bmatrix}$$
+                </div>
+            </section>
+
+            <!-- Slide: Cadeias de Markov — Resolução do sistema -->
+            <section>
+                <h2>Exemplo de aplicação: Cadeias de Markov para Recifes de Coral</h2>
+                <div style="font-size: 0.62em;">
+                    <p><strong>Resolução do Sistema</strong></p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Há ainda uma condição adicional de que a soma das probabilidades em $\vec{v_t}$ seja 1:</p>
+                            $$\pi_1 + \pi_2 + \pi_3 = 1$$
+                        </div>
+                        <div>
+                            <p>Que gera o sistema de equações:</p>
+                            $$\begin{cases}
+                            0.7\pi_1 + 0.3\pi_2 + 0.1\pi_3 = \pi_1 \\
+                            0.2\pi_1 + 0.5\pi_2 + 0.3\pi_3 = \pi_2 \\
+                            0.1\pi_1 + 0.2\pi_2 + 0.6\pi_3 = \pi_3 \\
+                            \pi_1 + \pi_2 + \pi_3 = 1
+                            \end{cases}$$
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div style="font-size: 0.62em;">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>O que pode ser reorganizado como:</p>
+                            $$\begin{cases}
+                            -3\pi_1 + 3\pi_2 + \pi_3 = 0 \\
+                            2\pi_1 - 5\pi_2 + 3\pi_3 = 0 \\
+                            \pi_1 + 2\pi_2 - 4\pi_3 = 0 \\
+                            \pi_1 + \pi_2 + \pi_3 = 1
+                            \end{cases}$$
+                        </div>
+                        <div>
+                            <p>E tem solução:</p>
+                            $$\vec{v_{ss}} = \begin{bmatrix} \frac{7}{17} \\ \frac{11}{34} \\ \frac{9}{34} \end{bmatrix} \sim \begin{bmatrix}
+                            0.4117 \\
+                            0.3235 \\
+                            0.2647
+                            \end{bmatrix}$$
+                        </div>
+                    </div>
+                </div>
+                <div class="callout callout-note">
+                    <strong>Resolução completa</strong>
+                    <p>Faça o download da <a href="https://github.com/FCopf/apresentacoes/blob/master/docs/Cadeias-de-Markov-para-Recifes-de-Coral.pdf" target="_blank">RESOLUÇÃO COMPLETA</a></p>
+                </div>
+            </section>
+
+            <!-- Slide: Cadeias de Markov — Interpretação + Conclusão -->
+            <section>
+                <h2>Exemplo de aplicação: Cadeias de Markov para Recifes de Coral</h2>
+                <div style="font-size: 0.62em;">
+                    <p><strong>Interpretação do vetor de Estado Estacionário</strong></p>
+                    <p>No longo prazo, a distribuição das probabilidades entre os estados é:</p>
+                    <ul>
+                        <li>$\pi_1 = \frac{7}{17} \sim 0.4117$</li>
+                        <li>$\pi_2 = \frac{11}{34} \sim 0.3235$</li>
+                        <li>$\pi_3 = \frac{9}{34} \sim 0.2647$</li>
+                    </ul>
+                </div>
+                <div class="callout callout-note">
+                    <strong>Conclusão</strong>
+                    <p>A existência de um vetor estacionário indica que, independentemente do estado inicial, a cadeia de Markov converge para essa distribuição de probabilidade quando o sistema está em equilíbrio.</p>
+                    <p>Portanto, mantendo as condições atuais que resultam na matriz de transição vigente, espera-se que, a longo prazo, aproximadamente 41,18% do recife de coral permanecerá em condições <em>Saudáveis</em>, 32,35% estará <em>Moderadamente Degradado</em> e 26,47% será <em>Severamente Degradado</em>.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            plugins: [RevealNotes, RevealMath.KaTeX, RevealHighlight],
+            math: {
+                mathjax: null,
+                katex: {
+                    version: 'latest',
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ]
+                }
+            }
+        });
+        window.addEventListener('load', function () {
+            var startTime = Date.now();
+            var timerElement = document.getElementById('timer');
+            if (timerElement) {
+                setInterval(function () {
+                    var elapsed = Math.floor((Date.now() - startTime) / 1000);
+                    var mins = Math.floor(elapsed / 60);
+                    var secs = elapsed % 60;
+                    timerElement.textContent = '⏱️ ' + mins + ':' + (secs < 10 ? '0' + secs : secs);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

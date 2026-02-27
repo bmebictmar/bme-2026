@@ -25,11 +25,11 @@ Oferecer letramento quantitativo e habilidades em matemática e estatística que
 
 ## Objetivos
 
-### Gerais
+#### Gerais
 
 Apresentar e trabalhar os elementos fundamentais do método matemático e estatístico à resolução de problemas relacionados às Ciências do Mar, em especial à análise de dados.
 
-### Específicos
+#### Específicos
 
 O aluno será capaz de:
 
@@ -40,7 +40,7 @@ O aluno será capaz de:
 
 ## Metodologia de ensino
 
-Atividades teóricas, práticas computacionais, leituras dirigidas, respostas a quizzes, listas de exercícios.
+Atividades teóricas, práticas computacionais, leituras dirigidas e listas de exercícios.
 
 ## Avaliação
 

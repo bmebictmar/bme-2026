@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regressão Linear Simples e o Método dos Mínimos Quadrados - BME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="css/style-classes.css">
+    <style>
+        .reveal .controls { bottom: 60px !important; }
+    </style>
+</head>
+<body>
+    <!-- TIMER -->
+    <div class="timer" id="timer">⏱️ 0:00</div>
+
+    <!-- BARRA INFERIOR FIXA — UC BME -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 12px; font-size: 0.95em; color: #ddd; border-top: 2px solid #1a9988; z-index: 10;">
+        <strong>Docente:</strong> Fabio Cop Ferreira e William Remo Pedroso Conti |
+        <strong>Curso:</strong> Bacharelado Interdisciplinar em Ciências do Mar - Bict Mar |
+        <strong>UC:</strong> 9833 - Bases da Matemática e Estatística para Ciências do Mar
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide de título -->
+            <section data-background-color="#1a9988">
+                <h1 style="color: white; font-size: 2em;">Regressão Linear Simples e o Método dos Mínimos Quadrados</h1>
+                <p style="color: rgba(255,255,255,0.85); font-size: 0.9em;">9833 - Bases da Matemática e Estatística para Ciências do Mar</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.75em;">Fabio Cop Ferreira e William Remo Pedroso Conti</p>
+            </section>
+
+            <!-- Slide: Conteúdo da Aula -->
+            <section>
+                <h2>Conteúdo da Aula</h2>
+                <ol>
+                    <li>Introdução à Regressão Linear Simples</li>
+                    <li>Definição dos Resíduos</li>
+                    <li>Método dos Mínimos Quadrados</li>
+                    <li>Representação Vetorial dos Resíduos</li>
+                    <li>Geometria da Solução de Mínimos Quadrados</li>
+                    <li>Solução Matricial do Método dos Mínimos Quadrados</li>
+                </ol>
+            </section>
+
+            <!-- Slide: Introdução à Regressão Linear Simples -->
+            <section>
+                <h2>Introdução à Regressão Linear Simples</h2>
+                <p>A regressão linear simples é um método para modelar a relação entre uma variável dependente $y$ e uma variável independente $x$. A equação da reta ajustada é dada por:</p>
+                $$\hat{y} = \beta_0 + \beta_1 x$$
+                <div style="font-size: 0.6em;">
+                    <div style="display: grid; grid-template-columns: 30% 70%; gap: 20px; align-items: start;">
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr><th>Observação</th><th>$x_i$</th><th>$y_i$</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>$1$</td><td>$x_1$</td><td>$y_1$</td></tr>
+                                    <tr><td>$2$</td><td>$x_2$</td><td>$y_2$</td></tr>
+                                    <tr><td>$3$</td><td>$x_3$</td><td>$y_3$</td></tr>
+                                    <tr><td>$\vdots$</td><td>$\vdots$</td><td>$\vdots$</td></tr>
+                                    <tr><td>$n$</td><td>$x_n$</td><td>$y_n$</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <img src="images/diagrama_regressao.png" alt="Diagrama de regressão linear" style="background-color:#ffffff; width:600px; max-width:100%; height:auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide: Definição dos Resíduos -->
+            <section>
+                <h2>Definição dos Resíduos</h2>
+                <div style="font-size: 0.72em;">
+                <p>Na figura abaixo, os resíduos $e_i$ representam as diferenças entre os valores observados $y_i$ e os valores ajustados $\hat{y}_i$ pela reta de regressão:</p>
+                $$e_i = y_i - (\beta_0 + \beta_1 x_i)$$
+                <p>Portando na regressão linear, assume-se que o valor observado em $y_i$ é dado por:</p>
+                $$y_i = \beta_0 + \beta_1 x_i + e_i$$
+                <div class="callout callout-note">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>Acesse o link <a href="https://www.geogebra.org/calculator/d8a9x9j3" target="_blank">Regressão linear Geogebra</a></p>
+                            <div style="font-size: 0.6em; text-align: center;">
+                                <table>
+                                    <thead>
+                                        <tr><th>Observação</th><th>$x_i$</th><th>$y_i$</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>$1$</td><td>$x_1$</td><td>$y_1$</td></tr>
+                                        <tr><td>$2$</td><td>$x_2$</td><td>$y_2$</td></tr>
+                                        <tr><td>$3$</td><td>$x_3$</td><td>$y_3$</td></tr>
+                                        <tr><td>$\vdots$</td><td>$\vdots$</td><td>$\vdots$</td></tr>
+                                        <tr><td>$n$</td><td>$x_n$</td><td>$y_n$</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="images/diagrama_regressao.png" alt="Diagrama de regressão linear com resíduos" style="background-color:#ffffff; width:70%; height:auto;">
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <!-- Slide: Método dos Mínimos Quadrados -->
+            <section>
+                <h2>Método dos Mínimos Quadrados</h2>
+                <p>O Método dos Mínimos Quadrados busca minimizar a soma dos quadrados dos resíduos:</p>
+                $$SQ_{res} = \sum_{i=1}^{n} e_i^2 = e_1^2 + e_2^2 + \cdots + e_n^2$$
+                <p>Que pode ser representada como:</p>
+                $$
+                \begin{cases}
+                e_1 = y_1 - (\beta_0 + \beta_1 x_1) \\
+                e_2 = y_2 - (\beta_0 + \beta_1 x_2) \\
+                \vdots \\
+                e_n = y_n - (\beta_0 + \beta_1 x_n) \\
+                \end{cases}
+                $$
+            </section>
+
+            <!-- Slide: Representação Vetorial dos Resíduos -->
+            <section>
+                <h2>Representação Vetorial dos Resíduos</h2>
+                <p>Podemos portanto representar os resíduos como vetor em que o vetor $\vec{e}$ é igual ao vetor $y$ menos uma <strong>combinação linear</strong> dos vetores $\vec{f}_0$ e $\vec{f}_0$ com constantes $\beta_0$ e $\beta_1$.</p>
+                <br>
+                $$\vec{e} = \vec{y} - (\beta_0 \vec{f}_0 + \beta_1 \vec{f}_1)$$
+                <br>
+                <div style="font-size: 0.7em;">
+                    $$
+                    \left[ \begin{array}{c}
+                    e_1 \\
+                    e_2 \\
+                    \vdots \\
+                    e_n \\
+                    \end{array} \right]
+                    =
+                    \left[ \begin{array}{c}
+                    y_1 - (\beta_0 + \beta_1 x_1) \\
+                    y_2 - (\beta_0 + \beta_1 x_2) \\
+                    \vdots \\
+                    y_n - (\beta_0 + \beta_1 x_n) \\
+                    \end{array} \right]
+                    =
+                    \left[ \begin{array}{c}
+                    y_1 \\
+                    y_2 \\
+                    \vdots \\
+                    y_n
+                    \end{array} \right]
+                    -
+                    \left(
+                    \beta_0
+                    \left[ \begin{array}{c}
+                    1 \\
+                    1 \\
+                    \vdots \\
+                    1 \\
+                    \end{array} \right]
+                    +
+                    \beta_1
+                    \left[ \begin{array}{c}
+                    x_1 \\
+                    x_2 \\
+                    \vdots \\
+                    x_n \\
+                    \end{array} \right]
+                    \right)
+                    $$
+                </div>
+            </section>
+
+            <!-- Slide: Representação Vetorial dos Resíduos — Notação -->
+            <section>
+                <h2>Representação Vetorial dos Resíduos — Notação</h2>
+                <p>Onde:</p>
+                <div style="font-size: 0.7em;">
+                    $$\vec{e} =
+                    \left[ \begin{array}{c}
+                    e_1 \\
+                    e_2 \\
+                    \vdots \\
+                    e_n \\
+                    \end{array} \right];
+                    \vec{y} =
+                    \left[ \begin{array}{c}
+                    y_1 \\
+                    y_2 \\
+                    \vdots \\
+                    y_n \\
+                    \end{array} \right];
+                    \vec{f}_0 =
+                    \left[ \begin{array}{c}
+                    1 \\
+                    1 \\
+                    \vdots \\
+                    1 \\
+                    \end{array} \right];
+                    \vec{f}_1 =
+                    \left[ \begin{array}{c}
+                    x_1 \\
+                    x_2 \\
+                    \vdots \\
+                    x_n \\
+                    \end{array} \right]$$
+                </div>
+            </section>
+
+            <!-- Slide: Geometria da Solução de Mínimos Quadrados (1) -->
+            <section>
+                <h2>Geometria da Solução de Mínimos Quadrados</h2>
+                <div style="font-size: 0.72em;">
+                <p>A Soma dos quadrados dos resíduos ($SQ_{res}$) pode ser obtida pela <strong>norma ao quadrado</strong> do vetor $\vec{e}$:</p>
+                $$SQ_{res} = \Vert\vec{e}\Vert^{2}=\vec{e}\cdot\vec{e}=e_{1}^{2}+e_{2}^{2}+\cdots+e_{n}^{2}$$
+                <br>
+                <div class="callout callout-note">
+                    <strong>Representação da Solução do MMQ no GeoGebra</strong>
+                    <p>O Método dos Mínimos Quadrados determina $\beta_0$ e $\beta_1$ de modo a <em>minimizar o comprimento</em> (a norma) do vetor $\vec{e}$ que pode ser obtida impondo que o vetor $\vec{e}$ seja ortogonal aos vetores $\vec{f_0}$ e $\vec{f_1}$, ou seja:</p>
+                    $$\vec{f_0} \cdot \vec{e} = 0$$
+                    $$\vec{f_1} \cdot \vec{e} = 0$$
+                    <p><a href="https://www.geogebra.org/calculator/eyk8ammw" style="color:#FF6347;">https://www.geogebra.org/calculator/eyk8ammw</a></p>
+                </div>
+                </div>
+            </section>
+
+            <!-- Slide: Geometria da Solução de Mínimos Quadrados (2) -->
+            <section>
+                <h2>Geometria da Solução de Mínimos Quadrados</h2>
+                $$
+                \left\{\begin{array}{c}
+                \vec{f_0} \cdot \vec{e} = 0 \Leftrightarrow \vec{f_0}\cdot(\vec{y}-\beta_0\vec{f_0}-\beta_1\vec{f_1})=0\\
+                \vec{f_1} \cdot \vec{e} = 0 \Leftrightarrow \vec{f_1}\cdot(\vec{y}-\beta_0\vec{f_0}-\beta_1\vec{f_1})=0
+                \end{array} \right.
+                $$
+                <p>que é equivalente a:</p>
+                $$
+                \left\{\begin{array}{c}
+                \beta_0\vec{f_0}\cdot\vec{f_0}+\beta_1\vec{f_0}\cdot\vec{f_1}=\vec{f_0}\cdot\vec{y}\\
+                \beta_0\vec{f_1}\cdot\vec{f_0}+\beta_1\vec{f_1}\cdot\vec{f_1}=\vec{f_1}\cdot\vec{y}
+                \end{array} \right.,
+                $$
+                <p>que ainda pode ser escrito na forma matricial:</p>
+                $$
+                \left[ \begin{array}{cc}
+                \vec{f_0}\cdot\vec{f_0} & \vec{f_0}\cdot\vec{f_1}\\
+                \vec{f_1}\cdot\vec{f_0} & \vec{f_1}\cdot\vec{f_1}
+                \end{array} \right]
+                \left[ \begin{array}{c}
+                \beta_0\\
+                \beta_1
+                \end{array} \right]
+                =
+                \left[ \begin{array}{c}
+                \vec{f_0}\cdot\vec{y}\\
+                \vec{f_1}\cdot\vec{y}
+                \end{array} \right]
+                $$
+            </section>
+
+            <!-- Slide: Solução Matricial — Equação Normal -->
+            <section>
+                <h2>Solução Matricial do Método dos Mínimos Quadrados</h2>
+                <p>A combinação linear:</p>
+                $$
+                \left[ \begin{array}{cc}
+                \vec{f_0}\cdot\vec{f_0} & \vec{f_0}\cdot\vec{f_1}\\
+                \vec{f_1}\cdot\vec{f_0} & \vec{f_1}\cdot\vec{f_1}
+                \end{array} \right]
+                \left[ \begin{array}{c}
+                \beta_0\\
+                \beta_1
+                \end{array} \right]
+                =
+                \left[ \begin{array}{c}
+                \vec{f_0}\cdot\vec{y}\\
+                \vec{f_1}\cdot\vec{y}
+                \end{array} \right]
+                $$
+                <p>por ser expressa pelas matrizes:</p>
+                $$X = \left[ \begin{array}{ccc}
+                \vec{f_0} & \vdots & \vec{f_1}
+                \end{array} \right] =
+                \left[ \begin{array}{cc}
+                1 & x_1 \\
+                1 & x_2 \\
+                \vdots & \vdots \\
+                1 & x_n \\
+                \end{array} \right];
+                Y = \left[ \begin{array}{c}
+                y_1 \\
+                y_2 \\
+                \vdots \\
+                y_n \\
+                \end{array} \right];
+                B = \left[ \begin{array}{c}
+                \beta_0 \\
+                \beta_1 \\
+                \end{array} \right]
+                $$
+            </section>
+
+            <!-- Slide: Solução Matricial — Estimativa de Mínimos Quadrados -->
+            <section>
+                <h2>Solução Matricial — Estimativa de Mínimos Quadrados</h2>
+                <p>E finalmente:</p>
+                $$B = (X^{T} X)^{-1}(X^{T}Y)$$
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            plugins: [RevealNotes, RevealMath.KaTeX, RevealHighlight],
+            math: {
+                mathjax: null,
+                katex: {
+                    version: 'latest',
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ]
+                }
+            }
+        });
+        window.addEventListener('load', function () {
+            var startTime = Date.now();
+            var timerElement = document.getElementById('timer');
+            if (timerElement) {
+                setInterval(function () {
+                    var elapsed = Math.floor((Date.now() - startTime) / 1000);
+                    var mins = Math.floor(elapsed / 60);
+                    var secs = elapsed % 60;
+                    timerElement.textContent = '⏱️ ' + mins + ':' + (secs < 10 ? '0' + secs : secs);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

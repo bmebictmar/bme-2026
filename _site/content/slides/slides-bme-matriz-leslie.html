@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz de Leslie - BME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="css/style-classes.css">
+    <style>
+        .reveal .controls { bottom: 60px !important; }
+
+        /* Placeholder para imagens ausentes */
+        .img-placeholder {
+            background: #f0f4f8;
+            border: 2px dashed #aab8c2;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            color: #5a6772;
+            font-style: italic;
+            font-size: 0.65em;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Círculos das classes etárias */
+        .age-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #b8d4e8;
+            border: 2px solid #5a8fb5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.3;
+            font-weight: bold;
+            color: #2c5f7c;
+            font-size: 0.65em;
+        }
+
+        .diagram-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+        }
+
+        .diagram-connector {
+            width: 44px;
+            border-top: 2px solid #555;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TIMER -->
+    <div class="timer" id="timer">⏱️ 0:00</div>
+
+    <!-- BARRA INFERIOR FIXA — UC BME -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 12px; font-size: 0.95em; color: #ddd; border-top: 2px solid #1a9988; z-index: 10;">
+        <strong>Docente:</strong> Fabio Cop Ferreira e William Remo Pedroso Conti |
+        <strong>Curso:</strong> Bacharelado Interdisciplinar em Ciências do Mar - Bict Mar |
+        <strong>UC:</strong> 9833 - Bases da Matemática e Estatística para Ciências do Mar
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- SLIDE DE TÍTULO                                        -->
+            <!-- ══════════════════════════════════════════════════════ -->
+            <section data-background-color="#1a9988">
+                <h1 style="color: white; font-size: 1.8em; line-height: 1.25;">
+                    Introdução à Geometria Analítica e Álgebra Linear
+                </h1>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1em; font-style: italic; margin-top: 10px;">
+                    Crescimento populacional e estrutura etária
+                </p>
+                <img src="images/matriz_leslie.png" alt="Matriz de Leslie"
+                     style="height: 130px; margin: 20px auto; display: block; opacity: 0.9;">
+                <p style="color: rgba(255,255,255,0.85); font-size: 0.85em;">
+                    9833 - Bases da Matemática e Estatística para Ciências do Mar
+                </p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.75em;">
+                    Fabio Cop Ferreira e William Remo Pedroso Conti
+                </p>
+            </section>
+
+            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- PARTE 1: CRESCIMENTO POPULACIONAL E ESTRUTURA ETÁRIA  -->
+            <!-- ══════════════════════════════════════════════════════ -->
+            <section>
+
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Crescimento Populacional e Estrutura Etária</h2>
+                </section>
+
+                <!-- Slide 2: Natalidade e Mortalidade -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Fatores que levam ao aumento ou declínio populacional Global</h2>
+                    <div style="display: grid; grid-template-columns: 52% 48%; gap: 24px; align-items: start;
+                                font-size: 0.65em; margin-top: 12px;">
+                        <div>
+                            <p style="margin-bottom: 10px;">
+                                <span style="color: #27ae60; font-size: 1.1em;">↗</span>
+                                <strong style="color: #27ae60;">Natalidade</strong>
+                                &nbsp;→&nbsp; Aumento no tamanho populacional
+                            </p>
+                            <p style="margin-bottom: 16px;">
+                                <strong style="color: #c0392b;">Mortalidade</strong>
+                                <span style="color: #c0392b; font-size: 1.1em;">&nbsp;→&nbsp;</span>
+                                Declínio no tamanho populacional
+                            </p>
+                            <div class="img-placeholder" style="height: 220px;">
+                                [Mapa-múndi com círculos proporcionais ao tamanho<br>
+                                populacional por região e gráfico de crescimento histórico]<br><br>
+                                • 1850: 1 bilhão<br>
+                                • 1950: 2 bilhões<br>
+                                • 1970: 3 bilhões
+                            </div>
+                        </div>
+                        <div>
+                            <div class="img-placeholder" style="height: 265px;">
+                                [World Population Projections —<br>
+                                IIASA probabilistic projections compared to UN projections]<br><br>
+                                World Population (Billions)<br>
+                                Eixo X: 1950–2100 &nbsp;|&nbsp; Eixo Y: 0–13 bilhões
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; font-size: 0.7em; margin-top: 12px;">
+                        <strong>Taxa de Crescimento = Natalidade − Mortalidade</strong>
+                    </p>
+                </section>
+
+                <!-- Slide 3: Estrutura Etária — duas pirâmides -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Fatores que levam ao aumento ou declínio populacional Global</h2>
+                    <p style="font-size: 0.65em; margin-bottom: 14px;">
+                        <strong>Estrutura Etária:</strong> contribuição de cada classe etária (idade) na população
+                    </p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px;">
+                        <div class="img-placeholder" style="height: 300px;">
+                            [Pirâmide etária — <strong>Crescimento rápido</strong>]<br><br>
+                            Masculino | Feminino &nbsp;|&nbsp; Faixas: 0–4 até 80+<br><br>
+                            Base larga → muitos jovens<br>
+                            <em>(Many young dependants)</em><br><br>
+                            Topo estreito → baixa expectativa de vida<br>
+                            <em>(Low life expectancy)</em><br><br>
+                            Escala: −2,5 a +1,5 milhões
+                        </div>
+                        <div class="img-placeholder" style="height: 300px;">
+                            [Pirâmide etária — <strong>Crescimento lento / Envelhecimento</strong>]<br><br>
+                            Masculino | Feminino &nbsp;|&nbsp; Faixas: 0–4 até 100+<br><br>
+                            Base estreita → poucos jovens<br>
+                            <em>(Few young dependants)</em><br><br>
+                            Topo largo → muitos idosos<br>
+                            <em>(Many elderly dependants)</em><br><br>
+                            Escala: −2,5 a +2,5 milhões
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4: Crescimento rápido (ampliado) -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Fatores que levam ao aumento ou declínio populacional Global</h2>
+                    <h3 style="font-size: 0.82em; color: #2c5f7c; margin-bottom: 16px;">Crescimento rápido</h3>
+                    <div class="img-placeholder" style="height: 430px; max-width: 650px; margin: 0 auto;">
+                        [Pirâmide etária — <strong>Crescimento rápido</strong> (ampliada)]<br><br>
+                        Masculino (esq.) &nbsp;|&nbsp; Feminino (dir.)<br>
+                        Faixas etárias: 0–4 até 80+<br><br>
+                        Base muito larga → <em>Many young dependants</em><br>
+                        Topo estreito → <em>Low life expectancy</em><br><br>
+                        Escala horizontal: −2,5 a +2,5 milhões
+                    </div>
+                </section>
+
+                <!-- Slide 5: Crescimento lento / estabilização (ampliado) -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Fatores que levam ao aumento ou declínio populacional Global</h2>
+                    <h3 style="font-size: 0.82em; color: #2c5f7c; margin-bottom: 16px;">Crescimento lento / estabilização</h3>
+                    <div class="img-placeholder" style="height: 430px; max-width: 650px; margin: 0 auto;">
+                        [Pirâmide etária — <strong>Crescimento lento / Estabilização</strong> (ampliada)]<br><br>
+                        Masculino (esq.) &nbsp;|&nbsp; Feminino (dir.)<br>
+                        Faixas etárias: 0–4 até 100+<br><br>
+                        Base estreita → <em>Few young dependants</em><br>
+                        Topo largo → <em>Many elderly dependants</em><br><br>
+                        Escala horizontal: −2,5 a +2,5 milhões
+                    </div>
+                </section>
+
+                <!-- Slide 6: Estabilização / Decrescimento — Mônaco 2014 -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Fatores que levam ao aumento ou declínio populacional Global</h2>
+                    <h3 style="font-size: 0.82em; color: #2c5f7c; margin-bottom: 16px;">Estabilização / Decrescimento</h3>
+                    <div class="img-placeholder" style="height: 430px; max-width: 680px; margin: 0 auto;">
+                        [Pirâmide etária — <strong>Mônaco – 2014</strong>]<br><br>
+                        Masculino (azul, esq.) &nbsp;|&nbsp; Feminino (vermelho, dir.)<br>
+                        Faixas etárias: 0–4 até 100+<br><br>
+                        Base muito estreita &amp; topo muito largo<br>
+                        → forte envelhecimento populacional<br><br>
+                        Eixo X: −2 a +2 (Population in thousands)<br>
+                        Eixo central: Age Group
+                    </div>
+                </section>
+
+                <!-- Slide 7: Por que é importante? -->
+                <section>
+                    <h3 style="font-size: 0.75em; border: 1px solid #ccc; padding: 10px 18px;
+                               border-radius: 6px; line-height: 1.4;">
+                        Porque é importante entender a estrutura e dinâmica das pirâmides populacionais?
+                    </h3>
+                    <div style="font-size: 0.6em; text-align: left; margin-top: 12px;">
+                        <ol style="margin-left: 1.2em;">
+                            <li style="margin-bottom: 6px;">
+                                <strong>Planejamento de serviços em diferentes níveis:</strong>
+                                <ul style="margin-top: 6px; line-height: 1.8;">
+                                    <li>Quantas escolas serão necessárias?</li>
+                                    <li>O que será feito para cuidar da população que envelhece?</li>
+                                    <li>Teremos pessoas suficientes para sustentar a base econômica e cuidar dos
+                                        grupos não produtivos (idosos e crianças)?</li>
+                                    <li>Mudanças culturais – estrutura familiar</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 33% 33% 33%; gap: 10px; margin-top: 14px;">
+                        <div class="img-placeholder" style="height: 130px; font-size: 0.62em;">
+                            [Pirâmide:<br><strong>Crescimento rápido</strong>]<br>
+                            <em>Many young dependants</em>
+                        </div>
+                        <div class="img-placeholder" style="height: 130px; font-size: 0.62em;">
+                            [Pirâmide:<br><strong>Crescimento lento</strong>]<br>
+                            <em>Few young dependants /<br>Many elderly dependants</em>
+                        </div>
+                        <div class="img-placeholder" style="height: 130px; font-size: 0.62em;">
+                            [Pirâmide:<br><strong>Mônaco 2014</strong>]<br>
+                            <em>Estabilização / Decrescimento</em>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- PARTE 2: PROJEÇÃO POPULACIONAL                        -->
+            <!-- ══════════════════════════════════════════════════════ -->
+            <section>
+
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Projeção do Tamanho Populacional no Futuro</h2>
+                </section>
+
+                <!-- Slide 8: Projeção — por que a população continua crescendo? -->
+                <section>
+                    <h2 style="font-size: 1.0em;">Projeção do tamanho populacional no futuro</h2>
+                    <p style="font-size: 0.62em; margin-bottom: 14px;">
+                        Porque a população continuará crescendo mesmo se a taxa de fecundidade cair abaixo
+                        do nível de reposição (±2 filhos por mulher)?
+                    </p>
+                    <div style="display: grid; grid-template-columns: 54% 46%; gap: 22px;
+                                align-items: start; font-size: 0.62em;">
+                        <div class="img-placeholder" style="height: 320px;">
+                            [World Population Projections —<br>
+                            IIASA probabilistic projections compared to UN projections]<br><br>
+                            World Population (Billions) — Eixo Y: 0–13<br>
+                            Eixo X: 1950–2100<br><br>
+                            • UN high variant → 10,5 (2050)<br>
+                            • UN medium variant → 9,1<br>
+                            • UN low variant → 8<br>
+                            Pico em 9 bilhões: 2050 (UN) e 2070 (IIASA)<br>
+                            Em 2100: 80% chance entre 6,2 e 11,1 bilhões
+                        </div>
+                        <div>
+                            <ul style="line-height: 2.1;">
+                                <li>A fecundidade média no mundo em 1970 era de
+                                    <strong>6,45 filhos/mulher</strong></li>
+                                <li>Em 2015 caiu para <strong>3,89</strong></li>
+                                <li>Mesmo que a fertilidade caia, a população continuará
+                                    crescendo até 2050 para atingir 9 bilhões</li>
+                                <li><strong>PORQUE?</strong></li>
+                                <li><strong>COMO PREVER ESSA TRAJETÓRIA?</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- PARTE 3: UM MODELO DE DINÂMICA POPULACIONAL           -->
+            <!-- ══════════════════════════════════════════════════════ -->
+            <section>
+
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Um Modelo de Dinâmica Populacional</h2>
+                </section>
+
+                <!-- Slide 9: Taxa de Sobrevivência — classes etárias nomeadas -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Um modelo de dinâmica populacional</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;
+                                font-size: 0.6em; margin-bottom: 6px;">
+                        <span>Tempo &nbsp;⟶</span>
+                        <span style="color: #c0392b; font-weight: bold;">$S_4 = \mathbf{0}$ &nbsp;↗</span>
+                    </div>
+                    <h3 style="font-size: 0.72em; text-align: left; margin-bottom: 14px;">
+                        1. Taxa de Sobrevivência (<em>S</em>)
+                    </h3>
+
+                    <div style="font-size: 0.6em;">
+                        <!-- Labels superiores das setas de sobrevivência -->
+                        <div style="display: flex; justify-content: center; align-items: flex-end;
+                                    gap: 0; margin-bottom: 4px;">
+                            <div style="width: 100px; text-align: center; color: #444;">$S_1$ ↘</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_2$ ↘</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_3$ ↘</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px;"></div>
+                        </div>
+                        <!-- Círculos das classes -->
+                        <div class="diagram-row">
+                            <div class="age-circle">Classe 1<br>0 a 20</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle">Classe 2<br>20 a 40</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle">Classe 3<br>40 a 60</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle">Classe 4<br>60 →+</div>
+                        </div>
+                        <!-- Mortalidade abaixo -->
+                        <div style="display: flex; justify-content: center; align-items: flex-start;
+                                    gap: 0; margin-top: 8px;">
+                            <div style="width: 100px; text-align: center; color: #c0392b; font-weight: bold;">
+                                $1 - S_1$ ↓</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #c0392b; font-weight: bold;">
+                                $1 - S_2$ ↓</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #c0392b; font-weight: bold;">
+                                $1 - S_3$ ↓</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #c0392b; font-weight: bold;">
+                                $1 - S_4 = 1$ ↓</div>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.62em; text-align: right; color: #666; font-style: italic;
+                               margin-top: 20px;">
+                        Como prever o número de indivíduos em cada classe etária e o tamanho populacional
+                        no futuro?
+                    </p>
+                </section>
+
+                <!-- Slide 10: Taxa de Sobrevivência — N_i e equações -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Um modelo de dinâmica populacional</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;
+                                font-size: 0.6em; margin-bottom: 6px;">
+                        <span>Tempo &nbsp;⟶</span>
+                        <span style="color: #c0392b; font-weight: bold;">$S_4 = \mathbf{0}$ &nbsp;↗</span>
+                    </div>
+                    <h3 style="font-size: 0.72em; text-align: left; margin-bottom: 14px;">
+                        1. Taxa de Sobrevivência (<em>S</em>)
+                    </h3>
+
+                    <div style="font-size: 0.6em;">
+                        <!-- Labels superiores -->
+                        <div style="display: flex; justify-content: center; align-items: flex-end;
+                                    gap: 0; margin-bottom: 4px;">
+                            <div style="width: 100px; text-align: center; color: #444;">$S_1$ ↘</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_2$ ↘</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_3$ ↘</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px;"></div>
+                        </div>
+                        <!-- Círculos com N_i -->
+                        <div class="diagram-row">
+                            <div class="age-circle" style="font-size: 0.75em;">$N_1$</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle" style="font-size: 0.75em;">$N_2$</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle" style="font-size: 0.75em;">$N_3$</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle" style="font-size: 0.75em;">$N_4$</div>
+                        </div>
+                        <!-- Equações abaixo -->
+                        <div style="display: flex; justify-content: center; align-items: flex-start;
+                                    gap: 0; margin-top: 10px;">
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_1 = ?$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_2 = S_1 \times N_1$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_3 = S_2 \times N_2$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_4 = S_3 \times N_3$</div>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.62em; text-align: right; color: #666; font-style: italic;
+                               margin-top: 22px;">
+                        Como prever o número de indivíduos em cada classe etária e o tamanho populacional
+                        no futuro?
+                    </p>
+                </section>
+
+                <!-- Slide 11: Taxa de Reposição — Fecundidade -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Um modelo de dinâmica populacional</h2>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;
+                                font-size: 0.6em; margin-bottom: 6px;">
+                        <span>Tempo &nbsp;⟶</span>
+                        <span style="color: #c0392b; font-weight: bold;">$S_4 = \mathbf{0}$</span>
+                    </div>
+                    <h3 style="font-size: 0.72em; text-align: left; margin-bottom: 10px;">
+                        2. Taxa de Reposição – Fecundidade (<em>F</em>)
+                    </h3>
+
+                    <div style="font-size: 0.6em;">
+                        <!-- F_1 retroalimenta N_1 / setas de S acima -->
+                        <div style="display: flex; justify-content: center; align-items: flex-end;
+                                    gap: 0; margin-bottom: 4px;">
+                            <div style="width: 100px; text-align: center; color: #27ae60; font-weight: bold;">
+                                ↙ $F_1$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_1$ ↗</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_2$ ↗</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; color: #444;">$S_3$ ↗</div>
+                        </div>
+                        <!-- Círculos -->
+                        <div class="diagram-row">
+                            <div class="age-circle" style="font-size: 0.75em;">$N_1$</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle" style="font-size: 0.75em;">$N_2$</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle" style="font-size: 0.75em;">$N_3$</div>
+                            <div class="diagram-connector"></div>
+                            <div class="age-circle" style="font-size: 0.75em;">$N_4$</div>
+                        </div>
+                        <!-- Equações + setas F de volta para N_1 -->
+                        <div style="display: flex; justify-content: center; align-items: flex-start;
+                                    gap: 0; margin-top: 10px;">
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_1 = ?$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_2 = S_1 \times N_1$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_3 = S_2 \times N_2$</div>
+                            <div style="width: 44px;"></div>
+                            <div style="width: 100px; text-align: center; font-size: 0.85em; color: #444;">
+                                $N_4 = S_3 \times N_3$</div>
+                        </div>
+                        <!-- F2, F3, F4 voltando para N_1 -->
+                        <div style="text-align: center; color: #27ae60; font-weight: bold;
+                                    margin-top: 8px; font-size: 0.85em; letter-spacing: 0.05em;">
+                            ←← $F_2$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ←←←← $F_3$
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ←←←←←←← $F_4$
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 12px; font-size: 0.62em;">
+                        $$N_1 = F_1 \times N_1 + F_2 \times N_2 + F_3 \times N_3 + F_4 \times N_4$$
+                    </div>
+
+                    <p style="font-size: 0.62em; text-align: right; color: #666; font-style: italic;">
+                        Como prever o número de indivíduos em cada classe etária e o tamanho populacional
+                        no futuro?
+                    </p>
+                </section>
+
+                <!-- Slide 12: Um Exemplo simples -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Um modelo de dinâmica populacional — Um Exemplo simples</h2>
+                    <div style="display: grid; grid-template-columns: 22% 54% 24%; gap: 10px;
+                                font-size: 0.62em; margin-top: 14px; align-items: center;">
+
+                        <!-- Cabeçalhos -->
+                        <div style="font-weight: bold; color: #2c5f7c; text-align: center;">Tempo 1</div>
+                        <div></div>
+                        <div style="font-weight: bold; color: #2c5f7c; text-align: center;">Tempo 2</div>
+
+                        <!-- Círculos Tempo 1 -->
+                        <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_1^{(t)} = 100$</div>
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_2^{(t)} = 85$</div>
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_3^{(t)} = 73$</div>
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_4^{(t)} = 63$</div>
+                        </div>
+
+                        <!-- Equações de transição -->
+                        <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
+                            <div style="line-height: 1.4;">
+                                $N_1^{(t+1)} = F_1 \times N_1^{(t)} + F_2 \times N_2^{(t)}
+                                + F_3 \times N_3^{(t)} + F_4 \times N_4^{(t)}$</div>
+                            <div style="line-height: 1.4;">$N_2^{(t+1)} = S_1 \times N_1^{(t)}$</div>
+                            <div style="line-height: 1.4;">$N_3^{(t+1)} = S_2 \times N_2^{(t)}$</div>
+                            <div style="line-height: 1.4;">$N_4^{(t+1)} = S_3 \times N_3^{(t)}$</div>
+                        </div>
+
+                        <!-- Círculos Tempo 2 -->
+                        <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_1^{(t)} = ?$</div>
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_2^{(t)} = ?$</div>
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_3^{(t)} = ?$</div>
+                            <div class="age-circle" style="width: 82px; height: 82px; font-size: 0.7em;">
+                                $N_4^{(t)} = ?$</div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </section>
+
+            <!-- ══════════════════════════════════════════════════════ -->
+            <!-- PARTE 4: MATRIZ DE LESLIE                             -->
+            <!-- ══════════════════════════════════════════════════════ -->
+            <section>
+
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Matriz de Leslie</h2>
+                </section>
+
+                <!-- Slide 13: Patrick Holt Leslie + formulação matricial -->
+                <section>
+                    <h2 style="font-size: 0.92em;">Estrutura etária, dinâmica populacional e Álgebra Linear</h2>
+                    <h3 style="font-size: 0.75em; margin-bottom: 10px;">Matriz de Leslie</h3>
+                    <div style="display: grid; grid-template-columns: 30% 70%; gap: 24px;
+                                align-items: start; font-size: 0.62em;">
+                        <div style="text-align: center;">
+                            <img src="images/matriz_leslie.png" alt="Matriz de Leslie"
+                                 style="max-height: 155px; width: auto; margin-bottom: 10px;">
+                            <p><em>Patrick Holt Leslie</em><br>
+                               31 January 1912 – 12 October 1993</p>
+                        </div>
+                        <div>
+                            <p>Partindo das contribuições da fecundidade e sobrevivência por classe etária,</p>
+                            $$\begin{cases}
+                              N_1^{(t+1)} = F_1 \times N_1^{(t)} + F_2 \times N_2^{(t)}
+                                           + F_3 \times N_3^{(t)} + F_4 \times N_4^{(t)} \\
+                              N_2^{(t+1)} = S_1 \times N_1^{(t)} \\
+                              N_3^{(t+1)} = S_2 \times N_2^{(t)} \\
+                              N_4^{(t+1)} = S_3 \times N_3^{(t)}
+                            \end{cases}$$
+                            <p style="margin-top: 10px;">
+                                Propôs que a relação entre as classes ao longo do tempo podiam ser
+                                organizadas em formato de matriz.
+                            </p>
+                            $$\begin{pmatrix} N_1^{(t+1)} \\ N_2^{(t+1)} \\ N_3^{(t+1)} \\ N_4^{(t+1)} \end{pmatrix}
+                            = \begin{pmatrix} F_1 & F_2 & F_3 & F_4 \\ S_1 & 0 & 0 & 0 \\
+                                             0 & S_2 & 0 & 0 \\ 0 & 0 & S_3 & 0 \end{pmatrix}
+                            \times
+                            \begin{pmatrix} N_1^{(t)} \\ N_2^{(t)} \\ N_3^{(t)} \\ N_4^{(t)} \end{pmatrix}$$
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 14: Exemplo numérico + gráfico de projeção -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Matriz de Leslie — Exemplo</h2>
+                    <p style="font-size: 0.62em; text-align: center; margin-bottom: 8px;">
+                        Matriz de Projeção <strong>P</strong>
+                    </p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 22px;
+                                align-items: start;">
+                        <div style="font-size: 0.62em;">
+                            <div style="text-align: center; margin-bottom: 8px; color: #2c5f7c;">
+                                Tamanho das classes etárias no tempo $t+1$
+                            </div>
+                            $$\begin{pmatrix} N_{1,t+1} \\ N_{2,t+1} \\ N_{3,t+1} \\ N_{4,t+1} \end{pmatrix}
+                            = \begin{pmatrix} 0 & 2 & 1 & 0 \\ 0{,}9 & 0 & 0 & 0 \\
+                                             0 & 0{,}8 & 0 & 0 \\ 0 & 0 & 0{,}5 & 0 \end{pmatrix}
+                            \times
+                            \begin{pmatrix} 30 \\ 75 \\ 320 \\ 572 \end{pmatrix}$$
+                            <div style="text-align: center; margin-top: 4px; color: #2c5f7c;">
+                                Tamanho das classes etárias no tempo $t$
+                            </div>
+                        </div>
+                        <div class="img-placeholder" style="height: 320px; font-size: 0.62em;">
+                            [Gráfico: Dinâmica das classes etárias ao longo do tempo]<br><br>
+                            Eixo Y: Tamanho Populacional (0 a 10.000)<br>
+                            Eixo X: Tempo em anos (1 a 10)<br><br>
+                            Curvas (crescimento exponencial a partir de N⁰ = [30, 75, 320, 572]):<br>
+                            • $N_1$ (preto sólido) → ~9.000 no ano 10<br>
+                            • $N_2$ (vermelho) → ~6.000<br>
+                            • $N_3$ (verde pontilhado) → ~2.500<br>
+                            • $N_4$ (azul pontilhado) → ~1.500
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 15: A matriz de projeção determina o formato da estrutura etária -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Matriz de Leslie — Exemplo</h2>
+                    <p style="font-size: 0.6em; text-align: center; margin-bottom: 2px;">
+                        Matriz de Projeção <strong>P</strong>
+                    </p>
+                    <div style="font-size: 0.62em; text-align: center; margin-bottom: 10px;">
+                        $$\begin{pmatrix} N_{1,t+1} \\ N_{2,t+1} \\ N_{3,t+1} \\ N_{4,t+1} \end{pmatrix}
+                        = \begin{pmatrix} 0 & 2 & 1 & 0 \\ 0{,}9 & 0 & 0 & 0 \\
+                                         0 & 0{,}8 & 0 & 0 \\ 0 & 0 & 0{,}5 & 0 \end{pmatrix}
+                        \times
+                        \begin{pmatrix} 30 \\ 75 \\ 320 \\ 572 \end{pmatrix}$$
+                    </div>
+                    <p style="font-size: 0.62em; text-align: center; margin: 8px 50px; line-height: 1.5;">
+                        A matriz de projeção <strong>P</strong> determina qual será o formato da estrutura
+                        etária populacional, ou seja, as contribuições proporcionais de cada classe.
+                    </p>
+                    <div style="display: grid; grid-template-columns: 33% 33% 33%; gap: 12px;">
+                        <div class="img-placeholder" style="height: 168px; font-size: 0.62em;">
+                            [Pirâmide: <strong>Crescimento rápido</strong>]<br><br>
+                            <em>Many young dependants</em><br>
+                            <em>Low life expectancy</em>
+                        </div>
+                        <div class="img-placeholder" style="height: 168px; font-size: 0.62em;">
+                            [Pirâmide: <strong>Crescimento lento</strong>]<br><br>
+                            <em>Few young dependants</em><br>
+                            <em>Many elderly dependants</em>
+                        </div>
+                        <div class="img-placeholder" style="height: 168px; font-size: 0.62em;">
+                            [Pirâmide: <strong>Mônaco 2014</strong>]<br><br>
+                            Estabilização / Decrescimento
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 16: Notação matricial e projeção no futuro -->
+                <section>
+                    <h2 style="font-size: 1.05em;">Matriz de Leslie</h2>
+                    <p style="font-size: 0.6em; text-align: center; margin-bottom: 4px;">
+                        Matriz de Projeção <strong>P</strong>
+                    </p>
+                    <div style="font-size: 0.62em; text-align: center; margin-bottom: 14px;">
+                        $$\begin{pmatrix} N_1^{(t+1)} \\ N_2^{(t+1)} \\ N_3^{(t+1)} \\ N_4^{(t+1)} \end{pmatrix}
+                        = \begin{pmatrix} F_1 & F_2 & F_3 & F_4 \\ S_1 & 0 & 0 & 0 \\
+                                         0 & S_2 & 0 & 0 \\ 0 & 0 & S_3 & 0 \end{pmatrix}
+                        \times
+                        \begin{pmatrix} N_1^{(t)} \\ N_2^{(t)} \\ N_3^{(t)} \\ N_4^{(t)} \end{pmatrix}$$
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 38% 62%; gap: 26px;
+                                font-size: 0.62em; align-items: start;">
+                        <div>
+                            <p style="margin-bottom: 10px;"><strong>Em notação matricial</strong></p>
+                            <p style="font-size: 1.25em; font-weight: bold; color: #2c5f7c;
+                                      text-align: center;">
+                                $$\mathbf{N^{(t+1)} = P \times N^{(t)}}$$
+                            </p>
+                        </div>
+                        <div>
+                            <p style="margin-bottom: 10px;">
+                                <strong>Projetando o tamanho populacional no futuro</strong>
+                            </p>
+                            <p style="line-height: 2.1;">$\mathbf{N^{(1)} = P \times N^{(0)}}$</p>
+                            <p style="line-height: 2.1;">
+                                $\mathbf{N^{(2)} = P \times N^{(1)} = P \times P \times N^{(0)}
+                                = P^2 \times N^{(0)}}$</p>
+                            <p style="line-height: 2.1;">
+                                $\mathbf{N^{(3)} = P \times N^{(2)} = P \times P \times N^{(1)}
+                                = P \times P \times P \times N^{(0)} = P^3 \times N^{(0)}}$</p>
+                            <p style="line-height: 2.1;">
+                                $\mathbf{N^{(t+1)} = P^{t+1} \times N^{(t)}}$</p>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            plugins: [RevealNotes, RevealMath.KaTeX, RevealHighlight],
+            math: {
+                mathjax: null,
+                katex: {
+                    version: 'latest',
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$',  right: '$',  display: false }
+                    ]
+                }
+            }
+        });
+        window.addEventListener('load', function () {
+            var startTime = Date.now();
+            var timerElement = document.getElementById('timer');
+            if (timerElement) {
+                setInterval(function () {
+                    var elapsed = Math.floor((Date.now() - startTime) / 1000);
+                    var mins = Math.floor(elapsed / 60);
+                    var secs = elapsed % 60;
+                    timerElement.textContent = '⏱️ ' + mins + ':' + (secs < 10 ? '0' + secs : secs);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

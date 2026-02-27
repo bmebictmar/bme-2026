@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas de Equações Lineares - BME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="css/style-classes.css">
+    <style>
+        .reveal .controls { bottom: 60px !important; }
+    </style>
+</head>
+<body>
+    <!-- TIMER -->
+    <div class="timer" id="timer">⏱️ 0:00</div>
+
+    <!-- BARRA INFERIOR FIXA — UC BME -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 12px; font-size: 0.95em; color: #ddd; border-top: 2px solid #1a9988; z-index: 10;">
+        <strong>Docente:</strong> Fabio Cop Ferreira e William Remo Pedroso Conti |
+        <strong>Curso:</strong> Bacharelado Interdisciplinar em Ciências do Mar - Bict Mar |
+        <strong>UC:</strong> 9833 - Bases da Matemática e Estatística para Ciências do Mar
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE DE TÍTULO -->
+            <section data-background-color="#1a9988">
+                <h1 style="color: white; font-size: 2em;">Sistemas de Equações Lineares</h1>
+                <p style="color: rgba(255,255,255,0.85); font-size: 0.9em;">9833 - Bases da Matemática e Estatística para Ciências do Mar</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.75em;">Fabio Cop Ferreira e William Remo Pedroso Conti</p>
+            </section>
+
+            <!-- CONTEÚDO DA AULA -->
+            <section>
+                <h2>Conteúdo da aula</h2>
+                <ol>
+                    <li>Conceitos Iniciais</li>
+                    <li>Tipos de Soluções</li>
+                    <li>Representação Geométrica</li>
+                    <li>Métodos Diretos</li>
+                    <li>Operações Elementares com Linhas</li>
+                    <li>Método de Eliminação de Gauss</li>
+                    <li>Método de Eliminação de Gauss-Jordan</li>
+                    <li>Sistemas Homogêneos</li>
+                    <li>Aplicações</li>
+                    <li>Conjuntos geradores</li>
+                    <li>Dependência linear</li>
+                </ol>
+            </section>
+
+            <!-- ============================================================
+                 SEÇÃO 1: CONCEITOS INICIAIS
+                 ============================================================ -->
+            <section>
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Conceitos Iniciais</h2>
+                </section>
+
+                <!-- Slide: Conceitos Iniciais -->
+                <section>
+                    <h2>Conceitos Iniciais</h2>
+                    <div class="callout callout-note">
+                        <strong>Equação linear</strong>
+                        <p>Uma equação linear em $n$ variáveis $x_1, x_2, \ldots, x_n$ é uma equação que pode ser escrita na forma:</p>
+                        $$a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b$$
+                        <p>em que os coeficientes $a_1, a_2, \ldots, a_n$ e o termo independente $b$ são constantes.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            $$\begin{cases}2x + y = 8 \\x - 3y = -3\end{cases}$$
+                        </div>
+                        <div>
+                            $$\begin{cases}x + 2y - z = 3 \\3x - y + 4z = 7 \\2x + y + z = 4\end{cases}$$
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Representações Geométricas -->
+                <section>
+                    <h2>Representações Geométricas</h2>
+                    $$\begin{cases}2x + y = 8 \\x - 3y = -3\end{cases}$$
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <img src="images/sel1_retas.png" alt="Representação geométrica por retas" style="background-color:#ffffff; width:550px; max-width: 100%; height: auto;">
+                        </div>
+                        <div>
+                            <img src="images/sel1_vectors.png" alt="Representação geométrica por vetores" style="background-color:#ffffff; width:550px; max-width: 100%; height: auto;">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Tipos de Soluções -->
+                <section>
+                    <h2>Tipos de Soluções</h2>
+                    <img src="images/res_sel.png" alt="Tipos de soluções de sistemas lineares" style="background-color:#ffffff; width:600px; max-width: 80%; height: auto; display: block; margin: 0 auto;">
+                </section>
+            </section>
+
+            <!-- ============================================================
+                 SEÇÃO 2: MÉTODOS DIRETOS
+                 ============================================================ -->
+            <section>
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Métodos Diretos</h2>
+                </section>
+
+                <!-- Slide: Métodos Diretos (1) — substituição de trás para frente -->
+                <section>
+                    <h2>Métodos Diretos de Solução de Sistemas</h2>
+                    <div style="font-size: 0.72em;">
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            $$\begin{cases}x - y - z = 2 \\y + 3z = 5 \\5z = 10\end{cases}$$
+                        </div>
+                        <div>
+                            $$S = \left[ \begin{array}{c}3 \\-1 \\2\end{array} \right]$$
+                        </div>
+                    </div>
+                    <p><strong>Substituição de trás para frente</strong></p>
+                    <ul>
+                        <li>Começando pela linha 3:</li>
+                    </ul>
+                    <p>$5z = 10$, $z = 2$</p>
+                    <ul>
+                        <li>Substituindo $z$ na linha 2:</li>
+                    </ul>
+                    <p>$y + 3z = 5$, $y + 3 \times (2) = 5$, $y = 5 - 6$, $y = -1$</p>
+                    <ul>
+                        <li>Substituindo $z$ e $y$ na linha 1:</li>
+                    </ul>
+                    <p>$x - y - z = 2$, $x - (-1) - 2 = 2$, $x = 2 - 1 + 2$, $x = 3$</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Métodos Diretos (2) — matriz aumentada -->
+                <section>
+                    <h2>Métodos Diretos de Solução de Sistemas</h2>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <div style="text-align: center;"><strong>Sistema</strong></div>
+                            $$\begin{cases}x - y - z = 2 \\y + 3z = 5 \\5z = 10\end{cases}$$
+                        </div>
+                        <div>
+                            <div style="text-align: center;"><strong>Matriz aumentada (ou matriz completa)</strong></div>
+                            $$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\0 & 1 & 3 & 5 \\0 & 0 & 5 & 10\end{array} \right]$$
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            $$\begin{cases}x - y - z = 2 \\3x - 3y + 2z = 16 \\2x - y + z = 9\end{cases}$$
+                        </div>
+                        <div>
+                            $$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\3 & -3 & 2 & 16 \\2 & -1 & 1 & 9\end{array} \right]$$
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Métodos Diretos (3) — simplificando o sistema -->
+                <section>
+                    <h2>Métodos Diretos de Solução de Sistemas</h2>
+                    <div style="font-size: 0.6em;">
+                        <p><strong>Simplificando o sistema</strong></p>
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                            <div>$$\begin{cases}x - y - z = 2 \\3x - 3y + 2z = 16 \\2x - y + z = 9\end{cases}$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\3 & -3 & 2 & 16 \\2 & -1 & 1 & 9\end{array} \right]$$</div>
+                        </div>
+                        <p><strong>Subtraindo</strong> $3$ vezes a $1^a$ linha da $2^a$</p>
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                            <div>$$\begin{cases}x - y - z = 2 \\5z = 10 \\2x - y + z = 9\end{cases}$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\0 & 0 & 5 & 10 \\2 & -1 & 1 & 9\end{array} \right]$$</div>
+                        </div>
+                        <p><strong>Subtraindo</strong> $2$ vezes a $1^a$ linha da $3^a$</p>
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                            <div>$$\begin{cases}x - y - z = 2 \\5z = 10 \\y + 3z = 5\end{cases}$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\0 & 0 & 5 & 10 \\0 & 1 & 3 & 5\end{array} \right]$$</div>
+                        </div>
+                        <p><strong>Trocando as linhas</strong> $2$ e $3$</p>
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                            <div>$$\begin{cases}x - y - z = 2 \\y + 3z = 5 \\5z = 10\end{cases}$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\0 & 1 & 3 & 5 \\0 & 0 & 5 & 10\end{array} \right]$$</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Matriz Escalonada por linhas -->
+                <section>
+                    <h2>Matriz Escalonada por linhas</h2>
+                    <div style="font-size: 0.72em;">
+                    <div class="callout callout-note">
+                        <strong>Definição</strong>
+                        <ol>
+                            <li>Todas as linhas <strong>nulas</strong> (ou seja, linhas onde todos os elementos são zero) estão localizadas na parte inferior da matriz.</li>
+                            <li>Em cada linha não-nula, o primeiro elemento não-nulo (também conhecido como <strong>elemento lider</strong> ou <strong>pivô</strong>) deve estar à esquerda de qualquer outro líder abaixo dele.</li>
+                        </ol>
+                        <p>Essas propriedades asseguram que os elementos líderes estejam dispostos de forma a criar uma estrutura semelhante a uma escada. Em particular, em qualquer coluna que contenha um elemento líder, todos os elementos abaixo desse líder são nulos, como ilustrado pelos exemplos a seguir.</p>
+                    </div>
+                    <img src="images/matriz-escalonada.png" alt="Exemplos de matrizes escalonadas" style="background-color:#ffffff; width:600px; max-width: 80%; height: auto; display: block; margin: 0 auto;">
+                    </div>
+                </section>
+
+                <!-- Slide: Operações Elementares com Linhas -->
+                <section>
+                    <h2>Operações Elementares com Linhas</h2>
+                    <div class="callout callout-note" style="font-size: 1.2em;">
+                        <strong>Definição</strong>
+                        <ol>
+                            <li>Trocar duas linhas: $L_i \leftrightarrow L_j$</li>
+                            <li>Multiplicar uma linha por uma constante <em>não nula</em>: $L_i = kL_i$</li>
+                            <li>Somar um múltiplo de uma linha com outra e substituir nessa linha: $L_i = L_i + kL_j$</li>
+                        </ol>
+                        <p>O processo de aplicar operações elementares sobre as linhas para transformar uma matriz em uma matriz escalonada é denominado <strong>escalonamento</strong> (ou redução por linha). Esse processo é utilizado para reduzir uma matriz à forma escalonada.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Redução à matriz escalonada -->
+                <section>
+                    <h2>Redução à matriz escalonada</h2>
+                    <div style="font-size: 0.65em;">
+                        <p>
+                            $\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\2 & 4 & 0 & 0 & 2\\2 & 3 & 2 & 1 & 5\\-1 & 1 & 3 & 6 & 5\end{array} \right]$
+                            $\begin{array}{c}L_2 - 2L_1\\L_3 - 2L_1 \\L_4 + L_1 \\\end{array}$
+                            $\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\0 & 0 & 8 & 8 & -8\\0 & -1 & 10 & 9 & -5\\0 & 3 & -1 & 2 & 10\end{array} \right]$
+                            $\begin{array}{c}L_2 \leftrightarrow L_3\\\end{array}$
+                            $\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\0 & -1 & 10 & 9 & -5\\0 & 0 & 8 & 8 & -8\\0 & 3 & -1 & 2 & 10\end{array} \right]$
+                        </p>
+                        <br>
+                        <p>
+                            $\begin{array}{c}L_4 + 3L_2\\\end{array}$
+                            $\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\0 & -1 & 10 & 9 & -5\\0 & 0 & 8 & 8 & -8\\0 & 0 & 29 & 29 & -5\end{array} \right]$
+                            $\begin{array}{c}\frac{1}{8}L_3\\\end{array}$
+                            $\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\0 & -1 & 10 & 9 & -5\\0 & 0 & 1 & 1 & -1\\0 & 3 & -1 & 2 & 10\end{array} \right]$
+                        </p>
+                        <br>
+                        <p>
+                            $\begin{array}{c}L_4 - 29L_3\\\end{array}$
+                            $\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\0 & -1 & 10 & 9 & -5\\0 & 0 & 8 & 8 & -8\\0 & 0 & 0 & 0 & 24\end{array} \right]$
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide: Métodos Diretos — matrizes equivalentes por linhas -->
+                <section>
+                    <h2>Métodos Diretos de Solução de Sistemas</h2>
+                    <div class="callout callout-note">
+                        <strong>Matrizes equivalentes por linhas</strong>
+                        <p>As matrizes $A$ e $B$ são equivalentes por linha se, e somente se, elas puderem ser reduzidas à mesma forma escalonada por linhas.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            $$\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\2 & 4 & 0 & 0 & 2\\2 & 3 & 2 & 1 & 5\\-1 & 1 & 3 & 6 & 5\end{array} \right]$$
+                        </div>
+                        <div>
+                            $$\left[ \begin{array}{ccccc}1 & 2 & -4 & -4 & 5\\0 & -1 & 10 & 9 & -5\\0 & 0 & 8 & 8 & -8\\0 & 0 & 0 & 0 & 24\end{array} \right]$$
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — definição -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <div style="font-size: 0.65em;">
+                    <div class="callout callout-note">
+                        <strong>Definição</strong>
+                        <ol>
+                            <li>Escreva a matriz completa do sistema de equações lineares.</li>
+                            <li>Use operações elementares com as linhas para reduzir a matriz completa à forma escalonada por linhas.</li>
+                            <li>Usando substituição de trás para a frente, resolva o sistema equivalente que corresponde à matriz escalonada reduzida por linhas.</li>
+                        </ol>
+                        <p><strong>Orientações úteis:</strong></p>
+                        <ol type="a">
+                            <li>Localize a coluna mais à esquerda que não é toda formada por zeros.</li>
+                            <li>Crie um líder no topo desta coluna. <em>Muitas vezes, será mais fácil se você transformar este líder em 1</em></li>
+                            <li>Use o líder para criar zeros abaixo dele.</li>
+                            <li>Faça a linha contendo este líder ir para a parte de cima e volte ao passo (a) para repetir o procedimento com o restante da submatriz. Pare quando toda a matriz estiver na forma escalonada por linhas.</li>
+                        </ol>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — exemplo (eliminação) -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <p><strong>Exemplo</strong></p>
+                    <div style="font-size: 0.65em;">
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                            <div>$$\begin{cases}2x_2 + 3x_3 = 8 \\2x_1 + 3x_2 + x_3 = 5 \\x_1 - x_2 - 2x_3 = -5\end{cases}$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}0 & 2 & 3 & 8 \\2 & 3 & 1 & 5 \\1 & -1 & -2 & -5\end{array} \right]$$</div>
+                        </div>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}0 & 2 & 3 & 8 \\2 & 3 & 1 & 5 \\1 & -1 & -2 & -5\end{array} \right]$
+                            $\begin{array}{c}L_1 \leftrightarrow L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & -2 & -5 \\2 & 3 & 1 & 5 \\0 & 2 & 3 & 8\end{array} \right]$
+                            $\begin{array}{c}L_2 - 2L_1 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & -2 & -5 \\0 & 5 & 5 & 15 \\0 & 2 & 3 & 8\end{array} \right]$
+                        </p>
+                        <br>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}1 & -1 & -2 & -5 \\0 & 5 & 5 & 15 \\0 & 2 & 3 & 8\end{array} \right]$
+                            $\begin{array}{c}\frac{1}{5}L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & -2 & -5 \\0 & 1 & 1 & 3 \\0 & 2 & 3 & 8\end{array} \right]$
+                            $\begin{array}{c}L_3 - 2L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & -2 & -5 \\0 & 1 & 1 & 3 \\0 & 0 & 1 & 2\end{array} \right]$
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — exemplo (resultado) -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <p><strong>Exemplo</strong></p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>$$\begin{cases}2x_2 + 3x_3 = 8 \\2x_1 + 3x_2 + x_3 = 5 \\x_1 - x_2 - 2x_3 = -5\end{cases}$$</div>
+                        <div>$$\begin{cases}x_1 - x_2 - 2x_3 = -5 \\x_2 + x_3 = 3 \\x_3 = 2\end{cases}$$</div>
+                    </div>
+                    <div style="text-align: center;">
+                        $S = \left[ \begin{array}{c}0 \\1 \\2\end{array} \right]$
+                    </div>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>$$\begin{cases}2(1) + 3(2) = 8 \\2(0) + 3(1) + (2) = 5 \\(0) - (1) - 2(2) = -5\end{cases}$$</div>
+                        <div>$$\begin{cases}(0) - (1) - 2(2) = -5 \\(1) + (2) = 3 \\(2) = 2\end{cases}$$</div>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — infinitas soluções (parte 1) -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <div style="font-size: 0.72em;">
+                    <p><strong>Infinitas soluções: variáveis livres</strong></p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>$$\begin{cases}w - x - y + 2z = 1 \\2w - 2x - y + 3z = 3 \\-w + x - y = -3\end{cases}$$</div>
+                        <div>$$\left[ \begin{array}{cccc|c}1 & -1 & -1 & 2 & 1 \\2 & -2 & -1 & 3 & 3 \\-1 & 1 & -1 & 0 & -3\end{array} \right]$$</div>
+                    </div>
+                    <p>
+                        $\left[ \begin{array}{cccc|c}1 & -1 & -1 & 2 & 1 \\2 & -2 & -1 & 3 & 3 \\-1 & 1 & -1 & 0 & -3\end{array} \right]$
+                        $\begin{array}{c}L_2 - 2L_1 \\L_3 + L_1 \\\end{array}$
+                        $\left[ \begin{array}{cccc|c}1 & -1 & -1 & 2 & 1 \\0 & 0 & 1 & -1 & 1 \\0 & 0 & -2 & 2 & -2\end{array} \right]$
+                    </p>
+                    <br>
+                    <p>
+                        $\begin{array}{c}L_3 + 2L_2 \\\end{array}$
+                        $\left[ \begin{array}{cccc|c}1 & -1 & -1 & 2 & 1 \\0 & 0 & 1 & -1 & 1 \\0 & 0 & 0 & 0 & 0\end{array} \right]$
+                    </p>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — infinitas soluções (parte 2) -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <div style="font-size: 0.72em;">
+                    <p><strong>Infinitas soluções: variáveis livres</strong></p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            $$\begin{cases}w + x - y + 2z = 1 \\2w - 2x - y + 3z = 3 \\-w + x - y = -3\end{cases}$$
+                        </div>
+                        <div>
+                            $$w - x - y + 2z = 1$$
+                            $$y - z = 1$$
+                        </div>
+                    </div>
+                    <p>$y - z = 1$</p>
+                    <p>$w = 1 + x + y - 2z = 1 + x(1 + z) - 2z = 2 + x - z$</p>
+                    <p>Escrevendo as variáveis correspondentes aos elementos líderes (<strong>variáveis dependentes</strong>) em termos das outras variáveis (<strong>variáveis livres</strong>).</p>
+                    <div style="text-align: center;">
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: center; justify-items: center;">
+                            <div>Atribuindo $x = s$ e $z = t$:</div>
+                            <div>
+                                $\left[ \begin{array}{c}w \\x \\y \\z\end{array} \right] =
+                                \left[ \begin{array}{c}2 + s - t \\s \\1 + t \\t\end{array} \right]$
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Posto de uma matriz -->
+                <section>
+                    <h2>Posto de uma matriz</h2>
+                    <ul>
+                        <li>Em um sistema possível, as variáveis livres são aquelas que não são variáveis dependentes.</li>
+                        <li>O posto de uma matriz é o <em>número de linhas não nulas de qualquer uma de suas formas escalonadas por linhas</em>.</li>
+                        <li>Denotamos o posto de uma matriz $A$ por $posto(A)$.</li>
+                    </ul>
+                    <div class="callout callout-note">
+                        <strong>Teorema do Posto</strong>
+                        <p>Seja $A$ a matriz dos coeficientes de um sistema de equações lineares com $n$ variáveis. Se o sistema for possível, então o número de variáveis livres é $n - posto(A)$.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — sistemas impossíveis (parte 1) -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <p><strong>Sistemas impossíveis</strong></p>
+                    <div style="font-size: 0.65em;">
+                        <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                            <div>$$\begin{cases}x_1 - x_2 + 2x_3 = 3 \\x_1 + 2x_2 - x_3 = -3 \\2x_2 - 2x_3 = 1\end{cases}$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}1 & -1 & 2 & 3 \\1 & 2 & -1 & -3 \\0 & 2 & -2 & 1\end{array} \right]$$</div>
+                        </div>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}1 & -1 & 2 & 3 \\1 & 2 & -1 & -3 \\0 & 2 & -2 & 1\end{array} \right]$
+                            $\begin{array}{c}L_2 - L_1 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & 2 & 3 \\0 & 3 & -3 & -6 \\0 & 2 & -2 & 1\end{array} \right]$
+                            $\begin{array}{c}\frac{1}{3}L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & 2 & 3 \\0 & 1 & -1 & -2 \\0 & 2 & -2 & 1\end{array} \right]$
+                        </p>
+                        <br>
+                        <p>
+                            $\begin{array}{c}L_3 - 2L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & -1 & 2 & 3 \\0 & 1 & -1 & -2 \\0 & 0 & 0 & 5\end{array} \right]$
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss — sistemas impossíveis (parte 2) -->
+                <section>
+                    <h2>Método de Eliminação de Gauss</h2>
+                    <p><strong>Sistemas impossíveis</strong></p>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>$$\begin{cases}x_1 - x_2 + 2x_3 = 3 \\x_1 + x_2 - x_3 = -3 \\2x_2 - 2x_3 = 1\end{cases}$$</div>
+                        <div>$$\begin{cases}x_1 - x_2 + 2x_3 = 3 \\x_2 - x_3 = -2 \\0 = 5\end{cases}$$</div>
+                    </div>
+                </section>
+
+                <!-- Slide: Método de Eliminação de Gauss-Jordan -->
+                <section>
+                    <h2>Método de Eliminação de Gauss-Jordan</h2>
+                    <div style="font-size: 0.72em;">
+                    <p>Variante do Método de Eliminação de Gauss para levar a matriz completa à <strong>forma escalonada reduzida</strong></p>
+                    <div class="callout callout-note">
+                        <strong>Matriz escalonada reduzida</strong>
+                        <ol>
+                            <li>A matriz está na forma escalonada por linhas.</li>
+                            <li>O elemento líder em cada linha não nula é igual a $1$ (chamado de <strong>1-líder</strong>).</li>
+                            <li>Cada coluna que contém um <strong>1-líder</strong> possui zeros em todas as outras posições.</li>
+                        </ol>
+                    </div>
+                    <div style="font-size: 0.60em;">
+                        <div style="display: grid; grid-template-columns: 30% 35% 35%; gap: 20px; align-items: start;">
+                            <div>$$\left[ \begin{array}{cc|c}1 & 0 & 4 \\0 & 1 & 2\end{array} \right]$$</div>
+                            <div>$$\left[ \begin{array}{ccc|c}1 & 0 & 3 & 9 \\0 & 1 & -2 & 4 \\0 & 0 & 0 & 0\end{array} \right]$$</div>
+                            <div>$$\left[ \begin{array}{cccccc}1 & 2 & 0 & 0 & -3 & 1 \\0 & 0 & 1 & 0 & 4 & -1 \\0 & 0 & 0 & 1 & 3 & -2 \\0 & 0 & 0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 & 0 & 0\end{array} \right]$$</div>
+                        </div>
+                    </div>
+                    <p><strong>Orientação útil:</strong> Trabalhar da esquerda para a direita e criar o 1 líder e os zeros em suas colunas à medida que for trabalhando.</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ============================================================
+                 SEÇÃO 3: SISTEMAS HOMOGÊNEOS
+                 ============================================================ -->
+            <section>
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Sistemas Homogêneos</h2>
+                </section>
+
+                <!-- Slide: Sistemas Homogêneos — definição -->
+                <section>
+                    <h2>Sistemas Homogêneos</h2>
+                    <p>Todo sistema de equações lineares pode ter nenhuma solução, uma única solução ou infinitas soluções. No entanto, há um tipo de sistema que sempre possui pelo menos uma solução.</p>
+                    <div class="callout callout-note">
+                        <strong>Definição</strong>
+                        <p>Um sistema de equações lineares é chamado de <strong>homogêneo</strong> se o termo independente de cada equação é igual a zero. Em outras palavras, um sistema homogêneo tem uma matriz aumentada da forma $[A \mid 0]$.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Sistemas Homogêneos — exemplo e teorema -->
+                <section>
+                    <h2>Sistemas Homogêneos</h2>
+                    <p>Considere o seguinte sistema homogêneo:</p>
+                    $$\begin{cases}2x + 3y - 2z = 0 \\2x + 5y + 2z = 0\end{cases}$$
+                    <p>Um sistema homogêneo sempre possui pelo menos uma solução. Ele pode ter uma solução única (chamada de solução nula ou trivial) ou infinitas soluções.</p>
+                    <div class="callout callout-note">
+                        <strong>Teorema</strong>
+                        <p>Se $[A \mid 0]$ for a matriz completa de um sistema homogêneo de $m$ equações lineares com $n$ variáveis, em que $m \lt n$, então o sistema terá infinitas soluções.</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ============================================================
+                 SEÇÃO 4: APLICAÇÕES
+                 ============================================================ -->
+            <section>
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Aplicações</h2>
+                </section>
+
+                <!-- Slide: Alocação de recursos — problema -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <div style="font-size: 0.65em;">
+                        <p><strong>Alocação de recursos</strong></p>
+                        <p>Um biólogo colocou três espécies de bactéria (denotadas por I, II e III) em um tubo de ensaio, onde elas serão alimentadas por três fontes diferentes de alimentos (A, B e C). A cada dia serão colocadas no tubo de ensaio 2300 unidades de A, 800 unidades de B e 1500 unidades de C. Cada bactéria consome um certo número de unidades de cada alimento por dia, como mostra a tabela abaixo. Quantas bactérias de cada espécie podem coexistir no tubo de ensaio de modo a consumir todo o alimento?</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bactéria</th>
+                                    <th style="text-align: center;">Alimento A</th>
+                                    <th style="text-align: center;">Alimento B</th>
+                                    <th style="text-align: center;">Alimento C</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Espécie I</td><td style="text-align: center;">2</td><td style="text-align: center;">1</td><td style="text-align: center;">1</td></tr>
+                                <tr><td>Espécie II</td><td style="text-align: center;">2</td><td style="text-align: center;">2</td><td style="text-align: center;">3</td></tr>
+                                <tr><td>Espécie III</td><td style="text-align: center;">4</td><td style="text-align: center;">0</td><td style="text-align: center;">1</td></tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Dados dos Alimentos</strong></p>
+                        <ul>
+                            <li>Total de alimento A disponível: 2300 unidades</li>
+                            <li>Total de alimento B disponível: 800 unidades</li>
+                            <li>Total de alimento C disponível: 1500 unidades</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Slide: Alocação de recursos — equações -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <div style="font-size: 0.72em;">
+                    <p><strong>Alocação de recursos</strong>: resolução</p>
+                    <p>Seja $x_1$ o número de bactérias da Espécie I, $x_2$ o número de bactérias da Espécie II e $x_3$ o número de bactérias da Espécie III. As equações que representam o consumo total de cada alimento são:</p>
+                    <ol>
+                        <li><strong>Para o Alimento A:</strong> $2x_1 + 2x_2 + 4x_3 = 2300$</li>
+                        <li><strong>Para o Alimento B:</strong> $x_1 + 2x_2 + 0x_3 = 800$</li>
+                        <li><strong>Para o Alimento C:</strong> $x_1 + 3x_2 + x_3 = 1500$</li>
+                    </ol>
+                    <p><strong>Sistema de Equações</strong></p>
+                    <p>O sistema de equações lineares é:
+                        $\begin{cases}2x_1 + 2x_2 + 4x_3 = 2300 \\x_1 + 2x_2 = 800 \\x_1 + 3x_2 + x_3 = 1500\end{cases}$
+                    </p>
+                    </div>
+                </section>
+
+                <!-- Slide: Alocação de recursos — eliminação -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <div style="font-size: 0.65em;">
+                        <p><strong>Alocação de recursos</strong>: resolução</p>
+                        <p>Representamos o sistema na forma matricial e aplicamos o método de Eliminação de Gauss:</p>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}2 & 2 & 4 & 2300 \\1 & 2 & 0 & 800 \\1 & 3 & 1 & 1500\end{array} \right]$
+                            $\begin{array}{c}L_1 - L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 4 & 1500 \\1 & 2 & 0 & 800 \\1 & 3 & 1 & 1500\end{array} \right]$
+                            $\begin{array}{c}L_2 - L_1 \\L_3 - L_1 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 4 & 1500 \\0 & 2 & -4 & -700 \\0 & 3 & -3 & 0\end{array} \right]$
+                        </p>
+                        <br>
+                        <p>
+                            $\begin{array}{c}\frac{1}{2}L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 4 & 1500 \\0 & 1 & -2 & -350 \\0 & 3 & -3 & 0\end{array} \right]$
+                            $\begin{array}{c}L_3 - 3L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 4 & 1500 \\0 & 1 & -2 & -350 \\0 & 0 & 3 & 1050\end{array} \right]$
+                            $\begin{array}{c}\frac{1}{3}L_3 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 4 & 1500 \\0 & 1 & -2 & -350 \\0 & 0 & 1 & 350\end{array} \right]$
+                        </p>
+                        <br>
+                        <p>
+                            $\begin{array}{c}L_1 - 4L_3 \\L_2 + 2L_3 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 0 & 100 \\0 & 1 & 0 & 350 \\0 & 0 & 1 & 350\end{array} \right]$
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide: Alocação de recursos — solução -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <div style="font-size: 0.65em;">
+                        <p><strong>Alocação de recursos</strong>: resolução</p>
+                        $$\left[ \begin{array}{ccc|c}2 & 2 & 4 & 2300 \\1 & 2 & 0 & 800 \\1 & 3 & 1 & 1500\end{array} \right]
+                        \rightarrow
+                        \left[ \begin{array}{ccc|c}1 & 0 & 0 & 100 \\0 & 1 & 0 & 350 \\0 & 0 & 1 & 350\end{array} \right]$$
+                        <p><strong>Solução:</strong></p>
+                        <ul>
+                            <li>Número de bactérias da Espécie I ($x_1$): 100</li>
+                            <li>Número de bactérias da Espécie II ($x_2$): 350</li>
+                            <li>Número de bactérias da Espécie III ($x_3$): 350</li>
+                        </ul>
+                        <p>Assim, para consumir todo o alimento disponível, podem coexistir 100 bactérias da Espécie I, 350 bactérias da Espécie II e 350 bactérias da Espécie III no tubo de ensaio.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Balanceamento de Equações Químicas — introdução -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <div style="font-size: 0.65em;">
+                        <p><strong>Balanceamento de Equações Químicas</strong></p>
+                        <p>Quando uma reação química ocorre, certas moléculas (os reagentes) se combinam para formar novas moléculas (os produtos). Uma equação química balanceada é uma equação algébrica que dá o número relativo de reagentes e produtos na reação e tem o mesmo número de átomos de cada tipo dos lados esquerdo e direito.</p>
+                        <p>Por exemplo, para a reação na qual os gases hidrogênio ($H_2$) e oxigênio ($O_2$) se combinam para formar água ($H_2O$), uma equação química balanceada é:</p>
+                        $$2H_2 + O_2 \rightarrow 2H_2O$$
+                        <p>indicando que duas moléculas de hidrogênio se combinam com uma molécula de oxigênio para formar duas moléculas de água. Note que nunca haverá uma única equação balanceada para uma reação, já que todo múltiplo inteiro positivo de uma equação balanceada será também uma equação balanceada. Por exemplo,</p>
+                        $$6H_2 + 3O_2 \rightarrow 6H_2O$$
+                        <p>também está balanceada. O processo de balanceamento de equações químicas envolve a resolução de um sistema de equações lineares homogêneo.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Balanceamento — Exemplo Combustão de Amônia -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <div style="font-size: 0.72em;">
+                    <p><strong>Balanceamento de Equações Químicas</strong></p>
+                    <p><strong>Exemplo: Combustão de Amônia</strong></p>
+                    <p>A combustão de amônia ($NH_3$) em oxigênio ($O_2$) produz nitrogênio ($N_2$) e água ($H_2O$). Encontre uma equação química balanceada para essa reação.</p>
+                    <p><strong>Solução</strong></p>
+                    <p>Se denotarmos os números de moléculas de amônia, oxigênio, nitrogênio e água por $w$, $x$, $y$ e $z$, respectivamente, estaremos procurando uma equação da forma:</p>
+                    $$wNH_3 + xO_2 \rightarrow yN_2 + zH_2O$$
+                    <p>Comparando os números de átomos nos reagentes e nos produtos, obtemos três equações lineares:</p>
+                    <ul>
+                        <li>Nitrogênio: $w = 2y$</li>
+                        <li>Hidrogênio: $3w = 2z$</li>
+                        <li>Oxigênio: $2x = z$</li>
+                    </ul>
+                    </div>
+                </section>
+
+                <!-- Slide: Balanceamento — sistema de equações -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <p><strong>Balanceamento de Equações Químicas</strong></p>
+                    <p>Reescrever essas equações na forma padrão nos fornece um sistema homogêneo de três equações lineares em quatro variáveis:</p>
+                    $$\begin{cases}w - 2y = 0 \\3w - 2z = 0 \\2x - z = 0\end{cases}$$
+                    <p>Reescrevendo na forma matricial, temos:</p>
+                    $$\left[ \begin{array}{cccc|c}1 & 0 & -2 & 0 & 0 \\3 & 0 & 0 & -2 & 0 \\0 & 2 & 0 & -1 & 0\end{array} \right]$$
+                </section>
+
+                <!-- Slide: Balanceamento — solução Gauss-Jordan -->
+                <section>
+                    <h2>Discussão e Aplicações</h2>
+                    <p><strong>Balanceamento de Equações Químicas</strong></p>
+                    <p>Aplicando o método de eliminação de Gauss-Jordan, obtemos:</p>
+                    $$\left[ \begin{array}{cccc|c}1 & 0 & -2 & 0 & 0 \\0 & 2 & 0 & -1 & 0 \\0 & 0 & 0 & 0 & 0\end{array} \right]$$
+                    <p>Logo, $w = \frac{2}{3}z$, $x = \frac{1}{2}z$, $y = \frac{1}{3}z$ e $z$. O menor valor positivo de $z$ que fornecerá valores inteiros para todas as quatro variáveis é 6, o menor múltiplo comum das frações $\frac{2}{3}$, $\frac{1}{2}$ e $\frac{1}{3}$, que fornece $w = 4$, $x = 3$, $y = 2$ e $z = 6$.</p>
+                    <p>Assim, a equação química balanceada é:</p>
+                    $$4NH_3 + 3O_2 \rightarrow 2N_2 + 6H_2O$$
+                </section>
+            </section>
+
+            <!-- ============================================================
+                 SEÇÃO 5: CONJUNTOS GERADORES E DEPENDÊNCIA LINEAR
+                 ============================================================ -->
+            <section>
+                <section data-background-color="#1a9988">
+                    <h2 style="color: white;">Conjuntos Geradores e Dependência Linear</h2>
+                </section>
+
+                <!-- Slide: Conjuntos Geradores — definição -->
+                <section>
+                    <h2>Conjuntos Geradores</h2>
+                    <p>O problema de verificar se um conjunto é gerador está relacionado ao problema da existência de solução em sistemas lineares. Considerando um sistema de matriz completa $[A|b]$, o sistema terá solução quando $b$ for uma combinação linear de $A$.</p>
+                    <img src="images/res_vec.png" alt="Combinação linear de vetores" style="background-color:#ffffff; width:600px; max-width: 70%; height: auto; display: block; margin: 10px auto;">
+                    <div class="callout callout-note">
+                        <strong>Definição</strong>
+                        <p>Se $S = \{\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}\}$ é um conjunto de vetores de $\mathbb{R}^n$, então o conjunto de todas as combinações lineares de $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$ é chamado <strong>conjunto gerado por $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$</strong>, denominado $ger(\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k})$ ou $ger(S)$. Se $ger(S) = \mathbb{R}^n$, $S$ é chamado de <strong>conjunto gerador</strong> de $\mathbb{R}^n$.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Conjuntos Geradores — mostre que R^n -->
+                <section>
+                    <h2>Conjuntos Geradores</h2>
+                    <p>Mostre que:
+                        $\mathbb{R}^2 = ger\!\left(
+                        \left[ \begin{array}{c}2\\-1\end{array} \right],
+                        \left[ \begin{array}{c}1\\3\end{array} \right]
+                        \right)$
+                    </p>
+                    <p><strong>Solução</strong></p>
+                    <p>Devemos mostrar que um vetor arbritário
+                        $\left[ \begin{array}{c}a\\b\end{array} \right]$
+                        pode ser escrito como combinação linear de
+                        $\left[ \begin{array}{c}2\\-1\end{array} \right]$ e
+                        $\left[ \begin{array}{c}1\\3\end{array} \right]$,
+                    </p>
+                    <p>isto é, que
+                        $x\left[ \begin{array}{c}2\\-1\end{array} \right] +
+                        y\left[ \begin{array}{c}1\\3\end{array} \right] =
+                        \left[ \begin{array}{c}a\\b\end{array} \right]$
+                        pode ser resolvido para $x$ e $y$ em termos de $a$ e $b$.
+                    </p>
+                </section>
+
+                <!-- Slide: Conjuntos Geradores — resolução -->
+                <section>
+                    <h2>Conjuntos Geradores</h2>
+                    <p>
+                        $\left[ \begin{array}{cc|c}2 & 1 & a \\-1 & 3 & b\end{array} \right]$
+                        $\begin{array}{c}L_1 \leftrightarrow L_2 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}-1 & 3 & b \\2 & 1 & a\end{array} \right]$
+                        $\begin{array}{c}L_2 + 2L_1 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}-1 & 3 & b \\0 & 7 & a + 2b\end{array} \right]$
+                    </p>
+                    <br>
+                    <p>
+                        $\begin{array}{c}\frac{1}{7}L_2 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}-1 & 3 & b \\0 & 1 & \frac{a + 2b}{7}\end{array} \right]$
+                        $\begin{array}{c}L_1 - 3L_2 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}-1 & 0 & \frac{b - 3a}{7} \\0 & 1 & \frac{a + 2b}{7}\end{array} \right]$
+                        $\begin{array}{c}-L_1 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}1 & 0 & \frac{3a - b}{7} \\0 & 1 & \frac{a + 2b}{7}\end{array} \right]$
+                    </p>
+                    <br>
+                    <p>
+                        $x = \dfrac{3a - b}{7}$, $y = \dfrac{a + 2b}{7}$, portanto
+                        $\dfrac{3a - b}{7} \left[ \begin{array}{c}2\\-1\end{array} \right] +
+                        \dfrac{a + 2b}{7} \left[ \begin{array}{c}1\\3\end{array} \right] =
+                        \left[ \begin{array}{c}a\\b\end{array} \right]$
+                    </p>
+                </section>
+
+                <!-- Slide: Dependência linear — exemplo 1 (w dep de u e v) -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <p>O vetor $\vec{w} = \left[ \begin{array}{c} 1\\ 2\\ 3 \end{array} \right]$ é linearmente dependente de $\vec{u} = \left[ \begin{array}{c} 1\\ 0\\ 3 \end{array} \right]$ e $\vec{v} = \left[ \begin{array}{c} -1\\ 1\\ -3 \end{array} \right]$?</p>
+                    <br>
+                    <p>Encontrando a forma escalonada reduzida da matriz completa:</p>
+                    <p>
+                        $\left[ \begin{array}{cc|c}1 & -1 & 1 \\0 & 1 & 2 \\3 & -3 & 3\end{array} \right]$
+                        $\begin{array}{c}L_3 - 3L_1 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}1 & -1 & 1 \\0 & 1 & 2 \\0 & 0 & 0\end{array} \right]$
+                        $\begin{array}{c}L_1 + L_2 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}1 & 0 & 3 \\0 & 1 & 2 \\0 & 0 & 0\end{array} \right]$
+                    </p>
+                    <br>
+                    <p>$S = \left[ \begin{array}{c} 3\\ 2 \end{array} \right]$</p>
+                </section>
+
+                <!-- Slide: Dependência linear — resultado exemplo 1 -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <div style="font-size: 0.72em;">
+                    <p>O vetor $\vec{w}$ é linearmente dependente de $\vec{u}$ e $\vec{v}$, sendo $x = 3$ e $y = 2$:</p>
+                    <p>
+                        $3 \left[ \begin{array}{c}1\\0\\3\end{array} \right] +
+                        2 \left[ \begin{array}{c}-1\\1\\-3\end{array} \right] =
+                        \left[ \begin{array}{c}1\\2\\3\end{array} \right]$
+                    </p>
+                    <div class="callout callout-note">
+                        <p>Podemos escrever esta relação de dependência como:</p>
+                        <p>$3\vec{u} + 2\vec{v} = \vec{w}$</p>
+                        <p>ou</p>
+                        <p>$\dfrac{1}{3}\vec{w} - \dfrac{2}{3}\vec{v} = \vec{u}$</p>
+                        <p>ou</p>
+                        <p>$\dfrac{1}{2}\vec{w} - \dfrac{3}{2}\vec{u} = \vec{v}$</p>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Dependência linear — exemplo 2 (w NÃO dep de u e v) -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <div style="font-size: 0.72em;">
+                    <p>O vetor $\vec{w} = \left[ \begin{array}{c} 2\\ 3\\ 4 \end{array} \right]$ é linearmente dependente de $\vec{u} = \left[ \begin{array}{c} 1\\ 0\\ 3 \end{array} \right]$ e $\vec{v} = \left[ \begin{array}{c} -1\\ 1\\ -3 \end{array} \right]$?</p>
+                    <p>Resolvendo a matriz completa:</p>
+                    <p>
+                        $\left[ \begin{array}{cc|c}1 & -1 & 2 \\0 & 1 & 3 \\3 & -3 & 4\end{array} \right]$
+                        $\begin{array}{c}L_3 - 3L_1 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}1 & -1 & 2 \\0 & 1 & 3 \\0 & 0 & -2\end{array} \right]$
+                        $\begin{array}{c}L_1 + L_2 \\\end{array}$
+                        $\left[ \begin{array}{cc|c}1 & 0 & 5 \\0 & 1 & 3 \\0 & 0 & -2\end{array} \right]$
+                    </p>
+                    <div class="callout callout-note">
+                        <p>Verificamos que $\vec{w}$ <strong>não é</strong> combinação linear de $\vec{u}$ e $\vec{v}$ e portanto <strong>não podemos</strong> encontrar constantes $c_1$ e $c_2$ que nos permitam escrever a expressão:</p>
+                        <p>$c_1\vec{u} + c_2\vec{v} = \vec{w}$</p>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Dependência linear — res_vec + teorema -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <img src="images/res_vec.png" alt="Combinação linear de vetores" style="background-color:#ffffff; width:600px; max-width: 70%; height: auto; display: block; margin: 10px auto;">
+                    <div class="callout callout-note">
+                        <strong>Teorema</strong>
+                        <p>Um sistema de equações lineares com matriz aumentada $[A \mid b]$ é possível se, e somente se, $b$ é uma combinação linear das colunas de $A$.</p>
+                    </div>
+                </section>
+
+                <!-- Slide: Dependência linear — definição formal -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <div style="font-size: 0.72em;">
+                    <div class="callout callout-note">
+                        <strong>Definição</strong>
+                        <p>Um conjunto de vetores $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$ será <strong>linearmente dependente</strong> se existirem escalares $c_1, c_2, \cdots, c_k$, pelo menos um dos quais não nulo, tais que</p>
+                        $$c_1\vec{v_1} + c_2\vec{v_2} + \cdots + c_k\vec{v_k} = \vec{0}$$
+                        <p>Um conjunto de vetores não linearmente dependente é chamado <strong>linearmente independente</strong>.</p>
+                    </div>
+                    <div class="callout callout-note">
+                        <strong>Teorema</strong>
+                        <p>Vetores $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$ de $\mathbb{R}^n$ são linearmente <em>dependentes</em> se e somente se <strong>pelo menos</strong> um dos vetores puder ser escrito como uma combinação linear dos demais.</p>
+                    </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Dependência linear — verificação 1 (linearmente independentes) -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <div style="font-size: 0.60em;">
+                        <p>Verifique se os vetores $\vec{v} = \left[ \begin{array}{c} 1\\ 1\\ 0 \end{array} \right]$, $\vec{u} = \left[ \begin{array}{c} 0\\ 1\\ 1 \end{array} \right]$ e $\vec{w} = \left[ \begin{array}{c} 1\\ 0\\ 1 \end{array} \right]$ são linearmente dependentes.</p>
+                        <p>Para resolver esta questão fazemos:
+                            $c_1 \left[ \begin{array}{c} 1\\ 1\\ 0 \end{array} \right] + c_2 \left[ \begin{array}{c} 0\\ 1\\ 1 \end{array} \right] + c_3 \left[ \begin{array}{c} 1\\ 0\\ 1 \end{array} \right] = \left[ \begin{array}{c} 0\\ 0\\ 0 \end{array} \right]$
+                        </p>
+                        <p>Que tem matriz completa:</p>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 1 & 0\\1 & 1 & 0 & 0\\0 & 1 & 1 & 0\end{array} \right]$
+                            $\begin{array}{c}L_2 - L_1 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 1 & 0\\0 & 1 & -1 & 0\\0 & 1 & 1 & 0\end{array} \right]$
+                            $\begin{array}{c}L_3 - L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 1 & 0\\0 & 1 & -1 & 0\\0 & 0 & 2 & 0\end{array} \right]$
+                            $\begin{array}{c}\frac{1}{2}L_3 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 1 & 0\\0 & 1 & -1 & 0\\0 & 0 & 1 & 0\end{array} \right]$
+                            $\begin{array}{c}L_1 - L_3 \\L_2 + L_3\end{array}$
+                        </p>
+                        <br>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\end{array} \right]$
+                        </p>
+                    </div>
+                    <hr>
+                    <p>O sistema tem solução única com $c_1 = 0$, $c_2 = 0$ e $c_3 = 0$, caracterizando os vetores como <strong>linearmente independentes</strong>.</p>
+                </section>
+
+                <!-- Slide: Dependência linear — verificação 2 (linearmente dependentes) -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <div style="font-size: 0.6em;">
+                        <p>Verifique se os vetores $\vec{v} = \left[ \begin{array}{c} 1\\ 2\\ 0 \end{array} \right]$, $\vec{u} = \left[ \begin{array}{c} 1\\ 1\\ -1 \end{array} \right]$ e $\vec{w} = \left[ \begin{array}{c} 1\\ 4\\ 2 \end{array} \right]$ são linearmente dependentes.</p>
+                        <p>Para resolver esta questão fazemos:
+                            $c_1 \left[ \begin{array}{c} 1\\ 2\\ 0 \end{array} \right] + c_2 \left[ \begin{array}{c} 1\\ 1\\ -1 \end{array} \right] + c_3 \left[ \begin{array}{c} 1\\ 4\\ 2 \end{array} \right] = \left[ \begin{array}{c} 0\\ 0\\ 0 \end{array} \right]$
+                        </p>
+                        <p>Que tem matriz completa:</p>
+                        <p>
+                            $\left[ \begin{array}{ccc|c}1 & 1 & 1 & 0\\2 & 1 & 4 & 0\\0 & -1 & 2 & 0\end{array} \right]$
+                            $\begin{array}{c}L_2 - 2L_1 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 1 & 1 & 0\\0 & -1 & 2 & 0\\0 & -1 & 2 & 0\end{array} \right]$
+                            $\begin{array}{c}L_1 + L_2 \\L_3 - L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 3 & 0\\0 & -1 & 2 & 0\\0 & 0 & 0 & 0\end{array} \right]$
+                            $\begin{array}{c}-L_2 \\\end{array}$
+                            $\left[ \begin{array}{ccc|c}1 & 0 & 3 & 0\\0 & 1 & -2 & 0\\0 & 0 & 0 & 0\end{array} \right]$
+                        </p>
+                    </div>
+                    <hr>
+                    <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
+                        <div>
+                            <p>O sistema é dado por:</p>
+                            <p>$\begin{cases}c_1 + 3c_3 = 0 \Rightarrow c_1 = -3c_3\\c_2 - 2c_3 = 0 \Rightarrow c_2 = 2c_3\end{cases}$</p>
+                        </div>
+                        <div>
+                            <p>Com variável livre e portanto infinitas soluções:</p>
+                            <p>$S = \left[ \begin{array}{c} -3c_3\\ 2c_3\\ c_3 \end{array} \right]$</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Dependência linear — conclusão verificação 2 -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <p>Podemos escrever:</p>
+                    $$-3c_3 \left[ \begin{array}{c} 1\\ 2\\ 0 \end{array} \right] + 2c_3 \left[ \begin{array}{c} 1\\ 1\\ -1 \end{array} \right] + c_3 \left[ \begin{array}{c} 1\\ 4\\ 2 \end{array} \right] = \left[ \begin{array}{c} 0\\ 0\\ 0 \end{array} \right]$$
+                    <hr>
+                    <p>A relação tem ao menos uma solução não nula, caracterizando os vetores como <strong>linearmente dependentes</strong>.</p>
+                </section>
+
+                <!-- Slide: Dependência linear — teorema final -->
+                <section>
+                    <h2>Dependência linear</h2>
+                    <div style="font-size: 0.72em;">
+                    <div class="callout callout-note">
+                        <strong>Teorema</strong>
+                        <p>Qualquer conjunto de $m$ vetores de $\mathbb{R}^n$ é <strong>linearmente dependente</strong> se $m \gt n$.</p>
+                    </div>
+                    <p>Exemplo:</p>
+                    <p>Os vetores $\left[ \begin{array}{c} 1\\ 3 \end{array} \right]$, $\left[ \begin{array}{c} 2\\ 4 \end{array} \right]$ e $\left[ \begin{array}{c} 3\\ 1 \end{array} \right]$ são linearmente dependentes pois não pode haver mais que dois vetores linearmente independentes em $\mathbb{R}^2$.</p>
+                    <hr>
+                    <p>Verifique isso resolvendo o sistema homogêneo:</p>
+                    $$c_1\left[ \begin{array}{c} 1\\ 3 \end{array} \right] + c_2\left[ \begin{array}{c} 2\\ 4 \end{array} \right] + c_3\left[ \begin{array}{c} 3\\ 1 \end{array} \right] = \left[ \begin{array}{c} 0\\ 0 \end{array} \right]$$
+                    </div>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            plugins: [RevealNotes, RevealMath.KaTeX, RevealHighlight],
+            math: {
+                mathjax: null,
+                katex: {
+                    version: 'latest',
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ]
+                }
+            }
+        });
+        window.addEventListener('load', function () {
+            var startTime = Date.now();
+            var timerElement = document.getElementById('timer');
+            if (timerElement) {
+                setInterval(function () {
+                    var elapsed = Math.floor((Date.now() - startTime) / 1000);
+                    var mins = Math.floor(elapsed / 60);
+                    var secs = elapsed % 60;
+                    timerElement.textContent = '⏱️ ' + mins + ':' + (secs < 10 ? '0' + secs : secs);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

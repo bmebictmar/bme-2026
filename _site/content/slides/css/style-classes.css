@@ -1,0 +1,236 @@
+/* ============================================
+   Estilo para Apresentações - Probabilidade e Estatística
+   Bacharelado em Ciências do Mar
+   Prof. Dr. Fabio Cop
+   ============================================ */
+
+/* Variáveis de cores */
+:root {
+    --main-color: #2c5f7c;
+    --accent-color: #1a9988;
+    --warning-color: #d35400;
+    --light-bg: #f0f7f9;
+}
+
+/* Configurações gerais do Reveal.js */
+.reveal {
+    font-size: 32px;
+}
+
+.reveal h1 {
+    color: var(--main-color);
+    font-size: 2.2em;
+    text-transform: none;
+}
+
+.reveal h2 {
+    color: var(--accent-color);
+    font-size: 1.6em;
+    text-transform: none;
+}
+
+.reveal h3 {
+    color: var(--main-color);
+    font-size: 1.3em;
+    text-transform: none;
+}
+
+/* Subir as setas de navegação para não ficarem atrás da barra inferior */
+.reveal .controls {
+    bottom: 60px !important;
+}
+
+/* Callouts - caixas de destaque */
+.callout {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.callout-note {
+    background-color: #e3f2fd;
+    border-left: 5px solid #2196F3;
+}
+
+.callout-important {
+    background-color: #fff3e0;
+    border-left: 5px solid var(--warning-color);
+}
+
+.callout-warning {
+    background-color: #ffebee;
+    border-left: 5px solid #f44336;
+}
+
+/* Timer - cronômetro no canto superior direito */
+.timer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+/* Placeholder para QR codes */
+.qr-placeholder {
+    width: 400px;
+    height: 400px;
+    background: var(--light-bg);
+    border: 3px dashed var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    font-size: 1.2em;
+    color: var(--main-color);
+    border-radius: 10px;
+}
+
+/* Caixas de hipóteses */
+.hypothesis-box {
+    background: var(--light-bg);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border-left: 5px solid var(--accent-color);
+}
+
+/* Código inline */
+code {
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #c7254e;
+}
+
+/* Blocos de código */
+pre code {
+    display: block;
+    padding: 20px;
+    background: #282c34;
+    color: #abb2bf;
+    border-radius: 8px;
+    font-size: 0.7em;
+    line-height: 1.4;
+}
+
+/* Fórmulas matemáticas */
+.formula {
+    font-size: 1.3em;
+    color: var(--main-color);
+    margin: 20px 0;
+}
+
+/* Números grandes para destaque */
+.big-number {
+    font-size: 3em;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Tabelas */
+table {
+    font-size: 0.8em;
+    margin: 20px auto;
+}
+
+table th {
+    background: var(--main-color);
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    padding: 8px;
+}
+
+/* Seção de votação */
+.vote-section {
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+/* ============================================
+   CLASSES UTILITÁRIAS DE TAMANHO DE FONTE
+   Resolve: overflow vertical em slides densos
+   ============================================ */
+.small   { font-size: 0.82em; }
+.smaller { font-size: 0.72em; }
+.compact { font-size: 0.65em; }
+
+/* ============================================
+   CONTROLE DE LISTAS
+   Resolve: overflow vertical por line-height
+   excessivo em <ul> e <ol> sem estilo explícito
+   ============================================ */
+.reveal .slides section ul,
+.reveal .slides section ol {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    line-height: 1.5;
+}
+
+.reveal .slides section li {
+    margin-bottom: 0.2em;
+}
+
+/* ============================================
+   CONTROLE DE IMAGENS — FALLBACK GLOBAL
+   Resolve: overflow vertical por imagem sem
+   max-height definida; sobreposição imagem×texto
+   por imagem extravasando a coluna do grid
+   ============================================ */
+.reveal .slides section img {
+    max-height: 420px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Espaçamento entre imagens consecutivas e
+   entre imagem e parágrafo adjacente.
+   Resolve: sobreposição imagem×imagem e
+   imagem×texto sem margem entre os elementos */
+.reveal .slides section img + img,
+.reveal .slides section img + p,
+.reveal .slides section p + img {
+    margin-top: 0.8em;
+}
+
+/* ============================================
+   ESPAÇAMENTO APÓS TÍTULOS
+   Resolve: texto×texto por ausência de
+   separação entre h3 e o bloco seguinte
+   ============================================ */
+.reveal .slides section h3 {
+    margin-bottom: 0.4em;
+}
+
+/* ============================================
+   CONTROLE DE DEFINIÇÕES (dl / dt / dd)
+   Resolve: overflow vertical em slides de
+   glossário com line-height ≥ 1.9 e muitos
+   termos sem margem controlada
+   ============================================ */
+.reveal .slides section dl {
+    line-height: 1.5;
+    margin: 0.3em 0;
+}
+
+.reveal .slides section dt {
+    margin-top: 0.4em;
+    font-weight: bold;
+}
+
+.reveal .slides section dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.3em;
+}

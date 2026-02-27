@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprimento e ângulo: o produto escalar - BME</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+    <link rel="stylesheet" href="css/style-classes.css">
+    <style>
+        .reveal .controls { bottom: 60px !important; }
+    </style>
+</head>
+<body>
+
+    <!-- TIMER -->
+    <div class="timer" id="timer">⏱️ 0:00</div>
+
+    <!-- BARRA INFERIOR FIXA — UC BME -->
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 12px; font-size: 0.95em; color: #ddd; border-top: 2px solid #1a9988; z-index: 10;">
+        <strong>Docente:</strong> Fabio Cop Ferreira e William Remo Pedroso Conti |
+        <strong>Curso:</strong> Bacharelado Interdisciplinar em Ciências do Mar - Bict Mar |
+        <strong>UC:</strong> 9833 - Bases da Matemática e Estatística para Ciências do Mar
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE DE TÍTULO -->
+            <section data-background-color="#1a9988">
+                <h1 style="color: white; font-size: 2em;">Comprimento e ângulo: o produto escalar</h1>
+                <p style="color: rgba(255,255,255,0.85); font-size: 0.9em;">9833 - Bases da Matemática e Estatística para Ciências do Mar</p>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.75em;">Fabio Cop Ferreira e William Remo Pedroso Conti</p>
+            </section>
+
+            <!-- SLIDE: Conteúdo da aula -->
+            <section>
+                <h2>Conteúdo da aula</h2>
+                <ol>
+                    <li>O Produto Escalar</li>
+                    <li>Comprimento de um vetor</li>
+                    <li>Vetor unitário:</li>
+                    <li>Distância</li>
+                    <li>Ângulo entre dois vetores</li>
+                    <li>Vetores ortogonais</li>
+                </ol>
+            </section>
+
+            <!-- SLIDE: O Produto Escalar — Definição -->
+            <section>
+                <h2>O Produto Escalar</h2>
+                <div class="callout callout-note">
+                    <strong>Definição</strong>
+                    <p>O Produto Escalar (produto interno) é uma operação matemática entre dois vetores em um espaço euclidiano que resulta em um <em>escalar</em>.</p>
+                    <p>$$
+\vec{u} = \begin{pmatrix}
+u_1 \\
+u_2 \\
+\vdots \\
+u_n
+\end{pmatrix};
+\vec{v} = \begin{pmatrix}
+v_1 \\
+v_2 \\
+\vdots \\
+v_n
+\end{pmatrix}
+$$</p>
+                    <p>$$\vec{u} \cdot \vec{v} = u_1 v_1 + u_2 v_2 + \ldots + u_n v_n$$</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: O Produto Escalar — Propriedades -->
+            <section>
+                <h2>O Produto Escalar</h2>
+                <h4>Propriedades</h4>
+                <div style="font-size: 0.65em;">
+                    <p>Sejam $\vec{u}$, $\vec{v}$ e $\vec{w}$ vetores em $\mathbb{R}^n$, e $k$ um escalar. Então:</p>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #2c5f7c; color: white;">
+                                <th style="padding: 8px; text-align: center; width: 5%;"></th>
+                                <th style="padding: 8px; text-align: left;">Propriedade</th>
+                                <th style="padding: 8px; text-align: left; width: 20%;">Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; text-align: center;">1</td>
+                                <td style="padding: 8px;">$\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}$</td>
+                                <td style="padding: 8px;">Comutatividade</td>
+                            </tr>
+                            <tr style="background-color: #f5f5f5;">
+                                <td style="padding: 8px; text-align: center;">2</td>
+                                <td style="padding: 8px;">$\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}$</td>
+                                <td style="padding: 8px;">Distributividade</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; text-align: center;">3</td>
+                                <td style="padding: 8px;">$k(\vec{u}) \cdot \vec{v} = k(\vec{u} \cdot \vec{v})$</td>
+                                <td style="padding: 8px;">Distributividade</td>
+                            </tr>
+                            <tr style="background-color: #f5f5f5;">
+                                <td style="padding: 8px; text-align: center;">4</td>
+                                <td style="padding: 8px;">$\vec{u} \cdot \vec{u} \ge 0$ e $\vec{u} \cdot \vec{u} = 0$ se e somente se $\vec{u} = 0$</td>
+                                <td style="padding: 8px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SLIDE: O Produto Escalar — Exemplo -->
+            <section>
+                <h2>O Produto Escalar</h2>
+                <h4>Exemplo</h4>
+                <div style="font-size: 0.6em;">
+                    <p>$$
+\vec{u} = \begin{pmatrix}
+1 \\
+2 \\
+-3
+\end{pmatrix};
+\vec{v} = \begin{pmatrix}
+-3 \\
+5 \\
+2
+\end{pmatrix}
+$$</p>
+                    <p>$$\vec{u} \cdot \vec{v} = 1 \times (-3) + 2 \times 5 + (-3) \times 2 = -3 + 10 - 6 = 1$$</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Comprimento de um vetor — Definição -->
+            <section>
+                <h2>Comprimento de um vetor</h2>
+                <div style="font-size: 0.6em;">
+                    <p>O comprimento de um vetor (<strong>magnitude</strong> ou <strong>norma</strong>), é uma medida da extensão do vetor no espaço. Para um vetor $\vec{v} = (v_1, v_2, \ldots, v_n)$ em um espaço euclidiano <em>n</em>-dimensional, o comprimento é:</p>
+                    <p>$$
+\|\vec{v}\| = \sqrt{\vec{v} \cdot \vec{v}} = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}
+$$</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="images/comprimento.png" alt="Comprimento de um vetor" style="background-color:#ffffff; width:500px; max-width:100%; height:auto;">
+                </div>
+            </section>
+
+            <!-- SLIDE: Comprimento de um vetor — Propriedades -->
+            <section>
+                <h2>Comprimento de um vetor</h2>
+                <h4>Propriedades</h4>
+                <div style="font-size: 0.6em;">
+                    <p>Seja $\vec{u}$ um vetor em $\mathbb{R}^n$, e $k$ um escalar. Então:</p>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #2c5f7c; color: white;">
+                                <th style="padding: 8px; text-align: center; width: 5%;"></th>
+                                <th style="padding: 8px; text-align: left;">Propriedade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; text-align: center;">1</td>
+                                <td style="padding: 8px;">$\|\vec{u}\| = 0$ se e somente se $\vec{u} = 0$</td>
+                            </tr>
+                            <tr style="background-color: #f5f5f5;">
+                                <td style="padding: 8px; text-align: center;">2</td>
+                                <td style="padding: 8px;">$\|k(\vec{u})\| = |k| \|\vec{u}\|$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SLIDE: Comprimento de um vetor — Exemplo -->
+            <section>
+                <h2>Comprimento de um vetor</h2>
+                <h4>Exemplo</h4>
+                <div style="font-size: 0.6em;">
+                    <p>$$
+\vec{u} = \begin{pmatrix}
+1 \\
+2 \\
+-3
+\end{pmatrix};
+\vec{v} = \begin{pmatrix}
+-3 \\
+5 \\
+2
+\end{pmatrix}
+$$</p>
+                    <p>$\|\vec{u}\| = \sqrt{\vec{u} \cdot \vec{u}} = \sqrt{u_1^2 + u_2^2 + u_3^2}$ $\|\vec{u}\| = \sqrt{1^2 + 2^2 + (-3)^2} = \sqrt{1 + 4 + 9} = \sqrt{14} \approx 3.742$</p>
+                    <p>$\|\vec{v}\| = \sqrt{\vec{v} \cdot \vec{v}} = \sqrt{v_1^2 + v_2^2 + v_3^2}$ $\|\vec{v}\| = \sqrt{(-3)^2 + 5^2 + 2^2} = \sqrt{9 + 25 + 4} = \sqrt{38} \approx 6.164$</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Vetor unitário: normalização -->
+            <section>
+                <h2>Vetor unitário: normalização</h2>
+                <div style="font-size: 0.6em;">
+                    <p>Um vetor é um vetor de <strong>comprimento 1</strong> é chamado vetor unitário. $\vec{v}$ é unitário se $\|\vec{v}\| = 1$</p>
+                    <h5>Normalização de um vetor</h5>
+                    <p>Dado qualquer vetor não nulo $\vec{v}$, podemos sempre encontrar um vetor unitário de <em>mesmo sentido</em> que $\vec{v}$ dividindo $\vec{v}$ por seu próprio comprimento (ou, equivalentemente, multiplicando por $\frac{1}{\|\vec{v}\|}$).</p>
+                    <p>Portanto o vetor $\vec{u}$ será unitário se:</p>
+                    <p>$\vec{u} = \left(\frac{1}{\|\vec{v}\|}\right)\vec{v}$</p>
+                    <p>pois:</p>
+                    <p>$$
+\|\vec{u}\| = \left\|\left(\frac{1}{\|\vec{v}\|}\right)\vec{v}\right\| = \left| \frac{1}{\|\vec{v}\|} \right| \|\vec{v}\| = \left(\frac{1}{\|\vec{v}\|}\right)\|\vec{v}\| = 1
+$$</p>
+                    <p>$\vec{u}$ possui o mesmo sentido que $\vec{v}$, pois $\frac{1}{\|\vec{v}\|}$ é um número positivo.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Distância — Definição -->
+            <section>
+                <h2>Distância</h2>
+                <div style="font-size: 0.6em;">
+                    <p>A distância (ou <strong>distância euclideana</strong>) entre dois vetores $\vec{u} = (u_1, u_2, \ldots, u_n)$ e $\vec{v} = (v_1, v_2, \ldots, v_n)$ é uma medida da separação entre os dois pontos finais desses vetores no espaço <em>n</em>-dimensional, calculada:</p>
+                    <p>$$
+d(\vec{u}, \vec{v}) = \|\vec{u} - \vec{v}\| = \sqrt{(u_1 - v_1)^2 + (u_2 - v_2)^2 + \cdots + (u_n - v_n)^2}
+$$</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="images/distancia.png" alt="Distância euclidiana entre vetores" style="background-color:#ffffff; width:800px; max-width:100%; height:auto;">
+                </div>
+            </section>
+
+            <!-- SLIDE: Distância — Exemplo -->
+            <section>
+                <h2>Distância</h2>
+                <h4>Exemplo</h4>
+                <div style="font-size: 0.6em;">
+                    <p>$$
+\vec{u} = \begin{pmatrix}
+\sqrt{2} \\
+1 \\
+-1
+\end{pmatrix};
+\vec{v} = \begin{pmatrix}
+0 \\
+2 \\
+-2
+\end{pmatrix}
+$$</p>
+                    <p>$$
+d(\vec{u}, \vec{v}) = \|\vec{u} - \vec{v}\| = \sqrt{(\sqrt{2})^2 + (-1)^2 + 1^2} = \sqrt{4} = 2
+$$</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Ângulo entre dois vetores — Definição -->
+            <section>
+                <h2>Ângulo entre dois vetores</h2>
+                <div style="font-size: 0.7em;">
+                    <p>O Produto escalar pod ser utilizado para determinar o ângulo $\theta$ entre dois vetores <em>não mulos</em> $\vec{u}$ e $\vec{v}$ por meio da expressão.</p>
+                    <p>$$
+\cos(\theta) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\|\|\vec{v}\|}
+$$</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="images/angulo.png" alt="Ângulo entre dois vetores" style="background-color:#ffffff; width:800px; max-width:100%; height:auto;">
+                </div>
+            </section>
+
+            <!-- SLIDE: Ângulo entre dois vetores — Lei dos Cossenos -->
+            <section>
+                <h2>Ângulo entre dois vetores</h2>
+                <div class="callout callout-note" style="font-size: 0.65em;">
+                    <strong>Ângulo e Lei dos Cossenos</strong>
+                    <p>Considere a expressão retirada da <a href="https://pt.wikipedia.org/wiki/Lei_dos_cossenos" target="_blank" style="color: #1a9988;">Lei dos Cossenos</a>:
+                    $$\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos(\theta)$$</p>
+                    <p>Expandindo $\|\vec{u} - \vec{v}\|^2$ e utilizando a definição do produto escalar, podemos escrever:
+                    $$\|\vec{u} - \vec{v}\|^2 = (\vec{u} - \vec{v}) \cdot (\vec{u} - \vec{v}) = \vec{u} \cdot \vec{u} - 2\vec{u} \cdot \vec{v} + \vec{v} \cdot \vec{v}$$</p>
+                    <p>Como $\vec{u} \cdot \vec{u} = \|\vec{u}\|^2$ e $\vec{v} \cdot \vec{v} = \|\vec{v}\|^2$, então:
+                    $$\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\vec{u} \cdot \vec{v}$$</p>
+                    <p>Comparando esta expressão com a expressão original da Lei dos Cossenos, temos:
+                    $$\|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos(\theta) = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\vec{u} \cdot \vec{v}$$</p>
+                    <p>Simplificando, obtemos:
+                    $$- 2\|\vec{u}\|\|\vec{v}\|\cos(\theta) = - 2\vec{u} \cdot \vec{v}$$</p>
+                    <p>Dividindo ambos os lados por $-2\|\vec{u}\|\|\vec{v}\|$:
+                    $$\cos(\theta) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\|\|\vec{v}\|}$$</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Vetores ortogonais — Definição -->
+            <section>
+                <h2>Vetores ortogonais</h2>
+                <p>Dois vetores $\vec{u}$ e $\vec{v}$ são <strong>ortogonais</strong> entre si se $\vec{u} \cdot \vec{v} = 0$. Dois vetores <em>não nulos</em> ortogonais têm ângulo $\theta$ entre si $\theta = 90^o$ ($\theta = \frac{\pi}{2}$ radianos)</p>
+                <div style="text-align: center;">
+                    <img src="images/vetores_ortogonais.png" alt="Vetores ortogonais" style="background-color:#ffffff; width:300px; max-width:100%; height:auto;">
+                </div>
+            </section>
+
+            <!-- SLIDE: Vetores ortogonais — Exemplo -->
+            <section>
+                <h2>Vetores ortogonais</h2>
+                <div style="font-size: 0.55em;">
+                    <p><strong>Exemplo:</strong> Considere os vetores $\vec{u} = (2, 3)$ e $\vec{v} = (-3, 2)$ em $\mathbb{R}^2$. Para verificar se são ortogonais:</p>
+                    <ol>
+                        <li>
+                            <p><strong>Calcular o produto escalar</strong> $\vec{u} \cdot \vec{v}$:</p>
+                            <p>$$\vec{u} \cdot \vec{v} = 2 \cdot (-3) + 3 \cdot 2 = -6 + 6 = 0$$</p>
+                        </li>
+                        <li>
+                            <p><strong>Calcular as normas</strong> $\|\vec{u}\|$ e $\|\vec{v}\|$:</p>
+                            <p>$$\|\vec{u}\| = \sqrt{2^2 + 3^2} = \sqrt{4 + 9} = \sqrt{13}$$</p>
+                            <p>$$\|\vec{v}\| = \sqrt{(-3)^2 + 2^2} = \sqrt{9 + 4} = \sqrt{13}$$</p>
+                        </li>
+                        <li>
+                            <p><strong>Calcular</strong> $\cos(\theta)$:</p>
+                            <p>$$\cos(\theta) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\|\|\vec{v}\|} = \frac{0}{\sqrt{13} \cdot \sqrt{13}} = 0$$</p>
+                        </li>
+                        <li>
+                            <p><strong>Calcular</strong> $\theta$:</p>
+                            <p>$$\theta = \cos^{-1}(0) = \frac{\pi}{2}$$</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/math/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            plugins: [RevealNotes, RevealMath.KaTeX, RevealHighlight],
+            math: {
+                mathjax: null,
+                katex: {
+                    version: 'latest',
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ]
+                }
+            }
+        });
+        window.addEventListener('load', function () {
+            var startTime = Date.now();
+            var timerElement = document.getElementById('timer');
+            if (timerElement) {
+                setInterval(function () {
+                    var elapsed = Math.floor((Date.now() - startTime) / 1000);
+                    var mins = Math.floor(elapsed / 60);
+                    var secs = elapsed % 60;
+                    timerElement.textContent = '⏱️ ' + mins + ':' + (secs < 10 ? '0' + secs : secs);
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

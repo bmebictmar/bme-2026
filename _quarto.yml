@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - "content/slides/css/**"
+    - "content/slides/images/**"
+    - "content/slides/r-scripts/**"
+  
 lang: pt
 
 publish:
@@ -54,10 +59,35 @@ website:
           - href: "https://moodlegrad.unifesp.br/"
             text: Moodle Graduação
             target: "_blank"           
-      - section: "Leitura"
+      - section: "Material teórico"
         contents:
-      - section: "Slides"
-        contents:
+          - href: content/slides/slides-bme-geometria-vetores.html
+            text: "Aula 2 - A geometria e a álgebra de vetores"
+            target: "_blank"
+          - href: content/slides/slides-bme-comprimento-angulo.html
+            text: "Aula 3 - Comprimento e ângulo: o produto escalar"
+            target: "_blank"
+          - href: content/slides/slides-bme-sistema-equacoes-lineares.html
+            text: "Aulas 4-7 - Sistemas de Equações Lineares"
+            target: "_blank"
+          - href: https://fcopf.github.io/mead/content/multivariada-numerica/intro-matrizes.html
+            text: "Aula 8 - Álgebra de Matrizes"
+            target: "_blank"
+          - href: content/slides/slides-bme-matriz-leslie.html
+            text: "Aula 8 - Matriz de Leslie"
+            target: "_blank"
+          - href: https://fcopf.github.io/mead/content/regressao-linear/metodo-minimos-quadrados-apresentacao.html
+            text: "Aulas 12-14 - Regressão Linear Simples e MMQ"
+            target: "_blank"
+          - href: https://fcopf.github.io/mead/content/estatistica-descritiva/tendcentral.html
+            text: "Aula 15 - Medidas de tendência central"
+            target: "_blank"
+          - href: https://fcopf.github.io/mead/content/estatistica-descritiva/variacao.html
+            text: "Aula 15 - Medidas de variação"
+            target: "_blank"
+          - href: https://fcopf.github.io/mead/content/medidas-associacao/biquanti.html
+            text: "Aula 16 - Associação entre duas variáveis quantitativas"
+            target: "_blank"
           - href: content/slides/modelos-matematicos/funcoes-lineares.pdf
             text: "Aula 19 - Funções lineares"
             target: "_blank"
