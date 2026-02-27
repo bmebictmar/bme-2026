@@ -1,14 +1,15 @@
 ---
 title: "Plano de Ensino"
 subtitle: "10768 - Bases da Matemática e Estatística"
-number-sections: false
+number-sections: true
+number-depth: 3
 ---
 
-### Ementa
+## Ementa
 
 Oferecer letramento quantitativo e habilidades em matemática e estatística que serão aprofundados em unidades curriculares específicas ao longo do curso. O curso pretende discutir i) ferramentas de estatística descritiva para resumo e visualização de dados; ii) modelos matemáticos utilizados para descrever fenômenos científicos; e iii) métodos de ajuste de modelos matemáticos a conjuntos de dados provenientes de experimentos e estudos observacionais.
 
-### Conteúdo programático
+## Conteúdo programático
 
 1. **Resumo e Descrição de Dados**
    Descrevendo conjuntos de dados em tabelas e gráficos; medidas de tendência central e de dispersão; descrevendo padrões de distribuição de variáveis: histogramas e gráficos de frequência acumulada; associação entre variáveis: índices de associação e gráficos.
@@ -22,13 +23,13 @@ Oferecer letramento quantitativo e habilidades em matemática e estatística que
 4. **Aplicações**
    Ajuste de dados a uma função conhecida: o método dos mínimos quadrados; modelos matriciais: modelo de Markov, modelo de crescimento populacional estruturado, modelo de alocação de recursos.
 
-### Objetivos
+## Objetivos
 
-#### Gerais
+### Gerais
 
 Apresentar e trabalhar os elementos fundamentais do método matemático e estatístico à resolução de problemas relacionados às Ciências do Mar, em especial à análise de dados.
 
-#### Específicos
+### Específicos
 
 O aluno será capaz de:
 
@@ -37,28 +38,37 @@ O aluno será capaz de:
 - comunicar-se eficientemente nas formas escrita, oral e gráfica;
 - atuar em equipes interdisciplinares.
 
-### Metodologia de ensino
+## Metodologia de ensino
 
 Atividades teóricas, práticas computacionais, leituras dirigidas, respostas a quizzes, listas de exercícios.
 
-### Avaliação
+## Avaliação
 
-A avaliação do(a) estudante será feita por meio de listas de exercícios aplicadas a cada aula. A nota final será a média aritmética das notas das listas.
+A avaliação será realizada por meio de **Provas** aplicadas em sala de aula (peso 40%) e **Listas de Exercícios** (peso 60%). Consulte o [Cronograma](../index.qmd){target="_blank"} para as datas das provas e a página da UC no [Moodle Graduação](https://moodlegrad.unifesp.br/){target="_blank"} para o calendário de entrega das listas. A **Nota do Período Letivo (NL)** será calculada pela média ponderada dessas avaliações:
 
-A aprovação do(a) estudante na UC seguirá o descrito nos Artigos 120 a 124 do Regimento Interno da Pró-Reitoria de Graduação.
+$$NL = 0{,}4 \times \text{Média aritmética das Provas} + 0{,}6 \times \text{Média aritmética das Listas}$$
 
-A frequência na UC seguirá o descrito nas Seções II e III do Capítulo IV do Regimento Interno da Pró-Reitoria de Graduação.
+#### Critérios de Aprovação e Exame
 
-### Bibliografia
+A aprovação na Unidade Curricular depende do cumprimento simultâneo da *frequência mínima* e do *aproveitamento acadêmico*, conforme o [Regulamento dos Cursos de Graduação da Unifesp](https://unifesp.br/campus/san7/images/segrad-imar/Regimento_da_Pro-reitoria_de_Gradua%C3%A7%C3%A3o.pdf){target="_blank"}. A frequência mínima exigida é de **75%**. *O estudante que não atingir essa frequência estará reprovado independentemente da nota obtida.*
 
-#### Básica
+Para o estudante que cumprir a frequência mínima, o resultado depende da NL. Se $NL \geq 6{,}0$, o estudante estará **aprovado** e a Nota Final será $NF = NL$. Se $NL < 3{,}0$, estará **reprovado sem direito a Exame Final**. Se a NL ficar entre $3{,}0$ e $5{,}9$, o estudante terá direito ao **Exame Final**.
+
+#### Exame Final
+
+A Nota Final do estudante que realizar o Exame será $NF = (NL + NE) / 2$, onde NE é a nota obtida no Exame. O estudante será **aprovado** se $NF \geq 6{,}0$ e **reprovado** se $NF < 6{,}0$. O estudante que não comparecer ao Exame receberá $NE = 0$, resultando em reprovação.
+
+
+## Bibliografia
+
+### Básica
 
 1. Gotelli, N. J., & Ellison, A. M. (2015). *Princípios de Estatística em Ecologia*.
 2. Poole, D. (2016). *Álgebra Linear: Uma Introdução Moderna* (Tradução da 4ª ed. norte-americana).
 3. Stewart, J. (2017). *Cálculo - Volume 1* (Tradução da 8ª edição norte-americana).
 4. Triola, M. F. (2017). *Introdução à Estatística* (12a edição). Grupo GEN.
 
-#### Complementar
+### Complementar
 
 1. Guidorizzi, H. L. (2018). *Um Curso de Cálculo - Vol. 1* (6ª edição).
 2. Santos, N. M. (2007). *Vetores e Matrizes: Uma introdução à álgebra linear* (4a edição).

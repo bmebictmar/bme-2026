@@ -26,7 +26,7 @@ Ano letivo
 Carga horária total
 : 80 h
 
-Dias
+Dias e horários - vide [Semana Padrão](https://unifesp.br/campus/san7/images/segrad-imar/Semana_padr%C3%A3o_2026-1/BICT_Mar_SEMANA_PADRAO_1-2026_V3.pdf)
 : Terças e Quintas feiras
 : 14h - 15:45h (Vespertino)
 : 19h - 20:45h (Noturno)
@@ -34,6 +34,9 @@ Dias
 Locais - vide [Cronograma](../index.qmd)
 : Sala 205
 : Laboratório de Informática
+
+ÁREA DO(A) ESTUDANTE
+: [SEGRAD IMar](https://unifesp.br/campus/san7/botoes-estudantes-segrad-imar-inv/3167-segrad-imar-area-do-a-estudante){target="_blank"}
 
 :::
 

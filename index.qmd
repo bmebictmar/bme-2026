@@ -46,7 +46,7 @@ tbl-colwidths: [2,1,2,5,5,3,3]
 | [30]{.aula-idx .dia-revezamento} | 25/06 | Quinta-feira | [LAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python]{.aula-celula .is-pratica} | [Modelos Matemáticos: funções trigonométricas]{.aula-celula .is-teoria} | [Funções trigonométricas](content/slides/modelos-matematicos/funcoes-trigonometricas.pdf){target="_blank"}<br>[Funções potências](content/slides/modelos-matematicos/funcoes-potencias.pdf){target="_blank"}<br>[Funções exponenciais e logarítmicas](content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf){target="_blank"} |  |
 | [31]{.aula-idx .dia-revezamento} | 30/06 | Terça-feira | [Modelos Matemáticos: funções trigonométricas]{.aula-celula .is-teoria} | [LAB. INFO: MMQ em funções trigonométricas em Python]{.aula-celula .is-pratica} | [Funções trigonométricas](content/slides/modelos-matematicos/funcoes-trigonometricas.pdf){target="_blank"} |  |
 | [32]{.aula-idx .dia-revezamento} | 02/07 | Quinta-feira | [LAB. INFO: MMQ em funções trigonométricas em Python]{.aula-celula .is-pratica} | [Modelos Matemáticos: funções trigonométricas]{.aula-celula .is-teoria} | [Funções trigonométricas](content/slides/modelos-matematicos/funcoes-trigonometricas.pdf){target="_blank"} |  |
-| [33]{.aula-idx .dia-mesma-atividade} | 07/07 | Terça-feira | [**Prova 3**]{.aula-celula .is-teoria} | [**Prova 3**]{.aula-celula .is-teoria} |  |  |
+| [33]{.aula-idx .dia-mesma-atividade} | 07/07 | Terça-feira | [**Prova 4**]{.aula-celula .is-teoria} | [**Prova 4**]{.aula-celula .is-teoria} |  |  |
 |  | 09/07 | Quinta-feira | [Feriado (Revolução Constitucionalista)]{.aula-celula .is-teoria} |  |  |  |
 |  | 14/07 | Terça-feira | [Exame]{.aula-celula .is-teoria} |  |  |  |
 :::
