@@ -88,6 +88,9 @@ website:
           - href: https://fcopf.github.io/mead/content/medidas-associacao/biquanti.html
             text: "Aula 16 - Associação entre duas variáveis quantitativas"
             target: "_blank"
+          - href: https://fcopf.github.io/mead/content/regressao-linear/particao-soma-quadrados-r2.html
+            text: "Aula 17 - Partição da soma dos quadrados e coeficiente de determinação"
+            target: "_blank"
           - href: content/slides/modelos-matematicos/funcoes-lineares.pdf
             text: "Aula 19 - Funções lineares"
             target: "_blank"
