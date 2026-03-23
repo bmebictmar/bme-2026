@@ -95,7 +95,7 @@
                 <!-- Slide: Tipos de Soluções -->
                 <section>
                     <h2>Tipos de Soluções</h2>
-                    <img src="images/res_sel.png" alt="Tipos de soluções de sistemas lineares" style="background-color:#ffffff; width:600px; max-width: 80%; height: auto; display: block; margin: 0 auto;">
+                    <img src="images/res_sel.png" alt="Tipos de soluções de sistemas lineares" style="background-color:#ffffff; width:900px; max-width: 95%; height: auto; display: block; margin: 0 auto;">
                 </section>
             </section>
 
@@ -161,7 +161,7 @@
                 <!-- Slide: Métodos Diretos (3) — simplificando o sistema -->
                 <section>
                     <h2>Métodos Diretos de Solução de Sistemas</h2>
-                    <div style="font-size: 0.6em;">
+                    <div style="font-size: 0.7em;">
                         <p><strong>Simplificando o sistema</strong></p>
                         <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
                             <div>$$\begin{cases}x - y - z = 2 \\3x - 3y + 2z = 16 \\2x - y + z = 9\end{cases}$$</div>
@@ -172,6 +172,13 @@
                             <div>$$\begin{cases}x - y - z = 2 \\5z = 10 \\2x - y + z = 9\end{cases}$$</div>
                             <div>$$\left[ \begin{array}{ccc|c}1 & -1 & -1 & 2 \\0 & 0 & 5 & 10 \\2 & -1 & 1 & 9\end{array} \right]$$</div>
                         </div>
+                    </div>
+                </section>
+
+                <!-- Slide: Métodos Diretos (4) — simplificando o sistema (cont.) -->
+                <section>
+                    <h2>Métodos Diretos de Solução de Sistemas</h2>
+                    <div style="font-size: 0.7em;">                        
                         <p><strong>Subtraindo</strong> $2$ vezes a $1^a$ linha da $3^a$</p>
                         <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
                             <div>$$\begin{cases}x - y - z = 2 \\5z = 10 \\y + 3z = 5\end{cases}$$</div>
@@ -310,6 +317,7 @@
                 <!-- Slide: Método de Eliminação de Gauss — exemplo (resultado) -->
                 <section>
                     <h2>Método de Eliminação de Gauss</h2>
+                    <div style="font-size: 0.85em;">
                     <p><strong>Exemplo</strong></p>
                     <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
                         <div>$$\begin{cases}2x_2 + 3x_3 = 8 \\2x_1 + 3x_2 + x_3 = 5 \\x_1 - x_2 - 2x_3 = -5\end{cases}$$</div>
@@ -321,6 +329,7 @@
                     <div style="display: grid; grid-template-columns: 50% 50%; gap: 20px; align-items: start;">
                         <div>$$\begin{cases}2(1) + 3(2) = 8 \\2(0) + 3(1) + (2) = 5 \\(0) - (1) - 2(2) = -5\end{cases}$$</div>
                         <div>$$\begin{cases}(0) - (1) - 2(2) = -5 \\(1) + (2) = 3 \\(2) = 2\end{cases}$$</div>
+                    </div>
                     </div>
                 </section>
 
@@ -649,11 +658,13 @@
                 <!-- Slide: Conjuntos Geradores — definição -->
                 <section>
                     <h2>Conjuntos Geradores</h2>
-                    <p>O problema de verificar se um conjunto é gerador está relacionado ao problema da existência de solução em sistemas lineares. Considerando um sistema de matriz completa $[A|b]$, o sistema terá solução quando $b$ for uma combinação linear de $A$.</p>
-                    <img src="images/res_vec.png" alt="Combinação linear de vetores" style="background-color:#ffffff; width:600px; max-width: 70%; height: auto; display: block; margin: 10px auto;">
-                    <div class="callout callout-note">
-                        <strong>Definição</strong>
-                        <p>Se $S = \{\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}\}$ é um conjunto de vetores de $\mathbb{R}^n$, então o conjunto de todas as combinações lineares de $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$ é chamado <strong>conjunto gerado por $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$</strong>, denominado $ger(\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k})$ ou $ger(S)$. Se $ger(S) = \mathbb{R}^n$, $S$ é chamado de <strong>conjunto gerador</strong> de $\mathbb{R}^n$.</p>
+                    <div style="font-size: 0.85em;">
+                        <p>O problema de verificar se um conjunto é gerador está relacionado ao problema da existência de solução em sistemas lineares. Considerando um sistema de matriz completa $[A|b]$, o sistema terá solução quando $b$ for uma combinação linear de $A$.</p>
+                        <img src="images/res_vec.png" alt="Combinação linear de vetores" style="background-color:#ffffff; width:600px; max-width: 70%; height: auto; display: block; margin: 10px auto;">
+                        <div class="callout callout-note">
+                            <strong>Definição</strong>
+                            <p>Se $S = \{\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}\}$ é um conjunto de vetores de $\mathbb{R}^n$, então o conjunto de todas as combinações lineares de $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$ é chamado <strong>conjunto gerado por $\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k}$</strong>, denominado $ger(\vec{v_1}, \vec{v_2}, \cdots, \vec{v_k})$ ou $ger(S)$. Se $ger(S) = \mathbb{R}^n$, $S$ é chamado de <strong>conjunto gerador</strong> de $\mathbb{R}^n$.</p>
+                        </div>
                     </div>
                 </section>
 
