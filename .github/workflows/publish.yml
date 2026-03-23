@@ -23,6 +23,11 @@ jobs:
           r-version: renv
           use-public-rspm: true
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnode-dev
+
       - name: Restore renv library
         uses: r-lib/actions/setup-renv@v2
         with:
