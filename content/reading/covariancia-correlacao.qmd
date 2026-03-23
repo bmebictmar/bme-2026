@@ -1,274 +1,379 @@
 ---
-title: "Associação entre duas variáveis quantitativas"
-description: "Análise da associação entre variáveis quantitativas, com destaque para covariância e correlação de Pearson."
+title: "Covariância e Correlação Linear"
+description: "Construção da covariância a partir da variância, derivação da correlação de Pearson, interpretação geométrica como cosseno do ângulo entre vetores e formulação matricial."
 categories: [
           "Estatística",
-          "Análise quantitativa",
           "Covariância",
           "Correlação",
-          "Medidas de associação"
+          "Álgebra linear",
+          "Formulação vetorial"
         ]
 
 image: "images/biquanti.jpg"
 execute:
-  echo: true
+  echo: false
   warning: false
   include: true
   message: false
+format:
+  html:
+    code-fold: false
 ---
 
-:::{.callout-tip collapse="true"}
-## Pacotes e funções utilizadas no capítulo
-
 ```{r}
+#| include: false
 library(tidyverse)
-library(gt)
-library(patchwork)
 library(mvtnorm)
+set.seed(7)
+n <- 6
+X <- c(1, 3, 4, 6, 7, 9)
+Y <- c(2, 4, 3, 7, 6, 8)
+Xbar <- mean(X)
+Ybar <- mean(Y)
+dX <- X - Xbar
+dY <- Y - Ybar
+SQX <- sum(dX^2)
+SQY <- sum(dY^2)
+SPXY <- sum(dX * dY)
+sX2 <- var(X)
+sY2 <- var(Y)
+sX  <- sd(X)
+sY  <- sd(Y)
+sXY <- cov(X, Y)
+r   <- cor(X, Y)
+theta_deg <- round(acos(r) * 180 / pi, 1)
 ```
 
-:::
+Nos capítulos anteriores, construímos a média e a variância como medidas que descrevem uma única variável. O passo natural é perguntar: **como duas variáveis variam em conjunto?** Para responder, precisamos de medidas que capturem a associação linear entre $X$ e $Y$: a covariância e o coeficiente de correlação de Pearson.
 
-Iremos medir o grau de associação entre duas variáveis quantitativas $X$ e $Y$ por meio dos coeficientes de **covariância** e **correlação linear**. Não estamos interessados em verificar se $Y$ depende funcionalmente de $X$ ou vice-versa. Estamos interessados somente em medir a intensidade de associação linear entre as duas variáveis. Ao calcularmos a covariância entre $Y$ e $X$ ($s_{YX}$), por exemplo, poderíamos inverter a ordem fazendo $s_{XY}$ e teríamos exatamente os mesmo resultados. O mesmo vale para o coeficiente de correlação ($r_{YX} = r_{XY}$). Dizemos que existe uma *simetria* ao calcular estes coeficientes.
-
-Estamos interessados em diferenciar três situações que podem ser visualizadas nos gráficos de dispersão abaixo:
+## Motivação: associação entre duas variáveis
 
 ```{r}
-#| echo: false
-sigma = matrix(c(1,0.8,0,0,
-                 0.8,1,0,0,
-                 0,0,1,-0.8,
-                 0,0,-0.8,1),
-               ncol = 4)
-colnames(sigma) = rownames(sigma) = paste('X', 1:4, sep = '')
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 4
+#| fig-cap: "Três situações de associação linear entre duas variáveis. À esquerda, covariância negativa: quando $X$ aumenta, $Y$ tende a diminuir. Ao centro, covariância nula: não há padrão linear. À direita, covariância positiva: quando $X$ aumenta, $Y$ também tende a aumentar."
+
+sigma_mat <- matrix(c(1, 0.85, 0, 0,
+                      0.85, 1, 0, 0,
+                      0, 0, 1, -0.85,
+                      0, 0, -0.85, 1), ncol = 4)
 set.seed(1)
-cor4D = data.frame(rmvnorm(n = 300, 
-                           mean = rep(0,ncol(sigma)), 
-                           sigma = sigma, 
-                           method = "chol"))
-#cor4D
-#cor(cor4D)
-#pairs(cor4D)
-```
+dados4D <- data.frame(rmvnorm(n = 200,
+                               mean = rep(0, 4),
+                               sigma = sigma_mat,
+                               method = "chol"))
 
-```{r}
-#| echo: false
-p_neg = ggplot(cor4D) +
-  aes(x = X4, y = X3) +
+p_pos <- ggplot(dados4D, aes(x = X1, y = X2)) +
   geom_point(alpha = 0.5) +
-  labs(title = 'Covariância negativa',
-       subtitle = 'Correlação negativa',
-       x = 'X', y = 'Y') +
-  theme_classic(base_size = 15) +
-  theme(axis.text = element_blank())
+  labs(title = "Covariância positiva", x = "X", y = "Y") +
+  theme_classic(base_size = 13) +
+  theme(axis.text = element_blank(), plot.title = element_text(hjust = 0.5))
 
-p_nula = ggplot(cor4D) +
-  aes(x = X1, y = X3) +
+p_nula <- ggplot(dados4D, aes(x = X1, y = X3)) +
   geom_point(alpha = 0.5) +
-  labs(title = 'Covariância nula',
-       subtitle = 'Correlação nula',
-       x = 'X', y = 'Y') +
-  theme_classic(base_size = 15) +
-  theme(axis.text = element_blank())
+  labs(title = "Covariância nula", x = "X", y = "Y") +
+  theme_classic(base_size = 13) +
+  theme(axis.text = element_blank(), plot.title = element_text(hjust = 0.5))
 
-p_pos = ggplot(cor4D) +
-  aes(x = X1, y = X2) +
+p_neg <- ggplot(dados4D, aes(x = X4, y = X3)) +
   geom_point(alpha = 0.5) +
-  labs(title = 'Covariância positiva',
-       subtitle = 'Correlação positiva',
-       x = 'X', y = 'Y') +
-  theme_classic(base_size = 15) +
-  theme(axis.text = element_blank())
+  labs(title = "Covariância negativa", x = "X", y = "Y") +
+  theme_classic(base_size = 13) +
+  theme(axis.text = element_blank(), plot.title = element_text(hjust = 0.5))
 
-```
-
-```{r}
-#| echo: false
-#| fig-align: 'center'
-#| fig-height: 5
-#| fig-width: 15
+library(patchwork)
 p_neg | p_nula | p_pos
 ```
 
-## Covariância entre $Y$ e $X$
+Observamos que a associação pode ser **positiva** (quando $X$ aumenta, $Y$ também aumenta), **negativa** (quando $X$ aumenta, $Y$ diminui) ou **nula** (sem padrão linear aparente). Buscamos uma medida que quantifique a direção e intensidade desse padrão.
 
-A variância amostral de $Y$ pode ser obtida subtraindo cada observação em $Y$ de sua média ($\overline{Y}$) e elevando esta subtração ao quadrado $(Y_i - \overline{Y})^2$. Ao somar para todos os valores de $Y_i$ teremos o **somatório dos quadrados de $Y$** ($SQ_Y$). 
+## Da variância à covariância
 
-$$SQ_Y = \sum_{i-1}^{n} (Y_i - \overline{Y})^2 = \sum_{i-1}^{n}(Y_i - \overline{Y}) (Y_i - \overline{Y})$$
+### O exemplo
 
-Dividindo $SQ_Y$ por $n-1$ teremos a **variância amostral de $Y$** ($s^2_Y$).
+A covariância nasce da mesma ideia da variância, mas agora olhando **duas variáveis ao mesmo tempo**. Considere o exemplo abaixo:
 
-$$s^2_Y = \frac{\sum_{i-1}^{n} (Y_i - \overline{Y})^2}{n-1}$$
+$$\mathbf{x} = \begin{bmatrix} 1 \\ 3 \\ 5 \end{bmatrix}, \qquad \mathbf{y} = \begin{bmatrix} 2 \\ 4 \\ 6 \end{bmatrix}$$
 
-A variância amostral é representada por $s^2$. Aqui vamos usar a notação ($s^2_Y$), pois haverá outros estimadores de variância envolvidos, de modo que deveremos ser mais claros a respeito de qual estimador estaremos nos referindo.
+As médias são $\bar{X} = 3$ e $\bar{Y} = 4$. Depois de centralizar, obtemos:
 
-Adotando o mesmo procedimento para $X$, podemos calcular o **somatório dos quadrados de $X$** ($SQ_X$).
+$$\mathbf{d}_X = \begin{bmatrix} -2 \\ 0 \\ 2 \end{bmatrix}, \qquad \mathbf{d}_Y = \begin{bmatrix} -2 \\ 0 \\ 2 \end{bmatrix}$$
 
-$$SQ_X = \sum_{i-1}^{n} (X_i - \overline{X})^2 = \sum_{i-1}^{n}(X_i - \overline{X}) (X_i - \overline{X})$$
+Agora, em vez de elevar ao quadrado cada desvio separadamente, multiplicamos os desvios correspondentes:
 
-e a **variância amostral de $X$** ($s^2_X$).
+$$(-2)(-2) = 4, \qquad 0 \cdot 0 = 0, \qquad 2 \cdot 2 = 4$$
 
-$$s^2_X = \frac{\sum_{i-1}^{n} (X_i - \overline{X})^2}{n-1}$$
+Somando,
 
-Combinando as duas ideias, teremos o **produto cruzado de $Y$ e $X$** ($SQ_{YX}$)
+$$4 + 0 + 4 = 8$$
 
-$$SQ_{YX} = \sum_{i-1}^{n}(Y_i - \overline{Y}) (X_i - \overline{X})$$
+O resultado é positivo porque, nas três observações, as duas variáveis caminham juntas: quando uma está abaixo da média, a outra também está; quando uma está acima, a outra também está.
 
-e finalmente a **covariância amostral entre $Y$ e $X$** ($s_{YX}$).
+Se trocarmos $\mathbf{y}$ por
 
-:::{.callout-note}
+$$\mathbf{y} = \begin{bmatrix} 6 \\ 4 \\ 2 \end{bmatrix}, \qquad \mathbf{d}_Y = \begin{bmatrix} 2 \\ 0 \\ -2 \end{bmatrix}$$
+
+então os produtos ficam
+
+$$(-2)(2) = -4, \qquad 0 \cdot 0 = 0, \qquad 2(-2) = -4$$
+
+Logo,
+
+$$-4 + 0 - 4 = -8$$
+
+Agora o resultado é negativo: quando uma variável está acima da média, a outra tende a estar abaixo.
 
 ## Covariância amostral
 
-$$s_{YX} = \frac{\sum_{i-1}^{n}(Y_i - \overline{Y}) (X_i - \overline{X})}{n-1}$$
+A covariância ela mede o **alinhamento entre as variações centradas de duas variáveis**, isto é,  variações de $Y$ e $X$ em torno de suas médias. Quando os desvios crescem juntos, a covariância tende a ser positiva e quando apontam em direções opostas, tende a ser negativa.
 
-:::
+Podemos definir a covariância a partir da **soma dos produtos cruzados** entre $Y$ e $X$ por:
 
-## Coeficiente de correlação linear de Pearson $r$
+$$SQ_{XY} = \sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})$$
 
-Assim como a covariância, o **coeficiente de correlação de Pearson** (**$r$**) mede a intensidade da associação linear entre $Y$ e $X$. A covariância entretanto, não tem limite superior ou inferior, pois sua magnitude depende da ordem de grandeza das variáveis envolvidas. O coeficiente de correlação $r$ é calculado como a covariância entre $Y$ e $X$ padronizada pelo **produto dos desvios padrões** de $Y$ e de $X$.
+$SQ_{XY}$ desempenha, para duas variáveis, o mesmo papel que $SQ$ desempenha para uma variável só.
 
-$$r = \frac{s_{YX}}{s_Y s_X} = \frac{\frac{\sum{(Y_i - \overline{Y})(X_i - \overline{X})}}{n-1}} {\sqrt{\frac{\sum{(Y_i - \overline{Y})^2}}{n-1}}  \times \sqrt{\frac{\sum{(X_i - \overline{X})^2}}{n-1}}}$$
+A **covariância amostral** é a soma dos produtos cruzados dividida por $n-1$:
+
+$$s_{XY} = \frac{SQ_{XY}}{n-1} = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$$
+
+A divisão por $n-1$ aparece pelo mesmo motivo já visto na variância: depois de centrar os dados, uma restrição linear é introduzida em cada vetor de desvios.
+
+Podemos ler o sinal de $s_{XY}$ da seguinte forma:
+
+- $s_{XY} > 0$: as duas variáveis tendem a variar na mesma direção;
+- $s_{XY} < 0$: as duas variáveis tendem a variar em direções opostas;
+- $s_{XY} \approx 0$: não há alinhamento linear claro entre as variações.
+
+Quando $X = Y$, a covariância vira a própria variância. Portanto, a variância é um caso particular da covariância.
+
+### Exemplo
+
+Para $X = \{`r paste(X, collapse=",\\ ")`\}$ e $Y = \{`r paste(Y, collapse=",\\ ")`\}$:
+
+```{r}
+#| tbl-cap: "Cálculo do produto cruzado para o exemplo."
+df_cov <- tibble(
+  `$i$` = 1:n,
+  `$X_i$` = X,
+  `$Y_i$` = Y,
+  `$d_{X_i}$` = round(dX, 2),
+  `$d_{Y_i}$` = round(dY, 2),
+  `$d_{X_i} \\cdot d_{Y_i}$` = round(dX * dY, 2)
+)
+knitr::kable(df_cov)
+```
+
+$$SQ_{XY} = `r round(SPXY, 2)`, \qquad s_{XY} = \frac{`r round(SPXY, 2)`}{`r n-1`} = `r round(sXY, 4)`$$
+
+
+### Sinal da covariância: análise por quadrantes
+
+No gráfico de dispersão, as retas $X = \bar{X}$ e $Y = \bar{Y}$ dividem o plano em quatro regiões. O sinal de cada produto $(X_i - \bar{X})(Y_i - \bar{Y})$ depende de onde o ponto está:
+
+| Quadrante | $X_i - \bar{X}$ | $Y_i - \bar{Y}$ | Produto |
+|:---------:|:---------------:|:---------------:|:-------:|
+| I (superior direito)  | $+$ | $+$ | $+$ |
+| II (superior esquerdo) | $-$ | $+$ | $-$ |
+| III (inferior esquerdo) | $-$ | $-$ | $+$ |
+| IV (inferior direito) | $+$ | $-$ | $-$ |
+
+```{r}
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 4
+#| fig-cap: "Análise por quadrantes para três situações de covariância. As linhas tracejadas indicam as médias de X e Y. A cor de cada ponto indica o sinal do produto cruzado: azul (+) e vermelho (−)."
+
+library(patchwork)
+set.seed(42)
+n_q <- 40
+
+make_quad_plot <- function(dados, titulo) {
+  mx <- mean(dados$x)
+  my <- mean(dados$y)
+  dados$sinal <- ifelse((dados$x - mx) * (dados$y - my) > 0, "positivo", "negativo")
+  ggplot(dados, aes(x, y, color = sinal)) +
+    geom_vline(xintercept = mx, linetype = "dashed", color = "gray50") +
+    geom_hline(yintercept = my, linetype = "dashed", color = "gray50") +
+    geom_point(size = 2.5, alpha = 0.8) +
+    scale_color_manual(values = c("positivo" = "steelblue", "negativo" = "firebrick"),
+                       guide = "none") +
+    annotate("text", x = mx + 0.05 * diff(range(dados$x)),
+             y = max(dados$y) - 0.05 * diff(range(dados$y)),
+             label = "bar(X)", parse = TRUE, hjust = 0, color = "gray40", size = 3.5) +
+    annotate("text", x = max(dados$x) - 0.05 * diff(range(dados$x)),
+             y = my + 0.05 * diff(range(dados$y)),
+             label = "bar(Y)", parse = TRUE, hjust = 1, color = "gray40", size = 3.5) +
+    labs(title = titulo, x = "X", y = "Y") +
+    theme_classic(base_size = 12) +
+    theme(axis.text = element_blank(), plot.title = element_text(hjust = 0.5))
+}
+
+# Covariância positiva
+d_pos <- data.frame(x = rnorm(n_q))
+d_pos$y <- d_pos$x + rnorm(n_q, 0, 0.5)
+
+# Covariância negativa
+d_neg <- data.frame(x = rnorm(n_q))
+d_neg$y <- -d_neg$x + rnorm(n_q, 0, 0.5)
+
+# Covariância nula
+d_nul <- data.frame(x = rnorm(n_q), y = rnorm(n_q))
+
+p_pos <- make_quad_plot(d_pos, expression(s[XY] > 0 ~ "(covariância positiva)"))
+p_neg <- make_quad_plot(d_neg, expression(s[XY] < 0 ~ "(covariância negativa)"))
+p_nul <- make_quad_plot(d_nul, expression(s[XY] %~~% 0 ~ "(covariância nula)"))
+
+p_pos | p_neg | p_nul
+```
+
+Quando os pontos se concentram nos quadrantes I e III, os produtos cruzados tendem a ser positivos. Quando se concentram nos quadrantes II e IV, tendem a ser negativos. Quando aparecem distribuídos sem padrão linear claro, os sinais positivos e negativos tendem a se compensar.
+
+## Normalização: o coeficiente de correlação de Pearson
+
+A covariância já informa direção e alinhamento, mas ainda depende da escala. Se multiplicarmos todos os desvios de uma variável por 10, a covariância também fica 10 vezes maior, mesmo que a direção conjunta das variações não tenha mudado.
+
+Para comparar apenas a **direção** das variações, independentemente do tamanho dos vetores, padronizamos cada vetor de desvios pelo seu próprio comprimento. Isso leva ao coeficiente de correlação de Pearson:
+
+$$r = \frac{s_{XY}}{s_X s_Y}$$
+
+Como $s_X$ e $s_Y$ medem o tamanho típico das variações de cada variável, a divisão por $s_X s_Y$ transforma a covariância em uma medida **adimensional**.
+
+Em forma expandida,
+
+$$r = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i=1}^n (X_i - \bar{X})^2 \cdot \sum_{i=1}^n (Y_i - \bar{Y})^2}}$$
+
+Assim, a correlação compara duas coisas ao mesmo tempo:
+
+- se os desvios apontam para a mesma direção ou para direções opostas;
+- quão forte é esse alinhamento depois de descontar a escala de cada variável.
 
 :::{.callout-note}
+## Coeficiente de correlação de Pearson
 
-## Coeficiente de correlação
+$$r = \frac{s_{XY}}{s_X s_Y}$$
 
-$$r = \frac{\sum{(Y_i - \overline{Y})(X_i - \overline{X})}}{\sqrt{\sum{(Y_i - \overline{Y})^2 \sum{(X_i - \overline{X})^2}}}}$$
-
+- $r \approx 1$: as variações apontam quase para a mesma direção;
+- $r \approx 0$: o alinhamento linear é fraco ou inexistente;
+- $r \approx -1$: as variações apontam em direções opostas.
 :::
 
-Esta padronização garante que $r$ pode variar entre $-1$ (correlação perfeitamente linear e **negativa**) e $+1$ (correlação perfeitamente linear e **positiva**), se aproximando de zero quando **não existe** correlação. 
+No exemplo do texto: $r = `r round(r, 4)`$.
 
+## Interpretação geométrica: o cosseno do ângulo entre vetores
 
-```{r}
-#| echo: false
-#| fig-align: 'center'
-#| fig-height: 5
-#| fig-width: 15
-set.seed(1)
-df = data.frame(Y1 = c(1:10), X1 = c(10:1),
-                Y2 = rnorm(10), X2 = rnorm(10))
+Depois da padronização, a correlação pode ser lida geometricamente. Pense nos vetores centrados $\mathbf{d}_X$ e $\mathbf{d}_Y$. Se dividirmos cada um pelo seu comprimento, obtemos dois vetores unitários, isto é, dois vetores de comprimento 1 que preservam apenas a direção:
 
-g1 = ggplot(df) +
-  aes(X1, Y1) +
-  geom_point(size = 5) +
-  ggtitle(expression(r == -1)) +
-  theme_void(base_size = 20) + 
-  theme(axis.line.x = element_line(),
-        axis.line.y = element_line(),
-        plot.title = element_text(hjust = 0.5))
+$$\mathbf{u}_X = \frac{\mathbf{d}_X}{\|\mathbf{d}_X\|}, \qquad \mathbf{u}_Y = \frac{\mathbf{d}_Y}{\|\mathbf{d}_Y\|}$$
 
-g2 = ggplot(cor4D) +
-  aes(x = X1, y = X3) +
-  geom_point(size = 5) +
-  ggtitle(expression(r %~~% 0)) +
-  theme_void(base_size = 20) + 
-  theme(axis.line.x = element_line(),
-        axis.line.y = element_line(),
-        plot.title = element_text(hjust = 0.5))
+Esses vetores padronizados permitem comparar direções diretamente.
 
-g3 = ggplot(df) +
-  aes(X1, X1) +
-  geom_point(size = 5) +
-  ggtitle(expression(r == 1)) +
-  theme_void(base_size = 20) + 
-  theme(axis.line.x = element_line(),
-        axis.line.y = element_line(),
-        plot.title = element_text(hjust = 0.5))
+- Se $\mathbf{u}_X$ e $\mathbf{u}_Y$ apontam quase para o mesmo lado, a correlação fica perto de $1$.
+- Se ficam quase perpendiculares, a correlação fica perto de $0$.
+- Se apontam para lados opostos, a correlação fica perto de $-1$.
 
-g1 | g2 | g3
-```
+Em linguagem geométrica, a correlação é o cosseno do ângulo $\theta$ entre os vetores centrados:
 
+$$r = \frac{\mathbf{d}_X^\top\mathbf{d}_Y}{\|\mathbf{d}_X\|\,\|\mathbf{d}_Y\|} = \cos\theta$$
 
-## Exemplo
+Essa fórmula não deve ser lida como um truque algébrico, mas como a tradução exata da ideia de alinhamento: a correlação mede **quão parecidas são as direções** das variações de $X$ e $Y$.
 
-A @tbl-haddon-tiger apresenta dados da pesca do camarão tigre e do camarão rei entre nos anos de 1976 a 1987 [@haddon2010modelling]. O camarão tigre constitui a espécie alvo da pesca, enquanto o camarão rei aparece como uma espécie acidental.
-
-Importe a base de dados `ctigre_haddon.csv`
+No exemplo do texto, o ângulo entre $\mathbf{d}_X$ e $\mathbf{d}_Y$ é $\theta = \arccos(`r round(r, 4)`) \approx `r theta_deg`°$.
 
 ```{r}
-tigre = read_delim('https://raw.githubusercontent.com/FCopf/datasets/refs/heads/main/ctigre_haddon.csv')
-rtk = cor(tigre$Tiger, tigre$King)
-stk = cov(tigre$Tiger, tigre$King)
-```
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 4
+#| fig-cap: "Interpretação geométrica da correlação como comparação entre direções. À esquerda, os vetores apontam quase para a mesma direção. Ao centro, ficam quase perpendiculares. À direita, apontam em direções opostas."
 
-
-
-```{r}
-#| label: tbl-haddon-tiger
-#| tbl-cap: 'Captura do camarão tigre e do camarão rei (ton) entre 1976 e 1987.'
-#| code-fold: true
-#| echo: false
-#| eval: true
-tigre |> 
-  gt() |> 
-  cols_label(
-    Year = "Ano",
-    Tiger = "Camarão tigre",
-    King = "Camarão rei"
+draw_vectors <- function(theta_target, titulo) {
+  set.seed(1)
+  v1 <- c(1, 0)
+  v2 <- c(cos(theta_target), sin(theta_target))
+  df_v <- data.frame(
+    vx = c(0, 0), vy = c(0, 0),
+    ex = c(v1[1], v2[1]) * 2,
+    ey = c(v1[2], v2[2]) * 2,
+    label = c("d[X]", "d[Y]"),
+    cor = c("steelblue", "firebrick")
   )
+  ang <- seq(0, theta_target, length.out = 60)
+  arc_df <- data.frame(x = 0.5 * cos(ang), y = 0.5 * sin(ang))
+
+  ggplot() +
+    geom_path(data = arc_df, aes(x, y), color = "gray40", linewidth = 0.8) +
+    geom_segment(data = df_v,
+                 aes(x = vx, y = vy, xend = ex, yend = ey, color = cor),
+                 arrow = arrow(length = unit(0.25, "cm")),
+                 linewidth = 1.5) +
+    annotate("text", x = 2.2, y = 0, label = "bold(d)[X]",
+             parse = TRUE, size = 4.5, color = "steelblue") +
+    annotate("text",
+             x = cos(theta_target) * 2.2,
+             y = sin(theta_target) * 2.2,
+             label = "bold(d)[Y]",
+             parse = TRUE, size = 4.5, color = "firebrick") +
+    annotate("text", x = 0.6 * cos(theta_target / 2),
+             y = 0.6 * sin(theta_target / 2) + 0.15,
+             label = "theta", parse = TRUE, size = 4, color = "gray40") +
+    scale_color_identity() +
+    coord_fixed(xlim = c(-2.5, 2.5), ylim = c(-0.5, 2.5)) +
+    labs(title = titulo) +
+    theme_void(base_size = 12) +
+    theme(plot.title = element_text(hjust = 0.5, size = 12))
+}
+
+p1 <- draw_vectors(15 * pi / 180,  "r ≈ +1  (θ ≈ 15°)")
+p2 <- draw_vectors(80 * pi / 180,  "r ≈  0  (θ ≈ 80°)")
+p3 <- draw_vectors(160 * pi / 180, "r ≈ −1  (θ ≈ 160°)")
+
+p1 | p2 | p3
 ```
 
-Nas figuras abaixo temos as abundâncias das espécies ao longo dos anos e o gráfico de dispersão.
+## Formulação vetorial
 
-```{r}
-#| label: fig-haddon-tiger
-#| fig-cap: 'A - Captura do camarão tigre e do camarão-rei (ton) entre 1976 e 1987. B - Associação positiva nas capturas anuais entre 1976 e 1987.'
-#| code-fold: true
-#| echo: true
-#| fig-align: 'center'
-#| fig-height: 5
-#| fig-width: 10
-c1 = ggplot(tigre, aes(x = Year)) +
-  geom_line(aes(y = Tiger), color = 'red') +
-  geom_point(aes(y = Tiger), color = 'red', 
-             shape = 19, size = 4) +
-  geom_line(aes(y = King), color = 'blue') +
-  geom_point(aes(y = King), color = 'blue', 
-             shape = 19, size = 4) +
-  geom_segment(x = 1976, xend = 1976.3, 
-               y = 4000, yend = 4000, 
-               color = 'red') +
-  geom_segment(x = 1976, xend = 1976.3, 
-               y = 3700, yend = 3700, 
-               color = 'blue') +
-  geom_text(x = 1976.4, y = 4000, 
-            label = 'Camarão tigre', hjust = 0) +
-  geom_text(x = 1976.4, y = 3700, 
-            label = 'Camarão rei', hjust = 0) +
-  scale_x_continuous(breaks = tigre$Year) +
-  labs(title = 'A', 
-       y = 'Abundância (Ton)') +
-  theme_classic(base_size = 12)
+Reunindo os resultados anteriores, a covariância e a correlação podem ser escritas em termos dos vetores centrados:
 
-c2 = ggplot(tigre, aes(y = King, x = Tiger)) +
-  geom_point(shape = 19, size = 4) +
-  scale_y_continuous(breaks = seq(0, 150, by = 20)) +
-  scale_x_continuous(breaks = seq(500, 5000, by = 500)) +
-  labs(title = 'B',
-       x = 'Camarão tigre (Ton)', 
-       y = 'Camarão rei  (Ton)') +
-  theme_classic(base_size = 12)
+$$\mathbf{d}_X = \mathbf{M}\mathbf{x}, \qquad \mathbf{d}_Y = \mathbf{M}\mathbf{y}$$
 
-c1 | c2
-```
+A covariância é
 
-A captura em toneladas do camarão tigre é sempre mais elevada. Entretanto, a figura da direita sugere haver uma associação linear entre as capturas. Nos anos em que houve maiores capturas do camarão tigre parece ter havido também um aumento nas capturas do camarão rei. Dizemos as capturas covariam positivamente. Portanto existe uma **correlação positiva** entre a captura das duas espécies. 
+$$s_{XY} = \frac{\mathbf{d}_X^\top \mathbf{d}_Y}{n-1} = \frac{\mathbf{x}^\top\mathbf{M}\mathbf{y}}{n-1}$$
 
-Em nenhum momento estamos dizendo que a captura de uma espécie **resulta** no aumento na captura da outra. Muito provavelmente, as abundâncias das duas espécies estão relacionadas a um terceiro fator que gera um comportamento similar na variação das capturas ano a ano. Estamos interessados em mensurar o grau de associação seja pela covariância ou pelo coeficiente de correlação de Pearson.
+Essa expressão mostra que a covariância é um **produto escalar entre vetores centrados**, dividido por $n-1$.
 
-a covariância entre as abundâncias dos camarões tigre e rei é positiva ($s_{tigre-rei} = `r round(stk,2)`$) e consequentemente a correlação de Pearson também é positiva ($r = `r round(rtk,2)`$). Confira os cálculos utilizando as expressões apresentadas no capítulo.
+Já a correlação é
 
-No R, a covariância entre $Y$ e $X$ pode ser obtida pela função `cov`:
+$$r = \frac{\mathbf{d}_X^\top\mathbf{d}_Y}{\|\mathbf{d}_X\|\,\|\mathbf{d}_Y\|} = \cos\theta$$
 
-```{r}
-cov(tigre$Tiger, tigre$King)
-```
+isto é, a versão padronizada desse produto escalar, usada para comparar direções e não tamanhos.
 
-E a correlação pela função `cor`:
+## Formulação matricial
 
-```{r}
-cor(tigre$Tiger, tigre$King)
-```
+Quando organizamos $p$ variáveis nas colunas de uma matriz $\mathbf{X}$, a matriz de dados centrados é
 
+$$\tilde{\mathbf{X}} = \mathbf{M}\mathbf{X}$$
+
+A partir dela, a **matriz de covariâncias** resume os alinhamentos par a par entre as variáveis:
+
+$$\mathbf{S} = \frac{1}{n-1}\,\tilde{\mathbf{X}}^\top\tilde{\mathbf{X}} = \frac{1}{n-1}\,\mathbf{X}^\top\mathbf{M}\mathbf{X}$$
+
+O elemento $(j,k)$ de $\mathbf{S}$ é a covariância entre as variáveis $j$ e $k$, enquanto a diagonal guarda as variâncias.
+
+Se quisermos comparar direções após retirar o efeito da escala, usamos a **matriz de correlações**. Seja $\mathbf{D}_s = \operatorname{diag}(s_1, s_2, \ldots, s_p)$ a matriz diagonal dos desvios padrão. Então
+
+$$\mathbf{R} = \mathbf{D}_s^{-1}\mathbf{S}\mathbf{D}_s^{-1}$$
+
+Assim, $\mathbf{R}$ resume os alinhamentos padronizados entre todas as variáveis: a diagonal é sempre $1$, e os demais elementos ficam entre $-1$ e $1$.
+
+:::{.callout-note}
+## Resumo: covariância e correlação na linguagem vetorial e matricial
+
+| Quantidade | Leitura pedagógica | Expressão |
+|:-----------|:-------------------|:----------|
+| Covariância amostral | alinhamento entre vetores centrados | $s_{XY} = \dfrac{\mathbf{d}_X^\top\mathbf{d}_Y}{n-1}$ |
+| Correlação de Pearson | comparação de direções | $r = \dfrac{\mathbf{d}_X^\top\mathbf{d}_Y}{\|\mathbf{d}_X\|\,\|\mathbf{d}_Y\|}$ |
+| Matriz de covariâncias | alinhamentos par a par | $\mathbf{S} = \dfrac{1}{n-1}\mathbf{X}^\top\mathbf{M}\mathbf{X}$ |
+| Matriz de correlações | alinhamentos após padronização | $\mathbf{R} = \mathbf{D}_s^{-1}\mathbf{S}\mathbf{D}_s^{-1}$ |
+:::

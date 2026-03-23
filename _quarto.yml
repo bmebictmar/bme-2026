@@ -79,17 +79,17 @@ website:
           - href: https://fcopf.github.io/mead/content/regressao-linear/metodo-minimos-quadrados-apresentacao.html
             text: "Aulas 12-14 - Regressão Linear Simples e MMQ"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/estatistica-descritiva/tendcentral.html
-            text: "Aula 15 - Medidas de tendência central"
+          - href: content/reading/tendcentral.qmd
+            text: "Aula 15 - Média Aritmética"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/estatistica-descritiva/variacao.html
-            text: "Aula 15 - Medidas de variação"
+          - href: content/reading/variacao.qmd
+            text: "Aula 15 - Variância e Desvio Padrão"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/medidas-associacao/biquanti.html
-            text: "Aula 16 - Associação entre duas variáveis quantitativas"
+          - href: content/reading/covariancia-correlacao.qmd
+            text: "Aula 16 - Covariância e Correlação Linear"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/regressao-linear/particao-soma-quadrados-r2.html
-            text: "Aula 17 - Partição da soma dos quadrados e coeficiente de determinação"
+          - href: content/reading/particao-soma-quadrados-r2.qmd
+            text: "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
             target: "_blank"
           - href: content/slides/modelos-matematicos/funcoes-lineares.pdf
             text: "Aula 19 - Funções lineares"

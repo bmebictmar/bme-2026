@@ -1,17 +1,16 @@
 ---
-title: "Medidas de tendência central"
-description: "Discussão das principais medidas de tendência central (média, mediana, moda) e sua interpretação em diferentes distribuições."
+title: "Média Aritmética"
+description: "Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética."
 categories: [
-          "R",
-          "Análise de dados",
           "Estatística descritiva",
           "Tendência central",
-          "Distribuição de dados"
+          "Álgebra linear",
+          "Formulação vetorial"
         ]
 
 image: "images/tendcentral.jpg"
 execute:
-  echo: true
+  echo: false
   warning: false
   include: true
   message: false
@@ -20,231 +19,267 @@ format:
     code-fold: false
 ---
 
-:::{.callout-tip collapse="true"}
-## Pacotes e funções utilizados
-
 ```{r}
-#| output: false
+#| include: false
 library(tidyverse)
-library(gt)
-library(patchwork)
-source('scripts/getmode.r')
-source('scripts/assimetria-ggplot.r')
-```
-:::
-
-Tabelas de frequência e histogramas permitem a visualização dos padrões de distribuição de uma variável quantitativa, evidenciando limites inferiores e superiores, faixas de valores mais ou menos frequentes etc. Neste capítulo, veremos medidas-resumo que possibilitam descrever a **tendência central** de um conjunto de dados. Algumas dessas medidas são a *média aritmética*, a *mediana*, a *moda* e o *ponto médio*.
-
-## Média aritmética
-
-Considere a variável $X$ com $n$ elementos $X_1$, $X_2$, $X_3$, $\cdots, X_n$. A média aritmética ($\overline{X}$) é dada por:
-
-$$\overline{X}=\frac{X_1+X_2+X_3+\cdots+X_n}{n}=\frac{\sum_{i=1}^n{X_i}}{n}$$
-
-**Exemplo**
-
-Seja a variável $X$ abaixo:
-
-```{r}
-#| code-fold: true
+set.seed(42)
 n <- 5
-set.seed(1)
-X <- sample(x = 1:10, size = n, rep = TRUE)
+X <- c(2, 6, 4, 8, 5)
+Xbar <- mean(X)
+desvios <- X - Xbar
+soma_desvios <- sum(desvios)
 ```
 
-$X =$ \{`r paste(X, collapse = ', ')`\}
+Quando observamos um conjunto de dados, a primeira questão que surge é: **onde estão concentrados os valores?** Uma medida de posição é um único número que representa o "centro" de um conjunto de observações. Ela permite condensar $n$ valores em uma única quantidade informativa — um representante do conjunto.
 
-$X$ possui `r n` observações e tem média:
+Neste capítulo, desenvolvemos rigorosamente a **média aritmética**, a medida de posição de maior relevância teórica e prática. Sua importância vai além do cálculo elementar: ela possui uma interpretação geométrica precisa e admite uma formulação vetorial e matricial que a conecta diretamente com os demais conceitos da UC.
 
-$\overline{X}=\frac{`r paste(X, collapse = ' + ')`}{`r length(X)`}$
+## Definição formal
 
-$\overline{X}=\frac{`r sum(X)`}{`r length(X)`} = `r mean(X)`$
+Seja $X$ uma variável com $n$ observações $X_1, X_2, \ldots, X_n$. A **média aritmética** de $X$, denotada por $\bar{X}$, é definida como:
 
-## Mediana
+$$\bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{1}{n}\sum_{i=1}^n X_i$$
 
-É definida como o valor do meio de uma distribuição, de modo que metade dos valores está abaixo e metade acima da mediana. Se organizarmos a variável $X$ em ordem crescente teremos:
+A média é, portanto, a soma de todas as observações dividida pelo número de observações. Ela atribui **peso igual** a cada elemento do conjunto.
 
-```{r}
-#| code-fold: true
-X <- sort(X)
-Xmed <- median(X)
-```
+**Exemplo.** Considere a variável $X = \{`r paste(X, collapse=",\\ ")`\}$, com $n = `r n`$ observações. A média é:
 
-$X =$ \{`r paste(paste(X[X < Xmed], collapse = ','), ',', Xmed, ',', paste(X[X > Xmed], collapse = ','), collapse = '')`\}
+$$\bar{X} = \frac{`r paste(X, collapse=" + ")`}{`r n`} = \frac{`r sum(X)`}{`r n`} = `r Xbar`$$
 
-sendo a mediana igual a $`r Xmed`$.
+## Propriedades algébricas
 
-Neste exemplo, temos $n = `r length(X)`$ observações. Se tivermos um número *par* de observações, teremos duas na posição central. Por exemplo, se:
+### A soma dos desvios é sempre zero
 
-```{r}
-#| code-fold: true
-set.seed(1)
-X <- sample(x = 1:10, size = 6, rep = TRUE)
-```
+Defina o **desvio** de cada observação em relação à média como $d_i = X_i - \bar{X}$. Uma propriedade fundamental da média é que a soma de todos os desvios é exatamente zero:
 
-$X =$ \{`r paste(X, collapse = ', ')`\}
+$$\sum_{i=1}^n (X_i - \bar{X}) = 0$$
 
-vemos que após ordenarmos $X$:
+**Demonstração.** Expandindo a soma:
 
-$X =$ \{`r paste(sort(X), collapse = ', ')`\}
+$$\sum_{i=1}^n (X_i - \bar{X}) = \sum_{i=1}^n X_i - \sum_{i=1}^n \bar{X} = \sum_{i=1}^n X_i - n\bar{X}$$
 
-teremos o $`r sort(X)[3]`$ e o $`r sort(X)[4]`$ como valores do meio.
+Substituindo $\bar{X} = \frac{1}{n}\sum X_i$:
 
-Neste caso, a mediana fica como sendo:
+$$= \sum_{i=1}^n X_i - n \cdot \frac{1}{n}\sum_{i=1}^n X_i = \sum_{i=1}^n X_i - \sum_{i=1}^n X_i = 0 \qquad \square$$
 
-$\frac{`r sort(X)[3]` + `r sort(X)[4]`}{2} = `r median(X)`$
+No exemplo acima, os desvios são $d_i = (`r paste(desvios, collapse=",\\ ")`)$, cuja soma é $\sum d_i = `r soma_desvios`$.
 
-## Moda
+Esta propriedade tem uma consequência imediata: a média é o único valor $c$ que minimiza $\sum_{i=1}^n (X_i - c)^2$. Em outras palavras, **a média é o ponto de equilíbrio do conjunto de dados** — ela equilibra os desvios positivos e negativos.
 
-É definida como o valor mais frequente de uma distribuição.
+### A média minimiza a soma dos quadrados dos desvios
+
+Para qualquer constante $c$, pode-se mostrar que:
+
+$$\sum_{i=1}^n (X_i - c)^2 = \sum_{i=1}^n (X_i - \bar{X})^2 + n(\bar{X} - c)^2 \geq \sum_{i=1}^n (X_i - \bar{X})^2$$
+
+A igualdade ocorre somente quando $c = \bar{X}$. Portanto, **a média aritmética é o valor que minimiza a soma dos quadrados dos desvios** — conexão direta com o método dos mínimos quadrados.
 
 ```{r}
-#| code-fold: true
-set.seed(1)
-X <- sample(x = 1:10, size = 6, rep = TRUE)
-```
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 3.5
+#| fig-cap: "A média como ponto de equilíbrio. Cada ponto representa uma observação. Os segmentos indicam os desvios $X_i - \\bar{X}$; segmentos em vermelho correspondem a desvios positivos e em verde a desvios negativos. A soma de todos os desvios é zero."
 
-Para $X =$ \{`r paste(X, collapse = ', ')`\}, a moda é `r getmode(X)`, o valor que mais se repete na distribuição.
-
-:::{.callout-note}
-
-A moda nem sempre é única. Se vários valores repetem-se igualmente, teremos mais de uma moda na distribuição.
-
-:::
-
-## Ponto médio 
-
-É calculado com base nos dois valores extremos da distribuição (mínimo e máximo), sendo obtido por:
-
-$$P_{medio}=\frac{X_{minimo} + X_{maximo}}{2}$$
-
-Para $X =$ \{`r paste(X, collapse = ', ')`\}, o ponto médio é:
-
-$PM = \frac{`r min(X)` + `r max(X)`}{2} = \frac{`r sum(range(X))`}{2} = `r sum(range(X))/2`$
-
-## Efeito da assimetria sobre os descritores de tendência central
-
-Cada um dos descritores de tendência central descritos acima é mais ou menos sensível ao grau de assimetria de uma distribuição. Em uma distribuição **perfeitamente simétrica**, onde as observações estão igualmente dispersas acima e abaixo do ponto central, os valores da média, mediana, moda e ponto médio coincidem. Por outro lado, pode ocorrer da distribuição ser **assimétrica**. Neste caso, a posição relativa dos descritores irá depender se a assimetria é à **direita** ou à **esquerda**. Esta discrepância ocorre devido à sensibilidade destes descritores a valores **extremos** na distribuição. O ponto médio é o mais sensível à presença de pontos extremos, seguido da média, mediana e moda.
-
-```{r}
-#| label: fig-assimetria
-#| code-fold: true
-#| fig-cap: 'Efeito da assimetria de uma distribuição sobre o ponto médio, a média aritmética, a mediana e a moda.'
-#| fig-align: 'center'
-#| fig-width: 8
-#| fig-height: 3
-# Ver função completa no arquivo 'scripts/assimetria-ggplot.r'
-assimetria_ggplot()
-```
-
-:::{.callout-note}
-## Medidas de tendência central
-
-**Média aritmética**: utiliza todo o conjunto de dados. Relativamente sensível a valores extremos;
-
-**Mediana**: o valor do meio. Metade dos pontos está acima e metade abaixo da mediana. A mediana é uma medida *resistente* a valores extremos;
-
-**Moda**: valor mais frequente. Se mais de um valor aparece com a mesma frequência, os dados têm uma distribuição *multimodal*;
-
-**Ponto médio**: considera somente o valor mínimo e máximo. O ponto médio é fácil de calcular, porém não utiliza a maioria do conjunto de dados e é *muito sensível a valores extremos*.
-
-:::
-
-## Obtendo medidas de uma tabela de dados 
-
-Importe a base de dados `Reservatorios_Parana_parcial.csv`.
-
-```{r}
-#| output: false
-res <- read_delim(
-  file = "https://raw.githubusercontent.com/FCopf/datasets/refs/heads/main/Reservatorios_Parana_parcial.csv",
-  delim = ",",
-  locale = locale(decimal_mark = ".", encoding = "latin1")
+df_plot <- data.frame(
+  X = X,
+  desvio = desvios,
+  y = 0.5,
+  cor = ifelse(desvios > 0, "firebrick", "forestgreen")
 )
+
+ggplot() +
+  geom_hline(yintercept = 0.5, color = "gray60", linewidth = 0.5) +
+  geom_vline(xintercept = Xbar, color = "steelblue", linetype = "dashed", linewidth = 1) +
+  geom_segment(data = df_plot,
+               aes(x = Xbar, xend = X, y = 0.5, yend = 0.5, color = cor),
+               linewidth = 1.5,
+               arrow = arrow(length = unit(0.15, "cm"), ends = "last")) +
+  geom_point(data = df_plot, aes(x = X, y = 0.5), size = 4, shape = 19) +
+  annotate("text", x = Xbar + 0.1, y = 0.63,
+           label = paste0("X\u0305 = ", Xbar),
+           size = 4.5, color = "steelblue", fontface = "bold") +
+  scale_color_identity(guide = "none") +
+  scale_x_continuous(breaks = 1:10) +
+  coord_cartesian(ylim = c(0.3, 0.75), xlim = c(0, 11)) +
+  labs(x = "X", y = NULL) +
+  theme_classic(base_size = 13) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line.y = element_blank())
 ```
 
-Medidas-resumo podem ser obtidas com a função `summarise`.
+## Interpretação geométrica
 
-Vamos encontrar a média aritmética e a mediana da variável `CPUE`.
+### O exemplo
+
+Considere os três valores $2$, $5$ e $8$. Se quisermos representar esse conjunto por **um único número constante**, esse número gera um vetor com todas as entradas iguais:
+
+$$c\mathbf{1} = c \times \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} c \\ c \\ c \end{bmatrix}$$
+
+Vamos comparar três escolhas possíveis:
+
+$$\mathbf{x} = \begin{bmatrix} 2 \\ 5 \\ 8 \end{bmatrix}, \qquad 4 \mathbf{1} = \begin{bmatrix} 4 \\ 4 \\ 4 \end{bmatrix}, \qquad 5\mathbf{1} = \begin{bmatrix} 5 \\ 5 \\ 5 \end{bmatrix}, \qquad 6\mathbf{1} = \begin{bmatrix} 6 \\ 6 \\ 6 \end{bmatrix}$$
+
+As diferenças entre os dados e cada vetor constante são:
+
+$$\mathbf{x} - 4\mathbf{1} = \begin{bmatrix} -2 \\ 1 \\ 4 \end{bmatrix}, \qquad \mathbf{x} - 5\mathbf{1} = \begin{bmatrix} -3 \\ 0 \\ 3 \end{bmatrix}, \qquad \mathbf{x} - 6\mathbf{1} = \begin{bmatrix} -4 \\ -1 \\ 2 \end{bmatrix}$$
+
+Somando os quadrados dessas diferenças, obtemos:
+
+$$(-2)^2 + 1^2 + 4^2 = 21, \qquad (-3)^2 + 0^2 + 3^2 = 18, \qquad (-4)^2 + (-1)^2 + 2^2 = 21$$
+
+Logo, entre esses candidatos, o vetor constante mais próximo de $\mathbf{x}$ é $5\mathbf{1}$. E $5$ é justamente a média dos valores $2$, $5$ e $8$.
+
+::: {.callout-tip appearance="minimal"}
+
+A média, representada por $\bar{X}\mathbf{1}$ é a **melhor aproximação constante** para representar o conjunto de dados organizados em um vetor.
+
+:::
+
+### A ideia central 
+
+Considere agora as observações:
+
+$$\mathbf{x} = \begin{bmatrix} X_1 \\ X_2 \\ \vdots \\ X_n \end{bmatrix}$$
+
+Também podemos usar o *vetor de uns* $\mathbf{1} = (1,1,\ldots,1)^\top$ e multiplicá-lo por uma constante $c$ para produzir um vetor com todas as entradas iguais a $c$. Portanto, o conjunto dos vetores da forma $c\mathbf{1}$ representa exatamente os **vetores constantes**, isto é, vetores na direção do vetor de uns.
+
+A decomposição fundamental da média é:
+
+$$\mathbf{x} = \bar{X}\mathbf{1} + \mathbf{d}$$
+
+em que
+
+$$\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = \begin{bmatrix} X_1 - \bar{X} \\ X_2 - \bar{X} \\ \vdots \\ X_n - \bar{X} \end{bmatrix}$$
+
+O vetor $\bar{X}\mathbf{1}$ é a parte constante que representa o centro dos dados, e o vetor $\mathbf{d}$ reúne os desvios em relação a esse centro.
+
+Essa decomposição traduz, em linguagem vetorial, a igualdade escalar
+
+$$X_i = \bar{X} + d_i \qquad (i = 1,\ldots,n)$$
+
+Como a soma dos desvios é zero, temos:
+
+$$\mathbf{1}^\top \mathbf{d} = \sum_{i=1}^n d_i = 0$$
+
+Isso quer dizer que **os desvios se compensam** e o que fica acima da média é equilibrado pelo que fica abaixo. Dizemos que $\mathbf{d}$ é **perpendicular** à direção dos vetores constantes. Formalmente, dizemos que $\bar{X}\mathbf{1}$ é a **projeção ortogonal** de $\mathbf{x}$ sobre a direção de $\mathbf{1}$.
 
 ```{r}
-res |> 
-  summarise(CPUE_medio = mean(CPUE),
-            CPUE_mediana = median(CPUE)) |> 
-  gt()
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 5
+#| fig-cap: "Representação esquemática em $\\mathbb{R}^2$ da decomposição $\\mathbf{x} = \\bar{X}\\mathbf{1} + \\mathbf{d}$. O vetor $\\mathbf{x}$ é decomposto em um vetor constante que representa a média e em um vetor de desvios. O fato de $\\mathbf{d}$ ser perpendicular à direção de $\\mathbf{1}$ equivale à propriedade de que os desvios se compensam."
+
+# Representação esquemática com n=2 para visualização
+set.seed(1)
+x2 <- c(3, 7)
+xbar2 <- mean(x2)
+
+segs <- data.frame(
+  x    = c(0,    0,    0,      0,      xbar2),
+  y    = c(0,    0,    0,      0,      xbar2),
+  xend = c(8,    0,    6.5,    x2[1],  x2[1]),
+  yend = c(0,    8,    6.5,    x2[2],  x2[2]),
+  cor  = c("gray50", "gray50", "gray40", "black", "firebrick"),
+  seta = c(TRUE, TRUE, FALSE, TRUE, TRUE)
+)
+
+labs_df <- data.frame(
+  x     = c(x2[1]+0.4, xbar2-0.7, xbar2+0.9, 6.8,  8.2, 0,   xbar2+0.4),
+  y     = c(x2[2]+0.2, xbar2+0.3, xbar2+1.3, 6.2,  0,   8.2, xbar2-0.5),
+  label = c("bold(x)", "bar(X)*bold(1)", "bold(d)", "bold(1)", "X[1]", "X[2]", "90*degree"),
+  cor   = c("black", "steelblue", "firebrick", "gray40", "gray50", "gray50", "gray40"),
+  sz    = c(5, 5, 5, 5, 4, 4, 3)
+)
+
+ggplot() +
+  geom_segment(data = segs[!segs$seta, ],
+               aes(x = x, y = y, xend = xend, yend = yend, color = cor),
+               linetype = "dashed", linewidth = 0.8) +
+  geom_segment(data = segs[segs$seta, ],
+               aes(x = x, y = y, xend = xend, yend = yend, color = cor),
+               linewidth = 1.2,
+               arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_segment(aes(x = 0, xend = xbar2, y = 0, yend = xbar2),
+               color = "steelblue", linewidth = 1.2,
+               arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_text(data = labs_df,
+            aes(x = x, y = y, label = label, color = cor, size = sz),
+            parse = TRUE) +
+  scale_color_identity() +
+  scale_size_identity() +
+  coord_fixed(xlim = c(-0.5, 8.5), ylim = c(-0.5, 8.5)) +
+  theme_void(base_size = 13)
 ```
 
-Os valores são parecidos, porém a média é um pouco superior. Provavelmente a distribuição deve ser ligeiramente assimétrica à direita. Podemos verificar isto por meio de um histograma.
+## Formulação vetorial
 
-```{r}
-cl_cpue <- seq(0, 35, by = 5)
+Com a intuição em mãos, podemos escrever a média de forma compacta usando a ideia do produto escalar $\mathbf{1}^\top\mathbf{x}$. No exemplo anterior,
 
-ggplot(res, aes(x = CPUE)) +
-  geom_histogram(breaks = cl_cpue, 
-                 fill = 'darkblue',
-                 color = 'white') +
-  theme_classic()
-```
+$$\mathbf{1}^\top\mathbf{x} = 2 + 5 + 8 = 15 \qquad \text{e} \qquad \mathbf{1}^\top\mathbf{1} = 3$$
 
-Alguns valores de captura próximos a $30$ kg estão fazendo com que a média esteja um pouco acima da mediana.
+Portanto,
 
-Vamos verificar agora a média da variável `Area` dos reservatórios:
+$$\bar{X} = \frac{15}{3} = 5$$
 
-```{r}
-res |> 
-  summarise(CPUE_medio = mean(Area, na.rm = TRUE),
-            CPUE_mediana = median(Area, na.rm = TRUE)) |> 
-  gt()
-```
+No caso geral,
 
-Para esta variável, a discrepância é muito maior.
+$$\bar{X} = \frac{\mathbf{1}^\top \mathbf{x}}{n} = \frac{\mathbf{1}^\top \mathbf{x}}{\mathbf{1}^\top \mathbf{1}}$$
 
----
+Essa expressão mostra que a média pode ser obtida a partir do vetor de dados e do vetor de uns usando apenas soma e divisão pelo número de observações.
 
-> **obs**: tivemos que utilizar o argumento `na.rm = TRUE` para excluir do cálculo reservatórios com dados faltantes para `Area`. 
+A parte constante associada à média também pode ser escrita de forma compacta:
 
----
+$$\bar{X}\mathbf{1} = \frac{\mathbf{1}\mathbf{1}^\top}{n}\,\mathbf{x}$$
 
-```{r}
-cl_area <- seq(0, 500, by = 50)
+A matriz
 
-ggplot(res, aes(x = Area)) +
-  geom_histogram(breaks = cl_area, 
-                 fill = 'darkblue',
-                 color = 'white') +
-  theme_classic()
-```
+$$\mathbf{H}_\mathbf{1} = \frac{\mathbf{1}\mathbf{1}^\top}{n}$$
 
-Ao verificar o histograma, vemos que existe uma grande concentração de reservatórios com áreas até $50$ $km^2$, porém poucos reservatórios muito grandes com mais de $200$ $km^2$. Estes grandes reservatórios *deslocam* a média aritmética à direita.
+transforma qualquer vetor no vetor constante correspondente à sua média. Em outras palavras, ela **extrai a parte explicada pela média**. Assim,
 
-Podemos ver quais são estes reservatórios utilizando a função `filter`.
+$$\bar{X}\mathbf{1} = \mathbf{H}_\mathbf{1}\mathbf{x}$$
 
-```{r}
-r_grandes <- res |> 
-  filter(Area >= 200) |> 
-  select(Reservatorio, Area)
+A parte restante é o vetor de desvios:
 
-r_grandes |> 
-  gt()
-```
+$$\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = (\mathbf{I} - \mathbf{H}_\mathbf{1})\mathbf{x} = \mathbf{M}\mathbf{x}$$
 
-Entre os `r nrow(res)` reservatórios, temos `r nrow(r_grandes)` com áreas acima de $200$ $km^2$ (`r paste(r_grandes$Reservatorio, collapse = ', ')`). A influência destes reservatórios é maior para a média aritmética, pois esta é mais sensível a valores extremos do que a mediana. Se calcularmos o ponto médio, veremos que esta influência é ainda maior.
+onde
 
-```{r}
-res |> 
-  summarise(CPUE_medio = mean(Area, na.rm = TRUE),
-            CPUE_mediana = median(Area, na.rm = TRUE),
-            P_medio = sum(range(Area, na.rm = TRUE)) / 2) |> 
-  gt()
-```
+$$\mathbf{M} = \mathbf{I} - \frac{\mathbf{1}\mathbf{1}^\top}{n}$$
 
-Se calcularmos os descritores de tendência central sem estes reservatórios, vemos que a diferença entre os descritores diminui, mas não desaparece, o que ocorre devido à elevada assimetria nesta variável.
+é a matriz que **remove a média** e deixa apenas a parte residual do vetor.
 
-```{r}
-res |> 
-  filter(Area < 200) |> 
-  summarise(CPUE_medio = mean(Area, na.rm = TRUE),
-            CPUE_mediana = median(Area, na.rm = TRUE),
-            P_medio = sum(range(Area, na.rm = TRUE)) / 2) |> 
-  gt()
-```
+:::{.callout-note}
+## Resumo: a média na linguagem vetorial
+
+| Quantidade | Leitura pedagógica | Expressão vetorial |
+|:-----------|:-------------------|:------------------|
+| Média | média das entradas de $\mathbf{x}$ | $\bar{X} = \dfrac{\mathbf{1}^\top \mathbf{x}}{n}$ |
+| Vetor constante da média | repete a média em todas as posições | $\bar{X}\mathbf{1} = \mathbf{H}_\mathbf{1}\mathbf{x}$ |
+| Vetor de desvios | sobra depois de retirar a média | $\mathbf{d} = \mathbf{M}\mathbf{x}$ |
+| Compensação dos desvios | soma dos desvios igual a zero | $\mathbf{1}^\top\mathbf{d} = 0$ |
+| Decomposição | dados = média + desvios | $\mathbf{x} = \mathbf{H}_\mathbf{1}\mathbf{x} + \mathbf{M}\mathbf{x}$ |
+:::
+
+## Formulação matricial
+
+Quando temos $p$ variáveis observadas em $n$ unidades, organizamos os dados na matriz $\mathbf{X}$ de dimensão $n \times p$, onde cada coluna é um vetor de observações de uma variável:
+
+$$\mathbf{X} = \begin{bmatrix} X_{11} & X_{12} & \cdots & X_{1p} \\ X_{21} & X_{22} & \cdots & X_{2p} \\ \vdots & \vdots & \ddots & \vdots \\ X_{n1} & X_{n2} & \cdots & X_{np} \end{bmatrix}$$
+
+O vetor de médias das colunas é
+
+$$\bar{\mathbf{x}} = \frac{1}{n}\mathbf{X}^\top\mathbf{1} = \begin{bmatrix} \bar{X}_1 \\ \bar{X}_2 \\ \vdots \\ \bar{X}_p \end{bmatrix}$$
+
+Multiplicar $\mathbf{X}$ por $\mathbf{H}_\mathbf{1}$ à esquerda produz, em cada coluna, o vetor constante associado à respectiva média:
+
+$$\mathbf{H}_\mathbf{1}\mathbf{X} = \mathbf{1}\bar{\mathbf{x}}^\top$$
+
+Já a multiplicação por $\mathbf{M}$ remove essa parte constante e deixa os dados centrados:
+
+$$\tilde{\mathbf{X}} = \mathbf{M}\mathbf{X} = \mathbf{X} - \mathbf{1}\bar{\mathbf{x}}^\top$$
+
+Assim, cada coluna de $\tilde{\mathbf{X}}$ passa a ter média zero. Essa matriz centrada será o ponto de partida para variância, covariância, correlação e, mais adiante, para a linguagem matricial dos mínimos quadrados.
+
+Se quisermos registrar o nome técnico, dizemos que $\mathbf{H}_\mathbf{1}$ é uma **matriz de projeção** sobre a direção de $\mathbf{1}$ e que $\mathbf{H}_\mathbf{1}$ e $\mathbf{M}$ são **idempotentes**, isto é, aplicá-las duas vezes não muda o resultado.

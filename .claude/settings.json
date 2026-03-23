@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(quarto check:*)",
+      "Bash(quarto render:*)",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:youtubetranscript.com)",
+      "WebFetch(domain:www.searchbetter.com)",
+      "WebFetch(domain:tactiq.io)",
+      "Read(//tmp/**)",
+      "Bash(yt-dlp --write-auto-sub --skip-download --sub-lang pt --sub-format vtt -o \"transcript_%\\(id\\)s\" \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --list-subs \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --write-auto-sub --skip-download --sub-lang pt --sub-format json3 -o \"transcript\" \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --write-auto-sub --skip-download --sub-lang pt-BR --sub-format vtt -o \"transcript\" \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --list-formats \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --cookies-from-browser firefox --write-auto-sub --skip-download --sub-lang pt --sub-format vtt -o \"transcript\" \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --cookies-from-browser firefox --write-auto-sub --no-check-formats --skip-download --sub-lang pt --sub-format vtt -o \"transcript\" \"https://www.youtube.com/watch?v=tYQtuDkmmBY\")",
+      "Bash(yt-dlp --version)",
+      "Bash(pip install:*)"
+    ]
+  }
+}

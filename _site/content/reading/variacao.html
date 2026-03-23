@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Construção conceitual da variância amostral e do desvio padrão, com interpretação geométrica e formulação vetorial/matricial.">
 
-<title>Identificação da Unidade Curricular – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
+<title>Variância e Desvio Padrão – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../course-info/syllabus.html" rel="next">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/reading/covariancia-correlacao.html" rel="next">
+<link href="../../content/reading/tendcentral.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -100,7 +102,9 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Identificação da Unidade Curricular – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
+<meta property="og:title" content="Variância e Desvio Padrão – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
+<meta property="og:description" content="Construção conceitual da variância amostral e do desvio padrão, com interpretação geométrica e formulação vetorial/matricial.">
+<meta property="og:image" content="https://bmebictmar.github.io/bme-2026/content/reading/images/variacao.jpg">
 <meta property="og:site_name" content="BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
 </head>
 
@@ -113,7 +117,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course-info/uc-id.html">Informações do curso</a></li><li class="breadcrumb-item"><a href="../course-info/uc-id.html">Identificação da UC</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/variacao.html">Aula 15 - Variância e Desvio Padrão</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -127,8 +131,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/bmebictmar/bme-2026" title="GitHub da UC" class="quarto-navigation-tool px-1" aria-label="GitHub da UC"><i class="bi bi-github"></i></a>
@@ -146,34 +150,34 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Informações do curso</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../course-info/uc-id.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../course-info/uc-id.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Identificação da UC</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../course-info/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plano de Ensino</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cronograma</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../course-info/ebook-tutorial.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../course-info/ebook-tutorial.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Minha biblioteca</span></a>
   </div>
 </li>
@@ -187,28 +191,28 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Material teórico</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 2 - A geometria e a álgebra de vetores</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/slides-bme-comprimento-angulo.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-comprimento-angulo.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 3 - Comprimento e ângulo: o produto escalar</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/slides-bme-sistema-equacoes-lineares.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-sistema-equacoes-lineares.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 4-7 - Sistemas de Equações Lineares</span></a>
   </div>
 </li>
@@ -220,7 +224,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/slides-bme-matriz-leslie.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-matriz-leslie.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 8 - Matriz de Leslie</span></a>
   </div>
 </li>
@@ -232,61 +236,61 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/reading/tendcentral.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/tendcentral.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 15 - Média Aritmética</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/reading/variacao.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/variacao.html" class="sidebar-item-text sidebar-link active" target="_blank">
  <span class="menu-text">Aula 15 - Variância e Desvio Padrão</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/reading/covariancia-correlacao.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/covariancia-correlacao.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 16 - Covariância e Correlação Linear</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/reading/particao-soma-quadrados-r2.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/particao-soma-quadrados-r2.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/modelos-matematicos/funcoes-lineares.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-lineares.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 19 - Funções lineares</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/modelos-matematicos/polinomios.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/polinomios.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 20 - Polinômios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/modelos-matematicos/funcoes-potencias.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-potencias.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 26 - Funções potências</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 26-27 - Funções exponenciais e logarítmicas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 29-32 - Funções trigonométricas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Material complementar - Novas funções a partir de conhecidas</span></a>
   </div>
 </li>
@@ -332,17 +336,42 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#a-ideia-de-dispersão" id="toc-a-ideia-de-dispersão" class="nav-link active" data-scroll-target="#a-ideia-de-dispersão"><span class="header-section-number">1</span> A ideia de dispersão</a></li>
+  <li><a href="#desvios-em-relação-à-média" id="toc-desvios-em-relação-à-média" class="nav-link" data-scroll-target="#desvios-em-relação-à-média"><span class="header-section-number">2</span> Desvios em relação à média</a></li>
+  <li><a href="#por-que-não-somar-os-desvios" id="toc-por-que-não-somar-os-desvios" class="nav-link" data-scroll-target="#por-que-não-somar-os-desvios"><span class="header-section-number">3</span> Por que não somar os desvios?</a></li>
+  <li><a href="#soma-dos-quadrados-dos-desvios" id="toc-soma-dos-quadrados-dos-desvios" class="nav-link" data-scroll-target="#soma-dos-quadrados-dos-desvios"><span class="header-section-number">4</span> Soma dos quadrados dos desvios</a></li>
+  <li><a href="#variância-amostral" id="toc-variância-amostral" class="nav-link" data-scroll-target="#variância-amostral"><span class="header-section-number">5</span> Variância amostral</a></li>
+  <li><a href="#desvio-padrão-amostral" id="toc-desvio-padrão-amostral" class="nav-link" data-scroll-target="#desvio-padrão-amostral"><span class="header-section-number">6</span> Desvio padrão amostral</a></li>
+  <li><a href="#interpretação-geométrica" id="toc-interpretação-geométrica" class="nav-link" data-scroll-target="#interpretação-geométrica"><span class="header-section-number">7</span> Interpretação geométrica</a></li>
+  <li><a href="#formulação-vetorial" id="toc-formulação-vetorial" class="nav-link" data-scroll-target="#formulação-vetorial"><span class="header-section-number">8</span> Formulação vetorial</a></li>
+  <li><a href="#formulação-matricial" id="toc-formulação-matricial" class="nav-link" data-scroll-target="#formulação-matricial"><span class="header-section-number">9</span> Formulação matricial</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course-info/uc-id.html">Informações do curso</a></li><li class="breadcrumb-item"><a href="../course-info/uc-id.html">Identificação da UC</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/variacao.html">Aula 15 - Variância e Desvio Padrão</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Identificação da Unidade Curricular</h1>
-</div>
+<h1 class="title">Variância e Desvio Padrão</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Estatística descritiva</div>
+    <div class="quarto-category">Variabilidade</div>
+    <div class="quarto-category">Álgebra linear</div>
+    <div class="quarto-category">Formulação vetorial</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Construção conceitual da variância amostral e do desvio padrão, com interpretação geométrica e formulação vetorial/matricial.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -357,72 +386,269 @@ window.Quarto = {
 </header>
 
 
-<div class="uc-id-card callout callout-style-simple callout-important no-icon">
-<div class="callout-body d-flex">
+<p>Descrever um conjunto de dados pela média aritmética responde à pergunta <em>onde estão os valores?</em>, mas não informa <em>o quanto eles variam</em>. Dois conjuntos podem ter a mesma média e comportamentos completamente distintos. Neste capítulo, construímos as medidas que quantificam a <strong>dispersão</strong> dos dados em torno da média: a variância amostral e o desvio padrão.</p>
+<section id="a-ideia-de-dispersão" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="a-ideia-de-dispersão"><span class="header-section-number">1</span> A ideia de dispersão</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="variacao_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption>Dois conjuntos com a mesma média (<span class="math inline">\(\bar{X} = 5\)</span>) e dispersões distintas. À esquerda, os valores estão concentrados próximos à média. À direita, estão muito mais espalhados.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Observamos que a média não distingue os dois conjuntos. Precisamos de uma medida que capture o quanto as observações se afastam do centro.</p>
+</section>
+<section id="desvios-em-relação-à-média" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="desvios-em-relação-à-média"><span class="header-section-number">2</span> Desvios em relação à média</h2>
+<p>O primeiro passo é calcular, para cada observação <span class="math inline">\(X_i\)</span>, o quanto ela se afasta da média:</p>
+<p><span class="math display">\[d_i = X_i - \bar{X}\]</span></p>
+<p>Um desvio positivo (<span class="math inline">\(d_i &gt; 0\)</span>) indica que a observação está acima da média; um desvio negativo (<span class="math inline">\(d_i &lt; 0\)</span>) indica que está abaixo. Quanto maior <span class="math inline">\(|d_i|\)</span>, mais distante a observação está do centro.</p>
+<p><strong>Exemplo.</strong> Para <span class="math inline">\(X = \{2,\ 6,\ 4,\ 8,\ 5\}\)</span>, com <span class="math inline">\(\bar{X} = 5\)</span>, os desvios são:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Desvios em relação à média para o exemplo.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(X_i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(d_i = X_i - \bar{X}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="por-que-não-somar-os-desvios" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="por-que-não-somar-os-desvios"><span class="header-section-number">3</span> Por que não somar os desvios?</h2>
+<p>Uma candidata natural para medir dispersão seria a soma <span class="math inline">\(\sum d_i\)</span>. Entretanto, como demonstrado no capítulo anterior, essa soma é sempre zero:</p>
+<p><span class="math display">\[\sum_{i=1}^n d_i = \sum_{i=1}^n (X_i - \bar{X}) = 0\]</span></p>
+<p>Os desvios positivos e negativos se cancelam mutuamente, pois a média é o ponto de equilíbrio do conjunto. Qualquer medida de dispersão precisa contornar esse cancelamento.</p>
+</section>
+<section id="soma-dos-quadrados-dos-desvios" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="soma-dos-quadrados-dos-desvios"><span class="header-section-number">4</span> Soma dos quadrados dos desvios</h2>
+<p>Para contornar o cancelamento, elevamos cada desvio ao quadrado. O quadrado transforma todos os desvios em quantidades não-negativas, preservando a informação sobre a magnitude do afastamento:</p>
+<p><span class="math display">\[SQ = \sum_{i=1}^n d_i^2 = \sum_{i=1}^n (X_i - \bar{X})^2\]</span></p>
+<p>Esta quantidade é chamada de <strong>soma dos quadrados dos desvios</strong> em torno da média, ou simplesmente <strong>soma dos quadrados</strong> (<span class="math inline">\(SQ\)</span>).</p>
+<p>No exemplo:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Desvios e quadrados dos desvios.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(X_i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(d_i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(d_i^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-3</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><span class="math display">\[SQ = 9 + 1 + 1 + 9 + 0 = 20\]</span></p>
+</section>
+<section id="variância-amostral" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="variância-amostral"><span class="header-section-number">5</span> Variância amostral</h2>
+<p>Antes de escrever a fórmula geral, vale olhar um exemplo pequeno. Considere novamente os valores <span class="math inline">\(2\)</span>, <span class="math inline">\(5\)</span> e <span class="math inline">\(8\)</span>. A média é <span class="math inline">\(\bar{X} = 5\)</span>, então o vetor de desvios é</p>
+<p><span class="math display">\[\mathbf{d} = \begin{bmatrix} 2-5 \\ 5-5 \\ 8-5 \end{bmatrix} = \begin{bmatrix} -3 \\ 0 \\ 3 \end{bmatrix}\]</span></p>
+<p>A soma dos quadrados dos desvios é</p>
+<p><span class="math display">\[SQ = (-3)^2 + 0^2 + 3^2 = 18\]</span></p>
+<p>Se sabemos que dois desvios são <span class="math inline">\(-3\)</span> e <span class="math inline">\(0\)</span>, o terceiro já está determinado, pois a soma dos desvios precisa ser zero. Em outras palavras, <strong>depois de centralizar os dados, uma informação fica presa às outras</strong>. Por isso, com <span class="math inline">\(n\)</span> observações, restam apenas <span class="math inline">\(n-1\)</span> desvios livres para variar.</p>
+<p>É essa a intuição por trás da variância amostral:</p>
+<p><span class="math display">\[s^2 = \frac{SQ}{n-1} = \frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}\]</span></p>
+<p>No exemplo com <span class="math inline">\(n = 3\)</span>,</p>
+<p><span class="math display">\[s^2 = \frac{18}{3-1} = \frac{18}{2} = 9\]</span></p>
+<p>Agora voltando ao exemplo do texto, temos:</p>
+<p><span class="math display">\[s^2 = \frac{20}{5 - 1} = \frac{20}{4} = 5\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<div class="uc-id-grid">
-<dl>
-<dt>Campus</dt>
-<dd>
-Baixada Santista
-</dd>
-<dt>Curso</dt>
-<dd>
-Bacharelado Interdisciplinar em Ciência e Tecnologia do Mar
-</dd>
-<dt>Unidade Curricular (UC)</dt>
-<dd>
-10768 - Bases da Matemática e Estatística
-</dd>
-<dt>Docentes responsáveis</dt>
-<dd>
-Fabio Cop (<a href="mailto:fcferreira@unifesp.br">fcferreira@unifesp.br</a>)
-</dd>
-<dd>
-William Remo Pedroso Conti (<a href="mailto:wrpconti@unifesp.br">wrpconti@unifesp.br</a>)
-</dd>
-<dt>Ano letivo</dt>
-<dd>
-1<span class="math inline">\(^o\)</span> semestre de 2026
-</dd>
-<dd>
-1<span class="math inline">\(^o\)</span> termo
-</dd>
-<dt>Carga horária total</dt>
-<dd>
-80 h
-</dd>
-<dt>Dias e horários - vide <a href="https://unifesp.br/campus/san7/images/segrad-imar/Semana_padr%C3%A3o_2026-1/BICT_Mar_SEMANA_PADRAO_1-2026_V3.pdf">Semana Padrão</a></dt>
-<dd>
-Terças e Quintas feiras
-</dd>
-<dd>
-14h - 15:45h (Vespertino)
-</dd>
-<dd>
-19h - 20:45h (Noturno)
-</dd>
-<dt>Locais - vide <a href="../index.html">Cronograma</a></dt>
-<dd>
-Sala 205
-</dd>
-<dd>
-Laboratório de Informática
-</dd>
-<dt>ÁREA DO(A) ESTUDANTE</dt>
-<dd>
-<a href="https://unifesp.br/campus/san7/botoes-estudantes-segrad-imar-inv/3167-segrad-imar-area-do-a-estudante" target="_blank">SEGRAD IMar</a>
-</dd>
-</dl>
+<div class="callout-title-container flex-fill">
+Variância amostral
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[s^2 = \frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}\]</span></p>
+<p>A variância mede o tamanho médio da parte que sobra depois de retirar a média.</p>
+</div>
+</div>
+</section>
+<section id="desvio-padrão-amostral" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="desvio-padrão-amostral"><span class="header-section-number">6</span> Desvio padrão amostral</h2>
+<p>A variância <span class="math inline">\(s^2\)</span> está expressa nas unidades originais de <span class="math inline">\(X\)</span> <strong>ao quadrado</strong>, o que dificulta a interpretação direta. O <strong>desvio padrão amostral</strong> <span class="math inline">\(s\)</span> resolve isso tomando a raiz quadrada da variância:</p>
+<p><span class="math display">\[s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n-1}}\]</span></p>
+<p>No exemplo pequeno acima, <span class="math inline">\(s = \sqrt{9} = 3\)</span>. No exemplo do texto, temos <span class="math inline">\(s = \sqrt{5} = 2.2361\)</span>.</p>
+<p>Como o desvio padrão volta para a mesma unidade de medida de <span class="math inline">\(X\)</span>, ele pode ser lido como um tamanho típico dos afastamentos em torno da média.</p>
+</section>
+<section id="interpretação-geométrica" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="interpretação-geométrica"><span class="header-section-number">7</span> Interpretação geométrica</h2>
+<p>A interpretação geométrica da variância começa com o mesmo passo usado na média: separar o vetor de dados em uma parte constante e uma parte residual. Para o exemplo <span class="math inline">\(X = (2,5,8)\)</span>,</p>
+<p><span class="math display">\[\mathbf{x} = \begin{bmatrix} 2 \\ 5 \\ 8 \end{bmatrix}, \qquad \bar{X}\mathbf{1} = \begin{bmatrix} 5 \\ 5 \\ 5 \end{bmatrix}, \qquad \mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = \begin{bmatrix} -3 \\ 0 \\ 3 \end{bmatrix}\]</span></p>
+<p>O vetor <span class="math inline">\(\mathbf{d}\)</span> é o <strong>vetor centrado</strong>: ele contém apenas o que sobra depois de retirar a média.</p>
+<p>Seu comprimento é dado por</p>
+<p><span class="math display">\[\|\mathbf{d}\| = \sqrt{(-3)^2 + 0^2 + 3^2} = \sqrt{18}\]</span></p>
+<p>Portanto,</p>
+<p><span class="math display">\[SQ = \sum d_i^2 = \|\mathbf{d}\|^2\]</span></p>
+<p>Essa igualdade é a chave da interpretação geométrica: <strong>a soma dos quadrados dos desvios é o quadrado do comprimento do vetor centrado</strong>. Logo, quanto maior o comprimento de <span class="math inline">\(\mathbf{d}\)</span>, mais espalhados estão os dados em torno da média.</p>
+<p>No caso geral,</p>
+<p><span class="math display">\[\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1}\]</span></p>
+<p>Assim,</p>
+<p><span class="math display">\[SQ = \sum_{i=1}^n (X_i - \bar{X})^2 = \mathbf{d}^\top\mathbf{d} = \|\mathbf{d}\|^2\]</span></p>
+<p>E a variância pode ser lida como</p>
+<p><span class="math display">\[s^2 = \frac{\|\mathbf{d}\|^2}{n-1}\]</span></p>
+<p>A geometria aqui é simples e importante: o vetor <span class="math inline">\(\mathbf{d}\)</span> não aponta na direção dos vetores constantes, porque sua soma é zero. Em linguagem intuitiva, ele não tem componente na direção da média. Em linguagem geométrica, dizemos que <span class="math inline">\(\mathbf{d}\)</span> é <strong>perpendicular</strong> à direção de <span class="math inline">\(\mathbf{1}\)</span>; formalmente, <span class="math inline">\(\mathbf{d}\)</span> é ortogonal a <span class="math inline">\(\mathbf{1}\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="variacao_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="528"></p>
+<figcaption>Representação geométrica esquemática da decomposição <span class="math inline">\(\mathbf{x} = \bar{X}\mathbf{1} + \mathbf{d}\)</span>. O vetor de desvios <span class="math inline">\(\mathbf{d}\)</span> é a parte que sobra depois de retirar a média, e seu comprimento quantifica o espalhamento dos dados.</figcaption>
+</figure>
 </div>
 </div>
 </div>
+</section>
+<section id="formulação-vetorial" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="formulação-vetorial"><span class="header-section-number">8</span> Formulação vetorial</h2>
+<p>A interpretação anterior pode ser escrita de modo compacto com a matriz que retira a média do vetor. Definimos</p>
+<p><span class="math display">\[\mathbf{M} = \mathbf{I} - \frac{\mathbf{1}\mathbf{1}^\top}{n}\]</span></p>
+<p>Então,</p>
+<p><span class="math display">\[\mathbf{d} = \mathbf{M}\mathbf{x}\]</span></p>
+<p>Ou seja, aplicar <span class="math inline">\(\mathbf{M}\)</span> a um vetor significa <strong>remover sua parte constante</strong> e deixar apenas os desvios em torno da média.</p>
+<p>A soma dos quadrados pode ser escrita como</p>
+<p><span class="math display">\[SQ = \mathbf{d}^\top\mathbf{d} = (\mathbf{M}\mathbf{x})^\top(\mathbf{M}\mathbf{x}) = \mathbf{x}^\top\mathbf{M}\mathbf{x}\]</span></p>
+<p>Portanto,</p>
+<p><span class="math display">\[s^2 = \frac{\mathbf{x}^\top\mathbf{M}\mathbf{x}}{n-1}\]</span></p>
+<p>Essa forma vetorial deixa clara a ponte com a álgebra linear: a variância é o quadrado do tamanho da parte residual do vetor, normalizado por <span class="math inline">\(n-1\)</span>.</p>
+<p>Se quisermos registrar uma propriedade técnica, <span class="math inline">\(\mathbf{M}\)</span> é uma matriz que, aplicada duas vezes, produz o mesmo resultado da primeira aplicação. Isso faz sentido: depois que a média foi retirada, não há mais média para retirar.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Variância e desvio padrão na linguagem vetorial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 39%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantidade</th>
+<th style="text-align: left;">Leitura pedagógica</th>
+<th style="text-align: left;">Expressão vetorial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vetor centrado</td>
+<td style="text-align: left;">sobra depois de retirar a média</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{d} = \mathbf{M}\mathbf{x}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Soma dos quadrados</td>
+<td style="text-align: left;">quadrado do comprimento do vetor centrado</td>
+<td style="text-align: left;"><span class="math inline">\(SQ = \|\mathbf{d}\|^2 = \mathbf{x}^\top\mathbf{M}\mathbf{x}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variância amostral</td>
+<td style="text-align: left;">comprimento ao quadrado por grau de liberdade</td>
+<td style="text-align: left;"><span class="math inline">\(s^2 = \dfrac{\mathbf{x}^\top\mathbf{M}\mathbf{x}}{n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Desvio padrão</td>
+<td style="text-align: left;">comprimento reescalado</td>
+<td style="text-align: left;"><span class="math inline">\(s = \dfrac{\|\mathbf{d}\|}{\sqrt{n-1}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="formulação-matricial" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="formulação-matricial"><span class="header-section-number">9</span> Formulação matricial</h2>
+<p>Para <span class="math inline">\(p\)</span> variáveis organizadas na matriz <span class="math inline">\(\mathbf{X}\)</span> (<span class="math inline">\(n \times p\)</span>), a operação</p>
+<p><span class="math display">\[\tilde{\mathbf{X}} = \mathbf{M}\mathbf{X}\]</span></p>
+<p>remove, de cada coluna, a respectiva média. Assim, cada coluna de <span class="math inline">\(\tilde{\mathbf{X}}\)</span> passa a ser um vetor centrado.</p>
+<p>As variâncias de todas as variáveis podem ser obtidas ao mesmo tempo por</p>
+<p><span class="math display">\[\mathbf{s}^2 = \frac{1}{n-1}\,\operatorname{diag}\!\left(\tilde{\mathbf{X}}^\top\tilde{\mathbf{X}}\right) = \frac{1}{n-1}\,\operatorname{diag}\!\left(\mathbf{X}^\top\mathbf{M}\mathbf{X}\right)\]</span></p>
+<p>onde <span class="math inline">\(\operatorname{diag}(\cdot)\)</span> extrai os elementos da diagonal principal.</p>
+<p>A matriz completa</p>
+<p><span class="math display">\[\frac{1}{n-1}\mathbf{X}^\top\mathbf{M}\mathbf{X}\]</span></p>
+<p>reúne não apenas as variâncias nas diagonais, mas também as covariâncias entre as colunas. É justamente essa ponte entre dados centrados, produtos escalares e somas dos quadrados que prepara o próximo capítulo.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -991,10 +1217,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../content/reading/tendcentral.html" class="pagination-link" aria-label="Aula 15 - Média Aritmética">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 15 - Média Aritmética</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../course-info/syllabus.html" class="pagination-link" aria-label="Plano de Ensino">
-        <span class="nav-page-text">Plano de Ensino</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/reading/covariancia-correlacao.html" class="pagination-link" aria-label="Aula 16 - Covariância e Correlação Linear">
+        <span class="nav-page-text">Aula 16 - Covariância e Correlação Linear</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
