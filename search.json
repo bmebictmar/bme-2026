@@ -11,6 +11,193 @@
     ]
   },
   {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "",
+    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão linear simples.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\) e \\(\\beta_1\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x\\) que melhor se ajustam aos nossos dados.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#introdução",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#introdução",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "",
+    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão linear simples.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\) e \\(\\beta_1\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x\\) que melhor se ajustam aos nossos dados.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#importando-as-bibliotecas",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#importando-as-bibliotecas",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "2 Importando as Bibliotecas",
+    "text": "2 Importando as Bibliotecas\nPrimeiro, vamos importar as bibliotecas que usaremos:\n\nimport matplotlib.pyplot as plt  # Para criação e manipulação gráfica\nimport numpy as np           # Para operações matemáticas e matriciais\n\nDica: No Google Colab, essas bibliotecas já vêm instaladas!",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#inserindo-os-dados",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#inserindo-os-dados",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "3 Inserindo os Dados",
+    "text": "3 Inserindo os Dados\nVamos trabalhar um exemplo simples em que \\(x\\) e \\(y\\) são inseridos como listas em Python:\n\n# Nossos dados de exemplo\nx = [0, 1, 2, 3, 4]  # Variável independente (preditora)\ny = [0, 1, 1, 4, 4]  # Variável dependente (resposta)\n\nCaso deseje visualizar se os objetos x e y foram criados corretamente podemos utilizar a função print().\n\nprint(\"Valores de x:\", x)\nprint(\"Valores de y:\", y)\n\nValores de x: [0, 1, 2, 3, 4]\nValores de y: [0, 1, 1, 4, 4]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-os-dados",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-os-dados",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "4 Visualizando os Dados",
+    "text": "4 Visualizando os Dados\nAntes de ajustar o modelo, vamos visualizar nossos dados em um gráfico de dispersão utilizando a função scatter() da biblioteca Matplotlib:\n\n# Criando o gráfico de dispersão\nplt.figure(figsize=(8, 6))\nplt.scatter(x, y, color = '#0072B2', s=120, label='Dados observados')\n\n# Configurando o layout gráfico\nplt.title('Gráfico de Dispersão dos Dados', fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nObservação: O gráfico sugere uma relação linear entre as variáveis, o que justifica o uso da regressão linear simples, que iremos ajustar por meio do MMQ.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#implementando-o-mmq---passo-a-passo",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#implementando-o-mmq---passo-a-passo",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "5 Implementando o MMQ - Passo a Passo",
+    "text": "5 Implementando o MMQ - Passo a Passo\n\n5.1 Criando os Vetores Base\nLembre-se da teoria: inicialmente, precisamos definir os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{y}\\):\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} x_1 \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Número de observações\nn = len(x)\n\n# Vetor f0: vetor de 1's (para o intercepto β₀)\nf0 = [1] * n  # Cria uma lista com n elementos iguais a 1\n\n# Vetor f1: nossos valores de x (para o coeficiente β₁)\nf1 = x.copy()  # Copia os valores de x para um novo objeto denominado f1\n\nVisualizando os vetores \\(\\vec{f}_0\\) e \\(\\vec{f}_1\\).\n\nprint(\"Vetor f0 (intercepto):\", f0)\nprint(\"Vetor f1 (coeficiente):\", f1)\n\nVetor f0 (intercepto): [1, 1, 1, 1, 1]\nVetor f1 (coeficiente): [0, 1, 2, 3, 4]\n\n\n\n\n5.2 Construindo as Matrizes X e Y\nAgora vamos montar as matrizes do sistema:\n\\[X = \\begin{bmatrix} \\vec{f}_0 & \\vec{f}_1 \\end{bmatrix} = \\begin{bmatrix} 1 & x_1 \\\\ 1 & x_2 \\\\ \\vdots & \\vdots \\\\ 1 & x_n \\end{bmatrix} \\quad \\text{e} \\quad Y = \\begin{bmatrix} \\vec{y} \\end{bmatrix} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Matriz X: combinando f0 e f1 em colunas\nX = np.column_stack((f0, f1))\n\n# Matriz Y: transformando y em matriz com n linhas e 1 coluna \nY = np.array(y).reshape(n, 1)\n\nVisualizando as matrizes \\(X\\) e \\(Y\\).\n\nprint(\"Matriz X:\")\nprint(X)\nprint(\"\\nMatriz Y:\")\nprint(Y)\nprint(f\"\\nDimensões - X: {X.shape}, Y: {Y.shape}\")\n\nMatriz X:\n[[1 0]\n [1 1]\n [1 2]\n [1 3]\n [1 4]]\n\nMatriz Y:\n[[0]\n [1]\n [1]\n [4]\n [4]]\n\nDimensões - X: (5, 2), Y: (5, 1)\n\n\nNote agora que a matriz \\(X\\) tem 5 linhas e 2 colunas, enquanto a matriz \\(Y\\) tem 5 linhas e 1 colunas.\n\n\n5.3 Resolvendo o Sistema Normal\nAgora vamos calcular os coeficientes usando as operações matriciais: \\[B = (X^T X)^{-1} X^T Y\\]\n\n# Calculando X transposta vezes X\nXTX = np.dot(X.T, X)  # X.T é a transposta de X\n# Calculando X transposta vezes Y\nXTY = np.dot(X.T, Y)\n# Calculando a matriz inversa (X^T X)^(-1)\nXTX_inv = np.linalg.inv(XTX)  # Inversa de X^T X\n# Coeficientes de regressão\nB = np.dot(XTX_inv, XTY)\n\nVisualizando os objetos\n\n# Calculando X transposta vezes X\nprint(\"X^T X:\")\nprint(XTX)\n\nprint(\"\\nX^T Y:\")\nprint(XTY)\n\nprint(\"\\nB:\")\nprint(B)\n\nX^T X:\n[[ 5 10]\n [10 30]]\n\nX^T Y:\n[[10]\n [31]]\n\nB:\n[[-0.2]\n [ 1.1]]\n\n\n\n\n\n\n\n\nNota\n\n\n\n\nA função ´np.dot()´ em Python pode ser substituída pelo símbolo @. Teste os códigos abaixo e verifique que os resultados coincidem:\n\n\nprint(\"Usando np.dot()\")\nprint(np.dot(X.T, X))\n\nUsando np.dot()\n[[ 5 10]\n [10 30]]\n\n\n\nprint(\"Usando '@'\")\nprint(X.T @ X)\n\nUsando '@'\n[[ 5 10]\n [10 30]]\n\n\n\nOs elementos internos de uma matriz podem ser acessados destacando suas posições na linha e na coluna. Considere a matriz B. O coeficiente \\(\\beta_0\\) pode ser acessado na linha 1 e coluna 1, enquanto \\(\\beta_1\\) pode ser acessado na linha 2 e coluna 1.\n\n\nprint(B[0,0]) # Beta 0\n\n-0.1999999999999993\n\n\n\nprint(B[1,0]) # Beta 1\n\n1.1\n\n\n\n\n\n\n5.4 Obtendo os Valores Ajustados de y\nTendo obtido os coeficientes de regressão, os valores ajustados de \\(y\\) (\\(\\hat{y}\\)) podem ser obtidos pela multiplicação matricial:\n\\[F = X B = \\begin{bmatrix} 1 & x_1 \\\\ 1 & x_2 \\\\ \\vdots & \\vdots \\\\ 1 & x_n \\end{bmatrix} \\begin{bmatrix} \\hat{\\beta}_0 \\\\ \\hat{\\beta}_1 \\end{bmatrix}\\]\nObs.: denominamos \\(F\\) a matriz de valores ajustados de \\(y\\).\n\n# Valores ajustados (preditos)\nF = np.dot(X, B)\n\n\n# Valores ajustados (preditos)\nprint(F)\n\n[[-0.2]\n [ 0.9]\n [ 2. ]\n [ 3.1]\n [ 4.2]]\n\n\n\n\n5.5 Avaliando a Qualidade do Ajuste\n\n5.5.1 Calculando a Soma dos Quadrados dos Resíduos (\\(SQ_{res}\\))\n\\(SQ_{res}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{res} = \\boldsymbol{e}^T \\boldsymbol{e}\\]\nEm que \\(\\boldsymbol{e}\\) é a matriz coluna dos resíduos obtida pela diferença entre os valores observados e ajustados de \\(y\\):\n\\[\\boldsymbol{e} = Y - F = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\hat{y}_1 \\\\ \\hat{y}_2 \\\\ \\vdots \\\\ \\hat{y}_n \\end{bmatrix} = \\begin{bmatrix} e_1 \\\\ e_2 \\\\ \\vdots \\\\ e_n \\end{bmatrix}\\]\n\n# Resíduos: diferença entre valores observados e ajustados\ne = Y - F\n\n# Soma dos Quadrados dos Resíduos\nSQres = np.dot(e.T, e)[0, 0]\n\n\n\n5.5.2 Calculando a Soma dos Quadrados Totais (\\(SQ_{tot}\\))\n\\(SQ_{tot}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{tot} = \\boldsymbol{D}^T \\boldsymbol{D}\\]\nEm que \\(\\boldsymbol{D}\\) é a matriz coluna dos desvios da média obtida pela diferença entre os valores observados de \\(y\\) e a média de \\(\\overline{y}\\):\n\\[\\boldsymbol{D} = Y - \\overline{Y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\overline{y} \\\\ \\overline{y} \\\\ \\vdots \\\\ \\overline{y} \\end{bmatrix} = \\begin{bmatrix} d_1 \\\\ d_2 \\\\ \\vdots \\\\ d_n \\end{bmatrix}\\]\n\n# Soma dos Quadrados Total\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = np.dot(D.T, D)[0, 0]\n\n\n\n5.5.3 Calculando o coeficiente de determinação \\(R^2\\):\nO \\(R^2\\) é dado pela expressão:\n\\[R^2 = 1 - \\frac{SQ_{res}}{SQ_{tot}}\\]\n\n# Coeficiente de Determinação R²\nR2 = 1 - (SQres / SQtot)\n\n\nVisualizando os resultados:\n\nprint(\" Medidas de Qualidade do Ajuste:\")\nprint(f\"Soma dos Quadrados dos Resíduos (SQres): {SQres:.4f}\")\nprint(f\"Soma dos Quadrados Total (SQtot): {SQtot:.4f}\")\nprint(f\"Coeficiente de Determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\n\n Medidas de Qualidade do Ajuste:\nSoma dos Quadrados dos Resíduos (SQres): 1.9000\nSoma dos Quadrados Total (SQtot): 14.0000\nCoeficiente de Determinação (R²): 0.8643\nPorcentagem da variação explicada: 86.43%\n\n\nInterpretação do \\(R^2\\):\n\nVaria de 0 a 1\nQuanto mais próximo de 1, melhor o ajuste\nRepresenta a proporção da variação em \\(y\\) explicada pelo modelo",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-o-resultado-final",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-o-resultado-final",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "6 Visualizando o Resultado Final",
+    "text": "6 Visualizando o Resultado Final\nVamos plotar os dados originais junto com a reta ajustada:\n\n# Criando o gráfico final\nplt.figure(figsize=(8, 6))\n\n# Pontos observados\nplt.scatter(x, y, \n            color = '#0072B2', s=120,\n            label=f'Dados observados (n={n})')\n\n# Valores ajustados\nplt.scatter(x, F[:,0],\n            color='#000000', marker='*', s=120, \n            label='Valores ajustados')\n\n# Reta ajustada\nplt.plot(x, F[:,0], color='#D55E00', \n         label=fr'Reta de regressão: $\\hat{{y}} = {B[0,0]:.3f} + {B[1,0]:.3f}x$')\n\n# Configurações do gráfico\nplt.title(f'Regressão Linear Simples - MMQ\\nR² = {R2:.4f}', \n          fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend(fontsize=10)\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-dos-resultados",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-dos-resultados",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "7 Resumo dos Resultados",
+    "text": "7 Resumo dos Resultados\n\nprint(\"=\"*50)\nprint(\"         RESUMO DA REGRESSÃO LINEAR\")\nprint(\"=\"*50)\nprint(f\"Equação ajustada: y = {B[0,0]:.4f} + {B[1,0]:.4f}x\")\nprint(f\"Coeficiente de determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\nprint(\"=\"*50)\n\n==================================================\n         RESUMO DA REGRESSÃO LINEAR\n==================================================\nEquação ajustada: y = -0.2000 + 1.1000x\nCoeficiente de determinação (R²): 0.8643\nPorcentagem da variação explicada: 86.43%\n==================================================",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-do-código",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-do-código",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "8 Resumo do Código",
+    "text": "8 Resumo do Código\n\nInserção dos Dados\n\n\nx = [0, 1, 2, 3, 4]\ny = [0, 1, 1, 4, 4]\n\n\nDefinição das matrizes do sistema\n\n\nn = len(x)\nf0 = [1] * n\nf1 = x.copy()\n\nX = np.column_stack((f0, f1))\nY = np.array(y).reshape(n, 1)\n\n\nCálculo dos coeficientes\n\n\nXTX = X.T @ X\nXTY = X.T @ Y\nXTX_inv = np.linalg.inv(XTX)\nB = XTX_inv @ XTY\n\n\nQualidade do ajuste\n\n\nF = X @ B\ne = Y - F\nSQres = (e.T @ e)[0, 0]\n\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = (D.T @ D)[0, 0]\n\nR2 = 1 - (SQres / SQtot)",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#exercício-prático",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#exercício-prático",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "9 Exercício Prático",
+    "text": "9 Exercício Prático\nImplemente o MMQ com novos dados:\n\n# Experimente com estes dados:\nx_novo = [1, 2, 3, 4, 5, 6]\ny_novo = [2, 4, 5, 4, 5, 7]\n\n# Dica: você pode copiar e adaptar o código acima!",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html",
+    "href": "content/computer-lab/funcoes-potencia.html",
+    "title": "Explorando Funções Potências com Python",
+    "section": "",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html#pacotes-e-bibliotecas",
+    "href": "content/computer-lab/funcoes-potencia.html#pacotes-e-bibliotecas",
+    "title": "Explorando Funções Potências com Python",
+    "section": "",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html#definição-e-tipos-de-funções-potências",
+    "href": "content/computer-lab/funcoes-potencia.html#definição-e-tipos-de-funções-potências",
+    "title": "Explorando Funções Potências com Python",
+    "section": "2 Definição e Tipos de Funções Potências",
+    "text": "2 Definição e Tipos de Funções Potências\nUma função potência é definida como uma função da forma \\(f(x) = x^k\\), em que \\(k\\) é uma constante.\nO valor da constante \\(k\\) determina a classificação da função potência:\n\nMonômio: para \\(k = n\\), onde \\(n\\) é um inteiro positivo. Exemplos - \\(f(x) = x^2\\) ou \\(f(x) = x^3\\).\nFunção raiz: para \\(k = 1/n\\), onde \\(n\\) é um inteiro positivo. Exemplos - \\(f(x) = x^{1/2}\\) (raiz quadrada) ou \\(f(x) = x^{1/3}\\) (raiz cúbica).\nFunção recíproca: para \\(k = -1\\). Ou seja, \\(f(x) = x^{-1} = 1/x\\).\n\n\n2.1 Definindo e visualizando funções potência em Python\nVamos usar o Python para definir e plotar exemplos de cada tipo de função potência. Isso nos ajudará a entender suas características visuais.\n\n# Definindo a função potência em Python\ndef potencia(x, n):\n    \"\"\"Função potência: f(x) = x^k.\"\"\"\n    return x**n\n\nUtilizando a função criada.\n\n# Gerando um intervalo de valores para x para plotagem\n# Começamos de 0.1 para evitar divisão por zero na função recíproca.\nx_values = np.linspace(0.1, 5, 400) \n# x_values\n\n\n# Gerando valores de y\ny_values = potencia(x_values, 2)\n# y_values\n\n\n# Criando três gráficos lado a lado com diferentes valores de k\n# Criando os subplots\nfig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8, 3))\n\n# Primeiro gráfico: f(x) = x²\nax1.plot(x_values, potencia(x_values, 2), label='f(x) = x²')\nax1.set_title('Monômio')\nax1.set_xlabel('x')\nax1.set_ylabel('f(x)')\nax1.legend()\nax1.grid(True)\n\n# Segundo gráfico: f(x) = x^(1/2)\nax2.plot(x_values, potencia(x_values, 1/2), label='f(x) = x^(1/2)')\nax2.set_title('Função Raiz')\nax2.set_xlabel('x')\nax2.set_ylabel('f(x)')\nax2.legend()\nax2.grid(True)\n\n# Terceiro gráfico: f(x) = x⁻¹\nax3.plot(x_values, potencia(x_values, -1), label='f(x) = x⁻¹')\nax3.set_title('Função Recíproca')\nax3.set_xlabel('x')\nax3.set_ylabel('f(x)')\nax3.legend()\nax3.grid(True)\n\n# Ajustando o layout e salvando a figura\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html#exemplo-da-relação-espécie-área",
+    "href": "content/computer-lab/funcoes-potencia.html#exemplo-da-relação-espécie-área",
+    "title": "Explorando Funções Potências com Python",
+    "section": "3 Exemplo da Relação Espécie-Área",
+    "text": "3 Exemplo da Relação Espécie-Área\nA função potência é amplamente utilizada em ecologia para modelar fenômenos no mundo real. Um exemplo é a relação entre o número de espécies (\\(S\\)) e a área de uma região (\\(A\\)). A relação entre \\(S\\) e \\(A\\) é geralmente modelada por:\n\\[S(A) = cA^k\\]\nEm que \\(c\\) e \\(k\\) são coeficientes que precisam ser determinados a partir de dados observados.\nConsidere a tabela de dados que mostra valores de área (A) e riqueza de espécies (S):\n\n\n\nObservação\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n\n\n\nA (km²)\n0,25\n0,5\n1\n2\n4\n7,9\n15,9\n31,6\n63\n\n\nS\n6\n10\n13\n14\n17\n19\n22\n24\n28\n\n\n\nPodemos observar essa relação em Python da seguinte forma:\n\n3.1 Definindo a tabela de dados\n\n# Dados da tabela\ndata = {\n    'A': [0.25, 0.5, 1, 2, 4, 7.9, 15.9, 31.6, 63],\n    'S': [6, 10, 13, 14, 17, 19, 22, 24, 28]\n}\ndf = pd.DataFrame(data)\n\n\n\n3.2 Visualizando o gráfico de dispersão\n\nplt.figure(figsize=(8, 5))\nplt.scatter(df['A'], df['S'], label='Dados Observados')\nplt.title('Diagrama de Dispersão: Relação Espécie-Área')\nplt.xlabel('Área (km²)')\nplt.ylabel('Número de Espécies')\nplt.grid(True)\nplt.legend()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html#método-dos-mínimos-quadrados-mmq-para-o-modelo-de-regressão-potência",
+    "href": "content/computer-lab/funcoes-potencia.html#método-dos-mínimos-quadrados-mmq-para-o-modelo-de-regressão-potência",
+    "title": "Explorando Funções Potências com Python",
+    "section": "4 Método dos Mínimos Quadrados (MMQ) para o Modelo de Regressão Potência",
+    "text": "4 Método dos Mínimos Quadrados (MMQ) para o Modelo de Regressão Potência\nPodemos utilizar o MMQ para encontrar os coeficientes da relação de potência. Para isso, precisamos antes linearizar a relação, aplicando o logaritmo em ambos os lados da equação.\n\n\n\n\n\n\nImportanteLinearizando a relação potência\n\n\n\n\nComece com a equação original: \\[S = cA^k\\]\nAplique o logaritmo (de qualquer base) nos dois lados: \\[\\log(S) = \\log(cA^k)\\]\nUse a propriedade do logaritmo do produto \\(\\log(xy) = \\log(x) + \\log(y)\\): \\[\\log(S) = \\log(c) + \\log(A^k)\\]\nUse a propriedade do logaritmo da potência \\(\\log(x^p) = p\\log(x)\\): \\[\\log(S) = \\log(c) + k\\log(A)\\]\n\nAo final, obtemos uma equação linear na forma \\(y = a + bx\\), onde:\n\n\\(y = \\log(S)\\)\n\\(x = \\log(A)\\)\nO coeficiente angular é \\(b = k\\)\nO intercepto linear (onde a reta cruza o eixo y) é \\(a = \\log(c)\\)\n\n\n\nApós a linearização, os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{y}\\), são definidos como segue:\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} \\log(x_1) \\\\ \\log(x_2) \\\\ \\vdots \\\\ \\log(x_n) \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} \\log(y_1) \\\\ \\log(y_2) \\\\ \\vdots \\\\ \\log(y_n) \\end{bmatrix}\\]\nA partir daí, definimos as matrizes \\(X\\) e \\(Y\\) como no modelo linear simples e seguimos com as mesmas operações matriciais.\nVamos criar uma função em Python que implementa o MMQ:\n\n\n\n\n\n\nImportanteFunção em Python para MMQ\n\n\n\n\ndef mmq(x, y):\n    \"\"\"\n    Calcula os coeficientes (B) e o R² de uma regressão linear simples.\n\n    Args:\n        x (list ou np.ndarray): Os valores da variável independente.\n        y (list ou np.ndarray): Os valores da variável dependente.\n\n    Returns:\n        tuple: Uma tupla contendo a matriz de coeficientes B e o valor de R².\n    \"\"\"\n    # 1. Definição das matrizes do sistema\n    n = len(x)\n    # Converte para array numpy para garantir a funcionalidade\n    x_array = np.array(x)\n    f0 = np.ones(n)\n    f1 = x_array.copy()\n\n    X = np.column_stack((f0, f1))\n    Y = np.array(y).reshape(n, 1)\n\n    # 2. Cálculo dos coeficientes\n    XTX = X.T @ X\n    XTY = X.T @ Y\n    XTX_inv = np.linalg.inv(XTX)\n    B = XTX_inv @ XTY\n    \n    return B\n\n\n\nDefinida a função mmq, basta utilizá-la com um conjunto de dados de entrada.\n\n# Ajustando o modelo espécie-área\nB_ea = mmq(np.log(df['A']), np.log(df['S']))\nB_ea\n\narray([[2.4039032 ],\n       [0.24475497]])\n\n\n\n4.1 Visualizando os coeficientes ajustados\n\nc = np.exp(B_ea[0])\nk = B_ea[1]\n\nprint('c: ', c)\nprint('k: ', k)\n\nc:  [11.06628617]\nk:  [0.24475497]\n\n\nO modelo de regressão potência para a riqueza de espécies, com base nos dados fornecidos, foi determinado como\n\\[S(A) = 11.066A^{0.244}\\]\nOs valores de \\(c\\) e \\(k\\) foram, respectivamente, \\(11.066\\) e \\(0.244\\).",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html#visualizando-o-ajuste-da-curva-de-regressão-potência",
+    "href": "content/computer-lab/funcoes-potencia.html#visualizando-o-ajuste-da-curva-de-regressão-potência",
+    "title": "Explorando Funções Potências com Python",
+    "section": "5 Visualizando o Ajuste da Curva de Regressão Potência",
+    "text": "5 Visualizando o Ajuste da Curva de Regressão Potência\nPodemos criar uma nova função que permitirá encontrar os valores ajustados para o modelo potência a partir dos coeficientes da regressão obtidos.\n\ndef S_modelo(novo_x, c, k):\n    y_fit = c * novo_x ** k\n    return y_fit\n\n\n5.1 Gerando novos valores de x\n\nA_values = np.linspace(np.min(df['A']), np.max(df['A']), 400) \nS_fit = S_modelo(A_values, c, k)\n\n\n\n5.2 Plotando o gráfico\n\n# Plotar os dados e o modelo ajustado\nplt.figure(figsize=(8, 5))\nplt.scatter(df['A'], df['S'], label='Dados Observados')\nplt.plot(A_values, S_fit, color='red', label=f'Modelo Ajustado: S(A) = {c[0]:.3f}A^{k[0]:.3f}')\nplt.title('Modelo de Regressão Potência Ajustado para Relação Espécie-Área')\nplt.xlabel('Área (km²)')\nplt.ylabel('Número de Espécies')\nplt.grid(True)\nplt.legend()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/funcoes-potencia.html#estimativas-e-previsões-com-o-modelo",
+    "href": "content/computer-lab/funcoes-potencia.html#estimativas-e-previsões-com-o-modelo",
+    "title": "Explorando Funções Potências com Python",
+    "section": "6 Estimativas e Previsões com o Modelo",
+    "text": "6 Estimativas e Previsões com o Modelo\nCom o modelo, podemos estimar a riqueza de espécies para áreas específicas.\n\n# Estimando a riqueza de espécies para áreas específicas\nS_10km2 = S_modelo(10, c, k)\nS_70km2 = S_modelo(70, c, k)\n\nprint(f\"Riqueza estimada para uma área de 10 km²: {S_10km2[0]:.3f} ≈ {round(S_10km2[0])} espécies\")\nprint(f\"Riqueza predita para uma área de 70 km²: {S_70km2[0]:.3f} ≈ {round(S_70km2[0])} espécies\")\n\nRiqueza estimada para uma área de 10 km²: 19.443 ≈ 19 espécies\nRiqueza predita para uma área de 70 km²: 31.304 ≈ 31 espécies\n\n\n\n6.1 Determinação da Área para Exceder uma Riqueza Específica\nO modelo também permite determinar qual área mínima é necessária para que a riqueza de espécies exceda um certo valor. Por exemplo, para exceder 35 espécies, o cálculo é:\n\\[A &gt; \\left( \\frac{35}{c} \\right)^{1/k}\\]\n\n\n\n\n\n\nImportanteDeterminando a área mínima para exceder uma riqueza específica\n\n\n\n\nComece com a equação original: \\[S = cA^k\\]\nEstabeleça a desigualdade para exceder o valor alvo: \\[cA^k &gt; S_{\\text{alvo}}\\]\nDivida ambos os lados por \\(c\\) (como \\(c &gt; 0\\), a desigualdade se mantém): \\[A^k &gt; \\frac{S_{\\text{alvo}}}{c}\\]\nAplique a raiz \\(k\\)-ésima em ambos os lados (como \\(k &gt; 0\\), a desigualdade se mantém): \\[A &gt; \\left( \\frac{S_{\\text{alvo}}}{c} \\right)^{1/k}\\]\n\n\n\n\n\n6.2 Resolvendo a Desigualdade\n\n# Riqueza de espécies alvo\ntarget_species = 35\n\n# Calculando a área necessária\narea_necessaria = (target_species / c)**(1/k)\n\nprint(f\"Para a riqueza exceder {target_species} espécies:\")\nprint(f\"Área deve ser maior que aproximadamente {area_necessaria[0]:.3f} km².\")\n\nPara a riqueza exceder 35 espécies:\nÁrea deve ser maior que aproximadamente 110.441 km².",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
+    ]
+  },
+  {
     "objectID": "content/reading/tendcentral.html",
     "href": "content/reading/tendcentral.html",
     "title": "Média Aritmética",
@@ -185,6 +372,34 @@
       "Material teórico",
       "Aula 15 - Variância e Desvio Padrão"
     ]
+  },
+  {
+    "objectID": "README-venv.html",
+    "href": "README-venv.html",
+    "title": "1 Ambiente Python da UC",
+    "section": "",
+    "text": "Mac/Linux\nsource .venv/bin/activate\nWindows\n.venv\\Scripts\\activate\n\n\n\npip install -r requirements.txt\n\n\n\npython -m ipykernel install --user --name bme-venv"
+  },
+  {
+    "objectID": "README-venv.html#ativar-ambiente",
+    "href": "README-venv.html#ativar-ambiente",
+    "title": "1 Ambiente Python da UC",
+    "section": "",
+    "text": "Mac/Linux\nsource .venv/bin/activate\nWindows\n.venv\\Scripts\\activate"
+  },
+  {
+    "objectID": "README-venv.html#instalar-dependências",
+    "href": "README-venv.html#instalar-dependências",
+    "title": "1 Ambiente Python da UC",
+    "section": "",
+    "text": "pip install -r requirements.txt"
+  },
+  {
+    "objectID": "README-venv.html#registrar-kernel",
+    "href": "README-venv.html#registrar-kernel",
+    "title": "1 Ambiente Python da UC",
+    "section": "",
+    "text": "python -m ipykernel install --user --name bme-venv"
   },
   {
     "objectID": "index.html",
@@ -382,6 +597,193 @@
     "crumbs": [
       "Material teórico",
       "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html",
+    "href": "content/computer-lab/cossine-similarity.html",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "",
+    "text": "Considere a situação em que temos 8 espécies de peixes descritas por 6 atributos funcionais (Tabela 1). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar o grau de similaridade entre pares de espécies por meio do índice de similaridade por cossenos.\n\n\n\nTabela 1: Atributos funcionais entre 8 espécies de peixes de riachos. CI: Índice de compressão; RD: Altura relativa; IVF: Índice de achatamento ventral; RAC: Área relativa da nadadeira caudal; REP: Posição relativa do olho; MO: orientação da boca. Bstr: Bryconamericus stramineus; Bsp: Bryconamericus sp.; Cfasc: Characidium fasciatum; Czeb: Characidium zebra; Cih: Cetopsorhamdia iheringi; Imin: Imparfinis minutus; Hsp: Hisonotus sp.; Hypsp: Hypostomus sp.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTraço\nBstr\nBsp\nCfasc\nCzeb\nCih\nImin\nHsp\nHypsp\n\n\n\n\nCI\n1.67\n1.71\n1.41\n1.47\n0.97\n0.69\n0.73\n0.66\n\n\nRD\n0.21\n0.26\n0.21\n0.22\n0.17\n0.12\n0.16\n0.19\n\n\nIVF\n0.57\n0.53\n0.51\n0.49\n0.59\n0.55\n0.39\n0.35\n\n\nRAC\n0.14\n0.13\n0.14\n0.11\n0.22\n0.26\n0.19\n0.3\n\n\nREP\n0.7\n0.68\n0.79\n0.8\n0.91\n0.76\n0.71\n0.85\n\n\nMO\n1.26\n1.74\n3.03\n1.98\n2.06\n2.24\n3.14\n3.14\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBryconamericus stramineus\n\n\n\n\n\n\n\nBryconamericus sp\n\n\n\n\n\n\n\n\n\nCharacidium fasciatum\n\n\n\n\n\n\n\nCharacidium zebra\n\n\n\n\n\n\n\n\n\nCetopsorhamdia iheringi\n\n\n\n\n\n\n\nImparfinis minutus\n\n\n\n\n\n\n\n\n\nHisonotus sp\n\n\n\n\n\n\n\nHypostomus sp\n\n\n\n\n\n\nFigura 1: Espécies da Tabela 1.\n\n\n\nCada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a Tabela 1 como:\n\\[\\mathbf{T} =\n\\begin{bmatrix}\n1.67 & 1.71 & \\dots & 0.66\\\\\n0.21 & 0.26 & \\dots & 0.19\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n1.26 & 1.74 & \\dots & 3.14\n\\end{bmatrix}\n\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#matriz-de-atributos-morfológicos",
+    "href": "content/computer-lab/cossine-similarity.html#matriz-de-atributos-morfológicos",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "",
+    "text": "Considere a situação em que temos 8 espécies de peixes descritas por 6 atributos funcionais (Tabela 1). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar o grau de similaridade entre pares de espécies por meio do índice de similaridade por cossenos.\n\n\n\nTabela 1: Atributos funcionais entre 8 espécies de peixes de riachos. CI: Índice de compressão; RD: Altura relativa; IVF: Índice de achatamento ventral; RAC: Área relativa da nadadeira caudal; REP: Posição relativa do olho; MO: orientação da boca. Bstr: Bryconamericus stramineus; Bsp: Bryconamericus sp.; Cfasc: Characidium fasciatum; Czeb: Characidium zebra; Cih: Cetopsorhamdia iheringi; Imin: Imparfinis minutus; Hsp: Hisonotus sp.; Hypsp: Hypostomus sp.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTraço\nBstr\nBsp\nCfasc\nCzeb\nCih\nImin\nHsp\nHypsp\n\n\n\n\nCI\n1.67\n1.71\n1.41\n1.47\n0.97\n0.69\n0.73\n0.66\n\n\nRD\n0.21\n0.26\n0.21\n0.22\n0.17\n0.12\n0.16\n0.19\n\n\nIVF\n0.57\n0.53\n0.51\n0.49\n0.59\n0.55\n0.39\n0.35\n\n\nRAC\n0.14\n0.13\n0.14\n0.11\n0.22\n0.26\n0.19\n0.3\n\n\nREP\n0.7\n0.68\n0.79\n0.8\n0.91\n0.76\n0.71\n0.85\n\n\nMO\n1.26\n1.74\n3.03\n1.98\n2.06\n2.24\n3.14\n3.14\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBryconamericus stramineus\n\n\n\n\n\n\n\nBryconamericus sp\n\n\n\n\n\n\n\n\n\nCharacidium fasciatum\n\n\n\n\n\n\n\nCharacidium zebra\n\n\n\n\n\n\n\n\n\nCetopsorhamdia iheringi\n\n\n\n\n\n\n\nImparfinis minutus\n\n\n\n\n\n\n\n\n\nHisonotus sp\n\n\n\n\n\n\n\nHypostomus sp\n\n\n\n\n\n\nFigura 1: Espécies da Tabela 1.\n\n\n\nCada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a Tabela 1 como:\n\\[\\mathbf{T} =\n\\begin{bmatrix}\n1.67 & 1.71 & \\dots & 0.66\\\\\n0.21 & 0.26 & \\dots & 0.19\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n1.26 & 1.74 & \\dots & 3.14\n\\end{bmatrix}\n\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#calculando-similaridade-por-cossenos",
+    "href": "content/computer-lab/cossine-similarity.html#calculando-similaridade-por-cossenos",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "2 Calculando Similaridade por cossenos",
+    "text": "2 Calculando Similaridade por cossenos\nCada espécie na Tabela 1 pode ser vista como um vetor \\(\\vec{v}\\) ou \\(\\vec{u}\\) com 6 entradas, uma para cada traço funcional. Assim, o cosseno do ângulo \\(\\theta\\) entre os vetores pode ser calculado por:\n\\[\\cos(\\theta) = \\frac{\\vec{v} \\cdot \\vec{u}}{\\|\\vec{v}\\| \\|\\vec{u}\\|}\n\\tag{1}\\]\nOnde:\n\n\\(\\vec{v} \\cdot \\vec{u}\\) é o produto escalar entre os vetores \\(\\vec{v}\\) e \\(\\vec{u}\\).\n\\(\\|\\vec{v}\\|\\) e \\(\\|\\vec{u}\\|\\) são as normas (comprimentos) dos vetores.\n\\(\\theta\\) é o ângulo entre os vetores no espaço multidimensional de 6 dimensões.\n\nO valor do \\(\\cos(\\theta)\\) funciona como um índice de similaridade cuja interpretação ecológica é direta:\n\n\\(\\cos(\\theta) \\approx 1\\) (ângulo próximo a 0°), indica espécies com alta similaridade funcional, compartilhando estratégias ecológicas semelhantes;\n\\(\\cos(\\theta) \\approx 0\\) (ângulo próximo a 90°) revela espécies ecologicamente distintas, com atributos funcionais divergentes.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#exemplo-prático-similaridade-entre-bstr-e-bsp",
+    "href": "content/computer-lab/cossine-similarity.html#exemplo-prático-similaridade-entre-bstr-e-bsp",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "3 Exemplo Prático: Similaridade entre Bstr e Bsp",
+    "text": "3 Exemplo Prático: Similaridade entre Bstr e Bsp\n\nVetores das espécies:\n\n\\[\n\\vec{v}_{\\text{Bstr}} = \\begin{bmatrix}\n1.67 \\\\ 0.21 \\\\ 0.57 \\\\ 0.14 \\\\ 0.7 \\\\ 1.26\n\\end{bmatrix}, \\quad\n\\vec{u}_{\\text{Bsp}} = \\begin{bmatrix}\n1.71 \\\\ 0.26 \\\\ 0.53 \\\\ 0.13 \\\\ 0.68 \\\\ 1.74\n\\end{bmatrix}\n\\]\n\nProduto Escalar:\n\n\\[\\vec{v} \\cdot \\vec{u} = (1.67 \\times 1.71) + (0.21 \\times 0.26) + \\dots + (1.26 \\times 1.74) = 5.899\\]\n\nNormas dos Vetores: \\[\\|\\vec{v}\\| = \\sqrt{1.67^2 + 0.21^2 + \\dots + 1.26^2} \\approx 2.2924\\] \\[\\|\\vec{u}\\| = \\sqrt{1.71^2 + 0.26^2 + \\dots + 1.74^2} \\approx 2.6037\\]\nCosseno do Ângulo: \\[\\cos(\\theta) = \\frac{5.899}{2.2924 \\times 2.6037} \\approx 0.988\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#similaridade-por-cossenos-a-partir-de-operações-matriciais",
+    "href": "content/computer-lab/cossine-similarity.html#similaridade-por-cossenos-a-partir-de-operações-matriciais",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "4 Similaridade por Cossenos a partir de operações matriciais",
+    "text": "4 Similaridade por Cossenos a partir de operações matriciais\nOs passos do item anterior podem ser generalizados para todos os pares de espécies utilizando uma sequência de operações matriciais.\n\nObtenção da Matriz de Produtos Escalares (\\(\\mathbf{E}\\)): \\[\\mathbf{E} = \\mathbf{T}^\\top \\mathbf{T}\\]\n\n\\[\\mathbf{T^\\top} =\n\\begin{bmatrix}\n1.67 & 0.21 & \\dots & 1.26\\\\\n1.71 & 0.26 & \\dots & 1.74\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n0.66 & 0.19 & \\dots & 3.14\n\\end{bmatrix}, \\quad\n\\mathbf{E} =\n\\begin{bmatrix}\ne_{11} & e_{12} & \\dots & e_{18}\\\\\ne_{21} & e_{22} & \\dots & e_{28}\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\ne_{81} & e_{82} & \\dots & e_{88}\n\\end{bmatrix}\n\\]\n\n\n\nObtenção da Matriz \\(\\mathbf{D}\\):\n\nAs normas dos vetores de espécies da matriz \\(\\mathbf{T}\\) podem ser obtidas a partir dos elementos da diagonal da matriz \\(\\mathbf{E}\\), em que:\n\\[\\text{norma}_i = \\sqrt{e_{ii}}\\]\nSabendo disso, obtenha a Matriz \\(\\mathbf{D}\\):\n\\[\\mathbf{D} =\n\\begin{bmatrix}\n\\frac{1}{\\sqrt{e_{11}}} & 0 & \\dots & 0\\\\\n0 & \\frac{1}{\\sqrt{e_{22}}} & \\dots & 0\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n0 & 0 & \\dots & \\frac{1}{\\sqrt{e_{88}}}\n\\end{bmatrix}\n\\]\n\n\nMatriz Final de similaridade por cossenos (\\(\\mathbf{C}\\)):\n\n\\[\\mathbf{C} = \\mathbf{D} \\mathbf{E} \\mathbf{D}\n\\tag{2}\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#roteiro-matriz-de-similaridade-no-google-planilhas",
+    "href": "content/computer-lab/cossine-similarity.html#roteiro-matriz-de-similaridade-no-google-planilhas",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "5 Roteiro: Matriz de Similaridade no Google Planilhas",
+    "text": "5 Roteiro: Matriz de Similaridade no Google Planilhas\n\nAcesse sheets.google.com.\nInsira os dados da tabela \\(\\mathbf{T}\\) (Tabela 1). Se necessário, modifique o separador decimal de ponto (.) para vírgula (,).\nCalcule \\(\\mathbf{T}^\\top\\).\n\nDica - utilize a fórmula:\n=TRANSPOR()\n\nCalcule a matriz \\(\\mathbf{E}\\).\n\nDica - utilize a fórmula:\n=MATRIZ.MULT()\n\nCalcule as normas das colunas da matriz \\(\\mathbf{E}\\) e monte a matriz diagonal \\(\\mathbf{D}\\).\n\nDica: A matriz diagonal \\(\\mathbf{D}\\) terá as mesmas dimensões de \\(\\mathbf{E}\\), mas será preenchida com zeros exceto na diagonal principal. Nela, os valores serão \\(\\frac{1}{\\sqrt{e_{ii}}}\\), onde \\(e_{ii}\\) são os elementos da diagonal principal de \\(\\mathbf{E}\\).\n\nCalcule a matriz \\(\\mathbf{C}\\) conforme a Equação 2.\n\nDica - utilize a fórmula:\n=MATRIZ.MULT()\n\nVerificação: calcule o cosseno de \\(\\theta\\) entre algumas espécies utilizando a Equação 1 e verifique se os resultados coincidem com os observados na matriz de similaridade \\(\\mathbf{C}\\).\nVerificação: Considerando as imagens apresentadas na Figura 1, avalie criticamente se a matriz de similaridade representa de maneira fidedigna a semelhança morfométrica entre as espécies.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "",
+    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão polinomial de segundo grau.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\), \\(\\beta_1\\) e \\(\\beta_2\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\) que melhor se ajustam aos nossos dados.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#introdução",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#introdução",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "",
+    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão polinomial de segundo grau.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\), \\(\\beta_1\\) e \\(\\beta_2\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\) que melhor se ajustam aos nossos dados.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#importando-as-bibliotecas",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#importando-as-bibliotecas",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "2 Importando as Bibliotecas",
+    "text": "2 Importando as Bibliotecas\nVamos começar importando as bibliotecas necessárias:\n\nimport pandas as pd           # Para manipulação de dados\nimport matplotlib.pyplot as plt  # Para criação e manipulação gráfica\nimport seaborn as sns        # Para criação e manipulação gráfica\nimport numpy as np           # Para operações matemáticas e matriciais",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#inserindo-os-dados",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#inserindo-os-dados",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "3 Inserindo os Dados",
+    "text": "3 Inserindo os Dados\nVamos trabalhar com dados que apresentam uma relação quadrática. Em vez de digitarmos diretamente os valores de \\(y\\) e \\(x\\) como listas, iremos ler os dados a partir do arquivo local regressao_polinomial_exemplo.csv. O arquivo está no formato .csv, em que cada coluna é separada por vírgulas, um tipo de formatação muito comum.\n\ndf = pd.read_csv('data/regressao_polinomial_exemplo.csv')\n\nUtilizando a função read_csv() da biblioteca Pandas, os dados foram importados no formato de data frame, basicamente uma estrutura de dados em linhas e colunas, em que as colunas são denominadas de atributos.\n\nprint(df)\n\n   x   y\n0  0   5\n1  1   2\n2  2  10\n3  3   8\n4  4  15\n5  5  35",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#visualizando-os-dados",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#visualizando-os-dados",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "4 Visualizando os Dados",
+    "text": "4 Visualizando os Dados\nAntes de ajustar o modelo, vamos visualizar nossos dados:\n\n# Criando o gráfico de dispersão\nplt.figure(figsize=(8, 6))\nsns.scatterplot(data = df, x = 'x', y = 'y', color = '#0072B2', s=120, label='Dados observados')\n\n# Configurando o gráfico\nplt.title('Gráfico de Dispersão dos Dados', fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nObservação 1: Aparentemente, um modelo polinomial de segundo grau pode oferecer um ajuste melhor a estes dados do que a regressão linear simples. Nosso objetivo será explorar esse modelo e, ao final, compará-lo com o modelo linear.\nObservação 2: Como importamos os dados diretamente de um arquivo .csv para o objeto df, utilizamos a função scatterplot da biblioteca Seaborn para plotar o gráfico de dispersão entre as variáveis \\(y\\) e \\(x\\).",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#implementando-o-mmq-polinomial---passo-a-passo",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#implementando-o-mmq-polinomial---passo-a-passo",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "5 Implementando o MMQ Polinomial - Passo a Passo",
+    "text": "5 Implementando o MMQ Polinomial - Passo a Passo\n\n5.1 Criando os Vetores Base\nPara o modelo polinomial \\(\\hat{y} = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\), precisamos dos vetores:\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} x_1 \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_2 = \\begin{bmatrix} x_1^2 \\\\ x_2^2 \\\\ \\vdots \\\\ x_n^2 \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Número de observações\nn = len(df['x'])\n\n# Vetor f0: vetor de 1's (para o intercepto β₀)\nf0 = [1] * n\n\n# Vetor f1: valores de x (para o coeficiente linear β₁)\nf1 = df['x'].copy()\n\n# Vetor f2: valores de x² (para o coeficiente quadrático β₂)\nf2 = np.array(df['x'])**2  # Eleva cada elemento de x ao quadrado\n\nVisualizando os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{f}_2\\).\n\nprint(\"Vetor f0 (intercepto):\", f0)\nprint(\"Vetor f1 (termo linear):\", f1)\nprint(\"Vetor f2 (termo quadrático):\", f2)\n\nVetor f0 (intercepto): [1, 1, 1, 1, 1, 1]\nVetor f1 (termo linear): 0    0\n1    1\n2    2\n3    3\n4    4\n5    5\nName: x, dtype: int64\nVetor f2 (termo quadrático): [ 0  1  4  9 16 25]\n\n\n\n\n5.2 Construindo as Matrizes X e Y\nAgora vamos montar as matrizes do sistema polinomial:\n\\[X = \\begin{bmatrix} \\vec{f}_0 & \\vec{f}_1 & \\vec{f}_2 \\end{bmatrix} = \\begin{bmatrix} 1 & x_1 & x_1^2 \\\\ 1 & x_2 & x_2^2 \\\\ \\vdots & \\vdots & \\vdots \\\\ 1 & x_n & x_n^2 \\end{bmatrix} \\quad \\text{e} \\quad Y = \\begin{bmatrix} \\vec{y} \\end{bmatrix} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Matriz X: combinando f0, f1 e f2 em colunas\nX = np.column_stack((f0, f1, f2))\n\n# Matriz Y: transformando y em matriz com n linhas e 1 coluna\nY = np.array(df['y']).reshape(n, 1)\n\n\n\n5.3 Resolvendo o Sistema Normal\nCalculamos os coeficientes usando a mesma fórmula:\n\\[B = (X^T X)^{-1} X^T Y\\]\n\n# Calculando X transposta vezes X\nXTX = X.T @ X  # X.T é a transposta de X\n# Calculando X transposta vezes Y\nXTY = X.T @ Y\n# Calculando a matriz inversa (X^T X)^(-1)\nXTX_inv = np.linalg.inv(XTX)  # Inversa de X^T X\n# Coeficientes de regressão\nB = XTX_inv @ XTY\n\n\n\n\n\n\n\nNotaInterpretação\n\n\n\n\n\\(\\beta_0\\) (intercepto): valor de y quando x = 0\n\\(\\beta_1\\) (coeficiente linear): relacionado à taxa de variação linear\n\\(\\beta_2\\) (coeficiente quadrático): relacionado à curvatura da parábola\nSe \\(\\beta_2 &gt; 0\\): parábola com concavidade para cima\nSe \\(\\beta_2 &lt; 0\\): parábola com concavidade para baixo\n\n\n\n\n\n5.4 Obtendo os Valores Ajustados de y\nTendo obtido os coeficientes de regressão, os valores ajustados de \\(y\\) (\\(\\hat{y}\\)) podem ser obtidos pela multiplicação matricial:\n\\[F = XB = \\begin{bmatrix} 1 & x_1 & x^2_1 \\\\ 1 & x_2 & x^2_2 \\\\ \\vdots & \\vdots & \\vdots \\\\ 1 & x_n & x^2_n \\end{bmatrix} \\begin{bmatrix} \\beta_0 \\\\ \\beta_1 \\\\ \\beta_2 \\end{bmatrix}\\]\nObs.: denominamos \\(F\\) a matriz de valores ajustados de \\(y\\).\n\n# Valores ajustados (preditos)\nF = X @ B\n\n\n\n5.5 Avaliando a Qualidade do Ajuste\n\n5.5.1 Calculando a Soma dos Quadrados dos Resíduos (\\(SQ_{res}\\))\n\\(SQ_{res}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{res} = \\boldsymbol{e}^T \\boldsymbol{e}\\]\nEm que \\(\\boldsymbol{e}\\) é a matriz coluna dos resíduos obtida pela diferença entre os valores observados e ajustados de \\(y\\):\n\\[\\boldsymbol{e} = Y - F = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\hat{y}_1 \\\\ \\hat{y}_2 \\\\ \\vdots \\\\ \\hat{y}_n \\end{bmatrix} = \\begin{bmatrix} e_1 \\\\ e_2 \\\\ \\vdots \\\\ e_n \\end{bmatrix}\\]\n\n# Resíduos: diferença entre valores observados e ajustados\ne = Y - F\n\n# Soma dos Quadrados dos Resíduos\nSQres = (e.T @ e)[0, 0]\n\n\n\n5.5.2 Calculando a Soma dos Quadrados Totais (\\(SQ_{tot}\\))\n\\(SQ_{tot}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{tot} = \\boldsymbol{D}^T \\boldsymbol{D}\\]\nEm que \\(\\boldsymbol{D}\\) é a matriz coluna dos desvios da média obtida pela diferença entre os valores observados de \\(y\\) e a média de \\(\\overline{y}\\):\n\\[\\boldsymbol{D} = Y - \\overline{Y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\overline{y} \\\\ \\overline{y} \\\\ \\vdots \\\\ \\overline{y} \\end{bmatrix} = \\begin{bmatrix} d_1 \\\\ d_2 \\\\ \\vdots \\\\ d_n \\end{bmatrix}\\]\n\n# Soma dos Quadrados Total\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = (D.T @ D)[0, 0]\n\n\n\n5.5.3 Calculando o coeficiente de determinação \\(R^2\\):\nO \\(R^2\\) é dado pela expressão:\n\\[R^2 = 1 - \\frac{SQ_{res}}{SQ_{tot}}\\]\n\n# Coeficiente de Determinação R²\nR2 = 1 - (SQres / SQtot)\n\n\nVisualizando os resultados:\n\nprint(\" Medidas de Qualidade do Ajuste:\")\nprint(f\"Soma dos Quadrados dos Resíduos (SQres): {SQres:.4f}\")\nprint(f\"Soma dos Quadrados Total (SQtot): {SQtot:.4f}\")\nprint(f\"Coeficiente de Determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\n\n Medidas de Qualidade do Ajuste:\nSoma dos Quadrados dos Resíduos (SQres): 59.2643\nSoma dos Quadrados Total (SQtot): 705.5000\nCoeficiente de Determinação (R²): 0.9160\nPorcentagem da variação explicada: 91.60%",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#visualizando-o-resultado-final",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#visualizando-o-resultado-final",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "6 Visualizando o Resultado Final",
+    "text": "6 Visualizando o Resultado Final\nVamos plotar os dados originais junto com a curva ajustada:\nCriando uma linha contínua para \\(\\hat{y}\\)\n\n# Criando pontos para desenhar a curva suave\nx_curva = np.linspace(min(df['x']), max(df['x']), 100)\ny_curva = B[0, 0] + B[1, 0] * x_curva + B[2, 0] * x_curva**2\n\n\n# Criando o gráfico final\nplt.figure(figsize=(8, 6))\n\n# Pontos observados\nsns.scatterplot(data = df, x = 'x', y = 'y', \n                color = '#0072B2', s=120,\n                label=f'Dados observados (n={n})')\n\n# Valores ajustados\nplt.scatter(df['x'], F[:,0], \n           color='#000000', marker='*', s=120, \n           label='Valores ajustados')\n\n# Curva ajustada\nplt.plot(x_curva, y_curva, \n         color='#D55E00', \n         label=fr'Curva ajustada: $\\hat{{y}} = {B[0,0]:.3f} {B[1,0]:.3f}x + {B[2,0]:.3f}x^2$')\n\n# Configurações do gráfico\nplt.title(f'Regressão Polinomial (2º grau) - MMQ\\nR² = {R2:.4f}', \n          fontsize=15, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend(fontsize=10)\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#resumo-dos-resultados",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#resumo-dos-resultados",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "7 Resumo dos Resultados",
+    "text": "7 Resumo dos Resultados\n\nprint(\"=\"*60)\nprint(\"         RESUMO DA REGRESSÃO POLINOMIAL\")\nprint(\"=\"*60)\nprint(f\"Equação ajustada: y = {B[0,0]:.4f} {B[1,0]:.4f}x + {B[2,0]:.4f}x²\")\nprint(f\"Coeficiente de determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\nprint(\"=\"*60)\n\n============================================================\n         RESUMO DA REGRESSÃO POLINOMIAL\n============================================================\nEquação ajustada: y = 5.7500 -4.5679x + 1.9821x²\nCoeficiente de determinação (R²): 0.9160\nPorcentagem da variação explicada: 91.60%\n============================================================",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#comparação-linear-vs-polinomial",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#comparação-linear-vs-polinomial",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "8 Comparação: Linear vs Polinomial",
+    "text": "8 Comparação: Linear vs Polinomial\nVamos comparar o ajuste linear e polinomial para os mesmos dados:\n\n# Ajuste LINEAR para comparação\nX_linear = np.column_stack((f0, f1))  # Apenas f0 e f1\nB_linear = np.linalg.inv(X_linear.T @ X_linear) @ (X_linear.T @ Y)\n\n# R² do modelo linear\nF_linear = X_linear @ B_linear\nresiduos_linear = Y - F_linear\nSQres_linear = (residuos_linear.T @ residuos_linear)[0, 0]\nR2_linear = 1 - (SQres_linear / SQtot)\n\nprint(\" Comparação dos Modelos:\")\nprint(\"-\" * 40)\nprint(f\"Modelo Linear:     R² = {R2_linear:.4f}\")\nprint(f\"Modelo Polinomial: R² = {R2:.4f}\")\nprint(f\"Melhoria no R²:    {R2 - R2_linear:.4f}\")\n\n Comparação dos Modelos:\n----------------------------------------\nModelo Linear:     R² = 0.7081\nModelo Polinomial: R² = 0.9160\nMelhoria no R²:    0.2079\n\n\nGráficos de dispersão\n\nx_vals = df[\"x\"].to_numpy()\n\ny_linear = B_linear[0, 0] + B_linear[1, 0] * x_vals\n\n# Gráfico comparativo\nplt.figure(figsize=(8, 6))\n\n# plt.subplot(1, 2, 1)\nsns.scatterplot(data = df, x = 'x', y = 'y', s=100, color = '#0072B2', label='Dados observados')\nplt.plot(x_vals, y_linear, color='#D55E00', label=f'Modelo Linear\\nR² = {R2_linear:.4f}')\nplt.plot(x_curva, y_curva, color='#009E73', label=f'Modelo Polinomial\\nR² = {R2:.4f}')\nplt.xlabel('X')\nplt.ylabel('Y')\nplt.grid(True, alpha=0.3)\nplt.legend()\n\n# plt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#resumo-do-código-modelo-polinomial",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#resumo-do-código-modelo-polinomial",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "9 Resumo do Código (modelo polinomial)",
+    "text": "9 Resumo do Código (modelo polinomial)\n\nInserção dos Dados\n\n\ndf = pd.read_csv('data/regressao_polinomial_exemplo.csv')\n\n\nDefinição das matrizes do sistema\n\n\nn = len(df['x'])\nf0 = [1] * n\nf1 = df['x'].copy()\nf2 = np.array(df['x'])**2\n\nX = np.column_stack((f0, f1, f2))\nY = np.array(df['y']).reshape(n, 1)\n\n\nCálculo dos coeficientes\n\n\nXTX = X.T @ X\nXTY = X.T @ Y\nXTX_inv = np.linalg.inv(XTX)\nB = XTX_inv @ XTY\n\n\nQualidade do ajuste\n\n\nY_ajustado = X @ B\ne = Y - Y_ajustado\nSQres = (e.T @ e)[0, 0]\n\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = (D.T @ D)[0, 0]\n\nR2 = 1 - (SQres / SQtot)",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-polinomial.html#exercício-prático",
+    "href": "content/computer-lab/mmq-regressao-polinomial.html#exercício-prático",
+    "title": "Método dos Mínimos Quadrados na Regressão Polinomial",
+    "section": "10 Exercício Prático",
+    "text": "10 Exercício Prático\nTeste o código com novos dados:\n\n# Experimente com estes dados (padrão quadrático diferente):\ndf_novo = pd.DataFrame({\n  'x_novo': [1, 2, 3, 4, 5, 6, 7],\n  'y_novo': [30, 12, 18, 9, 7, 8, 6]\n})\n\nprint(df_novo)\n\n# Questões para investigar:\n# 1. Qual é o R² do modelo polinomial para estes dados?\n# 2. O coeficiente β₂ é positivo ou negativo? O que isso significa?\n# 3. Compare com o modelo linear - qual é a diferença no R²?\n\n# Implemente todo o processo do MMQ polinomial com os novos dados\n# Dica: você pode copiar e adaptar o código acima!\n\n   x_novo  y_novo\n0       1      30\n1       2      12\n2       3      18\n3       4       9\n4       5       7\n5       6       8\n6       7       6",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 23-24 - MMQ na regressão polinomial"
     ]
   },
   {

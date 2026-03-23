@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética.">
+<meta name="description" content="Cálculo da similaridade funcional entre espécies de peixes usando álgebra matricial.">
 
-<title>Média Aritmética – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
+<title>Ecologia Funcional: aplicação da álgebra matricial – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,8 +34,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/reading/variacao.html" rel="next">
-<link href="../../content/slides/slides-bme-matriz-leslie.html" rel="prev">
+<link href="../../content/computer-lab/mmq-regressao-linear-simples.html" rel="next">
+<link href="../../content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -108,10 +108,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Média Aritmética – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
-<meta property="og:description" content="Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética.">
-<meta property="og:image" content="https://bmebictmar.github.io/bme-2026/content/reading/images/tendcentral.jpg">
+<meta property="og:title" content="Ecologia Funcional: aplicação da álgebra matricial – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
+<meta property="og:description" content="Cálculo da similaridade funcional entre espécies de peixes usando álgebra matricial.">
+<meta property="og:image" content="https://bmebictmar.github.io/bme-2026/content/computer-lab/images/Bryconamericus-stramineus.png">
 <meta property="og:site_name" content="BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
+<meta property="og:image:height" content="310">
+<meta property="og:image:width" content="509">
 </head>
 
 <body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -285,7 +287,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/tendcentral.html">Aula 15 - Média Aritmética</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/computer-lab/cossine-similarity.html">Lab. Informática</a></li><li class="breadcrumb-item"><a href="../../content/computer-lab/cossine-similarity.html">Aulas 9 - 10 - Similaridade por cosseno</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -360,13 +362,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Material teórico</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
@@ -405,7 +407,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/reading/tendcentral.html" class="sidebar-item-text sidebar-link active" target="_blank">
+  <a href="../../content/reading/tendcentral.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 15 - Média Aritmética</span></a>
   </div>
 </li>
@@ -467,16 +469,16 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Lab. Informática</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/computer-lab/cossine-similarity.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/computer-lab/cossine-similarity.html" class="sidebar-item-text sidebar-link active" target="_blank">
  <span class="menu-text">Aulas 9 - 10 - Similaridade por cosseno</span></a>
   </div>
 </li>
@@ -510,19 +512,11 @@ window.Quarto = {
     <h2 id="toc-title">Nesta página</h2>
    
   <ul>
-  <li><a href="#definição-formal" id="toc-definição-formal" class="nav-link active" data-scroll-target="#definição-formal"><span class="header-section-number">1</span> Definição formal</a></li>
-  <li><a href="#propriedades-algébricas" id="toc-propriedades-algébricas" class="nav-link" data-scroll-target="#propriedades-algébricas"><span class="header-section-number">2</span> Propriedades algébricas</a>
-  <ul class="collapse">
-  <li><a href="#a-soma-dos-desvios-é-sempre-zero" id="toc-a-soma-dos-desvios-é-sempre-zero" class="nav-link" data-scroll-target="#a-soma-dos-desvios-é-sempre-zero"><span class="header-section-number">2.1</span> A soma dos desvios é sempre zero</a></li>
-  <li><a href="#a-média-minimiza-a-soma-dos-quadrados-dos-desvios" id="toc-a-média-minimiza-a-soma-dos-quadrados-dos-desvios" class="nav-link" data-scroll-target="#a-média-minimiza-a-soma-dos-quadrados-dos-desvios"><span class="header-section-number">2.2</span> A média minimiza a soma dos quadrados dos desvios</a></li>
-  </ul></li>
-  <li><a href="#interpretação-geométrica" id="toc-interpretação-geométrica" class="nav-link" data-scroll-target="#interpretação-geométrica"><span class="header-section-number">3</span> Interpretação geométrica</a>
-  <ul class="collapse">
-  <li><a href="#o-exemplo" id="toc-o-exemplo" class="nav-link" data-scroll-target="#o-exemplo"><span class="header-section-number">3.1</span> O exemplo</a></li>
-  <li><a href="#a-ideia-central" id="toc-a-ideia-central" class="nav-link" data-scroll-target="#a-ideia-central"><span class="header-section-number">3.2</span> A ideia central</a></li>
-  </ul></li>
-  <li><a href="#formulação-vetorial" id="toc-formulação-vetorial" class="nav-link" data-scroll-target="#formulação-vetorial"><span class="header-section-number">4</span> Formulação vetorial</a></li>
-  <li><a href="#formulação-matricial" id="toc-formulação-matricial" class="nav-link" data-scroll-target="#formulação-matricial"><span class="header-section-number">5</span> Formulação matricial</a></li>
+  <li><a href="#matriz-de-atributos-morfológicos" id="toc-matriz-de-atributos-morfológicos" class="nav-link active" data-scroll-target="#matriz-de-atributos-morfológicos"><span class="header-section-number">1</span> Matriz de Atributos Morfológicos</a></li>
+  <li><a href="#calculando-similaridade-por-cossenos" id="toc-calculando-similaridade-por-cossenos" class="nav-link" data-scroll-target="#calculando-similaridade-por-cossenos"><span class="header-section-number">2</span> Calculando Similaridade por cossenos</a></li>
+  <li><a href="#exemplo-prático-similaridade-entre-bstr-e-bsp" id="toc-exemplo-prático-similaridade-entre-bstr-e-bsp" class="nav-link" data-scroll-target="#exemplo-prático-similaridade-entre-bstr-e-bsp"><span class="header-section-number">3</span> Exemplo Prático: Similaridade entre <em>Bstr</em> e <em>Bsp</em></a></li>
+  <li><a href="#similaridade-por-cossenos-a-partir-de-operações-matriciais" id="toc-similaridade-por-cossenos-a-partir-de-operações-matriciais" class="nav-link" data-scroll-target="#similaridade-por-cossenos-a-partir-de-operações-matriciais"><span class="header-section-number">4</span> Similaridade por Cossenos a partir de operações matriciais</a></li>
+  <li><a href="#roteiro-matriz-de-similaridade-no-google-planilhas" id="toc-roteiro-matriz-de-similaridade-no-google-planilhas" class="nav-link" data-scroll-target="#roteiro-matriz-de-similaridade-no-google-planilhas"><span class="header-section-number">5</span> Roteiro: Matriz de Similaridade no Google Planilhas</a></li>
   </ul>
 </nav>
     </div>
@@ -530,20 +524,14 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/tendcentral.html">Aula 15 - Média Aritmética</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/computer-lab/cossine-similarity.html">Lab. Informática</a></li><li class="breadcrumb-item"><a href="../../content/computer-lab/cossine-similarity.html">Aulas 9 - 10 - Similaridade por cosseno</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Média Aritmética</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Estatística descritiva</div>
-    <div class="quarto-category">Tendência central</div>
-    <div class="quarto-category">Álgebra linear</div>
-    <div class="quarto-category">Formulação vetorial</div>
-  </div>
-  </div>
+<h1 class="title">Ecologia Funcional: aplicação da álgebra matricial</h1>
+</div>
 
 <div>
   <div class="description">
-    Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética.
+    Cálculo da similaridade funcional entre espécies de peixes usando álgebra matricial.
   </div>
 </div>
 
@@ -560,183 +548,397 @@ window.Quarto = {
 </header>
 
 
-<p>Quando observamos um conjunto de dados, a primeira questão que surge é: <strong>onde estão concentrados os valores?</strong> Uma medida de posição é um único número que representa o “centro” de um conjunto de observações. Ela permite condensar <span class="math inline">\(n\)</span> valores em uma única quantidade informativa — um representante do conjunto.</p>
-<p>Neste capítulo, desenvolvemos rigorosamente a <strong>média aritmética</strong>, a medida de posição de maior relevância teórica e prática. Sua importância vai além do cálculo elementar: ela possui uma interpretação geométrica precisa e admite uma formulação vetorial e matricial que a conecta diretamente com os demais conceitos da UC.</p>
-<section id="definição-formal" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="definição-formal"><span class="header-section-number">1</span> Definição formal</h2>
-<p>Seja <span class="math inline">\(X\)</span> uma variável com <span class="math inline">\(n\)</span> observações <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>. A <strong>média aritmética</strong> de <span class="math inline">\(X\)</span>, denotada por <span class="math inline">\(\bar{X}\)</span>, é definida como:</p>
-<p><span class="math display">\[\bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
-<p>A média é, portanto, a soma de todas as observações dividida pelo número de observações. Ela atribui <strong>peso igual</strong> a cada elemento do conjunto.</p>
-<p><strong>Exemplo.</strong> Considere a variável <span class="math inline">\(X = \{2,\ 6,\ 4,\ 8,\ 5\}\)</span>, com <span class="math inline">\(n = 5\)</span> observações. A média é:</p>
-<p><span class="math display">\[\bar{X} = \frac{2 + 6 + 4 + 8 + 5}{5} = \frac{25}{5} = 5\]</span></p>
-</section>
-<section id="propriedades-algébricas" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="propriedades-algébricas"><span class="header-section-number">2</span> Propriedades algébricas</h2>
-<section id="a-soma-dos-desvios-é-sempre-zero" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="a-soma-dos-desvios-é-sempre-zero"><span class="header-section-number">2.1</span> A soma dos desvios é sempre zero</h3>
-<p>Defina o <strong>desvio</strong> de cada observação em relação à média como <span class="math inline">\(d_i = X_i - \bar{X}\)</span>. Uma propriedade fundamental da média é que a soma de todos os desvios é exatamente zero:</p>
-<p><span class="math display">\[\sum_{i=1}^n (X_i - \bar{X}) = 0\]</span></p>
-<p><strong>Demonstração.</strong> Expandindo a soma:</p>
-<p><span class="math display">\[\sum_{i=1}^n (X_i - \bar{X}) = \sum_{i=1}^n X_i - \sum_{i=1}^n \bar{X} = \sum_{i=1}^n X_i - n\bar{X}\]</span></p>
-<p>Substituindo <span class="math inline">\(\bar{X} = \frac{1}{n}\sum X_i\)</span>:</p>
-<p><span class="math display">\[= \sum_{i=1}^n X_i - n \cdot \frac{1}{n}\sum_{i=1}^n X_i = \sum_{i=1}^n X_i - \sum_{i=1}^n X_i = 0 \qquad \square\]</span></p>
-<p>No exemplo acima, os desvios são <span class="math inline">\(d_i = (-3,\ 1,\ -1,\ 3,\ 0)\)</span>, cuja soma é <span class="math inline">\(\sum d_i = 0\)</span>.</p>
-<p>Esta propriedade tem uma consequência imediata: a média é o único valor <span class="math inline">\(c\)</span> que minimiza <span class="math inline">\(\sum_{i=1}^n (X_i - c)^2\)</span>. Em outras palavras, <strong>a média é o ponto de equilíbrio do conjunto de dados</strong> — ela equilibra os desvios positivos e negativos.</p>
-</section>
-<section id="a-média-minimiza-a-soma-dos-quadrados-dos-desvios" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="a-média-minimiza-a-soma-dos-quadrados-dos-desvios"><span class="header-section-number">2.2</span> A média minimiza a soma dos quadrados dos desvios</h3>
-<p>Para qualquer constante <span class="math inline">\(c\)</span>, pode-se mostrar que:</p>
-<p><span class="math display">\[\sum_{i=1}^n (X_i - c)^2 = \sum_{i=1}^n (X_i - \bar{X})^2 + n(\bar{X} - c)^2 \geq \sum_{i=1}^n (X_i - \bar{X})^2\]</span></p>
-<p>A igualdade ocorre somente quando <span class="math inline">\(c = \bar{X}\)</span>. Portanto, <strong>a média aritmética é o valor que minimiza a soma dos quadrados dos desvios</strong> — conexão direta com o método dos mínimos quadrados.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="tendcentral_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>A média como ponto de equilíbrio. Cada ponto representa uma observação. Os segmentos indicam os desvios <span class="math inline">\(X_i - \bar{X}\)</span>; segmentos em vermelho correspondem a desvios positivos e em verde a desvios negativos. A soma de todos os desvios é zero.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="interpretação-geométrica" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="interpretação-geométrica"><span class="header-section-number">3</span> Interpretação geométrica</h2>
-<section id="o-exemplo" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="o-exemplo"><span class="header-section-number">3.1</span> O exemplo</h3>
-<p>Considere os três valores <span class="math inline">\(2\)</span>, <span class="math inline">\(5\)</span> e <span class="math inline">\(8\)</span>. Se quisermos representar esse conjunto por <strong>um único número constante</strong>, esse número gera um vetor com todas as entradas iguais:</p>
-<p><span class="math display">\[c\mathbf{1} = c \times \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} c \\ c \\ c \end{bmatrix}\]</span></p>
-<p>Vamos comparar três escolhas possíveis:</p>
-<p><span class="math display">\[\mathbf{x} = \begin{bmatrix} 2 \\ 5 \\ 8 \end{bmatrix}, \qquad 4 \mathbf{1} = \begin{bmatrix} 4 \\ 4 \\ 4 \end{bmatrix}, \qquad 5\mathbf{1} = \begin{bmatrix} 5 \\ 5 \\ 5 \end{bmatrix}, \qquad 6\mathbf{1} = \begin{bmatrix} 6 \\ 6 \\ 6 \end{bmatrix}\]</span></p>
-<p>As diferenças entre os dados e cada vetor constante são:</p>
-<p><span class="math display">\[\mathbf{x} - 4\mathbf{1} = \begin{bmatrix} -2 \\ 1 \\ 4 \end{bmatrix}, \qquad \mathbf{x} - 5\mathbf{1} = \begin{bmatrix} -3 \\ 0 \\ 3 \end{bmatrix}, \qquad \mathbf{x} - 6\mathbf{1} = \begin{bmatrix} -4 \\ -1 \\ 2 \end{bmatrix}\]</span></p>
-<p>Somando os quadrados dessas diferenças, obtemos:</p>
-<p><span class="math display">\[(-2)^2 + 1^2 + 4^2 = 21, \qquad (-3)^2 + 0^2 + 3^2 = 18, \qquad (-4)^2 + (-1)^2 + 2^2 = 21\]</span></p>
-<p>Logo, entre esses candidatos, o vetor constante mais próximo de <span class="math inline">\(\mathbf{x}\)</span> é <span class="math inline">\(5\mathbf{1}\)</span>. E <span class="math inline">\(5\)</span> é justamente a média dos valores <span class="math inline">\(2\)</span>, <span class="math inline">\(5\)</span> e <span class="math inline">\(8\)</span>.</p>
-<div class="callout callout-style-simple callout-tip no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>A média, representada por <span class="math inline">\(\bar{X}\mathbf{1}\)</span> é a <strong>melhor aproximação constante</strong> para representar o conjunto de dados organizados em um vetor.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="a-ideia-central" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="a-ideia-central"><span class="header-section-number">3.2</span> A ideia central</h3>
-<p>Considere agora as observações:</p>
-<p><span class="math display">\[\mathbf{x} = \begin{bmatrix} X_1 \\ X_2 \\ \vdots \\ X_n \end{bmatrix}\]</span></p>
-<p>Também podemos usar o <em>vetor de uns</em> <span class="math inline">\(\mathbf{1} = (1,1,\ldots,1)^\top\)</span> e multiplicá-lo por uma constante <span class="math inline">\(c\)</span> para produzir um vetor com todas as entradas iguais a <span class="math inline">\(c\)</span>. Portanto, o conjunto dos vetores da forma <span class="math inline">\(c\mathbf{1}\)</span> representa exatamente os <strong>vetores constantes</strong>, isto é, vetores na direção do vetor de uns.</p>
-<p>A decomposição fundamental da média é:</p>
-<p><span class="math display">\[\mathbf{x} = \bar{X}\mathbf{1} + \mathbf{d}\]</span></p>
-<p>em que</p>
-<p><span class="math display">\[\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = \begin{bmatrix} X_1 - \bar{X} \\ X_2 - \bar{X} \\ \vdots \\ X_n - \bar{X} \end{bmatrix}\]</span></p>
-<p>O vetor <span class="math inline">\(\bar{X}\mathbf{1}\)</span> é a parte constante que representa o centro dos dados, e o vetor <span class="math inline">\(\mathbf{d}\)</span> reúne os desvios em relação a esse centro.</p>
-<p>Essa decomposição traduz, em linguagem vetorial, a igualdade escalar</p>
-<p><span class="math display">\[X_i = \bar{X} + d_i \qquad (i = 1,\ldots,n)\]</span></p>
-<p>Como a soma dos desvios é zero, temos:</p>
-<p><span class="math display">\[\mathbf{1}^\top \mathbf{d} = \sum_{i=1}^n d_i = 0\]</span></p>
-<p>Isso quer dizer que <strong>os desvios se compensam</strong> e o que fica acima da média é equilibrado pelo que fica abaixo. Dizemos que <span class="math inline">\(\mathbf{d}\)</span> é <strong>perpendicular</strong> à direção dos vetores constantes. Formalmente, dizemos que <span class="math inline">\(\bar{X}\mathbf{1}\)</span> é a <strong>projeção ortogonal</strong> de <span class="math inline">\(\mathbf{x}\)</span> sobre a direção de <span class="math inline">\(\mathbf{1}\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="tendcentral_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="480"></p>
-<figcaption>Representação esquemática em <span class="math inline">\(\mathbb{R}^2\)</span> da decomposição <span class="math inline">\(\mathbf{x} = \bar{X}\mathbf{1} + \mathbf{d}\)</span>. O vetor <span class="math inline">\(\mathbf{x}\)</span> é decomposto em um vetor constante que representa a média e em um vetor de desvios. O fato de <span class="math inline">\(\mathbf{d}\)</span> ser perpendicular à direção de <span class="math inline">\(\mathbf{1}\)</span> equivale à propriedade de que os desvios se compensam.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="formulação-vetorial" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="formulação-vetorial"><span class="header-section-number">4</span> Formulação vetorial</h2>
-<p>Com a intuição em mãos, podemos escrever a média de forma compacta usando a ideia do produto escalar <span class="math inline">\(\mathbf{1}^\top\mathbf{x}\)</span>. No exemplo anterior,</p>
-<p><span class="math display">\[\mathbf{1}^\top\mathbf{x} = 2 + 5 + 8 = 15 \qquad \text{e} \qquad \mathbf{1}^\top\mathbf{1} = 3\]</span></p>
-<p>Portanto,</p>
-<p><span class="math display">\[\bar{X} = \frac{15}{3} = 5\]</span></p>
-<p>No caso geral,</p>
-<p><span class="math display">\[\bar{X} = \frac{\mathbf{1}^\top \mathbf{x}}{n} = \frac{\mathbf{1}^\top \mathbf{x}}{\mathbf{1}^\top \mathbf{1}}\]</span></p>
-<p>Essa expressão mostra que a média pode ser obtida a partir do vetor de dados e do vetor de uns usando apenas soma e divisão pelo número de observações.</p>
-<p>A parte constante associada à média também pode ser escrita de forma compacta:</p>
-<p><span class="math display">\[\bar{X}\mathbf{1} = \frac{\mathbf{1}\mathbf{1}^\top}{n}\,\mathbf{x}\]</span></p>
-<p>A matriz</p>
-<p><span class="math display">\[\mathbf{H}_\mathbf{1} = \frac{\mathbf{1}\mathbf{1}^\top}{n}\]</span></p>
-<p>transforma qualquer vetor no vetor constante correspondente à sua média. Em outras palavras, ela <strong>extrai a parte explicada pela média</strong>. Assim,</p>
-<p><span class="math display">\[\bar{X}\mathbf{1} = \mathbf{H}_\mathbf{1}\mathbf{x}\]</span></p>
-<p>A parte restante é o vetor de desvios:</p>
-<p><span class="math display">\[\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = (\mathbf{I} - \mathbf{H}_\mathbf{1})\mathbf{x} = \mathbf{M}\mathbf{x}\]</span></p>
-<p>onde</p>
-<p><span class="math display">\[\mathbf{M} = \mathbf{I} - \frac{\mathbf{1}\mathbf{1}^\top}{n}\]</span></p>
-<p>é a matriz que <strong>remove a média</strong> e deixa apenas a parte residual do vetor.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Resumo: a média na linguagem vetorial
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<table class="caption-top table">
+<section id="matriz-de-atributos-morfológicos" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="matriz-de-atributos-morfológicos"><span class="header-section-number">1</span> Matriz de Atributos Morfológicos</h2>
+<p>Considere a situação em que temos 8 espécies de peixes descritas por 6 <em>atributos funcionais</em> (<a href="#tbl-tracos" class="quarto-xref">Tabela&nbsp;1</a>). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar <strong>o grau de similaridade</strong> entre pares de espécies por meio do índice de <em>similaridade por cossenos</em>.</p>
+<div id="tbl-tracos" class="striped quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tracos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1: Atributos funcionais entre 8 espécies de peixes de riachos. <strong>CI</strong>: Índice de compressão; <strong>RD</strong>: Altura relativa; <strong>IVF</strong>: Índice de achatamento ventral; <strong>RAC</strong>: Área relativa da nadadeira caudal; <strong>REP</strong>: Posição relativa do olho; <strong>MO</strong>: orientação da boca. <strong>Bstr</strong>: <em>Bryconamericus stramineus</em>; <strong>Bsp</strong>: <em>Bryconamericus</em> sp.; <strong>Cfasc</strong>: <em>Characidium fasciatum</em>; <strong>Czeb</strong>: <em>Characidium zebra</em>; <strong>Cih</strong>: <em>Cetopsorhamdia iheringi</em>; <strong>Imin</strong>: <em>Imparfinis minutus</em>; <strong>Hsp</strong>: <em>Hisonotus</em> sp.; <strong>Hypsp</strong>: <em>Hypostomus sp</em>.
+</figcaption>
+<div aria-describedby="tbl-tracos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 39%">
-<col style="width: 37%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Quantidade</th>
-<th style="text-align: left;">Leitura pedagógica</th>
-<th style="text-align: left;">Expressão vetorial</th>
+<th>Traço</th>
+<th>Bstr</th>
+<th>Bsp</th>
+<th>Cfasc</th>
+<th>Czeb</th>
+<th>Cih</th>
+<th>Imin</th>
+<th>Hsp</th>
+<th>Hypsp</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Média</td>
-<td style="text-align: left;">média das entradas de <span class="math inline">\(\mathbf{x}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\bar{X} = \dfrac{\mathbf{1}^\top \mathbf{x}}{n}\)</span></td>
+<td>CI</td>
+<td>1.67</td>
+<td>1.71</td>
+<td>1.41</td>
+<td>1.47</td>
+<td>0.97</td>
+<td>0.69</td>
+<td>0.73</td>
+<td>0.66</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Vetor constante da média</td>
-<td style="text-align: left;">repete a média em todas as posições</td>
-<td style="text-align: left;"><span class="math inline">\(\bar{X}\mathbf{1} = \mathbf{H}_\mathbf{1}\mathbf{x}\)</span></td>
+<td>RD</td>
+<td>0.21</td>
+<td>0.26</td>
+<td>0.21</td>
+<td>0.22</td>
+<td>0.17</td>
+<td>0.12</td>
+<td>0.16</td>
+<td>0.19</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Vetor de desvios</td>
-<td style="text-align: left;">sobra depois de retirar a média</td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{d} = \mathbf{M}\mathbf{x}\)</span></td>
+<td>IVF</td>
+<td>0.57</td>
+<td>0.53</td>
+<td>0.51</td>
+<td>0.49</td>
+<td>0.59</td>
+<td>0.55</td>
+<td>0.39</td>
+<td>0.35</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Compensação dos desvios</td>
-<td style="text-align: left;">soma dos desvios igual a zero</td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{1}^\top\mathbf{d} = 0\)</span></td>
+<td>RAC</td>
+<td>0.14</td>
+<td>0.13</td>
+<td>0.14</td>
+<td>0.11</td>
+<td>0.22</td>
+<td>0.26</td>
+<td>0.19</td>
+<td>0.3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Decomposição</td>
-<td style="text-align: left;">dados = média + desvios</td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{x} = \mathbf{H}_\mathbf{1}\mathbf{x} + \mathbf{M}\mathbf{x}\)</span></td>
+<td>REP</td>
+<td>0.7</td>
+<td>0.68</td>
+<td>0.79</td>
+<td>0.8</td>
+<td>0.91</td>
+<td>0.76</td>
+<td>0.71</td>
+<td>0.85</td>
+</tr>
+<tr class="even">
+<td>MO</td>
+<td>1.26</td>
+<td>1.74</td>
+<td>3.03</td>
+<td>1.98</td>
+<td>2.06</td>
+<td>2.24</td>
+<td>3.14</td>
+<td>3.14</td>
 </tr>
 </tbody>
 </table>
 </div>
+</figure>
 </div>
+<div id="fig-peixes" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-peixes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Bryconamericus-stramineus.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Bryconamericus stramineus</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Bryconamericus.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Bryconamericus sp</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Characidium-fasciatum.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Characidium fasciatum</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Characidium-zebra.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Characidium zebra</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Cetopsorhamdia-iheringi.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Cetopsorhamdia iheringi</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Imparfinis-minutus.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Imparfinis minutus</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Hisonotus.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Hisonotus sp</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Hypostomus.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Hypostomus sp</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-peixes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Espécies da <a href="#tbl-tracos" class="quarto-xref">Tabela&nbsp;1</a>.
+</figcaption>
+</figure>
+</div>
+<p>Cada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a <a href="#tbl-tracos" class="quarto-xref">Tabela&nbsp;1</a> como:</p>
+<p><span class="math display">\[\mathbf{T} =
+\begin{bmatrix}
+1.67 &amp; 1.71 &amp; \dots &amp; 0.66\\
+0.21 &amp; 0.26 &amp; \dots &amp; 0.19\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+1.26 &amp; 1.74 &amp; \dots &amp; 3.14
+\end{bmatrix}
+\]</span></p>
 </section>
-<section id="formulação-matricial" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="formulação-matricial"><span class="header-section-number">5</span> Formulação matricial</h2>
-<p>Quando temos <span class="math inline">\(p\)</span> variáveis observadas em <span class="math inline">\(n\)</span> unidades, organizamos os dados na matriz <span class="math inline">\(\mathbf{X}\)</span> de dimensão <span class="math inline">\(n \times p\)</span>, onde cada coluna é um vetor de observações de uma variável:</p>
-<p><span class="math display">\[\mathbf{X} = \begin{bmatrix} X_{11} &amp; X_{12} &amp; \cdots &amp; X_{1p} \\ X_{21} &amp; X_{22} &amp; \cdots &amp; X_{2p} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ X_{n1} &amp; X_{n2} &amp; \cdots &amp; X_{np} \end{bmatrix}\]</span></p>
-<p>O vetor de médias das colunas é</p>
-<p><span class="math display">\[\bar{\mathbf{x}} = \frac{1}{n}\mathbf{X}^\top\mathbf{1} = \begin{bmatrix} \bar{X}_1 \\ \bar{X}_2 \\ \vdots \\ \bar{X}_p \end{bmatrix}\]</span></p>
-<p>Multiplicar <span class="math inline">\(\mathbf{X}\)</span> por <span class="math inline">\(\mathbf{H}_\mathbf{1}\)</span> à esquerda produz, em cada coluna, o vetor constante associado à respectiva média:</p>
-<p><span class="math display">\[\mathbf{H}_\mathbf{1}\mathbf{X} = \mathbf{1}\bar{\mathbf{x}}^\top\]</span></p>
-<p>Já a multiplicação por <span class="math inline">\(\mathbf{M}\)</span> remove essa parte constante e deixa os dados centrados:</p>
-<p><span class="math display">\[\tilde{\mathbf{X}} = \mathbf{M}\mathbf{X} = \mathbf{X} - \mathbf{1}\bar{\mathbf{x}}^\top\]</span></p>
-<p>Assim, cada coluna de <span class="math inline">\(\tilde{\mathbf{X}}\)</span> passa a ter média zero. Essa matriz centrada será o ponto de partida para variância, covariância, correlação e, mais adiante, para a linguagem matricial dos mínimos quadrados.</p>
-<p>Se quisermos registrar o nome técnico, dizemos que <span class="math inline">\(\mathbf{H}_\mathbf{1}\)</span> é uma <strong>matriz de projeção</strong> sobre a direção de <span class="math inline">\(\mathbf{1}\)</span> e que <span class="math inline">\(\mathbf{H}_\mathbf{1}\)</span> e <span class="math inline">\(\mathbf{M}\)</span> são <strong>idempotentes</strong>, isto é, aplicá-las duas vezes não muda o resultado.</p>
+<section id="calculando-similaridade-por-cossenos" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="calculando-similaridade-por-cossenos"><span class="header-section-number">2</span> Calculando Similaridade por cossenos</h2>
+<p>Cada espécie na <a href="#tbl-tracos" class="quarto-xref">Tabela&nbsp;1</a> pode ser vista como um <em>vetor</em> <span class="math inline">\(\vec{v}\)</span> ou <span class="math inline">\(\vec{u}\)</span> com 6 entradas, uma para cada traço funcional. Assim, o cosseno do ângulo <span class="math inline">\(\theta\)</span> entre os vetores pode ser calculado por:</p>
+<p><span id="eq-cos-angulo"><span class="math display">\[\cos(\theta) = \frac{\vec{v} \cdot \vec{u}}{\|\vec{v}\| \|\vec{u}\|}
+\tag{1}\]</span></span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(\vec{v} \cdot \vec{u}\)</span> é o <strong>produto escalar</strong> entre os vetores <span class="math inline">\(\vec{v}\)</span> e <span class="math inline">\(\vec{u}\)</span>.</li>
+<li><span class="math inline">\(\|\vec{v}\|\)</span> e <span class="math inline">\(\|\vec{u}\|\)</span> são as <strong>normas</strong> (comprimentos) dos vetores.</li>
+<li><span class="math inline">\(\theta\)</span> é o ângulo entre os vetores no espaço multidimensional de 6 dimensões.</li>
+</ul>
+<p>O valor do <span class="math inline">\(\cos(\theta)\)</span> funciona como um <em>índice de similaridade</em> cuja interpretação ecológica é direta:</p>
+<ul>
+<li><strong><span class="math inline">\(\cos(\theta) \approx 1\)</span></strong> (ângulo próximo a 0°), indica espécies com alta similaridade funcional, compartilhando estratégias ecológicas semelhantes;</li>
+<li><strong><span class="math inline">\(\cos(\theta) \approx 0\)</span></strong> (ângulo próximo a 90°) revela espécies ecologicamente distintas, com atributos funcionais divergentes.</li>
+</ul>
+<hr>
+</section>
+<section id="exemplo-prático-similaridade-entre-bstr-e-bsp" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="exemplo-prático-similaridade-entre-bstr-e-bsp"><span class="header-section-number">3</span> Exemplo Prático: Similaridade entre <em>Bstr</em> e <em>Bsp</em></h2>
+<ol type="1">
+<li><strong>Vetores das espécies</strong>:</li>
+</ol>
+<p><span class="math display">\[
+\vec{v}_{\text{Bstr}} = \begin{bmatrix}
+1.67 \\ 0.21 \\ 0.57 \\ 0.14 \\ 0.7 \\ 1.26
+\end{bmatrix}, \quad
+\vec{u}_{\text{Bsp}} = \begin{bmatrix}
+1.71 \\ 0.26 \\ 0.53 \\ 0.13 \\ 0.68 \\ 1.74
+\end{bmatrix}
+\]</span></p>
+<ol start="2" type="1">
+<li><strong>Produto Escalar</strong>:</li>
+</ol>
+<p><span class="math display">\[\vec{v} \cdot \vec{u} = (1.67 \times 1.71) + (0.21 \times 0.26) + \dots + (1.26 \times 1.74) = 5.899\]</span></p>
+<ol start="3" type="1">
+<li><p><strong>Normas dos Vetores</strong>: <span class="math display">\[\|\vec{v}\| = \sqrt{1.67^2 + 0.21^2 + \dots + 1.26^2} \approx 2.2924\]</span> <span class="math display">\[\|\vec{u}\| = \sqrt{1.71^2 + 0.26^2 + \dots + 1.74^2} \approx 2.6037\]</span></p></li>
+<li><p><strong>Cosseno do Ângulo</strong>: <span class="math display">\[\cos(\theta) = \frac{5.899}{2.2924 \times 2.6037} \approx 0.988\]</span></p></li>
+</ol>
+<hr>
+</section>
+<section id="similaridade-por-cossenos-a-partir-de-operações-matriciais" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="similaridade-por-cossenos-a-partir-de-operações-matriciais"><span class="header-section-number">4</span> Similaridade por Cossenos a partir de operações matriciais</h2>
+<p>Os passos do item anterior podem ser generalizados para todos os pares de espécies utilizando uma sequência de operações matriciais.</p>
+<ol type="1">
+<li><strong>Obtenção da Matriz de Produtos Escalares (<span class="math inline">\(\mathbf{E}\)</span>)</strong>: <span class="math display">\[\mathbf{E} = \mathbf{T}^\top \mathbf{T}\]</span></li>
+</ol>
+<p><span class="math display">\[\mathbf{T^\top} =
+\begin{bmatrix}
+1.67 &amp; 0.21 &amp; \dots &amp; 1.26\\
+1.71 &amp; 0.26 &amp; \dots &amp; 1.74\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+0.66 &amp; 0.19 &amp; \dots &amp; 3.14
+\end{bmatrix}, \quad
+\mathbf{E} =
+\begin{bmatrix}
+e_{11} &amp; e_{12} &amp; \dots &amp; e_{18}\\
+e_{21} &amp; e_{22} &amp; \dots &amp; e_{28}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+e_{81} &amp; e_{82} &amp; \dots &amp; e_{88}
+\end{bmatrix}
+\]</span></p>
+<!-- ```{r}
+#| label: tbl-tr
+#| tbl-cap: Transposta da matriz T.
+TR |> 
+   t() |> 
+   as.data.frame() |> 
+   rownames_to_column("Espécie") |> 
+   gt() |> 
+  fmt_number(
+    columns = where(is.numeric),
+    decimals = 4                
+  ) |> 
+  tab_options(
+    table.font.size = px(13),
+    table.font.names = "Arial"
+  )
+``` -->
+<!-- ```{r}
+#| label: tbl-E
+#| tbl-cap: Matriz $\mathbf{E}$ de produtos escalares.
+#| eval: false
+E |> 
+   as.data.frame() |> 
+   rownames_to_column("Espécie") |> 
+   gt() |> 
+  fmt_number(
+    columns = where(is.numeric),
+    decimals = 4                
+  ) |> 
+  tab_options(
+    table.font.size = px(13),
+    table.font.names = "Arial"
+  )
+``` -->
+<ol start="2" type="1">
+<li><strong>Obtenção da Matriz <span class="math inline">\(\mathbf{D}\)</span></strong>:</li>
+</ol>
+<p>As normas dos vetores de espécies da matriz <span class="math inline">\(\mathbf{T}\)</span> podem ser obtidas a partir dos elementos da <em>diagonal</em> da matriz <span class="math inline">\(\mathbf{E}\)</span>, em que:</p>
+<p><span class="math display">\[\text{norma}_i = \sqrt{e_{ii}}\]</span></p>
+<p>Sabendo disso, obtenha a Matriz <span class="math inline">\(\mathbf{D}\)</span>:</p>
+<p><span class="math display">\[\mathbf{D} =
+\begin{bmatrix}
+\frac{1}{\sqrt{e_{11}}} &amp; 0 &amp; \dots &amp; 0\\
+0 &amp; \frac{1}{\sqrt{e_{22}}} &amp; \dots &amp; 0\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+0 &amp; 0 &amp; \dots &amp; \frac{1}{\sqrt{e_{88}}}
+\end{bmatrix}
+\]</span></p>
+<!-- ```{r}
+#| label: tbl-D
+#| tbl-cap: Matriz diagonal $\mathbf{D}$.
+#| eval: false
+D |> 
+   as.data.frame() |> 
+   setNames(colnames(tf)) |> 
+   mutate(Espécie = colnames(tf), .before = 1)  |> 
+   gt() |> 
+  fmt_number(
+    columns = where(is.numeric),
+    decimals = 4                
+  ) |> 
+  sub_values(
+    columns = where(is.numeric),
+    fn = function(x) x == 0,  # Identifica os valores 0
+    replacement = "0"         # Formata como inteiro (sem decimais)
+  ) |> 
+  tab_options(
+    table.font.size = px(13),
+    table.font.names = "Arial"
+  )
+``` -->
+<ol start="3" type="1">
+<li><strong>Matriz Final de similaridade por cossenos (<span class="math inline">\(\mathbf{C}\)</span>)</strong>:</li>
+</ol>
+<p><span id="eq-similaridade_cossenos"><span class="math display">\[\mathbf{C} = \mathbf{D} \mathbf{E} \mathbf{D}
+\tag{2}\]</span></span></p>
+<!-- ```{r}
+#| label: tbl-C
+#| tbl-cap: Matriz $\mathbf{C}$ de Similaridade por cossenos entre os pares de espécies.
+#| eval: false
+C |> 
+  as.data.frame() |> 
+  setNames(colnames(tf)) |> 
+  mutate(Espécie = colnames(tf), .before = 1) |> 
+  gt() |> 
+  fmt_number(
+    columns = where(is.numeric),
+    decimals = 4
+  ) |> 
+  data_color(
+    columns = where(is.numeric),
+    fn = scales::col_bin(
+      # palette = c("red", "orange", "yellow", "lightgreen", "green", "blue", 'black'),
+      palette = c("salmon3", "orangered3",  "rosybrown4", "orchid4", "skyblue2", "dodgerblue3", 'royalblue4'),
+      domain = c(0.7, 1),
+      bins = c(0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 0.9999, 1.0001) 
+    )
+  ) |> 
+  tab_options(
+    table.font.size = px(13),
+    table.font.names = "Arial"
+  )
+``` -->
+<hr>
+</section>
+<section id="roteiro-matriz-de-similaridade-no-google-planilhas" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="roteiro-matriz-de-similaridade-no-google-planilhas"><span class="header-section-number">5</span> Roteiro: Matriz de Similaridade no Google Planilhas</h2>
+<ol type="1">
+<li><p>Acesse <a href="https://sheets.google.com">sheets.google.com</a>.</p></li>
+<li><p>Insira os dados da tabela <span class="math inline">\(\mathbf{T}\)</span> (<a href="#tbl-tracos" class="quarto-xref">Tabela&nbsp;1</a>). <em>Se necessário, modifique o separador decimal de ponto (<code>.</code>) para vírgula (<code>,</code>).</em></p></li>
+<li><p>Calcule <span class="math inline">\(\mathbf{T}^\top\)</span>.</p>
+<ul>
+<li><p>Dica - utilize a fórmula:</p>
+<pre class="excel"><code>=TRANSPOR()</code></pre></li>
+</ul></li>
+<li><p>Calcule a matriz <span class="math inline">\(\mathbf{E}\)</span>.</p>
+<ul>
+<li><p>Dica - utilize a fórmula:</p>
+<pre class="excel"><code>=MATRIZ.MULT()</code></pre></li>
+</ul></li>
+<li><p>Calcule as normas das colunas da matriz <span class="math inline">\(\mathbf{E}\)</span> e monte a matriz diagonal <span class="math inline">\(\mathbf{D}\)</span>.</p>
+<ul>
+<li>Dica: A matriz diagonal <span class="math inline">\(\mathbf{D}\)</span> terá as mesmas dimensões de <span class="math inline">\(\mathbf{E}\)</span>, mas será preenchida com zeros exceto na diagonal principal. Nela, os valores serão <span class="math inline">\(\frac{1}{\sqrt{e_{ii}}}\)</span>, onde <span class="math inline">\(e_{ii}\)</span> são os elementos da diagonal principal de <span class="math inline">\(\mathbf{E}\)</span>.</li>
+</ul></li>
+<li><p>Calcule a matriz <span class="math inline">\(\mathbf{C}\)</span> conforme a <a href="#eq-similaridade_cossenos" class="quarto-xref">Equação&nbsp;2</a>.</p>
+<ul>
+<li><p>Dica - utilize a fórmula:</p>
+<pre class="excel"><code>=MATRIZ.MULT()</code></pre></li>
+</ul></li>
+<li><p><strong>Verificação</strong>: calcule o cosseno de <span class="math inline">\(\theta\)</span> entre algumas espécies utilizando a <a href="#eq-cos-angulo" class="quarto-xref">Equação&nbsp;1</a> e verifique se os resultados coincidem com os observados na matriz de similaridade <span class="math inline">\(\mathbf{C}\)</span>.</p></li>
+<li><p><strong>Verificação</strong>: Considerando as imagens apresentadas na <a href="#fig-peixes" class="quarto-xref">Figura&nbsp;1</a>, avalie criticamente se a matriz de similaridade representa de maneira fidedigna a semelhança morfométrica entre as espécies.</p></li>
+</ol>
 
 
 </section>
@@ -1157,13 +1359,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/slides/slides-bme-matriz-leslie.html" class="pagination-link" aria-label="Aula 8 - Matriz de Leslie">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 8 - Matriz de Leslie</span>
+      <a href="../../content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="pagination-link" aria-label="Material complementar - Novas funções a partir de conhecidas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Material complementar - Novas funções a partir de conhecidas</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/reading/variacao.html" class="pagination-link" aria-label="Aula 15 - Variância e Desvio Padrão">
-        <span class="nav-page-text">Aula 15 - Variância e Desvio Padrão</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/computer-lab/mmq-regressao-linear-simples.html" class="pagination-link" aria-label="Aulas 21-22 - MMQ na regressão linear simples">
+        <span class="nav-page-text">Aulas 21-22 - MMQ na regressão linear simples</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
