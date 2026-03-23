@@ -112,19 +112,19 @@ website:
           
       - section: "Lab. Informática"
         contents:
-          - href: https://fcopf.github.io/mead/content/multivariada-numerica/cossine-similarity.html
+          - href: content/computer-lab/cossine-similarity.qmd
             text: "Aulas 9 - 10 - Similaridade por cosseno"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-linear-simples.html
+          - href: content/computer-lab/mmq-regressao-linear-simples.qmd
             text: "Aulas 21-22 - MMQ na regressão linear simples"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-polinomial.html
+          - href: content/computer-lab/mmq-regressao-polinomial.qmd
             text: "Aulas 23-24 - MMQ na regressão polinomial"
             target: "_blank"
-          - href: https://fcopf.github.io/mead/content/funcoes-modelos/funcoes-potencia.html
+          - href: content/computer-lab/funcoes-potencia.qmd
             text: "Aulas 29-30 - Funções de potência"
             target: "_blank"
-
+          
 # Global format configuration
 format:
   html:
