@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Construção da covariância a partir da variância, derivação da correlação de Pearson, interpretação geométrica como cosseno do ângulo entre vetores e formulação matricial.">
 
-<title>10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
+<title>Covariância e Correlação Linear – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +27,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./course-info/ebook-tutorial.pdf" rel="next">
-<link href="./course-info/syllabus.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/reading/particao-soma-quadrados-r2.html" rel="next">
+<link href="../../content/reading/variacao.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,9 +78,39 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
-<meta property="og:description" content="Cronograma: 1º semestre de 2026">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Covariância e Correlação Linear – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
+<meta property="og:description" content="Construção da covariância a partir da variância, derivação da correlação de Pearson, interpretação geométrica como cosseno do ângulo entre vetores e formulação matricial.">
+<meta property="og:image" content="https://bmebictmar.github.io/bme-2026/content/reading/images/biquanti.jpg">
 <meta property="og:site_name" content="BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
 </head>
 
@@ -254,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-info/uc-id.html">Informações do curso</a></li><li class="breadcrumb-item"><a href="./index.html">Cronograma</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/covariancia-correlacao.html">Aula 16 - Covariância e Correlação Linear</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -268,9 +299,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/bmebictmar/bme-2026" title="GitHub da UC" class="quarto-navigation-tool px-1" aria-label="GitHub da UC"><i class="bi bi-github"></i></a>
@@ -288,34 +319,34 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Informações do curso</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/uc-id.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/uc-id.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Identificação da UC</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plano de Ensino</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cronograma</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/ebook-tutorial.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../course-info/ebook-tutorial.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Minha biblioteca</span></a>
   </div>
 </li>
@@ -329,28 +360,28 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Material teórico</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 2 - A geometria e a álgebra de vetores</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-comprimento-angulo.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-comprimento-angulo.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 3 - Comprimento e ângulo: o produto escalar</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-sistema-equacoes-lineares.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-sistema-equacoes-lineares.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 4-7 - Sistemas de Equações Lineares</span></a>
   </div>
 </li>
@@ -362,7 +393,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-matriz-leslie.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-matriz-leslie.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 8 - Matriz de Leslie</span></a>
   </div>
 </li>
@@ -374,61 +405,61 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/tendcentral.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/tendcentral.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 15 - Média Aritmética</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/variacao.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/variacao.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 15 - Variância e Desvio Padrão</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/covariancia-correlacao.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/covariancia-correlacao.html" class="sidebar-item-text sidebar-link active" target="_blank">
  <span class="menu-text">Aula 16 - Covariância e Correlação Linear</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/particao-soma-quadrados-r2.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/particao-soma-quadrados-r2.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-lineares.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-lineares.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 19 - Funções lineares</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/polinomios.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/polinomios.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 20 - Polinômios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-potencias.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-potencias.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 26 - Funções potências</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 26-27 - Funções exponenciais e logarítmicas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 29-32 - Funções trigonométricas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Material complementar - Novas funções a partir de conhecidas</span></a>
   </div>
 </li>
@@ -474,19 +505,49 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#motivação-associação-entre-duas-variáveis" id="toc-motivação-associação-entre-duas-variáveis" class="nav-link active" data-scroll-target="#motivação-associação-entre-duas-variáveis"><span class="header-section-number">1</span> Motivação: associação entre duas variáveis</a></li>
+  <li><a href="#da-variância-à-covariância" id="toc-da-variância-à-covariância" class="nav-link" data-scroll-target="#da-variância-à-covariância"><span class="header-section-number">2</span> Da variância à covariância</a>
+  <ul class="collapse">
+  <li><a href="#o-exemplo" id="toc-o-exemplo" class="nav-link" data-scroll-target="#o-exemplo"><span class="header-section-number">2.1</span> O exemplo</a></li>
+  </ul></li>
+  <li><a href="#covariância-amostral" id="toc-covariância-amostral" class="nav-link" data-scroll-target="#covariância-amostral"><span class="header-section-number">3</span> Covariância amostral</a>
+  <ul class="collapse">
+  <li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo"><span class="header-section-number">3.1</span> Exemplo</a></li>
+  <li><a href="#sinal-da-covariância-análise-por-quadrantes" id="toc-sinal-da-covariância-análise-por-quadrantes" class="nav-link" data-scroll-target="#sinal-da-covariância-análise-por-quadrantes"><span class="header-section-number">3.2</span> Sinal da covariância: análise por quadrantes</a></li>
+  </ul></li>
+  <li><a href="#normalização-o-coeficiente-de-correlação-de-pearson" id="toc-normalização-o-coeficiente-de-correlação-de-pearson" class="nav-link" data-scroll-target="#normalização-o-coeficiente-de-correlação-de-pearson"><span class="header-section-number">4</span> Normalização: o coeficiente de correlação de Pearson</a></li>
+  <li><a href="#interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores" id="toc-interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores" class="nav-link" data-scroll-target="#interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores"><span class="header-section-number">5</span> Interpretação geométrica: o cosseno do ângulo entre vetores</a></li>
+  <li><a href="#formulação-vetorial" id="toc-formulação-vetorial" class="nav-link" data-scroll-target="#formulação-vetorial"><span class="header-section-number">6</span> Formulação vetorial</a></li>
+  <li><a href="#formulação-matricial" id="toc-formulação-matricial" class="nav-link" data-scroll-target="#formulação-matricial"><span class="header-section-number">7</span> Formulação matricial</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-info/uc-id.html">Informações do curso</a></li><li class="breadcrumb-item"><a href="./index.html">Cronograma</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/covariancia-correlacao.html">Aula 16 - Covariância e Correlação Linear</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp</h1>
-<p class="subtitle lead">Cronograma: 1º semestre de 2026</p>
-</div>
+<h1 class="title">Covariância e Correlação Linear</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Estatística</div>
+    <div class="quarto-category">Covariância</div>
+    <div class="quarto-category">Correlação</div>
+    <div class="quarto-category">Álgebra linear</div>
+    <div class="quarto-category">Formulação vetorial</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Construção da covariância a partir da variância, derivação da correlação de Pearson, interpretação geométrica como cosseno do ângulo entre vetores e formulação matricial.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -501,386 +562,313 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="course-info/academic-calendar-2026.pdf" target="_blank">📄 Calendário Acadêmico 2026 Unifesp (PDF)</a></p>
-<div class="column-screen-inset-right cronograma-bme">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 2%">
-<col style="width: 1%">
-<col style="width: 2%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 3%">
-</colgroup>
+<p>Nos capítulos anteriores, construímos a média e a variância como medidas que descrevem uma única variável. O passo natural é perguntar: <strong>como duas variáveis variam em conjunto?</strong> Para responder, precisamos de medidas que capturem a associação linear entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>: a covariância e o coeficiente de correlação de Pearson.</p>
+<section id="motivação-associação-entre-duas-variáveis" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="motivação-associação-entre-duas-variáveis"><span class="header-section-number">1</span> Motivação: associação entre duas variáveis</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="covariancia-correlacao_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Três situações de associação linear entre duas variáveis. À esquerda, covariância negativa: quando <span class="math inline">\(X\)</span> aumenta, <span class="math inline">\(Y\)</span> tende a diminuir. Ao centro, covariância nula: não há padrão linear. À direita, covariância positiva: quando <span class="math inline">\(X\)</span> aumenta, <span class="math inline">\(Y\)</span> também tende a aumentar.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Observamos que a associação pode ser <strong>positiva</strong> (quando <span class="math inline">\(X\)</span> aumenta, <span class="math inline">\(Y\)</span> também aumenta), <strong>negativa</strong> (quando <span class="math inline">\(X\)</span> aumenta, <span class="math inline">\(Y\)</span> diminui) ou <strong>nula</strong> (sem padrão linear aparente). Buscamos uma medida que quantifique a direção e intensidade desse padrão.</p>
+</section>
+<section id="da-variância-à-covariância" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="da-variância-à-covariância"><span class="header-section-number">2</span> Da variância à covariância</h2>
+<section id="o-exemplo" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="o-exemplo"><span class="header-section-number">2.1</span> O exemplo</h3>
+<p>A covariância nasce da mesma ideia da variância, mas agora olhando <strong>duas variáveis ao mesmo tempo</strong>. Considere o exemplo abaixo:</p>
+<p><span class="math display">\[\mathbf{x} = \begin{bmatrix} 1 \\ 3 \\ 5 \end{bmatrix}, \qquad \mathbf{y} = \begin{bmatrix} 2 \\ 4 \\ 6 \end{bmatrix}\]</span></p>
+<p>As médias são <span class="math inline">\(\bar{X} = 3\)</span> e <span class="math inline">\(\bar{Y} = 4\)</span>. Depois de centralizar, obtemos:</p>
+<p><span class="math display">\[\mathbf{d}_X = \begin{bmatrix} -2 \\ 0 \\ 2 \end{bmatrix}, \qquad \mathbf{d}_Y = \begin{bmatrix} -2 \\ 0 \\ 2 \end{bmatrix}\]</span></p>
+<p>Agora, em vez de elevar ao quadrado cada desvio separadamente, multiplicamos os desvios correspondentes:</p>
+<p><span class="math display">\[(-2)(-2) = 4, \qquad 0 \cdot 0 = 0, \qquad 2 \cdot 2 = 4\]</span></p>
+<p>Somando,</p>
+<p><span class="math display">\[4 + 0 + 4 = 8\]</span></p>
+<p>O resultado é positivo porque, nas três observações, as duas variáveis caminham juntas: quando uma está abaixo da média, a outra também está; quando uma está acima, a outra também está.</p>
+<p>Se trocarmos <span class="math inline">\(\mathbf{y}\)</span> por</p>
+<p><span class="math display">\[\mathbf{y} = \begin{bmatrix} 6 \\ 4 \\ 2 \end{bmatrix}, \qquad \mathbf{d}_Y = \begin{bmatrix} 2 \\ 0 \\ -2 \end{bmatrix}\]</span></p>
+<p>então os produtos ficam</p>
+<p><span class="math display">\[(-2)(2) = -4, \qquad 0 \cdot 0 = 0, \qquad 2(-2) = -4\]</span></p>
+<p>Logo,</p>
+<p><span class="math display">\[-4 + 0 - 4 = -8\]</span></p>
+<p>Agora o resultado é negativo: quando uma variável está acima da média, a outra tende a estar abaixo.</p>
+</section>
+</section>
+<section id="covariância-amostral" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="covariância-amostral"><span class="header-section-number">3</span> Covariância amostral</h2>
+<p>A covariância ela mede o <strong>alinhamento entre as variações centradas de duas variáveis</strong>, isto é, variações de <span class="math inline">\(Y\)</span> e <span class="math inline">\(X\)</span> em torno de suas médias. Quando os desvios crescem juntos, a covariância tende a ser positiva e quando apontam em direções opostas, tende a ser negativa.</p>
+<p>Podemos definir a covariância a partir da <strong>soma dos produtos cruzados</strong> entre <span class="math inline">\(Y\)</span> e <span class="math inline">\(X\)</span> por:</p>
+<p><span class="math display">\[SQ_{XY} = \sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})\]</span></p>
+<p><span class="math inline">\(SQ_{XY}\)</span> desempenha, para duas variáveis, o mesmo papel que <span class="math inline">\(SQ\)</span> desempenha para uma variável só.</p>
+<p>A <strong>covariância amostral</strong> é a soma dos produtos cruzados dividida por <span class="math inline">\(n-1\)</span>:</p>
+<p><span class="math display">\[s_{XY} = \frac{SQ_{XY}}{n-1} = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}\]</span></p>
+<p>A divisão por <span class="math inline">\(n-1\)</span> aparece pelo mesmo motivo já visto na variância: depois de centrar os dados, uma restrição linear é introduzida em cada vetor de desvios.</p>
+<p>Podemos ler o sinal de <span class="math inline">\(s_{XY}\)</span> da seguinte forma:</p>
+<ul>
+<li><span class="math inline">\(s_{XY} &gt; 0\)</span>: as duas variáveis tendem a variar na mesma direção;</li>
+<li><span class="math inline">\(s_{XY} &lt; 0\)</span>: as duas variáveis tendem a variar em direções opostas;</li>
+<li><span class="math inline">\(s_{XY} \approx 0\)</span>: não há alinhamento linear claro entre as variações.</li>
+</ul>
+<p>Quando <span class="math inline">\(X = Y\)</span>, a covariância vira a própria variância. Portanto, a variância é um caso particular da covariância.</p>
+<section id="exemplo" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="exemplo"><span class="header-section-number">3.1</span> Exemplo</h3>
+<p>Para <span class="math inline">\(X = \{1,\ 3,\ 4,\ 6,\ 7,\ 9\}\)</span> e <span class="math inline">\(Y = \{2,\ 4,\ 3,\ 7,\ 6,\ 8\}\)</span>:</p>
+<div class="cell" data-tbl-cap="Cálculo do produto cruzado para o exemplo.">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Cálculo do produto cruzado para o exemplo.</caption>
 <thead>
 <tr class="header">
-<th>Aula</th>
-<th>Data</th>
-<th>Dia da semana</th>
-<th>Turma A</th>
-<th>Turma B</th>
-<th>Material<br>teórico</th>
-<th>Lab.<br>Informática</th>
+<th style="text-align: right;"><span class="math inline">\(i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(X_i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(Y_i\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(d_{X_i}\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(d_{Y_i}\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(d_{X_i} \cdot d_{Y_i}\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td>03/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><em>Semana de recepção de calouros</em></span></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-4</td>
+<td style="text-align: right;">-3</td>
+<td style="text-align: right;">12</td>
 </tr>
 <tr class="even">
-<td></td>
-<td>05/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria"><em>Semana de recepção de calouros</em></span></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-2</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">1</span></td>
-<td>10/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Introdução da UC: Matemática e Estatística; Dados e Modelos</span></td>
-<td><span class="aula-celula is-teoria">Introdução da UC: Matemática e Estatística; Dados e Modelos</span></td>
-<td></td>
-<td></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-2</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">2</span></td>
-<td>12/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">A geometria e a álgebra de vetores</span></td>
-<td><span class="aula-celula is-teoria">A geometria e a álgebra de vetores</span></td>
-<td><a href="content/slides/slides-bme-geometria-vetores.html" target="_blank">A geometria e a álgebra de vetores</a></td>
-<td></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">3</span></td>
-<td>17/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Comprimento e ângulo: o produto escalar</span></td>
-<td><span class="aula-celula is-teoria">Comprimento e ângulo: o produto escalar</span></td>
-<td><a href="content/slides/slides-bme-comprimento-angulo.html" target="_blank">Comprimento e ângulo: o produto escalar</a></td>
-<td></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td><span class="aula-idx dia-revezamento">4</span></td>
-<td>19/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">5</span></td>
-<td>24/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica</span></td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">6</span></td>
-<td>26/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Lista 2: produto escalar</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">7</span></td>
-<td>31/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Lista 2: produto escalar</span></td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">8</span></td>
-<td>02/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Álgebra de Matrizes</span></td>
-<td><span class="aula-celula is-teoria">Álgebra de Matrizes</span></td>
-<td><a href="content/slides/slides-bme-matrizes.html" target="_blank">Matrizes</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">9</span></td>
-<td>07/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">A inversa de uma matriz</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de matrizes em planilha eletrônica</span></td>
-<td><a href="content/slides/slides-bme-matrizes.html" target="_blank">Matrizes</a></td>
-<td><a href="https://fcopf.github.io/mead/content/multivariada-numerica/cossine-similarity.html" target="_blank">Similaridade por cosseno - Planilha eletrônica</a></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">10</span></td>
-<td>09/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de matrizes em planilha eletrônica</span></td>
-<td><span class="aula-celula is-teoria">A inversa de uma matriz</span></td>
-<td><a href="content/slides/slides-bme-matrizes.html" target="_blank">Matrizes</a></td>
-<td><a href="https://fcopf.github.io/mead/content/multivariada-numerica/cossine-similarity.html" target="_blank">Similaridade por cosseno - Planilha eletrônica</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">11</span></td>
-<td>14/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 1</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 1</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">12</span></td>
-<td>16/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><a href="content/slides/slides-bme-mmq.html" target="_blank">Método dos Mínimos Quadrados na Regressão Linear Simples</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>21/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><em>Feriado (Tiradentes)</em></span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">13</span></td>
-<td>23/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)</span></td>
-<td><a href="content/slides/slides-bme-mmq.html" target="_blank">Método dos Mínimos Quadrados na Regressão Linear Simples</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">14</span></td>
-<td>28/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)</span></td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><a href="content/slides/slides-bme-mmq.html" target="_blank">Método dos Mínimos Quadrados na Regressão Linear Simples</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">15</span></td>
-<td>30/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Medidas de tendência central e de variação</span></td>
-<td><span class="aula-celula is-teoria">Medidas de tendência central e de variação</span></td>
-<td><a href="./content/reading/tendcentral.html" target="_blank">Média Aritmética</a><br><a href="./content/reading/variacao.html" target="_blank">Variância e Desvio Padrão</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">16</span></td>
-<td>05/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Covariância e coeficiente de correlação</span></td>
-<td><span class="aula-celula is-teoria">Covariância e coeficiente de correlação</span></td>
-<td><a href="./content/reading/covariancia-correlacao.html" target="_blank">Covariância e Correlação Linear</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">17</span></td>
-<td>07/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Partição da soma dos quadrados e coeficiente de determinação na regressão linear</span></td>
-<td><span class="aula-celula is-teoria">Partição da soma dos quadrados e coeficiente de determinação na regressão linear</span></td>
-<td><a href="./content/reading/particao-soma-quadrados-r2.html" target="_blank">Partição da Soma dos Quadrados e Coeficiente de Determinação</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">18</span></td>
-<td>12/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 2</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 2</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">19</span></td>
-<td>14/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções lineares</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções lineares</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">20</span></td>
-<td>19/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: polinômios</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: polinômios</span></td>
-<td><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">21</span></td>
-<td>21/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão linear simples em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-linear-simples.html" target="_blank">MMQ na regressão linear simples - Python</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">22</span></td>
-<td>26/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão linear simples em Python</span></td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-linear-simples.html" target="_blank">MMQ na regressão linear simples - Python</a></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">23</span></td>
-<td>28/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão polinomial em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-polinomial.html" target="_blank">MMQ na regressão polinomial - Python</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">24</span></td>
-<td>02/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão polinomial em Python</span></td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-polinomial.html" target="_blank">MMQ na regressão polinomial - Python</a></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>04/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Feriado (Corpus Christi)</span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">25</span></td>
-<td>09/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 3</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 3</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">26</span></td>
-<td>11/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções potências e exponenciais</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções potências e exponenciais</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">27</span></td>
-<td>16/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções logarítmicas</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções logarítmicas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">28</span></td>
-<td>18/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">MMQ em funções potência, exponenciais e logarítmicas</span></td>
-<td><span class="aula-celula is-teoria">MMQ em funções potência, exponenciais e logarítmicas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">29</span></td>
-<td>23/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a><br><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td><a href="https://fcopf.github.io/mead/content/funcoes-modelos/funcoes-potencia.html" target="_blank">Funções potência - Python</a></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">30</span></td>
-<td>25/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a><br><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td><a href="https://fcopf.github.io/mead/content/funcoes-modelos/funcoes-potencia.html" target="_blank">Funções potência - Python</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">31</span></td>
-<td>30/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções trigonométricas em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">32</span></td>
-<td>02/07</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções trigonométricas em Python</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">33</span></td>
-<td>07/07</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 4</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 4</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>09/07</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Feriado (Revolução Constitucionalista)</span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>14/07</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Exame</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">12</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+<p><span class="math display">\[SQ_{XY} = 32, \qquad s_{XY} = \frac{32}{5} = 6.4\]</span></p>
+</section>
+<section id="sinal-da-covariância-análise-por-quadrantes" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="sinal-da-covariância-análise-por-quadrantes"><span class="header-section-number">3.2</span> Sinal da covariância: análise por quadrantes</h3>
+<p>No gráfico de dispersão, as retas <span class="math inline">\(X = \bar{X}\)</span> e <span class="math inline">\(Y = \bar{Y}\)</span> dividem o plano em quatro regiões. O sinal de cada produto <span class="math inline">\((X_i - \bar{X})(Y_i - \bar{Y})\)</span> depende de onde o ponto está:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Quadrante</th>
+<th style="text-align: center;"><span class="math inline">\(X_i - \bar{X}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(Y_i - \bar{Y}\)</span></th>
+<th style="text-align: center;">Produto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">I (superior direito)</td>
+<td style="text-align: center;"><span class="math inline">\(+\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">II (superior esquerdo)</td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">III (inferior esquerdo)</td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">IV (inferior direito)</td>
+<td style="text-align: center;"><span class="math inline">\(+\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="covariancia-correlacao_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Análise por quadrantes para três situações de covariância. As linhas tracejadas indicam as médias de X e Y. A cor de cada ponto indica o sinal do produto cruzado: azul (+) e vermelho (−).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Quando os pontos se concentram nos quadrantes I e III, os produtos cruzados tendem a ser positivos. Quando se concentram nos quadrantes II e IV, tendem a ser negativos. Quando aparecem distribuídos sem padrão linear claro, os sinais positivos e negativos tendem a se compensar.</p>
+</section>
+</section>
+<section id="normalização-o-coeficiente-de-correlação-de-pearson" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="normalização-o-coeficiente-de-correlação-de-pearson"><span class="header-section-number">4</span> Normalização: o coeficiente de correlação de Pearson</h2>
+<p>A covariância já informa direção e alinhamento, mas ainda depende da escala. Se multiplicarmos todos os desvios de uma variável por 10, a covariância também fica 10 vezes maior, mesmo que a direção conjunta das variações não tenha mudado.</p>
+<p>Para comparar apenas a <strong>direção</strong> das variações, independentemente do tamanho dos vetores, padronizamos cada vetor de desvios pelo seu próprio comprimento. Isso leva ao coeficiente de correlação de Pearson:</p>
+<p><span class="math display">\[r = \frac{s_{XY}}{s_X s_Y}\]</span></p>
+<p>Como <span class="math inline">\(s_X\)</span> e <span class="math inline">\(s_Y\)</span> medem o tamanho típico das variações de cada variável, a divisão por <span class="math inline">\(s_X s_Y\)</span> transforma a covariância em uma medida <strong>adimensional</strong>.</p>
+<p>Em forma expandida,</p>
+<p><span class="math display">\[r = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i=1}^n (X_i - \bar{X})^2 \cdot \sum_{i=1}^n (Y_i - \bar{Y})^2}}\]</span></p>
+<p>Assim, a correlação compara duas coisas ao mesmo tempo:</p>
+<ul>
+<li>se os desvios apontam para a mesma direção ou para direções opostas;</li>
+<li>quão forte é esse alinhamento depois de descontar a escala de cada variável.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Coeficiente de correlação de Pearson
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[r = \frac{s_{XY}}{s_X s_Y}\]</span></p>
+<ul>
+<li><span class="math inline">\(r \approx 1\)</span>: as variações apontam quase para a mesma direção;</li>
+<li><span class="math inline">\(r \approx 0\)</span>: o alinhamento linear é fraco ou inexistente;</li>
+<li><span class="math inline">\(r \approx -1\)</span>: as variações apontam em direções opostas.</li>
+</ul>
+</div>
+</div>
+<p>No exemplo do texto: <span class="math inline">\(r = 0.9331\)</span>.</p>
+</section>
+<section id="interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores"><span class="header-section-number">5</span> Interpretação geométrica: o cosseno do ângulo entre vetores</h2>
+<p>Depois da padronização, a correlação pode ser lida geometricamente. Pense nos vetores centrados <span class="math inline">\(\mathbf{d}_X\)</span> e <span class="math inline">\(\mathbf{d}_Y\)</span>. Se dividirmos cada um pelo seu comprimento, obtemos dois vetores unitários, isto é, dois vetores de comprimento 1 que preservam apenas a direção:</p>
+<p><span class="math display">\[\mathbf{u}_X = \frac{\mathbf{d}_X}{\|\mathbf{d}_X\|}, \qquad \mathbf{u}_Y = \frac{\mathbf{d}_Y}{\|\mathbf{d}_Y\|}\]</span></p>
+<p>Esses vetores padronizados permitem comparar direções diretamente.</p>
+<ul>
+<li>Se <span class="math inline">\(\mathbf{u}_X\)</span> e <span class="math inline">\(\mathbf{u}_Y\)</span> apontam quase para o mesmo lado, a correlação fica perto de <span class="math inline">\(1\)</span>.</li>
+<li>Se ficam quase perpendiculares, a correlação fica perto de <span class="math inline">\(0\)</span>.</li>
+<li>Se apontam para lados opostos, a correlação fica perto de <span class="math inline">\(-1\)</span>.</li>
+</ul>
+<p>Em linguagem geométrica, a correlação é o cosseno do ângulo <span class="math inline">\(\theta\)</span> entre os vetores centrados:</p>
+<p><span class="math display">\[r = \frac{\mathbf{d}_X^\top\mathbf{d}_Y}{\|\mathbf{d}_X\|\,\|\mathbf{d}_Y\|} = \cos\theta\]</span></p>
+<p>Essa fórmula não deve ser lida como um truque algébrico, mas como a tradução exata da ideia de alinhamento: a correlação mede <strong>quão parecidas são as direções</strong> das variações de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</p>
+<p>No exemplo do texto, o ângulo entre <span class="math inline">\(\mathbf{d}_X\)</span> e <span class="math inline">\(\mathbf{d}_Y\)</span> é <span class="math inline">\(\theta = \arccos(0.9331) \approx 21.1°\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="covariancia-correlacao_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption>Interpretação geométrica da correlação como comparação entre direções. À esquerda, os vetores apontam quase para a mesma direção. Ao centro, ficam quase perpendiculares. À direita, apontam em direções opostas.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="formulação-vetorial" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="formulação-vetorial"><span class="header-section-number">6</span> Formulação vetorial</h2>
+<p>Reunindo os resultados anteriores, a covariância e a correlação podem ser escritas em termos dos vetores centrados:</p>
+<p><span class="math display">\[\mathbf{d}_X = \mathbf{M}\mathbf{x}, \qquad \mathbf{d}_Y = \mathbf{M}\mathbf{y}\]</span></p>
+<p>A covariância é</p>
+<p><span class="math display">\[s_{XY} = \frac{\mathbf{d}_X^\top \mathbf{d}_Y}{n-1} = \frac{\mathbf{x}^\top\mathbf{M}\mathbf{y}}{n-1}\]</span></p>
+<p>Essa expressão mostra que a covariância é um <strong>produto escalar entre vetores centrados</strong>, dividido por <span class="math inline">\(n-1\)</span>.</p>
+<p>Já a correlação é</p>
+<p><span class="math display">\[r = \frac{\mathbf{d}_X^\top\mathbf{d}_Y}{\|\mathbf{d}_X\|\,\|\mathbf{d}_Y\|} = \cos\theta\]</span></p>
+<p>isto é, a versão padronizada desse produto escalar, usada para comparar direções e não tamanhos.</p>
+</section>
+<section id="formulação-matricial" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="formulação-matricial"><span class="header-section-number">7</span> Formulação matricial</h2>
+<p>Quando organizamos <span class="math inline">\(p\)</span> variáveis nas colunas de uma matriz <span class="math inline">\(\mathbf{X}\)</span>, a matriz de dados centrados é</p>
+<p><span class="math display">\[\tilde{\mathbf{X}} = \mathbf{M}\mathbf{X}\]</span></p>
+<p>A partir dela, a <strong>matriz de covariâncias</strong> resume os alinhamentos par a par entre as variáveis:</p>
+<p><span class="math display">\[\mathbf{S} = \frac{1}{n-1}\,\tilde{\mathbf{X}}^\top\tilde{\mathbf{X}} = \frac{1}{n-1}\,\mathbf{X}^\top\mathbf{M}\mathbf{X}\]</span></p>
+<p>O elemento <span class="math inline">\((j,k)\)</span> de <span class="math inline">\(\mathbf{S}\)</span> é a covariância entre as variáveis <span class="math inline">\(j\)</span> e <span class="math inline">\(k\)</span>, enquanto a diagonal guarda as variâncias.</p>
+<p>Se quisermos comparar direções após retirar o efeito da escala, usamos a <strong>matriz de correlações</strong>. Seja <span class="math inline">\(\mathbf{D}_s = \operatorname{diag}(s_1, s_2, \ldots, s_p)\)</span> a matriz diagonal dos desvios padrão. Então</p>
+<p><span class="math display">\[\mathbf{R} = \mathbf{D}_s^{-1}\mathbf{S}\mathbf{D}_s^{-1}\]</span></p>
+<p>Assim, <span class="math inline">\(\mathbf{R}\)</span> resume os alinhamentos padronizados entre todas as variáveis: a diagonal é sempre <span class="math inline">\(1\)</span>, e os demais elementos ficam entre <span class="math inline">\(-1\)</span> e <span class="math inline">\(1\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Resumo: covariância e correlação na linguagem vetorial e matricial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 46%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantidade</th>
+<th style="text-align: left;">Leitura pedagógica</th>
+<th style="text-align: left;">Expressão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Covariância amostral</td>
+<td style="text-align: left;">alinhamento entre vetores centrados</td>
+<td style="text-align: left;"><span class="math inline">\(s_{XY} = \dfrac{\mathbf{d}_X^\top\mathbf{d}_Y}{n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Correlação de Pearson</td>
+<td style="text-align: left;">comparação de direções</td>
+<td style="text-align: left;"><span class="math inline">\(r = \dfrac{\mathbf{d}_X^\top\mathbf{d}_Y}{\|\mathbf{d}_X\|\,\|\mathbf{d}_Y\|}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matriz de covariâncias</td>
+<td style="text-align: left;">alinhamentos par a par</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{S} = \dfrac{1}{n-1}\mathbf{X}^\top\mathbf{M}\mathbf{X}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Matriz de correlações</td>
+<td style="text-align: left;">alinhamentos após padronização</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{R} = \mathbf{D}_s^{-1}\mathbf{S}\mathbf{D}_s^{-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1298,13 +1286,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./course-info/syllabus.html" class="pagination-link" aria-label="Plano de Ensino">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Plano de Ensino</span>
+      <a href="../../content/reading/variacao.html" class="pagination-link" aria-label="Aula 15 - Variância e Desvio Padrão">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 15 - Variância e Desvio Padrão</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./course-info/ebook-tutorial.pdf" class="pagination-link" aria-label="Minha biblioteca">
-        <span class="nav-page-text">Minha biblioteca</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/reading/particao-soma-quadrados-r2.html" class="pagination-link" aria-label="Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação">
+        <span class="nav-page-text">Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -2,14 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bmebictmar.github.io/bme-2026/course-info/uc-id.html</loc>
-    <lastmod>2026-03-17T14:11:01.055Z</lastmod>
+    <lastmod>2026-03-23T15:39:02.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/tendcentral.html</loc>
+    <lastmod>2026-03-23T15:39:02.671Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/variacao.html</loc>
+    <lastmod>2026-03-23T15:39:02.671Z</lastmod>
   </url>
   <url>
     <loc>https://bmebictmar.github.io/bme-2026/index.html</loc>
-    <lastmod>2026-03-17T14:11:01.058Z</lastmod>
+    <lastmod>2026-03-23T15:39:02.713Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/covariancia-correlacao.html</loc>
+    <lastmod>2026-03-23T15:39:02.670Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/particao-soma-quadrados-r2.html</loc>
+    <lastmod>2026-03-23T15:39:02.671Z</lastmod>
   </url>
   <url>
     <loc>https://bmebictmar.github.io/bme-2026/course-info/syllabus.html</loc>
-    <lastmod>2026-03-17T14:11:01.055Z</lastmod>
+    <lastmod>2026-03-23T15:39:02.710Z</lastmod>
   </url>
 </urlset>

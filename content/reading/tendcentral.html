@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética.">
 
-<title>10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
+<title>Média Aritmética – BASES DA MATEMÁTICA E ESTATÍSTICA - BME</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +27,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./course-info/ebook-tutorial.pdf" rel="next">
-<link href="./course-info/syllabus.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/reading/variacao.html" rel="next">
+<link href="../../content/slides/slides-bme-matriz-leslie.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,9 +78,39 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<meta property="og:title" content="10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
-<meta property="og:description" content="Cronograma: 1º semestre de 2026">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Média Aritmética – BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
+<meta property="og:description" content="Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética.">
+<meta property="og:image" content="https://bmebictmar.github.io/bme-2026/content/reading/images/tendcentral.jpg">
 <meta property="og:site_name" content="BASES DA MATEMÁTICA E ESTATÍSTICA - BME">
 </head>
 
@@ -254,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-info/uc-id.html">Informações do curso</a></li><li class="breadcrumb-item"><a href="./index.html">Cronograma</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/tendcentral.html">Aula 15 - Média Aritmética</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -268,9 +299,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/bmebictmar/bme-2026" title="GitHub da UC" class="quarto-navigation-tool px-1" aria-label="GitHub da UC"><i class="bi bi-github"></i></a>
@@ -288,34 +319,34 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Informações do curso</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/uc-id.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/uc-id.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Identificação da UC</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course-info/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plano de Ensino</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cronograma</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-info/ebook-tutorial.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../course-info/ebook-tutorial.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Minha biblioteca</span></a>
   </div>
 </li>
@@ -329,28 +360,28 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Material teórico</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Alternar seção">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-geometria-vetores.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 2 - A geometria e a álgebra de vetores</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-comprimento-angulo.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-comprimento-angulo.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 3 - Comprimento e ângulo: o produto escalar</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-sistema-equacoes-lineares.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-sistema-equacoes-lineares.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 4-7 - Sistemas de Equações Lineares</span></a>
   </div>
 </li>
@@ -362,7 +393,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/slides-bme-matriz-leslie.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/slides-bme-matriz-leslie.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 8 - Matriz de Leslie</span></a>
   </div>
 </li>
@@ -374,61 +405,61 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/tendcentral.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/tendcentral.html" class="sidebar-item-text sidebar-link active" target="_blank">
  <span class="menu-text">Aula 15 - Média Aritmética</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/variacao.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/variacao.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 15 - Variância e Desvio Padrão</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/covariancia-correlacao.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/covariancia-correlacao.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 16 - Covariância e Correlação Linear</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/reading/particao-soma-quadrados-r2.html" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/reading/particao-soma-quadrados-r2.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-lineares.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-lineares.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 19 - Funções lineares</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/polinomios.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/polinomios.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 20 - Polinômios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-potencias.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-potencias.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aula 26 - Funções potências</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 26-27 - Funções exponenciais e logarítmicas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Aulas 29-32 - Funções trigonométricas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
+  <a href="../../content/slides/modelos-matematicos/novas-funcoes-a-partir-de-conhecidas.pdf" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Material complementar - Novas funções a partir de conhecidas</span></a>
   </div>
 </li>
@@ -474,19 +505,47 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#definição-formal" id="toc-definição-formal" class="nav-link active" data-scroll-target="#definição-formal"><span class="header-section-number">1</span> Definição formal</a></li>
+  <li><a href="#propriedades-algébricas" id="toc-propriedades-algébricas" class="nav-link" data-scroll-target="#propriedades-algébricas"><span class="header-section-number">2</span> Propriedades algébricas</a>
+  <ul class="collapse">
+  <li><a href="#a-soma-dos-desvios-é-sempre-zero" id="toc-a-soma-dos-desvios-é-sempre-zero" class="nav-link" data-scroll-target="#a-soma-dos-desvios-é-sempre-zero"><span class="header-section-number">2.1</span> A soma dos desvios é sempre zero</a></li>
+  <li><a href="#a-média-minimiza-a-soma-dos-quadrados-dos-desvios" id="toc-a-média-minimiza-a-soma-dos-quadrados-dos-desvios" class="nav-link" data-scroll-target="#a-média-minimiza-a-soma-dos-quadrados-dos-desvios"><span class="header-section-number">2.2</span> A média minimiza a soma dos quadrados dos desvios</a></li>
+  </ul></li>
+  <li><a href="#interpretação-geométrica" id="toc-interpretação-geométrica" class="nav-link" data-scroll-target="#interpretação-geométrica"><span class="header-section-number">3</span> Interpretação geométrica</a>
+  <ul class="collapse">
+  <li><a href="#o-exemplo" id="toc-o-exemplo" class="nav-link" data-scroll-target="#o-exemplo"><span class="header-section-number">3.1</span> O exemplo</a></li>
+  <li><a href="#a-ideia-central" id="toc-a-ideia-central" class="nav-link" data-scroll-target="#a-ideia-central"><span class="header-section-number">3.2</span> A ideia central</a></li>
+  </ul></li>
+  <li><a href="#formulação-vetorial" id="toc-formulação-vetorial" class="nav-link" data-scroll-target="#formulação-vetorial"><span class="header-section-number">4</span> Formulação vetorial</a></li>
+  <li><a href="#formulação-matricial" id="toc-formulação-matricial" class="nav-link" data-scroll-target="#formulação-matricial"><span class="header-section-number">5</span> Formulação matricial</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-info/uc-id.html">Informações do curso</a></li><li class="breadcrumb-item"><a href="./index.html">Cronograma</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slides/slides-bme-geometria-vetores.html">Material teórico</a></li><li class="breadcrumb-item"><a href="../../content/reading/tendcentral.html">Aula 15 - Média Aritmética</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp</h1>
-<p class="subtitle lead">Cronograma: 1º semestre de 2026</p>
-</div>
+<h1 class="title">Média Aritmética</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Estatística descritiva</div>
+    <div class="quarto-category">Tendência central</div>
+    <div class="quarto-category">Álgebra linear</div>
+    <div class="quarto-category">Formulação vetorial</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Definição, propriedades, interpretação geométrica e formulação vetorial/matricial da média aritmética.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -501,386 +560,186 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="course-info/academic-calendar-2026.pdf" target="_blank">📄 Calendário Acadêmico 2026 Unifesp (PDF)</a></p>
-<div class="column-screen-inset-right cronograma-bme">
+<p>Quando observamos um conjunto de dados, a primeira questão que surge é: <strong>onde estão concentrados os valores?</strong> Uma medida de posição é um único número que representa o “centro” de um conjunto de observações. Ela permite condensar <span class="math inline">\(n\)</span> valores em uma única quantidade informativa — um representante do conjunto.</p>
+<p>Neste capítulo, desenvolvemos rigorosamente a <strong>média aritmética</strong>, a medida de posição de maior relevância teórica e prática. Sua importância vai além do cálculo elementar: ela possui uma interpretação geométrica precisa e admite uma formulação vetorial e matricial que a conecta diretamente com os demais conceitos da UC.</p>
+<section id="definição-formal" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="definição-formal"><span class="header-section-number">1</span> Definição formal</h2>
+<p>Seja <span class="math inline">\(X\)</span> uma variável com <span class="math inline">\(n\)</span> observações <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>. A <strong>média aritmética</strong> de <span class="math inline">\(X\)</span>, denotada por <span class="math inline">\(\bar{X}\)</span>, é definida como:</p>
+<p><span class="math display">\[\bar{X} = \frac{X_1 + X_2 + \cdots + X_n}{n} = \frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>A média é, portanto, a soma de todas as observações dividida pelo número de observações. Ela atribui <strong>peso igual</strong> a cada elemento do conjunto.</p>
+<p><strong>Exemplo.</strong> Considere a variável <span class="math inline">\(X = \{2,\ 6,\ 4,\ 8,\ 5\}\)</span>, com <span class="math inline">\(n = 5\)</span> observações. A média é:</p>
+<p><span class="math display">\[\bar{X} = \frac{2 + 6 + 4 + 8 + 5}{5} = \frac{25}{5} = 5\]</span></p>
+</section>
+<section id="propriedades-algébricas" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="propriedades-algébricas"><span class="header-section-number">2</span> Propriedades algébricas</h2>
+<section id="a-soma-dos-desvios-é-sempre-zero" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="a-soma-dos-desvios-é-sempre-zero"><span class="header-section-number">2.1</span> A soma dos desvios é sempre zero</h3>
+<p>Defina o <strong>desvio</strong> de cada observação em relação à média como <span class="math inline">\(d_i = X_i - \bar{X}\)</span>. Uma propriedade fundamental da média é que a soma de todos os desvios é exatamente zero:</p>
+<p><span class="math display">\[\sum_{i=1}^n (X_i - \bar{X}) = 0\]</span></p>
+<p><strong>Demonstração.</strong> Expandindo a soma:</p>
+<p><span class="math display">\[\sum_{i=1}^n (X_i - \bar{X}) = \sum_{i=1}^n X_i - \sum_{i=1}^n \bar{X} = \sum_{i=1}^n X_i - n\bar{X}\]</span></p>
+<p>Substituindo <span class="math inline">\(\bar{X} = \frac{1}{n}\sum X_i\)</span>:</p>
+<p><span class="math display">\[= \sum_{i=1}^n X_i - n \cdot \frac{1}{n}\sum_{i=1}^n X_i = \sum_{i=1}^n X_i - \sum_{i=1}^n X_i = 0 \qquad \square\]</span></p>
+<p>No exemplo acima, os desvios são <span class="math inline">\(d_i = (-3,\ 1,\ -1,\ 3,\ 0)\)</span>, cuja soma é <span class="math inline">\(\sum d_i = 0\)</span>.</p>
+<p>Esta propriedade tem uma consequência imediata: a média é o único valor <span class="math inline">\(c\)</span> que minimiza <span class="math inline">\(\sum_{i=1}^n (X_i - c)^2\)</span>. Em outras palavras, <strong>a média é o ponto de equilíbrio do conjunto de dados</strong> — ela equilibra os desvios positivos e negativos.</p>
+</section>
+<section id="a-média-minimiza-a-soma-dos-quadrados-dos-desvios" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="a-média-minimiza-a-soma-dos-quadrados-dos-desvios"><span class="header-section-number">2.2</span> A média minimiza a soma dos quadrados dos desvios</h3>
+<p>Para qualquer constante <span class="math inline">\(c\)</span>, pode-se mostrar que:</p>
+<p><span class="math display">\[\sum_{i=1}^n (X_i - c)^2 = \sum_{i=1}^n (X_i - \bar{X})^2 + n(\bar{X} - c)^2 \geq \sum_{i=1}^n (X_i - \bar{X})^2\]</span></p>
+<p>A igualdade ocorre somente quando <span class="math inline">\(c = \bar{X}\)</span>. Portanto, <strong>a média aritmética é o valor que minimiza a soma dos quadrados dos desvios</strong> — conexão direta com o método dos mínimos quadrados.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tendcentral_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>A média como ponto de equilíbrio. Cada ponto representa uma observação. Os segmentos indicam os desvios <span class="math inline">\(X_i - \bar{X}\)</span>; segmentos em vermelho correspondem a desvios positivos e em verde a desvios negativos. A soma de todos os desvios é zero.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="interpretação-geométrica" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="interpretação-geométrica"><span class="header-section-number">3</span> Interpretação geométrica</h2>
+<section id="o-exemplo" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="o-exemplo"><span class="header-section-number">3.1</span> O exemplo</h3>
+<p>Considere os três valores <span class="math inline">\(2\)</span>, <span class="math inline">\(5\)</span> e <span class="math inline">\(8\)</span>. Se quisermos representar esse conjunto por <strong>um único número constante</strong>, esse número gera um vetor com todas as entradas iguais:</p>
+<p><span class="math display">\[c\mathbf{1} = c \times \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} = \begin{bmatrix} c \\ c \\ c \end{bmatrix}\]</span></p>
+<p>Vamos comparar três escolhas possíveis:</p>
+<p><span class="math display">\[\mathbf{x} = \begin{bmatrix} 2 \\ 5 \\ 8 \end{bmatrix}, \qquad 4 \mathbf{1} = \begin{bmatrix} 4 \\ 4 \\ 4 \end{bmatrix}, \qquad 5\mathbf{1} = \begin{bmatrix} 5 \\ 5 \\ 5 \end{bmatrix}, \qquad 6\mathbf{1} = \begin{bmatrix} 6 \\ 6 \\ 6 \end{bmatrix}\]</span></p>
+<p>As diferenças entre os dados e cada vetor constante são:</p>
+<p><span class="math display">\[\mathbf{x} - 4\mathbf{1} = \begin{bmatrix} -2 \\ 1 \\ 4 \end{bmatrix}, \qquad \mathbf{x} - 5\mathbf{1} = \begin{bmatrix} -3 \\ 0 \\ 3 \end{bmatrix}, \qquad \mathbf{x} - 6\mathbf{1} = \begin{bmatrix} -4 \\ -1 \\ 2 \end{bmatrix}\]</span></p>
+<p>Somando os quadrados dessas diferenças, obtemos:</p>
+<p><span class="math display">\[(-2)^2 + 1^2 + 4^2 = 21, \qquad (-3)^2 + 0^2 + 3^2 = 18, \qquad (-4)^2 + (-1)^2 + 2^2 = 21\]</span></p>
+<p>Logo, entre esses candidatos, o vetor constante mais próximo de <span class="math inline">\(\mathbf{x}\)</span> é <span class="math inline">\(5\mathbf{1}\)</span>. E <span class="math inline">\(5\)</span> é justamente a média dos valores <span class="math inline">\(2\)</span>, <span class="math inline">\(5\)</span> e <span class="math inline">\(8\)</span>.</p>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>A média, representada por <span class="math inline">\(\bar{X}\mathbf{1}\)</span> é a <strong>melhor aproximação constante</strong> para representar o conjunto de dados organizados em um vetor.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="a-ideia-central" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="a-ideia-central"><span class="header-section-number">3.2</span> A ideia central</h3>
+<p>Considere agora as observações:</p>
+<p><span class="math display">\[\mathbf{x} = \begin{bmatrix} X_1 \\ X_2 \\ \vdots \\ X_n \end{bmatrix}\]</span></p>
+<p>Também podemos usar o <em>vetor de uns</em> <span class="math inline">\(\mathbf{1} = (1,1,\ldots,1)^\top\)</span> e multiplicá-lo por uma constante <span class="math inline">\(c\)</span> para produzir um vetor com todas as entradas iguais a <span class="math inline">\(c\)</span>. Portanto, o conjunto dos vetores da forma <span class="math inline">\(c\mathbf{1}\)</span> representa exatamente os <strong>vetores constantes</strong>, isto é, vetores na direção do vetor de uns.</p>
+<p>A decomposição fundamental da média é:</p>
+<p><span class="math display">\[\mathbf{x} = \bar{X}\mathbf{1} + \mathbf{d}\]</span></p>
+<p>em que</p>
+<p><span class="math display">\[\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = \begin{bmatrix} X_1 - \bar{X} \\ X_2 - \bar{X} \\ \vdots \\ X_n - \bar{X} \end{bmatrix}\]</span></p>
+<p>O vetor <span class="math inline">\(\bar{X}\mathbf{1}\)</span> é a parte constante que representa o centro dos dados, e o vetor <span class="math inline">\(\mathbf{d}\)</span> reúne os desvios em relação a esse centro.</p>
+<p>Essa decomposição traduz, em linguagem vetorial, a igualdade escalar</p>
+<p><span class="math display">\[X_i = \bar{X} + d_i \qquad (i = 1,\ldots,n)\]</span></p>
+<p>Como a soma dos desvios é zero, temos:</p>
+<p><span class="math display">\[\mathbf{1}^\top \mathbf{d} = \sum_{i=1}^n d_i = 0\]</span></p>
+<p>Isso quer dizer que <strong>os desvios se compensam</strong> e o que fica acima da média é equilibrado pelo que fica abaixo. Dizemos que <span class="math inline">\(\mathbf{d}\)</span> é <strong>perpendicular</strong> à direção dos vetores constantes. Formalmente, dizemos que <span class="math inline">\(\bar{X}\mathbf{1}\)</span> é a <strong>projeção ortogonal</strong> de <span class="math inline">\(\mathbf{x}\)</span> sobre a direção de <span class="math inline">\(\mathbf{1}\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tendcentral_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="480"></p>
+<figcaption>Representação esquemática em <span class="math inline">\(\mathbb{R}^2\)</span> da decomposição <span class="math inline">\(\mathbf{x} = \bar{X}\mathbf{1} + \mathbf{d}\)</span>. O vetor <span class="math inline">\(\mathbf{x}\)</span> é decomposto em um vetor constante que representa a média e em um vetor de desvios. O fato de <span class="math inline">\(\mathbf{d}\)</span> ser perpendicular à direção de <span class="math inline">\(\mathbf{1}\)</span> equivale à propriedade de que os desvios se compensam.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="formulação-vetorial" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="formulação-vetorial"><span class="header-section-number">4</span> Formulação vetorial</h2>
+<p>Com a intuição em mãos, podemos escrever a média de forma compacta usando a ideia do produto escalar <span class="math inline">\(\mathbf{1}^\top\mathbf{x}\)</span>. No exemplo anterior,</p>
+<p><span class="math display">\[\mathbf{1}^\top\mathbf{x} = 2 + 5 + 8 = 15 \qquad \text{e} \qquad \mathbf{1}^\top\mathbf{1} = 3\]</span></p>
+<p>Portanto,</p>
+<p><span class="math display">\[\bar{X} = \frac{15}{3} = 5\]</span></p>
+<p>No caso geral,</p>
+<p><span class="math display">\[\bar{X} = \frac{\mathbf{1}^\top \mathbf{x}}{n} = \frac{\mathbf{1}^\top \mathbf{x}}{\mathbf{1}^\top \mathbf{1}}\]</span></p>
+<p>Essa expressão mostra que a média pode ser obtida a partir do vetor de dados e do vetor de uns usando apenas soma e divisão pelo número de observações.</p>
+<p>A parte constante associada à média também pode ser escrita de forma compacta:</p>
+<p><span class="math display">\[\bar{X}\mathbf{1} = \frac{\mathbf{1}\mathbf{1}^\top}{n}\,\mathbf{x}\]</span></p>
+<p>A matriz</p>
+<p><span class="math display">\[\mathbf{H}_\mathbf{1} = \frac{\mathbf{1}\mathbf{1}^\top}{n}\]</span></p>
+<p>transforma qualquer vetor no vetor constante correspondente à sua média. Em outras palavras, ela <strong>extrai a parte explicada pela média</strong>. Assim,</p>
+<p><span class="math display">\[\bar{X}\mathbf{1} = \mathbf{H}_\mathbf{1}\mathbf{x}\]</span></p>
+<p>A parte restante é o vetor de desvios:</p>
+<p><span class="math display">\[\mathbf{d} = \mathbf{x} - \bar{X}\mathbf{1} = (\mathbf{I} - \mathbf{H}_\mathbf{1})\mathbf{x} = \mathbf{M}\mathbf{x}\]</span></p>
+<p>onde</p>
+<p><span class="math display">\[\mathbf{M} = \mathbf{I} - \frac{\mathbf{1}\mathbf{1}^\top}{n}\]</span></p>
+<p>é a matriz que <strong>remove a média</strong> e deixa apenas a parte residual do vetor.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Resumo: a média na linguagem vetorial
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 2%">
-<col style="width: 1%">
-<col style="width: 2%">
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 3%">
+<col style="width: 23%">
+<col style="width: 39%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Aula</th>
-<th>Data</th>
-<th>Dia da semana</th>
-<th>Turma A</th>
-<th>Turma B</th>
-<th>Material<br>teórico</th>
-<th>Lab.<br>Informática</th>
+<th style="text-align: left;">Quantidade</th>
+<th style="text-align: left;">Leitura pedagógica</th>
+<th style="text-align: left;">Expressão vetorial</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td>03/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><em>Semana de recepção de calouros</em></span></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Média</td>
+<td style="text-align: left;">média das entradas de <span class="math inline">\(\mathbf{x}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\bar{X} = \dfrac{\mathbf{1}^\top \mathbf{x}}{n}\)</span></td>
 </tr>
 <tr class="even">
-<td></td>
-<td>05/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria"><em>Semana de recepção de calouros</em></span></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Vetor constante da média</td>
+<td style="text-align: left;">repete a média em todas as posições</td>
+<td style="text-align: left;"><span class="math inline">\(\bar{X}\mathbf{1} = \mathbf{H}_\mathbf{1}\mathbf{x}\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">1</span></td>
-<td>10/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Introdução da UC: Matemática e Estatística; Dados e Modelos</span></td>
-<td><span class="aula-celula is-teoria">Introdução da UC: Matemática e Estatística; Dados e Modelos</span></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Vetor de desvios</td>
+<td style="text-align: left;">sobra depois de retirar a média</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{d} = \mathbf{M}\mathbf{x}\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">2</span></td>
-<td>12/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">A geometria e a álgebra de vetores</span></td>
-<td><span class="aula-celula is-teoria">A geometria e a álgebra de vetores</span></td>
-<td><a href="content/slides/slides-bme-geometria-vetores.html" target="_blank">A geometria e a álgebra de vetores</a></td>
-<td></td>
+<td style="text-align: left;">Compensação dos desvios</td>
+<td style="text-align: left;">soma dos desvios igual a zero</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{1}^\top\mathbf{d} = 0\)</span></td>
 </tr>
 <tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">3</span></td>
-<td>17/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Comprimento e ângulo: o produto escalar</span></td>
-<td><span class="aula-celula is-teoria">Comprimento e ângulo: o produto escalar</span></td>
-<td><a href="content/slides/slides-bme-comprimento-angulo.html" target="_blank">Comprimento e ângulo: o produto escalar</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">4</span></td>
-<td>19/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">5</span></td>
-<td>24/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica</span></td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">6</span></td>
-<td>26/03</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Lista 2: produto escalar</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">7</span></td>
-<td>31/03</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Lista 2: produto escalar</span></td>
-<td><span class="aula-celula is-teoria">Sistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan</span></td>
-<td><a href="content/slides/slides-bme-sistema-equacoes-lineares.html" target="_blank">Sistemas de Equações Lineares</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">8</span></td>
-<td>02/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Álgebra de Matrizes</span></td>
-<td><span class="aula-celula is-teoria">Álgebra de Matrizes</span></td>
-<td><a href="content/slides/slides-bme-matrizes.html" target="_blank">Matrizes</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">9</span></td>
-<td>07/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">A inversa de uma matriz</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de matrizes em planilha eletrônica</span></td>
-<td><a href="content/slides/slides-bme-matrizes.html" target="_blank">Matrizes</a></td>
-<td><a href="https://fcopf.github.io/mead/content/multivariada-numerica/cossine-similarity.html" target="_blank">Similaridade por cosseno - Planilha eletrônica</a></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">10</span></td>
-<td>09/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Álgebra de matrizes em planilha eletrônica</span></td>
-<td><span class="aula-celula is-teoria">A inversa de uma matriz</span></td>
-<td><a href="content/slides/slides-bme-matrizes.html" target="_blank">Matrizes</a></td>
-<td><a href="https://fcopf.github.io/mead/content/multivariada-numerica/cossine-similarity.html" target="_blank">Similaridade por cosseno - Planilha eletrônica</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">11</span></td>
-<td>14/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 1</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 1</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">12</span></td>
-<td>16/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><a href="content/slides/slides-bme-mmq.html" target="_blank">Método dos Mínimos Quadrados na Regressão Linear Simples</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>21/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><em>Feriado (Tiradentes)</em></span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">13</span></td>
-<td>23/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)</span></td>
-<td><a href="content/slides/slides-bme-mmq.html" target="_blank">Método dos Mínimos Quadrados na Regressão Linear Simples</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">14</span></td>
-<td>28/04</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)</span></td>
-<td><span class="aula-celula is-teoria">Método dos Mínimos Quadrados regressão linear simples (representação vetorial)</span></td>
-<td><a href="content/slides/slides-bme-mmq.html" target="_blank">Método dos Mínimos Quadrados na Regressão Linear Simples</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">15</span></td>
-<td>30/04</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Medidas de tendência central e de variação</span></td>
-<td><span class="aula-celula is-teoria">Medidas de tendência central e de variação</span></td>
-<td><a href="./content/reading/tendcentral.html" target="_blank">Média Aritmética</a><br><a href="./content/reading/variacao.html" target="_blank">Variância e Desvio Padrão</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">16</span></td>
-<td>05/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Covariância e coeficiente de correlação</span></td>
-<td><span class="aula-celula is-teoria">Covariância e coeficiente de correlação</span></td>
-<td><a href="./content/reading/covariancia-correlacao.html" target="_blank">Covariância e Correlação Linear</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">17</span></td>
-<td>07/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Partição da soma dos quadrados e coeficiente de determinação na regressão linear</span></td>
-<td><span class="aula-celula is-teoria">Partição da soma dos quadrados e coeficiente de determinação na regressão linear</span></td>
-<td><a href="./content/reading/particao-soma-quadrados-r2.html" target="_blank">Partição da Soma dos Quadrados e Coeficiente de Determinação</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">18</span></td>
-<td>12/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 2</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 2</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">19</span></td>
-<td>14/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções lineares</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções lineares</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">20</span></td>
-<td>19/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: polinômios</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: polinômios</span></td>
-<td><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">21</span></td>
-<td>21/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão linear simples em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-linear-simples.html" target="_blank">MMQ na regressão linear simples - Python</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">22</span></td>
-<td>26/05</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão linear simples em Python</span></td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-linear-simples.html" target="_blank">MMQ na regressão linear simples - Python</a></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">23</span></td>
-<td>28/05</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão polinomial em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-polinomial.html" target="_blank">MMQ na regressão polinomial - Python</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">24</span></td>
-<td>02/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ na regressão polinomial em Python</span></td>
-<td><span class="aula-celula is-teoria">MMQ em funções lineares e polinomiais: qualidade do ajuste</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-lineares.pdf" target="_blank">Funções lineares</a><br><a href="content/slides/modelos-matematicos/polinomios.pdf" target="_blank">Polinômios</a></td>
-<td><a href="https://fcopf.github.io/mead/content/regressao-linear/mmq-regressao-polinomial.html" target="_blank">MMQ na regressão polinomial - Python</a></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>04/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Feriado (Corpus Christi)</span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">25</span></td>
-<td>09/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 3</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 3</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">26</span></td>
-<td>11/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções potências e exponenciais</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções potências e exponenciais</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">27</span></td>
-<td>16/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções logarítmicas</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções logarítmicas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-mesma-atividade">28</span></td>
-<td>18/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">MMQ em funções potência, exponenciais e logarítmicas</span></td>
-<td><span class="aula-celula is-teoria">MMQ em funções potência, exponenciais e logarítmicas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">29</span></td>
-<td>23/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a><br><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td><a href="https://fcopf.github.io/mead/content/funcoes-modelos/funcoes-potencia.html" target="_blank">Funções potência - Python</a></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">30</span></td>
-<td>25/06</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a><br><a href="content/slides/modelos-matematicos/funcoes-potencias.pdf" target="_blank">Funções potências</a><br><a href="content/slides/modelos-matematicos/funcoes-exponenciais-e-logaritmicas.pdf" target="_blank">Funções exponenciais e logarítmicas</a></td>
-<td><a href="https://fcopf.github.io/mead/content/funcoes-modelos/funcoes-potencia.html" target="_blank">Funções potência - Python</a></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-revezamento">31</span></td>
-<td>30/06</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções trigonométricas em Python</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="aula-idx dia-revezamento">32</span></td>
-<td>02/07</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-pratica">LAB. INFO: MMQ em funções trigonométricas em Python</span></td>
-<td><span class="aula-celula is-teoria">Modelos Matemáticos: funções trigonométricas</span></td>
-<td><a href="content/slides/modelos-matematicos/funcoes-trigonometricas.pdf" target="_blank">Funções trigonométricas</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><span class="aula-idx dia-mesma-atividade">33</span></td>
-<td>07/07</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria"><strong>Prova 4</strong></span></td>
-<td><span class="aula-celula is-teoria"><strong>Prova 4</strong></span></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td>09/07</td>
-<td>Quinta-feira</td>
-<td><span class="aula-celula is-teoria">Feriado (Revolução Constitucionalista)</span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>14/07</td>
-<td>Terça-feira</td>
-<td><span class="aula-celula is-teoria">Exame</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Decomposição</td>
+<td style="text-align: left;">dados = média + desvios</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{x} = \mathbf{H}_\mathbf{1}\mathbf{x} + \mathbf{M}\mathbf{x}\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+</section>
+<section id="formulação-matricial" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="formulação-matricial"><span class="header-section-number">5</span> Formulação matricial</h2>
+<p>Quando temos <span class="math inline">\(p\)</span> variáveis observadas em <span class="math inline">\(n\)</span> unidades, organizamos os dados na matriz <span class="math inline">\(\mathbf{X}\)</span> de dimensão <span class="math inline">\(n \times p\)</span>, onde cada coluna é um vetor de observações de uma variável:</p>
+<p><span class="math display">\[\mathbf{X} = \begin{bmatrix} X_{11} &amp; X_{12} &amp; \cdots &amp; X_{1p} \\ X_{21} &amp; X_{22} &amp; \cdots &amp; X_{2p} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ X_{n1} &amp; X_{n2} &amp; \cdots &amp; X_{np} \end{bmatrix}\]</span></p>
+<p>O vetor de médias das colunas é</p>
+<p><span class="math display">\[\bar{\mathbf{x}} = \frac{1}{n}\mathbf{X}^\top\mathbf{1} = \begin{bmatrix} \bar{X}_1 \\ \bar{X}_2 \\ \vdots \\ \bar{X}_p \end{bmatrix}\]</span></p>
+<p>Multiplicar <span class="math inline">\(\mathbf{X}\)</span> por <span class="math inline">\(\mathbf{H}_\mathbf{1}\)</span> à esquerda produz, em cada coluna, o vetor constante associado à respectiva média:</p>
+<p><span class="math display">\[\mathbf{H}_\mathbf{1}\mathbf{X} = \mathbf{1}\bar{\mathbf{x}}^\top\]</span></p>
+<p>Já a multiplicação por <span class="math inline">\(\mathbf{M}\)</span> remove essa parte constante e deixa os dados centrados:</p>
+<p><span class="math display">\[\tilde{\mathbf{X}} = \mathbf{M}\mathbf{X} = \mathbf{X} - \mathbf{1}\bar{\mathbf{x}}^\top\]</span></p>
+<p>Assim, cada coluna de <span class="math inline">\(\tilde{\mathbf{X}}\)</span> passa a ter média zero. Essa matriz centrada será o ponto de partida para variância, covariância, correlação e, mais adiante, para a linguagem matricial dos mínimos quadrados.</p>
+<p>Se quisermos registrar o nome técnico, dizemos que <span class="math inline">\(\mathbf{H}_\mathbf{1}\)</span> é uma <strong>matriz de projeção</strong> sobre a direção de <span class="math inline">\(\mathbf{1}\)</span> e que <span class="math inline">\(\mathbf{H}_\mathbf{1}\)</span> e <span class="math inline">\(\mathbf{M}\)</span> são <strong>idempotentes</strong>, isto é, aplicá-las duas vezes não muda o resultado.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1298,13 +1157,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./course-info/syllabus.html" class="pagination-link" aria-label="Plano de Ensino">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Plano de Ensino</span>
+      <a href="../../content/slides/slides-bme-matriz-leslie.html" class="pagination-link" aria-label="Aula 8 - Matriz de Leslie">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Aula 8 - Matriz de Leslie</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./course-info/ebook-tutorial.pdf" class="pagination-link" aria-label="Minha biblioteca">
-        <span class="nav-page-text">Minha biblioteca</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/reading/variacao.html" class="pagination-link" aria-label="Aula 15 - Variância e Desvio Padrão">
+        <span class="nav-page-text">Aula 15 - Variância e Desvio Padrão</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
