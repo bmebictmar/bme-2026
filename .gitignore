@@ -1,16 +1,50 @@
+# Quarto build output
+/_site/
+_site_libs/
 /.quarto/
+.quarto-cache/
+
+# Quarto freeze cache
+/_freeze/
+
+# Python
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-.claude/
-.local-v8/
-/_site/
-/_freeze/
+
+# R — renv (ignorar tudo exceto arquivos necessários para CI)
+renv/*
+!renv/activate.R
+!renv/settings.json
+!renv/.gitignore
+
+# R session files
 .Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
-renv/library/
-renv/local/
-renv/staging/
-renv/python/
+
+# Cache e arquivos temporários
+*.log
+*.tmp
+*.bak
+render.log
+render.out
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Node/V8
+.local-v8/
+
+# Claude Code
+.claude/
+
+# Conteúdo não versionado
+/content/exams/
