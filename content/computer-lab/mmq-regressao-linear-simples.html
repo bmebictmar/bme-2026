@@ -82,9 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0a320f783d0e23b876e71e3440450a54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3c1855e162b1f73af803fad8796076a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0a320f783d0e23b876e71e3440450a54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -615,7 +615,7 @@ window.Quarto = {
 <section id="importando-as-bibliotecas" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="importando-as-bibliotecas"><span class="header-section-number">2</span> Importando as Bibliotecas</h2>
 <p>Primeiro, vamos importar as bibliotecas que usaremos:</p>
-<div id="dbe36a35" class="cell" data-execution_count="1">
+<div id="f03f4333" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># Para criação e manipulação gráfica</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np           <span class="co"># Para operações matemáticas e matriciais</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -624,13 +624,13 @@ window.Quarto = {
 <section id="inserindo-os-dados" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="inserindo-os-dados"><span class="header-section-number">3</span> Inserindo os Dados</h2>
 <p>Vamos trabalhar um exemplo simples em que <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> são inseridos como listas em Python:</p>
-<div id="fb298991" class="cell" data-execution_count="2">
+<div id="fef1067e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nossos dados de exemplo</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]  <span class="co"># Variável independente (preditora)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">4</span>]  <span class="co"># Variável dependente (resposta)</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Caso deseje visualizar se os objetos <code>x</code> e <code>y</code> foram criados corretamente podemos utilizar a função <code>print()</code>.</p>
-<div id="8f90dc71" class="cell" data-execution_count="3">
+<div id="c7d98e45" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valores de x:"</span>, x)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valores de y:"</span>, y)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -642,7 +642,7 @@ Valores de y: [0, 1, 1, 4, 4]</code></pre>
 <section id="visualizando-os-dados" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="visualizando-os-dados"><span class="header-section-number">4</span> Visualizando os Dados</h2>
 <p>Antes de ajustar o modelo, vamos visualizar nossos dados em um gráfico de dispersão utilizando a função <code>scatter()</code> da biblioteca <a href="https://matplotlib.org/">Matplotlib</a>:</p>
-<div id="42836fd9" class="cell" data-execution_count="4">
+<div id="f9498093" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de dispersão</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color <span class="op">=</span> <span class="st">'#0072B2'</span>, s<span class="op">=</span><span class="dv">120</span>, label<span class="op">=</span><span class="st">'Dados observados'</span>)</span>
@@ -670,7 +670,7 @@ Valores de y: [0, 1, 1, 4, 4]</code></pre>
 <h3 data-number="5.1" class="anchored" data-anchor-id="criando-os-vetores-base"><span class="header-section-number">5.1</span> Criando os Vetores Base</h3>
 <p>Lembre-se da teoria: inicialmente, precisamos definir os vetores <span class="math inline">\(\vec{f}_0\)</span>, <span class="math inline">\(\vec{f}_1\)</span> e <span class="math inline">\(\vec{y}\)</span>:</p>
 <p><span class="math display">\[\vec{f}_0 = \begin{bmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{bmatrix} \quad \text{,} \quad \vec{f}_1 = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \quad \text{e} \quad \vec{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}\]</span></p>
-<div id="b225b270" class="cell" data-execution_count="5">
+<div id="a5c1223e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de observações</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(x)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -681,7 +681,7 @@ Valores de y: [0, 1, 1, 4, 4]</code></pre>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> x.copy()  <span class="co"># Copia os valores de x para um novo objeto denominado f1</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Visualizando os vetores <span class="math inline">\(\vec{f}_0\)</span> e <span class="math inline">\(\vec{f}_1\)</span>.</p>
-<div id="86e376ac" class="cell" data-execution_count="6">
+<div id="4f8dec55" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vetor f0 (intercepto):"</span>, f0)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vetor f1 (coeficiente):"</span>, f1)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -694,7 +694,7 @@ Vetor f1 (coeficiente): [0, 1, 2, 3, 4]</code></pre>
 <h3 data-number="5.2" class="anchored" data-anchor-id="construindo-as-matrizes-x-e-y"><span class="header-section-number">5.2</span> Construindo as Matrizes X e Y</h3>
 <p>Agora vamos montar as matrizes do sistema:</p>
 <p><span class="math display">\[X = \begin{bmatrix} \vec{f}_0 &amp; \vec{f}_1 \end{bmatrix} = \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n \end{bmatrix} \quad \text{e} \quad Y = \begin{bmatrix} \vec{y} \end{bmatrix} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}\]</span></p>
-<div id="8ce5e338" class="cell" data-execution_count="7">
+<div id="ea05e4bd" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz X: combinando f0 e f1 em colunas</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack((f0, f1))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -702,7 +702,7 @@ Vetor f1 (coeficiente): [0, 1, 2, 3, 4]</code></pre>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> np.array(y).reshape(n, <span class="dv">1</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Visualizando as matrizes <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</p>
-<div id="46b97bf5" class="cell" data-execution_count="8">
+<div id="df867748" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Matriz X:"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Matriz Y:"</span>)</span>
@@ -731,7 +731,7 @@ Dimensões - X: (5, 2), Y: (5, 1)</code></pre>
 <section id="resolvendo-o-sistema-normal" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="resolvendo-o-sistema-normal"><span class="header-section-number">5.3</span> Resolvendo o Sistema Normal</h3>
 <p>Agora vamos calcular os coeficientes usando as operações matriciais: <span class="math display">\[B = (X^T X)^{-1} X^T Y\]</span></p>
-<div id="e84462af" class="cell" data-execution_count="9">
+<div id="dc464649" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando X transposta vezes X</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>XTX <span class="op">=</span> np.dot(X.T, X)  <span class="co"># X.T é a transposta de X</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando X transposta vezes Y</span></span>
@@ -742,7 +742,7 @@ Dimensões - X: (5, 2), Y: (5, 1)</code></pre>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.dot(XTX_inv, XTY)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Visualizando os objetos</p>
-<div id="5af3307d" class="cell" data-execution_count="10">
+<div id="fb00c302" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando X transposta vezes X</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X^T X:"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(XTX)</span>
@@ -779,7 +779,7 @@ Nota
 <ol type="1">
 <li>A função ´np.dot()´ em Python pode ser substituída pelo símbolo <code>@</code>. Teste os códigos abaixo e verifique que os resultados coincidem:</li>
 </ol>
-<div id="b9a2aa7f" class="cell" data-execution_count="11">
+<div id="1749dde2" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Usando np.dot()"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.dot(X.T, X))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -788,7 +788,7 @@ Nota
  [10 30]]</code></pre>
 </div>
 </div>
-<div id="2e065e1d" class="cell" data-execution_count="12">
+<div id="ce3def70" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Usando '@'"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.T <span class="op">@</span> X)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -800,13 +800,13 @@ Nota
 <ol start="2" type="1">
 <li>Os elementos internos de uma matriz podem ser acessados destacando suas posições na linha e na coluna. Considere a matriz <code>B</code>. O coeficiente <span class="math inline">\(\beta_0\)</span> pode ser acessado na linha 1 e coluna 1, enquanto <span class="math inline">\(\beta_1\)</span> pode ser acessado na linha 2 e coluna 1.</li>
 </ol>
-<div id="8962893b" class="cell" data-execution_count="13">
+<div id="6106578d" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(B[<span class="dv">0</span>,<span class="dv">0</span>]) <span class="co"># Beta 0</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-0.1999999999999993</code></pre>
 </div>
 </div>
-<div id="7946060f" class="cell" data-execution_count="14">
+<div id="84928e6c" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(B[<span class="dv">1</span>,<span class="dv">0</span>]) <span class="co"># Beta 1</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.1</code></pre>
@@ -820,11 +820,11 @@ Nota
 <p>Tendo obtido os coeficientes de regressão, os valores ajustados de <span class="math inline">\(y\)</span> (<span class="math inline">\(\hat{y}\)</span>) podem ser obtidos pela multiplicação matricial:</p>
 <p><span class="math display">\[F = X B = \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n \end{bmatrix} \begin{bmatrix} \hat{\beta}_0 \\ \hat{\beta}_1 \end{bmatrix}\]</span></p>
 <p><strong>Obs.</strong>: denominamos <span class="math inline">\(F\)</span> a matriz de valores ajustados de <span class="math inline">\(y\)</span>.</p>
-<div id="779306f8" class="cell" data-execution_count="15">
+<div id="4b008053" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores ajustados (preditos)</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> np.dot(X, B)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="3df9d1a4" class="cell" data-execution_count="16">
+<div id="3a53e32d" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores ajustados (preditos)</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -844,7 +844,7 @@ Nota
 <p><span class="math display">\[SQ_{res} = \boldsymbol{e}^T \boldsymbol{e}\]</span></p>
 <p>Em que <span class="math inline">\(\boldsymbol{e}\)</span> é a matriz coluna dos <strong>resíduos</strong> obtida pela diferença entre os valores observados e ajustados de <span class="math inline">\(y\)</span>:</p>
 <p><span class="math display">\[\boldsymbol{e} = Y - F = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} - \begin{bmatrix} \hat{y}_1 \\ \hat{y}_2 \\ \vdots \\ \hat{y}_n \end{bmatrix} = \begin{bmatrix} e_1 \\ e_2 \\ \vdots \\ e_n \end{bmatrix}\]</span></p>
-<div id="388b3685" class="cell" data-execution_count="17">
+<div id="cefb7082" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resíduos: diferença entre valores observados e ajustados</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Y <span class="op">-</span> F</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -858,7 +858,7 @@ Nota
 <p><span class="math display">\[SQ_{tot} = \boldsymbol{D}^T \boldsymbol{D}\]</span></p>
 <p>Em que <span class="math inline">\(\boldsymbol{D}\)</span> é a matriz coluna dos <strong>desvios da média</strong> obtida pela diferença entre os valores observados de <span class="math inline">\(y\)</span> e a média de <span class="math inline">\(\overline{y}\)</span>:</p>
 <p><span class="math display">\[\boldsymbol{D} = Y - \overline{Y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} - \begin{bmatrix} \overline{y} \\ \overline{y} \\ \vdots \\ \overline{y} \end{bmatrix} = \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_n \end{bmatrix}\]</span></p>
-<div id="6593ae5c" class="cell" data-execution_count="18">
+<div id="59074dbc" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soma dos Quadrados Total</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Y_medio <span class="op">=</span> np.mean(Y)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> Y <span class="op">-</span> Y_medio</span>
@@ -869,13 +869,13 @@ Nota
 <h4 data-number="5.5.3" class="anchored" data-anchor-id="calculando-o-coeficiente-de-determinação-r2"><span class="header-section-number">5.5.3</span> Calculando o coeficiente de determinação <span class="math inline">\(R^2\)</span>:</h4>
 <p>O <span class="math inline">\(R^2\)</span> é dado pela expressão:</p>
 <p><span class="math display">\[R^2 = 1 - \frac{SQ_{res}}{SQ_{tot}}\]</span></p>
-<div id="b8b0bcb0" class="cell" data-execution_count="19">
+<div id="5ecde0af" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficiente de Determinação R²</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>R2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (SQres <span class="op">/</span> SQtot)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 <p>Visualizando os resultados:</p>
-<div id="cf40e232" class="cell" data-execution_count="20">
+<div id="c08157ef" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" Medidas de Qualidade do Ajuste:"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Soma dos Quadrados dos Resíduos (SQres): </span><span class="sc">{</span>SQres<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Soma dos Quadrados Total (SQtot): </span><span class="sc">{</span>SQtot<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
@@ -902,7 +902,7 @@ Porcentagem da variação explicada: 86.43%</code></pre>
 <section id="visualizando-o-resultado-final" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="visualizando-o-resultado-final"><span class="header-section-number">6</span> Visualizando o Resultado Final</h2>
 <p>Vamos plotar os dados originais junto com a reta ajustada:</p>
-<div id="ca235c4e" class="cell" data-execution_count="21">
+<div id="1d9754a1" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico final</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -940,7 +940,7 @@ Porcentagem da variação explicada: 86.43%</code></pre>
 </section>
 <section id="resumo-dos-resultados" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="resumo-dos-resultados"><span class="header-section-number">7</span> Resumo dos Resultados</h2>
-<div id="3d4aecbc" class="cell" data-execution_count="22">
+<div id="f15bae9f" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"         RESUMO DA REGRESSÃO LINEAR"</span>)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
@@ -964,14 +964,14 @@ Porcentagem da variação explicada: 86.43%
 <ol type="1">
 <li>Inserção dos Dados</li>
 </ol>
-<div id="ea441c8e" class="cell" data-execution_count="23">
+<div id="4130c1d1" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">4</span>]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li>Definição das matrizes do sistema</li>
 </ol>
-<div id="8a419141" class="cell" data-execution_count="24">
+<div id="118fdfef" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(x)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> [<span class="dv">1</span>] <span class="op">*</span> n</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> x.copy()</span>
@@ -982,7 +982,7 @@ Porcentagem da variação explicada: 86.43%
 <ol start="3" type="1">
 <li>Cálculo dos coeficientes</li>
 </ol>
-<div id="89fded6a" class="cell" data-execution_count="25">
+<div id="06de3fd0" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>XTX <span class="op">=</span> X.T <span class="op">@</span> X</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>XTY <span class="op">=</span> X.T <span class="op">@</span> Y</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>XTX_inv <span class="op">=</span> np.linalg.inv(XTX)</span>
@@ -991,7 +991,7 @@ Porcentagem da variação explicada: 86.43%
 <ol start="4" type="1">
 <li>Qualidade do ajuste</li>
 </ol>
-<div id="593dc3a1" class="cell" data-execution_count="26">
+<div id="b9c0a180" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> X <span class="op">@</span> B</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Y <span class="op">-</span> F</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>SQres <span class="op">=</span> (e.T <span class="op">@</span> e)[<span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -1006,7 +1006,7 @@ Porcentagem da variação explicada: 86.43%
 <section id="exercício-prático" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="exercício-prático"><span class="header-section-number">9</span> Exercício Prático</h2>
 <p>Implemente o MMQ com novos dados:</p>
-<div id="d31246b5" class="cell" data-execution_count="27">
+<div id="56eb6010" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimente com estes dados:</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x_novo <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>y_novo <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>]</span>

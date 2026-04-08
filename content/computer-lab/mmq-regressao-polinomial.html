@@ -82,9 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0a320f783d0e23b876e71e3440450a54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3c1855e162b1f73af803fad8796076a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0a320f783d0e23b876e71e3440450a54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -616,7 +616,7 @@ window.Quarto = {
 <section id="importando-as-bibliotecas" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="importando-as-bibliotecas"><span class="header-section-number">2</span> Importando as Bibliotecas</h2>
 <p>Vamos começar importando as bibliotecas necessárias:</p>
-<div id="e074f41f" class="cell" data-execution_count="1">
+<div id="b8701809" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd           <span class="co"># Para manipulação de dados</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># Para criação e manipulação gráfica</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns        <span class="co"># Para criação e manipulação gráfica</span></span>
@@ -626,11 +626,11 @@ window.Quarto = {
 <section id="inserindo-os-dados" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="inserindo-os-dados"><span class="header-section-number">3</span> Inserindo os Dados</h2>
 <p>Vamos trabalhar com dados que apresentam uma relação quadrática. Em vez de digitarmos diretamente os valores de <span class="math inline">\(y\)</span> e <span class="math inline">\(x\)</span> como listas, iremos ler os dados a partir do arquivo local <a href="data/regressao_polinomial_exemplo.csv" target="_blank">regressao_polinomial_exemplo.csv</a>. O arquivo está no formato <code>.csv</code>, em que cada coluna é separada por vírgulas, um tipo de formatação muito comum.</p>
-<div id="14ac6611" class="cell" data-execution_count="2">
+<div id="fe2c7246" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/regressao_polinomial_exemplo.csv'</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Utilizando a função <code>read_csv()</code> da biblioteca <a href="https://pandas.pydata.org/" target="_blank">Pandas</a>, os dados foram importados no formato de <strong>data frame</strong>, basicamente uma estrutura de dados em linhas e colunas, em que as colunas são denominadas de <strong>atributos</strong>.</p>
-<div id="83251afc" class="cell" data-execution_count="3">
+<div id="42bec409" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x   y
@@ -646,7 +646,7 @@ window.Quarto = {
 <section id="visualizando-os-dados" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="visualizando-os-dados"><span class="header-section-number">4</span> Visualizando os Dados</h2>
 <p>Antes de ajustar o modelo, vamos visualizar nossos dados:</p>
-<div id="edfefba3" class="cell" data-execution_count="4">
+<div id="57c0f812" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de dispersão</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> df, x <span class="op">=</span> <span class="st">'x'</span>, y <span class="op">=</span> <span class="st">'y'</span>, color <span class="op">=</span> <span class="st">'#0072B2'</span>, s<span class="op">=</span><span class="dv">120</span>, label<span class="op">=</span><span class="st">'Dados observados'</span>)</span>
@@ -675,7 +675,7 @@ window.Quarto = {
 <h3 data-number="5.1" class="anchored" data-anchor-id="criando-os-vetores-base"><span class="header-section-number">5.1</span> Criando os Vetores Base</h3>
 <p>Para o modelo polinomial <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x + \beta_2 x^2\)</span>, precisamos dos vetores:</p>
 <p><span class="math display">\[\vec{f}_0 = \begin{bmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{bmatrix} \quad \text{,} \quad \vec{f}_1 = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \quad \text{,} \quad \vec{f}_2 = \begin{bmatrix} x_1^2 \\ x_2^2 \\ \vdots \\ x_n^2 \end{bmatrix} \quad \text{e} \quad \vec{y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}\]</span></p>
-<div id="ce4f1cbe" class="cell" data-execution_count="5">
+<div id="80cf51a7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de observações</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(df[<span class="st">'x'</span>])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -689,7 +689,7 @@ window.Quarto = {
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> np.array(df[<span class="st">'x'</span>])<span class="op">**</span><span class="dv">2</span>  <span class="co"># Eleva cada elemento de x ao quadrado</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Visualizando os vetores <span class="math inline">\(\vec{f}_0\)</span>, <span class="math inline">\(\vec{f}_1\)</span> e <span class="math inline">\(\vec{f}_2\)</span>.</p>
-<div id="4d2987e7" class="cell" data-execution_count="6">
+<div id="46248575" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vetor f0 (intercepto):"</span>, f0)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vetor f1 (termo linear):"</span>, f1)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Vetor f2 (termo quadrático):"</span>, f2)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -710,7 +710,7 @@ Vetor f2 (termo quadrático): [ 0  1  4  9 16 25]</code></pre>
 <h3 data-number="5.2" class="anchored" data-anchor-id="construindo-as-matrizes-x-e-y"><span class="header-section-number">5.2</span> Construindo as Matrizes X e Y</h3>
 <p>Agora vamos montar as matrizes do sistema polinomial:</p>
 <p><span class="math display">\[X = \begin{bmatrix} \vec{f}_0 &amp; \vec{f}_1 &amp; \vec{f}_2 \end{bmatrix} = \begin{bmatrix} 1 &amp; x_1 &amp; x_1^2 \\ 1 &amp; x_2 &amp; x_2^2 \\ \vdots &amp; \vdots &amp; \vdots \\ 1 &amp; x_n &amp; x_n^2 \end{bmatrix} \quad \text{e} \quad Y = \begin{bmatrix} \vec{y} \end{bmatrix} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}\]</span></p>
-<div id="357f705c" class="cell" data-execution_count="7">
+<div id="2faab875" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz X: combinando f0, f1 e f2 em colunas</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.column_stack((f0, f1, f2))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -722,7 +722,7 @@ Vetor f2 (termo quadrático): [ 0  1  4  9 16 25]</code></pre>
 <h3 data-number="5.3" class="anchored" data-anchor-id="resolvendo-o-sistema-normal"><span class="header-section-number">5.3</span> Resolvendo o Sistema Normal</h3>
 <p>Calculamos os coeficientes usando a mesma fórmula:</p>
 <p><span class="math display">\[B = (X^T X)^{-1} X^T Y\]</span></p>
-<div id="e2b82c01" class="cell" data-execution_count="8">
+<div id="b4d93aed" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando X transposta vezes X</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>XTX <span class="op">=</span> X.T <span class="op">@</span> X  <span class="co"># X.T é a transposta de X</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando X transposta vezes Y</span></span>
@@ -757,7 +757,7 @@ Vetor f2 (termo quadrático): [ 0  1  4  9 16 25]</code></pre>
 <p>Tendo obtido os coeficientes de regressão, os valores ajustados de <span class="math inline">\(y\)</span> (<span class="math inline">\(\hat{y}\)</span>) podem ser obtidos pela multiplicação matricial:</p>
 <p><span class="math display">\[F = XB = \begin{bmatrix} 1 &amp; x_1 &amp; x^2_1 \\ 1 &amp; x_2 &amp; x^2_2 \\ \vdots &amp; \vdots &amp; \vdots \\ 1 &amp; x_n &amp; x^2_n \end{bmatrix} \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \end{bmatrix}\]</span></p>
 <p><strong>Obs.</strong>: denominamos <span class="math inline">\(F\)</span> a matriz de valores ajustados de <span class="math inline">\(y\)</span>.</p>
-<div id="dc04dad1" class="cell" data-execution_count="9">
+<div id="27186820" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores ajustados (preditos)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> X <span class="op">@</span> B</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -770,7 +770,7 @@ Vetor f2 (termo quadrático): [ 0  1  4  9 16 25]</code></pre>
 <p><span class="math display">\[SQ_{res} = \boldsymbol{e}^T \boldsymbol{e}\]</span></p>
 <p>Em que <span class="math inline">\(\boldsymbol{e}\)</span> é a matriz coluna dos <strong>resíduos</strong> obtida pela diferença entre os valores observados e ajustados de <span class="math inline">\(y\)</span>:</p>
 <p><span class="math display">\[\boldsymbol{e} = Y - F = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} - \begin{bmatrix} \hat{y}_1 \\ \hat{y}_2 \\ \vdots \\ \hat{y}_n \end{bmatrix} = \begin{bmatrix} e_1 \\ e_2 \\ \vdots \\ e_n \end{bmatrix}\]</span></p>
-<div id="ddff99b0" class="cell" data-execution_count="10">
+<div id="b3fd93af" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resíduos: diferença entre valores observados e ajustados</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Y <span class="op">-</span> F</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -784,7 +784,7 @@ Vetor f2 (termo quadrático): [ 0  1  4  9 16 25]</code></pre>
 <p><span class="math display">\[SQ_{tot} = \boldsymbol{D}^T \boldsymbol{D}\]</span></p>
 <p>Em que <span class="math inline">\(\boldsymbol{D}\)</span> é a matriz coluna dos <strong>desvios da média</strong> obtida pela diferença entre os valores observados de <span class="math inline">\(y\)</span> e a média de <span class="math inline">\(\overline{y}\)</span>:</p>
 <p><span class="math display">\[\boldsymbol{D} = Y - \overline{Y} = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} - \begin{bmatrix} \overline{y} \\ \overline{y} \\ \vdots \\ \overline{y} \end{bmatrix} = \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_n \end{bmatrix}\]</span></p>
-<div id="d20982ce" class="cell" data-execution_count="11">
+<div id="116e449e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Soma dos Quadrados Total</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Y_medio <span class="op">=</span> np.mean(Y)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> Y <span class="op">-</span> Y_medio</span>
@@ -795,13 +795,13 @@ Vetor f2 (termo quadrático): [ 0  1  4  9 16 25]</code></pre>
 <h4 data-number="5.5.3" class="anchored" data-anchor-id="calculando-o-coeficiente-de-determinação-r2"><span class="header-section-number">5.5.3</span> Calculando o coeficiente de determinação <span class="math inline">\(R^2\)</span>:</h4>
 <p>O <span class="math inline">\(R^2\)</span> é dado pela expressão:</p>
 <p><span class="math display">\[R^2 = 1 - \frac{SQ_{res}}{SQ_{tot}}\]</span></p>
-<div id="9c822dd4" class="cell" data-execution_count="12">
+<div id="4ef6d80c" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficiente de Determinação R²</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>R2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (SQres <span class="op">/</span> SQtot)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 <p>Visualizando os resultados:</p>
-<div id="75ce6469" class="cell" data-execution_count="13">
+<div id="a0a1b7c1" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" Medidas de Qualidade do Ajuste:"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Soma dos Quadrados dos Resíduos (SQres): </span><span class="sc">{</span>SQres<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Soma dos Quadrados Total (SQtot): </span><span class="sc">{</span>SQtot<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
@@ -822,12 +822,12 @@ Porcentagem da variação explicada: 91.60%</code></pre>
 <h2 data-number="6" class="anchored" data-anchor-id="visualizando-o-resultado-final"><span class="header-section-number">6</span> Visualizando o Resultado Final</h2>
 <p>Vamos plotar os dados originais junto com a curva ajustada:</p>
 <p>Criando uma linha <code>contínua</code> para <span class="math inline">\(\hat{y}\)</span></p>
-<div id="22ef071c" class="cell" data-execution_count="14">
+<div id="a09633fb" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando pontos para desenhar a curva suave</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x_curva <span class="op">=</span> np.linspace(<span class="bu">min</span>(df[<span class="st">'x'</span>]), <span class="bu">max</span>(df[<span class="st">'x'</span>]), <span class="dv">100</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>y_curva <span class="op">=</span> B[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">+</span> B[<span class="dv">1</span>, <span class="dv">0</span>] <span class="op">*</span> x_curva <span class="op">+</span> B[<span class="dv">2</span>, <span class="dv">0</span>] <span class="op">*</span> x_curva<span class="op">**</span><span class="dv">2</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="ca93fb54" class="cell" data-execution_count="15">
+<div id="8da2e2b3" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico final</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -866,7 +866,7 @@ Porcentagem da variação explicada: 91.60%</code></pre>
 </section>
 <section id="resumo-dos-resultados" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="resumo-dos-resultados"><span class="header-section-number">7</span> Resumo dos Resultados</h2>
-<div id="417f4ad3" class="cell" data-execution_count="16">
+<div id="6e5b11a6" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"         RESUMO DA REGRESSÃO POLINOMIAL"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
@@ -888,7 +888,7 @@ Porcentagem da variação explicada: 91.60%
 <section id="comparação-linear-vs-polinomial" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="comparação-linear-vs-polinomial"><span class="header-section-number">8</span> Comparação: Linear vs Polinomial</h2>
 <p>Vamos comparar o ajuste linear e polinomial para os mesmos dados:</p>
-<div id="685e5673" class="cell" data-execution_count="17">
+<div id="fa63031f" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste LINEAR para comparação</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>X_linear <span class="op">=</span> np.column_stack((f0, f1))  <span class="co"># Apenas f0 e f1</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>B_linear <span class="op">=</span> np.linalg.inv(X_linear.T <span class="op">@</span> X_linear) <span class="op">@</span> (X_linear.T <span class="op">@</span> Y)</span>
@@ -913,7 +913,7 @@ Melhoria no R²:    0.2079</code></pre>
 </div>
 </div>
 <p>Gráficos de dispersão</p>
-<div id="f4fd53d2" class="cell" data-execution_count="18">
+<div id="0dda23e3" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> df[<span class="st">"x"</span>].to_numpy()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>y_linear <span class="op">=</span> B_linear[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">+</span> B_linear[<span class="dv">1</span>, <span class="dv">0</span>] <span class="op">*</span> x_vals</span>
@@ -946,13 +946,13 @@ Melhoria no R²:    0.2079</code></pre>
 <ol type="1">
 <li>Inserção dos Dados</li>
 </ol>
-<div id="60e1f4f6" class="cell" data-execution_count="19">
+<div id="a8732aff" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/regressao_polinomial_exemplo.csv'</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li>Definição das matrizes do sistema</li>
 </ol>
-<div id="c2565283" class="cell" data-execution_count="20">
+<div id="30cf57d4" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(df[<span class="st">'x'</span>])</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>f0 <span class="op">=</span> [<span class="dv">1</span>] <span class="op">*</span> n</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> df[<span class="st">'x'</span>].copy()</span>
@@ -964,7 +964,7 @@ Melhoria no R²:    0.2079</code></pre>
 <ol start="3" type="1">
 <li>Cálculo dos coeficientes</li>
 </ol>
-<div id="4e51d47f" class="cell" data-execution_count="21">
+<div id="699556e0" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>XTX <span class="op">=</span> X.T <span class="op">@</span> X</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>XTY <span class="op">=</span> X.T <span class="op">@</span> Y</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>XTX_inv <span class="op">=</span> np.linalg.inv(XTX)</span>
@@ -973,7 +973,7 @@ Melhoria no R²:    0.2079</code></pre>
 <ol start="4" type="1">
 <li>Qualidade do ajuste</li>
 </ol>
-<div id="14166644" class="cell" data-execution_count="22">
+<div id="5ae6d48f" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Y_ajustado <span class="op">=</span> X <span class="op">@</span> B</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Y <span class="op">-</span> Y_ajustado</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>SQres <span class="op">=</span> (e.T <span class="op">@</span> e)[<span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -988,7 +988,7 @@ Melhoria no R²:    0.2079</code></pre>
 <section id="exercício-prático" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="exercício-prático"><span class="header-section-number">10</span> Exercício Prático</h2>
 <p>Teste o código com novos dados:</p>
-<div id="8c0d997a" class="cell" data-execution_count="23">
+<div id="40e9af04" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimente com estes dados (padrão quadrático diferente):</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_novo <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'x_novo'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>],</span>

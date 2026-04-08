@@ -80,9 +80,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-f3ea3929f228048e5d4594fb9c60703c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-87b2dd4d2c7f081f07b36f369cac712e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0a320f783d0e23b876e71e3440450a54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3c1855e162b1f73af803fad8796076a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0a320f783d0e23b876e71e3440450a54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -595,7 +595,7 @@ window.Quarto = {
 
 <section id="pacotes-e-bibliotecas" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="pacotes-e-bibliotecas"><span class="header-section-number">1</span> Pacotes e bibliotecas</h2>
-<div id="886e7d2e" class="cell" data-execution_count="1">
+<div id="45449397" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -613,25 +613,25 @@ window.Quarto = {
 <section id="definindo-e-visualizando-funções-potência-em-python" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="definindo-e-visualizando-funções-potência-em-python"><span class="header-section-number">2.1</span> Definindo e visualizando funções potência em Python</h3>
 <p>Vamos usar o Python para definir e plotar exemplos de cada tipo de função potência. Isso nos ajudará a entender suas características visuais.</p>
-<div id="801f2492" class="cell" data-execution_count="2">
+<div id="6e3b6cb6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a função potência em Python</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> potencia(x, n):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Função potência: f(x) = x^k."""</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span>n</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Utilizando a função criada.</p>
-<div id="6f89e780" class="cell" data-execution_count="3">
+<div id="19a95db0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando um intervalo de valores para x para plotagem</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Começamos de 0.1 para evitar divisão por zero na função recíproca.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">5</span>, <span class="dv">400</span>) </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># x_values</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="6a2eb357" class="cell" data-execution_count="4">
+<div id="cb99a1c7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando valores de y</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y_values <span class="op">=</span> potencia(x_values, <span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># y_values</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="a5f7b098" class="cell" data-execution_count="5">
+<div id="79e3a2e7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando três gráficos lado a lado com diferentes valores de k</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando os subplots</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2, ax3) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span>
@@ -724,7 +724,7 @@ window.Quarto = {
 <p>Podemos observar essa relação em Python da seguinte forma:</p>
 <section id="definindo-a-tabela-de-dados" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="definindo-a-tabela-de-dados"><span class="header-section-number">3.1</span> Definindo a tabela de dados</h3>
-<div id="d3c16f7c" class="cell" data-execution_count="6">
+<div id="4ede596e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados da tabela</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'A'</span>: [<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="fl">7.9</span>, <span class="fl">15.9</span>, <span class="fl">31.6</span>, <span class="dv">63</span>],</span>
@@ -735,7 +735,7 @@ window.Quarto = {
 </section>
 <section id="visualizando-o-gráfico-de-dispersão" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="visualizando-o-gráfico-de-dispersão"><span class="header-section-number">3.2</span> Visualizando o gráfico de dispersão</h3>
-<div id="321a5907" class="cell" data-execution_count="7">
+<div id="1b9a678d" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(df[<span class="st">'A'</span>], df[<span class="st">'S'</span>], label<span class="op">=</span><span class="st">'Dados Observados'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Diagrama de Dispersão: Relação Espécie-Área'</span>)</span>
@@ -796,7 +796,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div id="d79de980" class="cell" data-execution_count="8">
+<div id="7a8be224" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mmq(x, y):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula os coeficientes (B) e o R² de uma regressão linear simples.</span></span>
@@ -829,7 +829,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Definida a função <code>mmq</code>, basta utilizá-la com um conjunto de dados de entrada.</p>
-<div id="f33b899a" class="cell" data-execution_count="9">
+<div id="ab0cf77d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustando o modelo espécie-área</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>B_ea <span class="op">=</span> mmq(np.log(df[<span class="st">'A'</span>]), np.log(df[<span class="st">'S'</span>]))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>B_ea</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
@@ -840,7 +840,7 @@ window.Quarto = {
 </div>
 <section id="visualizando-os-coeficientes-ajustados" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="visualizando-os-coeficientes-ajustados"><span class="header-section-number">4.1</span> Visualizando os coeficientes ajustados</h3>
-<div id="513cfaf9" class="cell" data-execution_count="10">
+<div id="ca2f71ca" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.exp(B_ea[<span class="dv">0</span>])</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> B_ea[<span class="dv">1</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -859,21 +859,21 @@ k:  [0.24475497]</code></pre>
 <section id="visualizando-o-ajuste-da-curva-de-regressão-potência" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="visualizando-o-ajuste-da-curva-de-regressão-potência"><span class="header-section-number">5</span> Visualizando o Ajuste da Curva de Regressão Potência</h2>
 <p>Podemos criar uma nova função que permitirá encontrar os valores ajustados para o modelo potência a partir dos coeficientes da regressão obtidos.</p>
-<div id="d9d91151" class="cell" data-execution_count="11">
+<div id="33e17099" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> S_modelo(novo_x, c, k):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    y_fit <span class="op">=</span> c <span class="op">*</span> novo_x <span class="op">**</span> k</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y_fit</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="gerando-novos-valores-de-x" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="gerando-novos-valores-de-x"><span class="header-section-number">5.1</span> Gerando novos valores de x</h3>
-<div id="33282834" class="cell" data-execution_count="12">
+<div id="cb423b0d" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>A_values <span class="op">=</span> np.linspace(np.<span class="bu">min</span>(df[<span class="st">'A'</span>]), np.<span class="bu">max</span>(df[<span class="st">'A'</span>]), <span class="dv">400</span>) </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>S_fit <span class="op">=</span> S_modelo(A_values, c, k)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="plotando-o-gráfico" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="plotando-o-gráfico"><span class="header-section-number">5.2</span> Plotando o gráfico</h3>
-<div id="a85974e9" class="cell" data-execution_count="13">
+<div id="7884c6a0" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar os dados e o modelo ajustado</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(df[<span class="st">'A'</span>], df[<span class="st">'S'</span>], label<span class="op">=</span><span class="st">'Dados Observados'</span>)</span>
@@ -897,7 +897,7 @@ k:  [0.24475497]</code></pre>
 <section id="estimativas-e-previsões-com-o-modelo" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="estimativas-e-previsões-com-o-modelo"><span class="header-section-number">6</span> Estimativas e Previsões com o Modelo</h2>
 <p>Com o modelo, podemos estimar a riqueza de espécies para áreas específicas.</p>
-<div id="cfb7bd87" class="cell" data-execution_count="14">
+<div id="df4d552b" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimando a riqueza de espécies para áreas específicas</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>S_10km2 <span class="op">=</span> S_modelo(<span class="dv">10</span>, c, k)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>S_70km2 <span class="op">=</span> S_modelo(<span class="dv">70</span>, c, k)</span>
@@ -934,7 +934,7 @@ Riqueza predita para uma área de 70 km²: 31.304 ≈ 31 espécies</code></pre>
 </section>
 <section id="resolvendo-a-desigualdade" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="resolvendo-a-desigualdade"><span class="header-section-number">6.2</span> Resolvendo a Desigualdade</h3>
-<div id="2974d6c6" class="cell" data-execution_count="15">
+<div id="56493858" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Riqueza de espécies alvo</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>target_species <span class="op">=</span> <span class="dv">35</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
