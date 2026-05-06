@@ -1,0 +1,78 @@
+---
+title: "PROVA 2 - GABARITO"
+subtitle: "Bases da Matemática e Estatística (BME) - 1º semestre de 2026"
+date: 2026-05-12
+date-format: "DD/MM/YYYY"
+format:
+  pdf:
+    fontsize: 10pt
+    include-in-header:
+      text: |
+        \usepackage{tabularx}
+lang: pt-br
+---
+
+### Respostas 
+
+## Question Map (schedule order, no labels in student exam)
+
+| Questão | Resposta  | Tópico                                     | Tipo          | Dific.  |
+|---------|----------|--------------------------------------------------|---------------|---------|
+| 1       | E        | MMQ — o que minimiza                             | Conceitual    | Média   |
+| 2       | C        | MMQ — calcular $SQ_{res}$                        | Cálculo       | Média   |
+| 3       | A        | MMQ — calcular $X^TY$                            | Cálculo       | Difícil |
+| 4       | B        | MMQ — calcular $\beta_1$                         | Cálculo       | Fácil   |
+| 5       | B        | Média aritmética — calcular $\bar{x}$            | Cálculo       | Fácil   |
+| 6       | D        | Média aritmética — propriedades                  | Conceitual    | Média   |
+| 7       | A        | Variância amostral — calcular $s^2$              | Cálculo       | Média   |
+| 8       | E        | Covariância amostral — calcular $s_{xy}$         | Cálculo       | Média   |
+| 9       | C        | Partição SQ — interpretar SQT/SQRes/R²           | Interpretação | Difícil |
+| 10      | A        | R² — calcular via r²                             | Cálculo       | Difícil |
+
+### Cálculos resumidos 
+
+**1.** O MMQ determina os coeficientes $\beta_0$ e $\beta_1$ que minimizam a soma dos quadrados dos resíduos $\sum_{i=1}^n e_i^2$. Somar apenas os resíduos $\sum e_i$ resulta sempre em zero e não distingue ajustes; minimizar $\sum |e_i|$ é outro critério (LAD); minimizar $\sum Y_i^2$ ignora a reta ajustada. Portanto, a resposta é E.
+
+**2.** Para a reta $\hat{y} = 2 + x$, calcula-se $\hat{y}_i$ para cada observação: $\hat{y} = (3,\, 4,\, 5,\, 6,\, 7)$. Os resíduos são $e = (0,\, 0,\, 1,\, -1,\, 0)$, portanto:
+$$SQ_{res} = 0^2 + 0^2 + 1^2 + (-1)^2 + 0^2 = 2.$$
+A alternativa A ($SQ_{res} = 0$) confunde $\sum e_i = 0$ com $\sum e_i^2$. Resposta: C.
+
+**3.** A matriz $X$ tem primeira coluna de 1s e segunda coluna $(1,\,2,\,3,\,4,\,5)^T$. O produto $X^TY$ é:
+$$X^TY = \begin{bmatrix} \sum y_i \\ \sum x_i y_i \end{bmatrix} = \begin{bmatrix} 3+5+7+9+11 \\ 1\cdot3 + 2\cdot5 + 3\cdot7 + 4\cdot9 + 5\cdot11 \end{bmatrix} = \begin{bmatrix} 35 \\ 125 \end{bmatrix}.$$
+Resposta: A.
+
+**4.** O coeficiente angular da reta de mínimos quadrados é:
+$$\beta_1 = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum(x_i - \bar{x})^2} = \frac{15}{10} = 1{,}5.$$
+
+**5.**
+$$\bar{x} = \frac{10 + 12 + 8 + 14 + 11}{5} = \frac{55}{5} = 11{,}0.$$
+
+**6.** A propriedade fundamental da média é que a soma dos desvios é sempre zero:
+$$\sum_{i=1}^n (x_i - \bar{x}) = 0.$$
+As demais alternativas são falsas: a média *minimiza* (não maximiza) $\sum(x_i - c)^2$; desvios individuais podem ser maiores ou menores do que $\bar{x}$; a média está definida para qualquer conjunto de números reais.
+
+**7.** $\bar{x} = (2+4+4+6+4)/5 = 4$. Desvios: $(-2,\, 0,\, 0,\, 2,\, 0)$. Soma dos quadrados: $4+0+0+4+0 = 8$.
+$$s^2 = \frac{8}{5-1} = \frac{8}{4} = 2{,}0.$$
+
+**8.** $\bar{x} = 3$, $\bar{y} = 4$. Desvios: $d_x = (-2,\, 0,\, 2)$, $d_y = (-2,\, 0,\, 2)$. Soma dos produtos cruzados:
+$$SP_{xy} = (-2)(-2) + 0 \cdot 0 + 2 \cdot 2 = 4 + 0 + 4 = 8.$$
+$$s_{xy} = \frac{SP_{xy}}{n-1} = \frac{8}{3-1} = 4.$$
+
+**9.**
+$$SQ_{Reg} = SQ_{Total} - SQ_{Res} = 120 - 30 = 90 \qquad \checkmark \text{ (I)}$$
+$$R^2 = \frac{SQ_{Reg}}{SQ_{Total}} = \frac{90}{120} = 0{,}75 \qquad \checkmark \text{ (II)}$$
+O modelo explica $75\%$ da variação total de $y$ em torno de $\bar{y}$. $\checkmark$ (III)
+
+Todas as afirmações I, II e III são corretas. Resposta: C.
+
+**10.** $\bar{x} = (1+2+3+4+5)/5 = 3$, $\bar{y} = (1+3+2+5+4)/5 = 3$.
+
+Desvios: $d_{x_i} = (-2,\,-1,\,0,\,1,\,2)$, $d_{y_i} = (-2,\,0,\,-1,\,2,\,1)$.
+
+$$SQ_x = 4+1+0+1+4 = 10, \qquad SQ_y = 4+0+1+4+1 = 10$$
+
+$$SP_{xy} = (-2)(-2)+(-1)(0)+(0)(-1)+(1)(2)+(2)(1) = 4+0+0+2+2 = 8$$
+
+$$r = \frac{SP_{xy}}{\sqrt{SQ_x \cdot SQ_y}} = \frac{8}{\sqrt{10 \times 10}} = \frac{8}{10} = 0{,}80$$
+
+$$R^2 = r^2 = (0{,}80)^2 = 0{,}64.$$
