@@ -1,357 +1,5 @@
 [
   {
-    "objectID": "content/reading/covariancia-correlacao.html",
-    "href": "content/reading/covariancia-correlacao.html",
-    "title": "Covariância e Correlação Linear",
-    "section": "",
-    "text": "Nos capítulos anteriores, construímos a média e a variância como medidas que descrevem uma única variável. O passo natural é perguntar: como duas variáveis variam em conjunto? Para responder, precisamos de medidas que capturem a associação linear entre \\(X\\) e \\(Y\\): a covariância e o coeficiente de correlação de Pearson.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#motivação-associação-entre-duas-variáveis",
-    "href": "content/reading/covariancia-correlacao.html#motivação-associação-entre-duas-variáveis",
-    "title": "Covariância e Correlação Linear",
-    "section": "1 Motivação: associação entre duas variáveis",
-    "text": "1 Motivação: associação entre duas variáveis\n\n\n\n\n\nTrês situações de associação linear entre duas variáveis. À esquerda, covariância negativa: quando \\(X\\) aumenta, \\(Y\\) tende a diminuir. Ao centro, covariância nula: não há padrão linear. À direita, covariância positiva: quando \\(X\\) aumenta, \\(Y\\) também tende a aumentar.\n\n\n\n\nObservamos que a associação pode ser positiva (quando \\(X\\) aumenta, \\(Y\\) também aumenta), negativa (quando \\(X\\) aumenta, \\(Y\\) diminui) ou nula (sem padrão linear aparente). Buscamos uma medida que quantifique a direção e intensidade desse padrão.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#da-variância-à-covariância",
-    "href": "content/reading/covariancia-correlacao.html#da-variância-à-covariância",
-    "title": "Covariância e Correlação Linear",
-    "section": "2 Da variância à covariância",
-    "text": "2 Da variância à covariância\n\n2.1 O exemplo\nA covariância nasce da mesma ideia da variância, mas agora olhando duas variáveis ao mesmo tempo. Considere o exemplo abaixo:\n\\[\\mathbf{x} = \\begin{bmatrix} 1 \\\\ 3 \\\\ 5 \\end{bmatrix}, \\qquad \\mathbf{y} = \\begin{bmatrix} 2 \\\\ 4 \\\\ 6 \\end{bmatrix}\\]\nAs médias são \\(\\bar{X} = 3\\) e \\(\\bar{Y} = 4\\). Depois de centralizar, obtemos:\n\\[\\mathbf{d}_X = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix}, \\qquad \\mathbf{d}_Y = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix}\\]\nAgora, em vez de elevar ao quadrado cada desvio separadamente, multiplicamos os desvios correspondentes:\n\\[(-2)(-2) = 4, \\qquad 0 \\cdot 0 = 0, \\qquad 2 \\cdot 2 = 4\\]\nSomando,\n\\[4 + 0 + 4 = 8\\]\nO resultado é positivo porque, nas três observações, as duas variáveis caminham juntas: quando uma está abaixo da média, a outra também está; quando uma está acima, a outra também está.\nSe trocarmos \\(\\mathbf{y}\\) por\n\\[\\mathbf{y} = \\begin{bmatrix} 6 \\\\ 4 \\\\ 2 \\end{bmatrix}, \\qquad \\mathbf{d}_Y = \\begin{bmatrix} 2 \\\\ 0 \\\\ -2 \\end{bmatrix}\\]\nentão os produtos ficam\n\\[(-2)(2) = -4, \\qquad 0 \\cdot 0 = 0, \\qquad 2(-2) = -4\\]\nLogo,\n\\[-4 + 0 - 4 = -8\\]\nAgora o resultado é negativo: quando uma variável está acima da média, a outra tende a estar abaixo.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#covariância-amostral",
-    "href": "content/reading/covariancia-correlacao.html#covariância-amostral",
-    "title": "Covariância e Correlação Linear",
-    "section": "3 Covariância amostral",
-    "text": "3 Covariância amostral\nA covariância ela mede o alinhamento entre as variações centradas de duas variáveis, isto é, variações de \\(Y\\) e \\(X\\) em torno de suas médias. Quando os desvios crescem juntos, a covariância tende a ser positiva e quando apontam em direções opostas, tende a ser negativa.\nPodemos definir a covariância a partir da soma dos produtos cruzados entre \\(Y\\) e \\(X\\) por:\n\\[SQ_{XY} = \\sum_{i=1}^n (X_i - \\bar{X})(Y_i - \\bar{Y})\\]\n\\(SQ_{XY}\\) desempenha, para duas variáveis, o mesmo papel que \\(SQ\\) desempenha para uma variável só.\nA covariância amostral é a soma dos produtos cruzados dividida por \\(n-1\\):\n\\[s_{XY} = \\frac{SQ_{XY}}{n-1} = \\frac{\\sum_{i=1}^n (X_i - \\bar{X})(Y_i - \\bar{Y})}{n-1}\\]\nA divisão por \\(n-1\\) aparece pelo mesmo motivo já visto na variância: depois de centrar os dados, uma restrição linear é introduzida em cada vetor de desvios.\nPodemos ler o sinal de \\(s_{XY}\\) da seguinte forma:\n\n\\(s_{XY} &gt; 0\\): as duas variáveis tendem a variar na mesma direção;\n\\(s_{XY} &lt; 0\\): as duas variáveis tendem a variar em direções opostas;\n\\(s_{XY} \\approx 0\\): não há alinhamento linear claro entre as variações.\n\nQuando \\(X = Y\\), a covariância vira a própria variância. Portanto, a variância é um caso particular da covariância.\n\n3.1 Exemplo\nPara \\(X = \\{1,\\ 3,\\ 4,\\ 6,\\ 7,\\ 9\\}\\) e \\(Y = \\{2,\\ 4,\\ 3,\\ 7,\\ 6,\\ 8\\}\\):\n\n\n\nCálculo do produto cruzado para o exemplo.\n\n\n\\(i\\)\n\\(X_i\\)\n\\(Y_i\\)\n\\(d_{X_i}\\)\n\\(d_{Y_i}\\)\n\\(d_{X_i} \\cdot d_{Y_i}\\)\n\n\n\n\n1\n1\n2\n-4\n-3\n12\n\n\n2\n3\n4\n-2\n-1\n2\n\n\n3\n4\n3\n-1\n-2\n2\n\n\n4\n6\n7\n1\n2\n2\n\n\n5\n7\n6\n2\n1\n2\n\n\n6\n9\n8\n4\n3\n12\n\n\n\n\n\n\\[SQ_{XY} = 32, \\qquad s_{XY} = \\frac{32}{5} = 6.4\\]\n\n\n3.2 Sinal da covariância: análise por quadrantes\nNo gráfico de dispersão, as retas \\(X = \\bar{X}\\) e \\(Y = \\bar{Y}\\) dividem o plano em quatro regiões. O sinal de cada produto \\((X_i - \\bar{X})(Y_i - \\bar{Y})\\) depende de onde o ponto está:\n\n\n\nQuadrante\n\\(X_i - \\bar{X}\\)\n\\(Y_i - \\bar{Y}\\)\nProduto\n\n\n\n\nI (superior direito)\n\\(+\\)\n\\(+\\)\n\\(+\\)\n\n\nII (superior esquerdo)\n\\(-\\)\n\\(+\\)\n\\(-\\)\n\n\nIII (inferior esquerdo)\n\\(-\\)\n\\(-\\)\n\\(+\\)\n\n\nIV (inferior direito)\n\\(+\\)\n\\(-\\)\n\\(-\\)\n\n\n\n\n\n\n\n\nAnálise por quadrantes para três situações de covariância. As linhas tracejadas indicam as médias de X e Y. A cor de cada ponto indica o sinal do produto cruzado: azul (+) e vermelho (−).\n\n\n\n\nQuando os pontos se concentram nos quadrantes I e III, os produtos cruzados tendem a ser positivos. Quando se concentram nos quadrantes II e IV, tendem a ser negativos. Quando aparecem distribuídos sem padrão linear claro, os sinais positivos e negativos tendem a se compensar.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#normalização-o-coeficiente-de-correlação-de-pearson",
-    "href": "content/reading/covariancia-correlacao.html#normalização-o-coeficiente-de-correlação-de-pearson",
-    "title": "Covariância e Correlação Linear",
-    "section": "4 Normalização: o coeficiente de correlação de Pearson",
-    "text": "4 Normalização: o coeficiente de correlação de Pearson\nA covariância já informa direção e alinhamento, mas ainda depende da escala. Se multiplicarmos todos os desvios de uma variável por 10, a covariância também fica 10 vezes maior, mesmo que a direção conjunta das variações não tenha mudado.\nPara comparar apenas a direção das variações, independentemente do tamanho dos vetores, padronizamos cada vetor de desvios pelo seu próprio comprimento. Isso leva ao coeficiente de correlação de Pearson:\n\\[r = \\frac{s_{XY}}{s_X s_Y}\\]\nComo \\(s_X\\) e \\(s_Y\\) medem o tamanho típico das variações de cada variável, a divisão por \\(s_X s_Y\\) transforma a covariância em uma medida adimensional.\nEm forma expandida,\n\\[r = \\frac{\\sum_{i=1}^n (X_i - \\bar{X})(Y_i - \\bar{Y})}{\\sqrt{\\sum_{i=1}^n (X_i - \\bar{X})^2 \\cdot \\sum_{i=1}^n (Y_i - \\bar{Y})^2}}\\]\nAssim, a correlação compara duas coisas ao mesmo tempo:\n\nse os desvios apontam para a mesma direção ou para direções opostas;\nquão forte é esse alinhamento depois de descontar a escala de cada variável.\n\n\n\n\n\n\n\nNotaCoeficiente de correlação de Pearson\n\n\n\n\\[r = \\frac{s_{XY}}{s_X s_Y}\\]\n\n\\(r \\approx 1\\): as variações apontam quase para a mesma direção;\n\\(r \\approx 0\\): o alinhamento linear é fraco ou inexistente;\n\\(r \\approx -1\\): as variações apontam em direções opostas.\n\n\n\nNo exemplo do texto: \\(r = 0.9331\\).",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores",
-    "href": "content/reading/covariancia-correlacao.html#interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores",
-    "title": "Covariância e Correlação Linear",
-    "section": "5 Interpretação geométrica: o cosseno do ângulo entre vetores",
-    "text": "5 Interpretação geométrica: o cosseno do ângulo entre vetores\nDepois da padronização, a correlação pode ser lida geometricamente. Pense nos vetores centrados \\(\\mathbf{d}_X\\) e \\(\\mathbf{d}_Y\\). Se dividirmos cada um pelo seu comprimento, obtemos dois vetores unitários, isto é, dois vetores de comprimento 1 que preservam apenas a direção:\n\\[\\mathbf{u}_X = \\frac{\\mathbf{d}_X}{\\|\\mathbf{d}_X\\|}, \\qquad \\mathbf{u}_Y = \\frac{\\mathbf{d}_Y}{\\|\\mathbf{d}_Y\\|}\\]\nEsses vetores padronizados permitem comparar direções diretamente.\n\nSe \\(\\mathbf{u}_X\\) e \\(\\mathbf{u}_Y\\) apontam quase para o mesmo lado, a correlação fica perto de \\(1\\).\nSe ficam quase perpendiculares, a correlação fica perto de \\(0\\).\nSe apontam para lados opostos, a correlação fica perto de \\(-1\\).\n\nEm linguagem geométrica, a correlação é o cosseno do ângulo \\(\\theta\\) entre os vetores centrados:\n\\[r = \\frac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{\\|\\mathbf{d}_X\\|\\,\\|\\mathbf{d}_Y\\|} = \\cos\\theta\\]\nEssa fórmula não deve ser lida como um truque algébrico, mas como a tradução exata da ideia de alinhamento: a correlação mede quão parecidas são as direções das variações de \\(X\\) e \\(Y\\).\nNo exemplo do texto, o ângulo entre \\(\\mathbf{d}_X\\) e \\(\\mathbf{d}_Y\\) é \\(\\theta = \\arccos(0.9331) \\approx 21.1°\\).\n\n\n\n\n\nInterpretação geométrica da correlação como comparação entre direções. À esquerda, os vetores apontam quase para a mesma direção. Ao centro, ficam quase perpendiculares. À direita, apontam em direções opostas.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#formulação-vetorial",
-    "href": "content/reading/covariancia-correlacao.html#formulação-vetorial",
-    "title": "Covariância e Correlação Linear",
-    "section": "6 Formulação vetorial",
-    "text": "6 Formulação vetorial\nReunindo os resultados anteriores, a covariância e a correlação podem ser escritas em termos dos vetores centrados:\n\\[\\mathbf{d}_X = \\mathbf{M}\\mathbf{x}, \\qquad \\mathbf{d}_Y = \\mathbf{M}\\mathbf{y}\\]\nA covariância é\n\\[s_{XY} = \\frac{\\mathbf{d}_X^\\top \\mathbf{d}_Y}{n-1} = \\frac{\\mathbf{x}^\\top\\mathbf{M}\\mathbf{y}}{n-1}\\]\nEssa expressão mostra que a covariância é um produto escalar entre vetores centrados, dividido por \\(n-1\\).\nJá a correlação é\n\\[r = \\frac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{\\|\\mathbf{d}_X\\|\\,\\|\\mathbf{d}_Y\\|} = \\cos\\theta\\]\nisto é, a versão padronizada desse produto escalar, usada para comparar direções e não tamanhos.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/covariancia-correlacao.html#formulação-matricial",
-    "href": "content/reading/covariancia-correlacao.html#formulação-matricial",
-    "title": "Covariância e Correlação Linear",
-    "section": "7 Formulação matricial",
-    "text": "7 Formulação matricial\nQuando organizamos \\(p\\) variáveis nas colunas de uma matriz \\(\\mathbf{X}\\), a matriz de dados centrados é\n\\[\\tilde{\\mathbf{X}} = \\mathbf{M}\\mathbf{X}\\]\nA partir dela, a matriz de covariâncias resume os alinhamentos par a par entre as variáveis:\n\\[\\mathbf{S} = \\frac{1}{n-1}\\,\\tilde{\\mathbf{X}}^\\top\\tilde{\\mathbf{X}} = \\frac{1}{n-1}\\,\\mathbf{X}^\\top\\mathbf{M}\\mathbf{X}\\]\nO elemento \\((j,k)\\) de \\(\\mathbf{S}\\) é a covariância entre as variáveis \\(j\\) e \\(k\\), enquanto a diagonal guarda as variâncias.\nSe quisermos comparar direções após retirar o efeito da escala, usamos a matriz de correlações. Seja \\(\\mathbf{D}_s = \\operatorname{diag}(s_1, s_2, \\ldots, s_p)\\) a matriz diagonal dos desvios padrão. Então\n\\[\\mathbf{R} = \\mathbf{D}_s^{-1}\\mathbf{S}\\mathbf{D}_s^{-1}\\]\nAssim, \\(\\mathbf{R}\\) resume os alinhamentos padronizados entre todas as variáveis: a diagonal é sempre \\(1\\), e os demais elementos ficam entre \\(-1\\) e \\(1\\).\n\n\n\n\n\n\nNotaResumo: covariância e correlação na linguagem vetorial e matricial\n\n\n\n\n\n\n\n\n\n\n\nQuantidade\nLeitura pedagógica\nExpressão\n\n\n\n\nCovariância amostral\nalinhamento entre vetores centrados\n\\(s_{XY} = \\dfrac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{n-1}\\)\n\n\nCorrelação de Pearson\ncomparação de direções\n\\(r = \\dfrac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{\\|\\mathbf{d}_X\\|\\,\\|\\mathbf{d}_Y\\|}\\)\n\n\nMatriz de covariâncias\nalinhamentos par a par\n\\(\\mathbf{S} = \\dfrac{1}{n-1}\\mathbf{X}^\\top\\mathbf{M}\\mathbf{X}\\)\n\n\nMatriz de correlações\nalinhamentos após padronização\n\\(\\mathbf{R} = \\mathbf{D}_s^{-1}\\mathbf{S}\\mathbf{D}_s^{-1}\\)",
-    "crumbs": [
-      "Material teórico",
-      "Aula 16 - Covariância e Correlação Linear"
-    ]
-  },
-  {
-    "objectID": "content/reading/tendcentral.html",
-    "href": "content/reading/tendcentral.html",
-    "title": "Média Aritmética",
-    "section": "",
-    "text": "Quando observamos um conjunto de dados, a primeira questão que surge é: onde estão concentrados os valores? Uma medida de posição é um único número que representa o “centro” de um conjunto de observações. Ela permite condensar \\(n\\) valores em uma única quantidade informativa — um representante do conjunto.\nNeste capítulo, desenvolvemos rigorosamente a média aritmética, a medida de posição de maior relevância teórica e prática. Sua importância vai além do cálculo elementar: ela possui uma interpretação geométrica precisa e admite uma formulação vetorial e matricial que a conecta diretamente com os demais conceitos da UC.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 15 - Média Aritmética"
-    ]
-  },
-  {
-    "objectID": "content/reading/tendcentral.html#definição-formal",
-    "href": "content/reading/tendcentral.html#definição-formal",
-    "title": "Média Aritmética",
-    "section": "1 Definição formal",
-    "text": "1 Definição formal\nSeja \\(X\\) uma variável com \\(n\\) observações \\(X_1, X_2, \\ldots, X_n\\). A média aritmética de \\(X\\), denotada por \\(\\bar{X}\\), é definida como:\n\\[\\bar{X} = \\frac{X_1 + X_2 + \\cdots + X_n}{n} = \\frac{1}{n}\\sum_{i=1}^n X_i\\]\nA média é, portanto, a soma de todas as observações dividida pelo número de observações. Ela atribui peso igual a cada elemento do conjunto.\nExemplo. Considere a variável \\(X = \\{2,\\ 6,\\ 4,\\ 8,\\ 5\\}\\), com \\(n = 5\\) observações. A média é:\n\\[\\bar{X} = \\frac{2 + 6 + 4 + 8 + 5}{5} = \\frac{25}{5} = 5\\]",
-    "crumbs": [
-      "Material teórico",
-      "Aula 15 - Média Aritmética"
-    ]
-  },
-  {
-    "objectID": "content/reading/tendcentral.html#propriedades-algébricas",
-    "href": "content/reading/tendcentral.html#propriedades-algébricas",
-    "title": "Média Aritmética",
-    "section": "2 Propriedades algébricas",
-    "text": "2 Propriedades algébricas\n\n2.1 A soma dos desvios é sempre zero\nDefina o desvio de cada observação em relação à média como \\(d_i = X_i - \\bar{X}\\). Uma propriedade fundamental da média é que a soma de todos os desvios é exatamente zero:\n\\[\\sum_{i=1}^n (X_i - \\bar{X}) = 0\\]\nDemonstração. Expandindo a soma:\n\\[\\sum_{i=1}^n (X_i - \\bar{X}) = \\sum_{i=1}^n X_i - \\sum_{i=1}^n \\bar{X} = \\sum_{i=1}^n X_i - n\\bar{X}\\]\nSubstituindo \\(\\bar{X} = \\frac{1}{n}\\sum X_i\\):\n\\[= \\sum_{i=1}^n X_i - n \\cdot \\frac{1}{n}\\sum_{i=1}^n X_i = \\sum_{i=1}^n X_i - \\sum_{i=1}^n X_i = 0 \\qquad \\square\\]\nNo exemplo acima, os desvios são \\(d_i = (-3,\\ 1,\\ -1,\\ 3,\\ 0)\\), cuja soma é \\(\\sum d_i = 0\\).\nEsta propriedade tem uma consequência imediata: a média é o único valor \\(c\\) que minimiza \\(\\sum_{i=1}^n (X_i - c)^2\\). Em outras palavras, a média é o ponto de equilíbrio do conjunto de dados — ela equilibra os desvios positivos e negativos.\n\n\n2.2 A média minimiza a soma dos quadrados dos desvios\nPara qualquer constante \\(c\\), pode-se mostrar que:\n\\[\\sum_{i=1}^n (X_i - c)^2 = \\sum_{i=1}^n (X_i - \\bar{X})^2 + n(\\bar{X} - c)^2 \\geq \\sum_{i=1}^n (X_i - \\bar{X})^2\\]\nA igualdade ocorre somente quando \\(c = \\bar{X}\\). Portanto, a média aritmética é o valor que minimiza a soma dos quadrados dos desvios — conexão direta com o método dos mínimos quadrados.\n\n\n\n\n\nA média como ponto de equilíbrio. Cada ponto representa uma observação. Os segmentos indicam os desvios \\(X_i - \\bar{X}\\); segmentos em vermelho correspondem a desvios positivos e em verde a desvios negativos. A soma de todos os desvios é zero.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 15 - Média Aritmética"
-    ]
-  },
-  {
-    "objectID": "content/reading/tendcentral.html#interpretação-geométrica",
-    "href": "content/reading/tendcentral.html#interpretação-geométrica",
-    "title": "Média Aritmética",
-    "section": "3 Interpretação geométrica",
-    "text": "3 Interpretação geométrica\n\n3.1 O exemplo\nConsidere os três valores \\(2\\), \\(5\\) e \\(8\\). Se quisermos representar esse conjunto por um único número constante, esse número gera um vetor com todas as entradas iguais:\n\\[c\\mathbf{1} = c \\times \\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} c \\\\ c \\\\ c \\end{bmatrix}\\]\nVamos comparar três escolhas possíveis:\n\\[\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 5 \\\\ 8 \\end{bmatrix}, \\qquad 4 \\mathbf{1} = \\begin{bmatrix} 4 \\\\ 4 \\\\ 4 \\end{bmatrix}, \\qquad 5\\mathbf{1} = \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix}, \\qquad 6\\mathbf{1} = \\begin{bmatrix} 6 \\\\ 6 \\\\ 6 \\end{bmatrix}\\]\nAs diferenças entre os dados e cada vetor constante são:\n\\[\\mathbf{x} - 4\\mathbf{1} = \\begin{bmatrix} -2 \\\\ 1 \\\\ 4 \\end{bmatrix}, \\qquad \\mathbf{x} - 5\\mathbf{1} = \\begin{bmatrix} -3 \\\\ 0 \\\\ 3 \\end{bmatrix}, \\qquad \\mathbf{x} - 6\\mathbf{1} = \\begin{bmatrix} -4 \\\\ -1 \\\\ 2 \\end{bmatrix}\\]\nSomando os quadrados dessas diferenças, obtemos:\n\\[(-2)^2 + 1^2 + 4^2 = 21, \\qquad (-3)^2 + 0^2 + 3^2 = 18, \\qquad (-4)^2 + (-1)^2 + 2^2 = 21\\]\nLogo, entre esses candidatos, o vetor constante mais próximo de \\(\\mathbf{x}\\) é \\(5\\mathbf{1}\\). E \\(5\\) é justamente a média dos valores \\(2\\), \\(5\\) e \\(8\\).\n\n\n\n\n\n\nA média, representada por \\(\\bar{X}\\mathbf{1}\\) é a melhor aproximação constante para representar o conjunto de dados organizados em um vetor.\n\n\n\n\n\n3.2 A ideia central\nConsidere agora as observações:\n\\[\\mathbf{x} = \\begin{bmatrix} X_1 \\\\ X_2 \\\\ \\vdots \\\\ X_n \\end{bmatrix}\\]\nTambém podemos usar o vetor de uns \\(\\mathbf{1} = (1,1,\\ldots,1)^\\top\\) e multiplicá-lo por uma constante \\(c\\) para produzir um vetor com todas as entradas iguais a \\(c\\). Portanto, o conjunto dos vetores da forma \\(c\\mathbf{1}\\) representa exatamente os vetores constantes, isto é, vetores na direção do vetor de uns.\nA decomposição fundamental da média é:\n\\[\\mathbf{x} = \\bar{X}\\mathbf{1} + \\mathbf{d}\\]\nem que\n\\[\\mathbf{d} = \\mathbf{x} - \\bar{X}\\mathbf{1} = \\begin{bmatrix} X_1 - \\bar{X} \\\\ X_2 - \\bar{X} \\\\ \\vdots \\\\ X_n - \\bar{X} \\end{bmatrix}\\]\nO vetor \\(\\bar{X}\\mathbf{1}\\) é a parte constante que representa o centro dos dados, e o vetor \\(\\mathbf{d}\\) reúne os desvios em relação a esse centro.\nEssa decomposição traduz, em linguagem vetorial, a igualdade escalar\n\\[X_i = \\bar{X} + d_i \\qquad (i = 1,\\ldots,n)\\]\nComo a soma dos desvios é zero, temos:\n\\[\\mathbf{1}^\\top \\mathbf{d} = \\sum_{i=1}^n d_i = 0\\]\nIsso quer dizer que os desvios se compensam e o que fica acima da média é equilibrado pelo que fica abaixo. Dizemos que \\(\\mathbf{d}\\) é perpendicular à direção dos vetores constantes. Formalmente, dizemos que \\(\\bar{X}\\mathbf{1}\\) é a projeção ortogonal de \\(\\mathbf{x}\\) sobre a direção de \\(\\mathbf{1}\\).\n\n\n\n\n\nRepresentação esquemática em \\(\\mathbb{R}^2\\) da decomposição \\(\\mathbf{x} = \\bar{X}\\mathbf{1} + \\mathbf{d}\\). O vetor \\(\\mathbf{x}\\) é decomposto em um vetor constante que representa a média e em um vetor de desvios. O fato de \\(\\mathbf{d}\\) ser perpendicular à direção de \\(\\mathbf{1}\\) equivale à propriedade de que os desvios se compensam.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 15 - Média Aritmética"
-    ]
-  },
-  {
-    "objectID": "content/reading/tendcentral.html#formulação-vetorial",
-    "href": "content/reading/tendcentral.html#formulação-vetorial",
-    "title": "Média Aritmética",
-    "section": "4 Formulação vetorial",
-    "text": "4 Formulação vetorial\nCom a intuição em mãos, podemos escrever a média de forma compacta usando a ideia do produto escalar \\(\\mathbf{1}^\\top\\mathbf{x}\\). No exemplo anterior,\n\\[\\mathbf{1}^\\top\\mathbf{x} = 2 + 5 + 8 = 15 \\qquad \\text{e} \\qquad \\mathbf{1}^\\top\\mathbf{1} = 3\\]\nPortanto,\n\\[\\bar{X} = \\frac{15}{3} = 5\\]\nNo caso geral,\n\\[\\bar{X} = \\frac{\\mathbf{1}^\\top \\mathbf{x}}{n} = \\frac{\\mathbf{1}^\\top \\mathbf{x}}{\\mathbf{1}^\\top \\mathbf{1}}\\]\nEssa expressão mostra que a média pode ser obtida a partir do vetor de dados e do vetor de uns usando apenas soma e divisão pelo número de observações.\nA parte constante associada à média também pode ser escrita de forma compacta:\n\\[\\bar{X}\\mathbf{1} = \\frac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\,\\mathbf{x}\\]\nA matriz\n\\[\\mathbf{H}_\\mathbf{1} = \\frac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\]\ntransforma qualquer vetor no vetor constante correspondente à sua média. Em outras palavras, ela extrai a parte explicada pela média. Assim,\n\\[\\bar{X}\\mathbf{1} = \\mathbf{H}_\\mathbf{1}\\mathbf{x}\\]\nA parte restante é o vetor de desvios:\n\\[\\mathbf{d} = \\mathbf{x} - \\bar{X}\\mathbf{1} = (\\mathbf{I} - \\mathbf{H}_\\mathbf{1})\\mathbf{x} = \\mathbf{M}\\mathbf{x}\\]\nonde\n\\[\\mathbf{M} = \\mathbf{I} - \\frac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\]\né a matriz que remove a média e deixa apenas a parte residual do vetor.\n\n\n\n\n\n\nNotaResumo: a média na linguagem vetorial\n\n\n\n\n\n\n\n\n\n\n\nQuantidade\nLeitura pedagógica\nExpressão vetorial\n\n\n\n\nMédia\nmédia das entradas de \\(\\mathbf{x}\\)\n\\(\\bar{X} = \\dfrac{\\mathbf{1}^\\top \\mathbf{x}}{n}\\)\n\n\nVetor constante da média\nrepete a média em todas as posições\n\\(\\bar{X}\\mathbf{1} = \\mathbf{H}_\\mathbf{1}\\mathbf{x}\\)\n\n\nVetor de desvios\nsobra depois de retirar a média\n\\(\\mathbf{d} = \\mathbf{M}\\mathbf{x}\\)\n\n\nCompensação dos desvios\nsoma dos desvios igual a zero\n\\(\\mathbf{1}^\\top\\mathbf{d} = 0\\)\n\n\nDecomposição\ndados = média + desvios\n\\(\\mathbf{x} = \\mathbf{H}_\\mathbf{1}\\mathbf{x} + \\mathbf{M}\\mathbf{x}\\)",
-    "crumbs": [
-      "Material teórico",
-      "Aula 15 - Média Aritmética"
-    ]
-  },
-  {
-    "objectID": "content/reading/tendcentral.html#formulação-matricial",
-    "href": "content/reading/tendcentral.html#formulação-matricial",
-    "title": "Média Aritmética",
-    "section": "5 Formulação matricial",
-    "text": "5 Formulação matricial\nQuando temos \\(p\\) variáveis observadas em \\(n\\) unidades, organizamos os dados na matriz \\(\\mathbf{X}\\) de dimensão \\(n \\times p\\), onde cada coluna é um vetor de observações de uma variável:\n\\[\\mathbf{X} = \\begin{bmatrix} X_{11} & X_{12} & \\cdots & X_{1p} \\\\ X_{21} & X_{22} & \\cdots & X_{2p} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ X_{n1} & X_{n2} & \\cdots & X_{np} \\end{bmatrix}\\]\nO vetor de médias das colunas é\n\\[\\bar{\\mathbf{x}} = \\frac{1}{n}\\mathbf{X}^\\top\\mathbf{1} = \\begin{bmatrix} \\bar{X}_1 \\\\ \\bar{X}_2 \\\\ \\vdots \\\\ \\bar{X}_p \\end{bmatrix}\\]\nMultiplicar \\(\\mathbf{X}\\) por \\(\\mathbf{H}_\\mathbf{1}\\) à esquerda produz, em cada coluna, o vetor constante associado à respectiva média:\n\\[\\mathbf{H}_\\mathbf{1}\\mathbf{X} = \\mathbf{1}\\bar{\\mathbf{x}}^\\top\\]\nJá a multiplicação por \\(\\mathbf{M}\\) remove essa parte constante e deixa os dados centrados:\n\\[\\tilde{\\mathbf{X}} = \\mathbf{M}\\mathbf{X} = \\mathbf{X} - \\mathbf{1}\\bar{\\mathbf{x}}^\\top\\]\nAssim, cada coluna de \\(\\tilde{\\mathbf{X}}\\) passa a ter média zero. Essa matriz centrada será o ponto de partida para variância, covariância, correlação e, mais adiante, para a linguagem matricial dos mínimos quadrados.\nSe quisermos registrar o nome técnico, dizemos que \\(\\mathbf{H}_\\mathbf{1}\\) é uma matriz de projeção sobre a direção de \\(\\mathbf{1}\\) e que \\(\\mathbf{H}_\\mathbf{1}\\) e \\(\\mathbf{M}\\) são idempotentes, isto é, aplicá-las duas vezes não muda o resultado.",
-    "crumbs": [
-      "Material teórico",
-      "Aula 15 - Média Aritmética"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/cossine-similarity.html",
-    "href": "content/computer-lab/cossine-similarity.html",
-    "title": "Ecologia Funcional: aplicação da álgebra matricial",
-    "section": "",
-    "text": "Considere a situação em que temos 8 espécies de peixes descritas por 6 atributos funcionais (Tabela 1). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar o grau de similaridade entre pares de espécies por meio do índice de similaridade por cossenos.\n\n\n\nTabela 1: Atributos funcionais entre 8 espécies de peixes de riachos. CI: Índice de compressão; RD: Altura relativa; IVF: Índice de achatamento ventral; RAC: Área relativa da nadadeira caudal; REP: Posição relativa do olho; MO: orientação da boca. Bstr: Bryconamericus stramineus; Bsp: Bryconamericus sp.; Cfasc: Characidium fasciatum; Czeb: Characidium zebra; Cih: Cetopsorhamdia iheringi; Imin: Imparfinis minutus; Hsp: Hisonotus sp.; Hypsp: Hypostomus sp.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTraço\nBstr\nBsp\nCfasc\nCzeb\nCih\nImin\nHsp\nHypsp\n\n\n\n\nCI\n1.67\n1.71\n1.41\n1.47\n0.97\n0.69\n0.73\n0.66\n\n\nRD\n0.21\n0.26\n0.21\n0.22\n0.17\n0.12\n0.16\n0.19\n\n\nIVF\n0.57\n0.53\n0.51\n0.49\n0.59\n0.55\n0.39\n0.35\n\n\nRAC\n0.14\n0.13\n0.14\n0.11\n0.22\n0.26\n0.19\n0.3\n\n\nREP\n0.7\n0.68\n0.79\n0.8\n0.91\n0.76\n0.71\n0.85\n\n\nMO\n1.26\n1.74\n3.03\n1.98\n2.06\n2.24\n3.14\n3.14\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBryconamericus stramineus\n\n\n\n\n\n\n\nBryconamericus sp\n\n\n\n\n\n\n\n\n\nCharacidium fasciatum\n\n\n\n\n\n\n\nCharacidium zebra\n\n\n\n\n\n\n\n\n\nCetopsorhamdia iheringi\n\n\n\n\n\n\n\nImparfinis minutus\n\n\n\n\n\n\n\n\n\nHisonotus sp\n\n\n\n\n\n\n\nHypostomus sp\n\n\n\n\n\n\nFigura 1: Espécies da Tabela 1.\n\n\n\nCada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a Tabela 1 como:\n\\[\\mathbf{T} =\n\\begin{bmatrix}\n1.67 & 1.71 & \\dots & 0.66\\\\\n0.21 & 0.26 & \\dots & 0.19\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n1.26 & 1.74 & \\dots & 3.14\n\\end{bmatrix}\n\\]",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 9 - 10 - Similaridade por cosseno"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/cossine-similarity.html#matriz-de-atributos-morfológicos",
-    "href": "content/computer-lab/cossine-similarity.html#matriz-de-atributos-morfológicos",
-    "title": "Ecologia Funcional: aplicação da álgebra matricial",
-    "section": "",
-    "text": "Considere a situação em que temos 8 espécies de peixes descritas por 6 atributos funcionais (Tabela 1). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar o grau de similaridade entre pares de espécies por meio do índice de similaridade por cossenos.\n\n\n\nTabela 1: Atributos funcionais entre 8 espécies de peixes de riachos. CI: Índice de compressão; RD: Altura relativa; IVF: Índice de achatamento ventral; RAC: Área relativa da nadadeira caudal; REP: Posição relativa do olho; MO: orientação da boca. Bstr: Bryconamericus stramineus; Bsp: Bryconamericus sp.; Cfasc: Characidium fasciatum; Czeb: Characidium zebra; Cih: Cetopsorhamdia iheringi; Imin: Imparfinis minutus; Hsp: Hisonotus sp.; Hypsp: Hypostomus sp.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTraço\nBstr\nBsp\nCfasc\nCzeb\nCih\nImin\nHsp\nHypsp\n\n\n\n\nCI\n1.67\n1.71\n1.41\n1.47\n0.97\n0.69\n0.73\n0.66\n\n\nRD\n0.21\n0.26\n0.21\n0.22\n0.17\n0.12\n0.16\n0.19\n\n\nIVF\n0.57\n0.53\n0.51\n0.49\n0.59\n0.55\n0.39\n0.35\n\n\nRAC\n0.14\n0.13\n0.14\n0.11\n0.22\n0.26\n0.19\n0.3\n\n\nREP\n0.7\n0.68\n0.79\n0.8\n0.91\n0.76\n0.71\n0.85\n\n\nMO\n1.26\n1.74\n3.03\n1.98\n2.06\n2.24\n3.14\n3.14\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBryconamericus stramineus\n\n\n\n\n\n\n\nBryconamericus sp\n\n\n\n\n\n\n\n\n\nCharacidium fasciatum\n\n\n\n\n\n\n\nCharacidium zebra\n\n\n\n\n\n\n\n\n\nCetopsorhamdia iheringi\n\n\n\n\n\n\n\nImparfinis minutus\n\n\n\n\n\n\n\n\n\nHisonotus sp\n\n\n\n\n\n\n\nHypostomus sp\n\n\n\n\n\n\nFigura 1: Espécies da Tabela 1.\n\n\n\nCada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a Tabela 1 como:\n\\[\\mathbf{T} =\n\\begin{bmatrix}\n1.67 & 1.71 & \\dots & 0.66\\\\\n0.21 & 0.26 & \\dots & 0.19\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n1.26 & 1.74 & \\dots & 3.14\n\\end{bmatrix}\n\\]",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 9 - 10 - Similaridade por cosseno"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/cossine-similarity.html#calculando-similaridade-por-cossenos",
-    "href": "content/computer-lab/cossine-similarity.html#calculando-similaridade-por-cossenos",
-    "title": "Ecologia Funcional: aplicação da álgebra matricial",
-    "section": "2 Calculando Similaridade por cossenos",
-    "text": "2 Calculando Similaridade por cossenos\nCada espécie na Tabela 1 pode ser vista como um vetor \\(\\vec{v}\\) ou \\(\\vec{u}\\) com 6 entradas, uma para cada traço funcional. Assim, o cosseno do ângulo \\(\\theta\\) entre os vetores pode ser calculado por:\n\\[\\cos(\\theta) = \\frac{\\vec{v} \\cdot \\vec{u}}{\\|\\vec{v}\\| \\|\\vec{u}\\|}\n\\tag{1}\\]\nOnde:\n\n\\(\\vec{v} \\cdot \\vec{u}\\) é o produto escalar entre os vetores \\(\\vec{v}\\) e \\(\\vec{u}\\).\n\\(\\|\\vec{v}\\|\\) e \\(\\|\\vec{u}\\|\\) são as normas (comprimentos) dos vetores.\n\\(\\theta\\) é o ângulo entre os vetores no espaço multidimensional de 6 dimensões.\n\nO valor do \\(\\cos(\\theta)\\) funciona como um índice de similaridade cuja interpretação ecológica é direta:\n\n\\(\\cos(\\theta) \\approx 1\\) (ângulo próximo a 0°), indica espécies com alta similaridade funcional, compartilhando estratégias ecológicas semelhantes;\n\\(\\cos(\\theta) \\approx 0\\) (ângulo próximo a 90°) revela espécies ecologicamente distintas, com atributos funcionais divergentes.",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 9 - 10 - Similaridade por cosseno"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/cossine-similarity.html#exemplo-prático-similaridade-entre-bstr-e-bsp",
-    "href": "content/computer-lab/cossine-similarity.html#exemplo-prático-similaridade-entre-bstr-e-bsp",
-    "title": "Ecologia Funcional: aplicação da álgebra matricial",
-    "section": "3 Exemplo Prático: Similaridade entre Bstr e Bsp",
-    "text": "3 Exemplo Prático: Similaridade entre Bstr e Bsp\n\nVetores das espécies:\n\n\\[\n\\vec{v}_{\\text{Bstr}} = \\begin{bmatrix}\n1.67 \\\\ 0.21 \\\\ 0.57 \\\\ 0.14 \\\\ 0.7 \\\\ 1.26\n\\end{bmatrix}, \\quad\n\\vec{u}_{\\text{Bsp}} = \\begin{bmatrix}\n1.71 \\\\ 0.26 \\\\ 0.53 \\\\ 0.13 \\\\ 0.68 \\\\ 1.74\n\\end{bmatrix}\n\\]\n\nProduto Escalar:\n\n\\[\\vec{v} \\cdot \\vec{u} = (1.67 \\times 1.71) + (0.21 \\times 0.26) + \\dots + (1.26 \\times 1.74) = 5.899\\]\n\nNormas dos Vetores: \\[\\|\\vec{v}\\| = \\sqrt{1.67^2 + 0.21^2 + \\dots + 1.26^2} \\approx 2.2924\\] \\[\\|\\vec{u}\\| = \\sqrt{1.71^2 + 0.26^2 + \\dots + 1.74^2} \\approx 2.6037\\]\nCosseno do Ângulo: \\[\\cos(\\theta) = \\frac{5.899}{2.2924 \\times 2.6037} \\approx 0.988\\]",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 9 - 10 - Similaridade por cosseno"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/cossine-similarity.html#similaridade-por-cossenos-a-partir-de-operações-matriciais",
-    "href": "content/computer-lab/cossine-similarity.html#similaridade-por-cossenos-a-partir-de-operações-matriciais",
-    "title": "Ecologia Funcional: aplicação da álgebra matricial",
-    "section": "4 Similaridade por Cossenos a partir de operações matriciais",
-    "text": "4 Similaridade por Cossenos a partir de operações matriciais\nOs passos do item anterior podem ser generalizados para todos os pares de espécies utilizando uma sequência de operações matriciais.\n\nObtenção da Matriz de Produtos Escalares (\\(\\mathbf{E}\\)): \\[\\mathbf{E} = \\mathbf{T}^\\top \\mathbf{T}\\]\n\n\\[\\mathbf{T^\\top} =\n\\begin{bmatrix}\n1.67 & 0.21 & \\dots & 1.26\\\\\n1.71 & 0.26 & \\dots & 1.74\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n0.66 & 0.19 & \\dots & 3.14\n\\end{bmatrix}, \\quad\n\\mathbf{E} =\n\\begin{bmatrix}\ne_{11} & e_{12} & \\dots & e_{18}\\\\\ne_{21} & e_{22} & \\dots & e_{28}\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\ne_{81} & e_{82} & \\dots & e_{88}\n\\end{bmatrix}\n\\]\n\n\n\nObtenção da Matriz \\(\\mathbf{D}\\):\n\nAs normas dos vetores de espécies da matriz \\(\\mathbf{T}\\) podem ser obtidas a partir dos elementos da diagonal da matriz \\(\\mathbf{E}\\), em que:\n\\[\\text{norma}_i = \\sqrt{e_{ii}}\\]\nSabendo disso, obtenha a Matriz \\(\\mathbf{D}\\):\n\\[\\mathbf{D} =\n\\begin{bmatrix}\n\\frac{1}{\\sqrt{e_{11}}} & 0 & \\dots & 0\\\\\n0 & \\frac{1}{\\sqrt{e_{22}}} & \\dots & 0\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n0 & 0 & \\dots & \\frac{1}{\\sqrt{e_{88}}}\n\\end{bmatrix}\n\\]\n\n\nMatriz Final de similaridade por cossenos (\\(\\mathbf{C}\\)):\n\n\\[\\mathbf{C} = \\mathbf{D} \\mathbf{E} \\mathbf{D}\n\\tag{2}\\]",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 9 - 10 - Similaridade por cosseno"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/cossine-similarity.html#roteiro-matriz-de-similaridade-no-google-planilhas",
-    "href": "content/computer-lab/cossine-similarity.html#roteiro-matriz-de-similaridade-no-google-planilhas",
-    "title": "Ecologia Funcional: aplicação da álgebra matricial",
-    "section": "5 Roteiro: Matriz de Similaridade no Google Planilhas",
-    "text": "5 Roteiro: Matriz de Similaridade no Google Planilhas\n\nAcesse sheets.google.com.\nInsira os dados da tabela \\(\\mathbf{T}\\) (Tabela 1). Se necessário, modifique o separador decimal de ponto (.) para vírgula (,).\nCalcule \\(\\mathbf{T}^\\top\\).\n\nDica - utilize a fórmula:\n=TRANSPOR()\n\nCalcule a matriz \\(\\mathbf{E}\\).\n\nDica - utilize a fórmula:\n=MATRIZ.MULT()\n\nCalcule as normas das colunas da matriz \\(\\mathbf{E}\\) e monte a matriz diagonal \\(\\mathbf{D}\\).\n\nDica: A matriz diagonal \\(\\mathbf{D}\\) terá as mesmas dimensões de \\(\\mathbf{E}\\), mas será preenchida com zeros exceto na diagonal principal. Nela, os valores serão \\(\\frac{1}{\\sqrt{e_{ii}}}\\), onde \\(e_{ii}\\) são os elementos da diagonal principal de \\(\\mathbf{E}\\).\n\nCalcule a matriz \\(\\mathbf{C}\\) conforme a Equação 2.\n\nDica - utilize a fórmula:\n=MATRIZ.MULT()\n\nVerificação: calcule o cosseno de \\(\\theta\\) entre algumas espécies utilizando a Equação 1 e verifique se os resultados coincidem com os observados na matriz de similaridade \\(\\mathbf{C}\\).\nVerificação: Considerando as imagens apresentadas na Figura 1, avalie criticamente se a matriz de similaridade representa de maneira fidedigna a semelhança morfométrica entre as espécies.",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 9 - 10 - Similaridade por cosseno"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "",
-    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão linear simples.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\) e \\(\\beta_1\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x\\) que melhor se ajustam aos nossos dados.",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#introdução",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#introdução",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "",
-    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão linear simples.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\) e \\(\\beta_1\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x\\) que melhor se ajustam aos nossos dados.",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#importando-as-bibliotecas",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#importando-as-bibliotecas",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "2 Importando as Bibliotecas",
-    "text": "2 Importando as Bibliotecas\nPrimeiro, vamos importar as bibliotecas que usaremos:\n\nimport matplotlib.pyplot as plt  # Para criação e manipulação gráfica\nimport numpy as np           # Para operações matemáticas e matriciais\n\nDica: No Google Colab, essas bibliotecas já vêm instaladas!",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#inserindo-os-dados",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#inserindo-os-dados",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "3 Inserindo os Dados",
-    "text": "3 Inserindo os Dados\nVamos trabalhar um exemplo simples em que \\(x\\) e \\(y\\) são inseridos como listas em Python:\n\n# Nossos dados de exemplo\nx = [0, 1, 2, 3, 4]  # Variável independente (preditora)\ny = [0, 1, 1, 4, 4]  # Variável dependente (resposta)\n\nCaso deseje visualizar se os objetos x e y foram criados corretamente podemos utilizar a função print().\n\nprint(\"Valores de x:\", x)\nprint(\"Valores de y:\", y)\n\nValores de x: [0, 1, 2, 3, 4]\nValores de y: [0, 1, 1, 4, 4]",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-os-dados",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-os-dados",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "4 Visualizando os Dados",
-    "text": "4 Visualizando os Dados\nAntes de ajustar o modelo, vamos visualizar nossos dados em um gráfico de dispersão utilizando a função scatter() da biblioteca Matplotlib:\n\n# Criando o gráfico de dispersão\nplt.figure(figsize=(8, 6))\nplt.scatter(x, y, color = '#0072B2', s=120, label='Dados observados')\n\n# Configurando o layout gráfico\nplt.title('Gráfico de Dispersão dos Dados', fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nObservação: O gráfico sugere uma relação linear entre as variáveis, o que justifica o uso da regressão linear simples, que iremos ajustar por meio do MMQ.",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#implementando-o-mmq---passo-a-passo",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#implementando-o-mmq---passo-a-passo",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "5 Implementando o MMQ - Passo a Passo",
-    "text": "5 Implementando o MMQ - Passo a Passo\n\n5.1 Criando os Vetores Base\nLembre-se da teoria: inicialmente, precisamos definir os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{y}\\):\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} x_1 \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Número de observações\nn = len(x)\n\n# Vetor f0: vetor de 1's (para o intercepto β₀)\nf0 = [1] * n  # Cria uma lista com n elementos iguais a 1\n\n# Vetor f1: nossos valores de x (para o coeficiente β₁)\nf1 = x.copy()  # Copia os valores de x para um novo objeto denominado f1\n\nVisualizando os vetores \\(\\vec{f}_0\\) e \\(\\vec{f}_1\\).\n\nprint(\"Vetor f0 (intercepto):\", f0)\nprint(\"Vetor f1 (coeficiente):\", f1)\n\nVetor f0 (intercepto): [1, 1, 1, 1, 1]\nVetor f1 (coeficiente): [0, 1, 2, 3, 4]\n\n\n\n\n5.2 Construindo as Matrizes X e Y\nAgora vamos montar as matrizes do sistema:\n\\[X = \\begin{bmatrix} \\vec{f}_0 & \\vec{f}_1 \\end{bmatrix} = \\begin{bmatrix} 1 & x_1 \\\\ 1 & x_2 \\\\ \\vdots & \\vdots \\\\ 1 & x_n \\end{bmatrix} \\quad \\text{e} \\quad Y = \\begin{bmatrix} \\vec{y} \\end{bmatrix} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Matriz X: combinando f0 e f1 em colunas\nX = np.column_stack((f0, f1))\n\n# Matriz Y: transformando y em matriz com n linhas e 1 coluna \nY = np.array(y).reshape(n, 1)\n\nVisualizando as matrizes \\(X\\) e \\(Y\\).\n\nprint(\"Matriz X:\")\nprint(X)\nprint(\"\\nMatriz Y:\")\nprint(Y)\nprint(f\"\\nDimensões - X: {X.shape}, Y: {Y.shape}\")\n\nMatriz X:\n[[1 0]\n [1 1]\n [1 2]\n [1 3]\n [1 4]]\n\nMatriz Y:\n[[0]\n [1]\n [1]\n [4]\n [4]]\n\nDimensões - X: (5, 2), Y: (5, 1)\n\n\nNote agora que a matriz \\(X\\) tem 5 linhas e 2 colunas, enquanto a matriz \\(Y\\) tem 5 linhas e 1 colunas.\n\n\n5.3 Resolvendo o Sistema Normal\nAgora vamos calcular os coeficientes usando as operações matriciais: \\[B = (X^T X)^{-1} X^T Y\\]\n\n# Calculando X transposta vezes X\nXTX = np.dot(X.T, X)  # X.T é a transposta de X\n# Calculando X transposta vezes Y\nXTY = np.dot(X.T, Y)\n# Calculando a matriz inversa (X^T X)^(-1)\nXTX_inv = np.linalg.inv(XTX)  # Inversa de X^T X\n# Coeficientes de regressão\nB = np.dot(XTX_inv, XTY)\n\nVisualizando os objetos\n\n# Calculando X transposta vezes X\nprint(\"X^T X:\")\nprint(XTX)\n\nprint(\"\\nX^T Y:\")\nprint(XTY)\n\nprint(\"\\nB:\")\nprint(B)\n\nX^T X:\n[[ 5 10]\n [10 30]]\n\nX^T Y:\n[[10]\n [31]]\n\nB:\n[[-0.2]\n [ 1.1]]\n\n\n\n\n\n\n\n\nNota\n\n\n\n\nA função ´np.dot()´ em Python pode ser substituída pelo símbolo @. Teste os códigos abaixo e verifique que os resultados coincidem:\n\n\nprint(\"Usando np.dot()\")\nprint(np.dot(X.T, X))\n\nUsando np.dot()\n[[ 5 10]\n [10 30]]\n\n\n\nprint(\"Usando '@'\")\nprint(X.T @ X)\n\nUsando '@'\n[[ 5 10]\n [10 30]]\n\n\n\nOs elementos internos de uma matriz podem ser acessados destacando suas posições na linha e na coluna. Considere a matriz B. O coeficiente \\(\\beta_0\\) pode ser acessado na linha 1 e coluna 1, enquanto \\(\\beta_1\\) pode ser acessado na linha 2 e coluna 1.\n\n\nprint(B[0,0]) # Beta 0\n\n-0.1999999999999993\n\n\n\nprint(B[1,0]) # Beta 1\n\n1.1\n\n\n\n\n\n\n5.4 Obtendo os Valores Ajustados de y\nTendo obtido os coeficientes de regressão, os valores ajustados de \\(y\\) (\\(\\hat{y}\\)) podem ser obtidos pela multiplicação matricial:\n\\[F = X B = \\begin{bmatrix} 1 & x_1 \\\\ 1 & x_2 \\\\ \\vdots & \\vdots \\\\ 1 & x_n \\end{bmatrix} \\begin{bmatrix} \\hat{\\beta}_0 \\\\ \\hat{\\beta}_1 \\end{bmatrix}\\]\nObs.: denominamos \\(F\\) a matriz de valores ajustados de \\(y\\).\n\n# Valores ajustados (preditos)\nF = np.dot(X, B)\n\n\n# Valores ajustados (preditos)\nprint(F)\n\n[[-0.2]\n [ 0.9]\n [ 2. ]\n [ 3.1]\n [ 4.2]]\n\n\n\n\n5.5 Avaliando a Qualidade do Ajuste\n\n5.5.1 Calculando a Soma dos Quadrados dos Resíduos (\\(SQ_{res}\\))\n\\(SQ_{res}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{res} = \\boldsymbol{e}^T \\boldsymbol{e}\\]\nEm que \\(\\boldsymbol{e}\\) é a matriz coluna dos resíduos obtida pela diferença entre os valores observados e ajustados de \\(y\\):\n\\[\\boldsymbol{e} = Y - F = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\hat{y}_1 \\\\ \\hat{y}_2 \\\\ \\vdots \\\\ \\hat{y}_n \\end{bmatrix} = \\begin{bmatrix} e_1 \\\\ e_2 \\\\ \\vdots \\\\ e_n \\end{bmatrix}\\]\n\n# Resíduos: diferença entre valores observados e ajustados\ne = Y - F\n\n# Soma dos Quadrados dos Resíduos\nSQres = np.dot(e.T, e)[0, 0]\n\n\n\n5.5.2 Calculando a Soma dos Quadrados Totais (\\(SQ_{tot}\\))\n\\(SQ_{tot}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{tot} = \\boldsymbol{D}^T \\boldsymbol{D}\\]\nEm que \\(\\boldsymbol{D}\\) é a matriz coluna dos desvios da média obtida pela diferença entre os valores observados de \\(y\\) e a média de \\(\\overline{y}\\):\n\\[\\boldsymbol{D} = Y - \\overline{Y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\overline{y} \\\\ \\overline{y} \\\\ \\vdots \\\\ \\overline{y} \\end{bmatrix} = \\begin{bmatrix} d_1 \\\\ d_2 \\\\ \\vdots \\\\ d_n \\end{bmatrix}\\]\n\n# Soma dos Quadrados Total\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = np.dot(D.T, D)[0, 0]\n\n\n\n5.5.3 Calculando o coeficiente de determinação \\(R^2\\):\nO \\(R^2\\) é dado pela expressão:\n\\[R^2 = 1 - \\frac{SQ_{res}}{SQ_{tot}}\\]\n\n# Coeficiente de Determinação R²\nR2 = 1 - (SQres / SQtot)\n\n\nVisualizando os resultados:\n\nprint(\" Medidas de Qualidade do Ajuste:\")\nprint(f\"Soma dos Quadrados dos Resíduos (SQres): {SQres:.4f}\")\nprint(f\"Soma dos Quadrados Total (SQtot): {SQtot:.4f}\")\nprint(f\"Coeficiente de Determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\n\n Medidas de Qualidade do Ajuste:\nSoma dos Quadrados dos Resíduos (SQres): 1.9000\nSoma dos Quadrados Total (SQtot): 14.0000\nCoeficiente de Determinação (R²): 0.8643\nPorcentagem da variação explicada: 86.43%\n\n\nInterpretação do \\(R^2\\):\n\nVaria de 0 a 1\nQuanto mais próximo de 1, melhor o ajuste\nRepresenta a proporção da variação em \\(y\\) explicada pelo modelo",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-o-resultado-final",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-o-resultado-final",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "6 Visualizando o Resultado Final",
-    "text": "6 Visualizando o Resultado Final\nVamos plotar os dados originais junto com a reta ajustada:\n\n# Criando o gráfico final\nplt.figure(figsize=(8, 6))\n\n# Pontos observados\nplt.scatter(x, y, \n            color = '#0072B2', s=120,\n            label=f'Dados observados (n={n})')\n\n# Valores ajustados\nplt.scatter(x, F[:,0],\n            color='#000000', marker='*', s=120, \n            label='Valores ajustados')\n\n# Reta ajustada\nplt.plot(x, F[:,0], color='#D55E00', \n         label=fr'Reta de regressão: $\\hat{{y}} = {B[0,0]:.3f} + {B[1,0]:.3f}x$')\n\n# Configurações do gráfico\nplt.title(f'Regressão Linear Simples - MMQ\\nR² = {R2:.4f}', \n          fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend(fontsize=10)\nplt.tight_layout()\nplt.show()",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-dos-resultados",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-dos-resultados",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "7 Resumo dos Resultados",
-    "text": "7 Resumo dos Resultados\n\nprint(\"=\"*50)\nprint(\"         RESUMO DA REGRESSÃO LINEAR\")\nprint(\"=\"*50)\nprint(f\"Equação ajustada: y = {B[0,0]:.4f} + {B[1,0]:.4f}x\")\nprint(f\"Coeficiente de determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\nprint(\"=\"*50)\n\n==================================================\n         RESUMO DA REGRESSÃO LINEAR\n==================================================\nEquação ajustada: y = -0.2000 + 1.1000x\nCoeficiente de determinação (R²): 0.8643\nPorcentagem da variação explicada: 86.43%\n==================================================",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-do-código",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-do-código",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "8 Resumo do Código",
-    "text": "8 Resumo do Código\n\nInserção dos Dados\n\n\nx = [0, 1, 2, 3, 4]\ny = [0, 1, 1, 4, 4]\n\n\nDefinição das matrizes do sistema\n\n\nn = len(x)\nf0 = [1] * n\nf1 = x.copy()\n\nX = np.column_stack((f0, f1))\nY = np.array(y).reshape(n, 1)\n\n\nCálculo dos coeficientes\n\n\nXTX = X.T @ X\nXTY = X.T @ Y\nXTX_inv = np.linalg.inv(XTX)\nB = XTX_inv @ XTY\n\n\nQualidade do ajuste\n\n\nF = X @ B\ne = Y - F\nSQres = (e.T @ e)[0, 0]\n\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = (D.T @ D)[0, 0]\n\nR2 = 1 - (SQres / SQtot)",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#exercício-prático",
-    "href": "content/computer-lab/mmq-regressao-linear-simples.html#exercício-prático",
-    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
-    "section": "9 Exercício Prático",
-    "text": "9 Exercício Prático\nImplemente o MMQ com novos dados:\n\n# Experimente com estes dados:\nx_novo = [1, 2, 3, 4, 5, 6]\ny_novo = [2, 4, 5, 4, 5, 7]\n\n# Dica: você pode copiar e adaptar o código acima!",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 21-22 - MMQ na regressão linear simples"
-    ]
-  },
-  {
-    "objectID": "course-info/uc-id.html",
-    "href": "course-info/uc-id.html",
-    "title": "Identificação da Unidade Curricular",
-    "section": "",
-    "text": "Campus\n\nBaixada Santista\n\nCurso\n\nBacharelado Interdisciplinar em Ciência e Tecnologia do Mar\n\nUnidade Curricular (UC)\n\n10768 - Bases da Matemática e Estatística\n\nDocentes responsáveis\n\nFabio Cop (fcferreira@unifesp.br)\n\n\nWilliam Remo Pedroso Conti (wrpconti@unifesp.br)\n\nAno letivo\n\n1\\(^o\\) semestre de 2026\n\n\n1\\(^o\\) termo\n\nCarga horária total\n\n80 h\n\nDias e horários - vide Semana Padrão\n\nTerças e Quintas feiras\n\n\n14h - 15:45h (Vespertino)\n\n\n19h - 20:45h (Noturno)\n\nLocais - vide Cronograma\n\nSala 205\n\n\nLaboratório de Informática\n\nÁREA DO(A) ESTUDANTE\n\nSEGRAD IMar",
-    "crumbs": [
-      "Informações do curso",
-      "Identificação da UC"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp",
-    "section": "",
-    "text": "📄 Calendário Acadêmico 2026 Unifesp (PDF)\n\n\n\n\n\n\n\n\n\n\n\n\n\nAula\nData\nDia da semana\nTurma A\nTurma B\nMaterialteórico\nLab.Informática\n\n\n\n\n\n03/03\nTerça-feira\nSemana de recepção de calouros\n\n\n\n\n\n\n05/03\nQuinta-feira\nSemana de recepção de calouros\n\n\n\n\n\n1\n10/03\nTerça-feira\nIntrodução da UC: Matemática e Estatística; Dados e Modelos\nIntrodução da UC: Matemática e Estatística; Dados e Modelos\n\n\n\n\n2\n12/03\nQuinta-feira\nA geometria e a álgebra de vetores\nA geometria e a álgebra de vetores\nA geometria e a álgebra de vetores\n\n\n\n3\n17/03\nTerça-feira\nComprimento e ângulo: o produto escalar\nComprimento e ângulo: o produto escalar\nComprimento e ângulo: o produto escalar\n\n\n\n4\n19/03\nQuinta-feira\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nLAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica\nSistemas de Equações Lineares\n\n\n\n5\n24/03\nTerça-feira\nLAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nSistemas de Equações Lineares\n\n\n\n6\n26/03\nQuinta-feira\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nLAB. INFO: Lista 2: produto escalar\nSistemas de Equações Lineares\n\n\n\n7\n31/03\nTerça-feira\nLAB. INFO: Lista 2: produto escalar\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nSistemas de Equações Lineares\n\n\n\n8\n02/04\nQuinta-feira\nÁlgebra de Matrizes\nÁlgebra de Matrizes\nMatrizes\n\n\n\n9\n07/04\nTerça-feira\nA inversa de uma matriz\nLAB. INFO: Álgebra de matrizes em planilha eletrônica\nMatrizes\nSimilaridade por cosseno - Planilha eletrônica\n\n\n10\n09/04\nQuinta-feira\nLAB. INFO: Álgebra de matrizes em planilha eletrônica\nA inversa de uma matriz\nMatrizes\nSimilaridade por cosseno - Planilha eletrônica\n\n\n11\n14/04\nTerça-feira\nProva 1\nProva 1\n\n\n\n\n12\n16/04\nQuinta-feira\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nMétodo dos Mínimos Quadrados na Regressão Linear Simples\n\n\n\n\n21/04\nTerça-feira\nFeriado (Tiradentes)\n\n\n\n\n\n13\n23/04\nQuinta-feira\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nLAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)\nMétodo dos Mínimos Quadrados na Regressão Linear Simples\n\n\n\n14\n28/04\nTerça-feira\nLAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nMétodo dos Mínimos Quadrados na Regressão Linear Simples\n\n\n\n15\n30/04\nQuinta-feira\nMedidas de tendência central e de variação\nMedidas de tendência central e de variação\nMédia AritméticaVariância e Desvio Padrão\n\n\n\n16\n05/05\nTerça-feira\nCovariância e coeficiente de correlação\nCovariância e coeficiente de correlação\nCovariância e Correlação Linear\n\n\n\n17\n07/05\nQuinta-feira\nPartição da soma dos quadrados e coeficiente de determinação na regressão linear\nPartição da soma dos quadrados e coeficiente de determinação na regressão linear\nPartição da Soma dos Quadrados e Coeficiente de Determinação\n\n\n\n18\n12/05\nTerça-feira\nProva 2\nProva 2\n\n\n\n\n19\n14/05\nQuinta-feira\nModelos Matemáticos: funções lineares\nModelos Matemáticos: funções lineares\nFunções lineares\n\n\n\n20\n19/05\nTerça-feira\nModelos Matemáticos: polinômios\nModelos Matemáticos: polinômios\nPolinômios\n\n\n\n21\n21/05\nQuinta-feira\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nLAB. INFO: MMQ na regressão linear simples em Python\nFunções linearesPolinômios\nMMQ na regressão linear simples - Python\n\n\n22\n26/05\nTerça-feira\nLAB. INFO: MMQ na regressão linear simples em Python\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nFunções linearesPolinômios\nMMQ na regressão linear simples - Python\n\n\n23\n28/05\nQuinta-feira\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nLAB. INFO: MMQ na regressão polinomial em Python\nFunções linearesPolinômios\nMMQ na regressão polinomial - Python\n\n\n24\n02/06\nTerça-feira\nLAB. INFO: MMQ na regressão polinomial em Python\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nFunções linearesPolinômios\nMMQ na regressão polinomial - Python\n\n\n\n04/06\nQuinta-feira\nFeriado (Corpus Christi)\n\n\n\n\n\n25\n09/06\nTerça-feira\nProva 3\nProva 3\n\n\n\n\n26\n11/06\nQuinta-feira\nModelos Matemáticos: funções potências e exponenciais\nModelos Matemáticos: funções potências e exponenciais\nFunções potênciasFunções exponenciais e logarítmicas\n\n\n\n27\n16/06\nTerça-feira\nModelos Matemáticos: funções logarítmicas\nModelos Matemáticos: funções logarítmicas\nFunções exponenciais e logarítmicas\n\n\n\n28\n18/06\nQuinta-feira\nMMQ em funções potência, exponenciais e logarítmicas\nMMQ em funções potência, exponenciais e logarítmicas\nFunções potênciasFunções exponenciais e logarítmicas\n\n\n\n29\n23/06\nTerça-feira\nModelos Matemáticos: funções trigonométricas\nLAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python\nFunções trigonométricasFunções potênciasFunções exponenciais e logarítmicas\nFunções potência - Python\n\n\n30\n25/06\nQuinta-feira\nLAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python\nModelos Matemáticos: funções trigonométricas\nFunções trigonométricasFunções potênciasFunções exponenciais e logarítmicas\nFunções potência - Python\n\n\n31\n30/06\nTerça-feira\nModelos Matemáticos: funções trigonométricas\nLAB. INFO: MMQ em funções trigonométricas em Python\nFunções trigonométricas\n\n\n\n32\n02/07\nQuinta-feira\nLAB. INFO: MMQ em funções trigonométricas em Python\nModelos Matemáticos: funções trigonométricas\nFunções trigonométricas\n\n\n\n33\n07/07\nTerça-feira\nProva 4\nProva 4\n\n\n\n\n\n09/07\nQuinta-feira\nFeriado (Revolução Constitucionalista)\n\n\n\n\n\n\n14/07\nTerça-feira\nExame",
-    "crumbs": [
-      "Informações do curso",
-      "Cronograma"
-    ]
-  },
-  {
     "objectID": "course-info/syllabus.html",
     "href": "course-info/syllabus.html",
     "title": "Plano de Ensino",
@@ -429,80 +77,14 @@
     ]
   },
   {
-    "objectID": "content/computer-lab/funcoes-potencia.html",
-    "href": "content/computer-lab/funcoes-potencia.html",
-    "title": "Explorando Funções Potências com Python",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "10768 - Bases da Matemática e Estatística - Bict Mar - Unifesp",
     "section": "",
-    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd",
+    "text": "📄 Calendário Acadêmico 2026 Unifesp (PDF)\n\n\n\n\n\n\n\n\n\n\n\n\n\nAula\nData\nDia da semana\nTurma A\nTurma B\nMaterialteórico\nLab.Informática\n\n\n\n\n\n03/03\nTerça-feira\nSemana de recepção de calouros\n\n\n\n\n\n\n05/03\nQuinta-feira\nSemana de recepção de calouros\n\n\n\n\n\n1\n10/03\nTerça-feira\nIntrodução da UC: Matemática e Estatística; Dados e Modelos\nIntrodução da UC: Matemática e Estatística; Dados e Modelos\n\n\n\n\n2\n12/03\nQuinta-feira\nA geometria e a álgebra de vetores\nA geometria e a álgebra de vetores\nA geometria e a álgebra de vetores\n\n\n\n3\n17/03\nTerça-feira\nComprimento e ângulo: o produto escalar\nComprimento e ângulo: o produto escalar\nComprimento e ângulo: o produto escalar\n\n\n\n4\n19/03\nQuinta-feira\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nLAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica\nSistemas de Equações Lineares\n\n\n\n5\n24/03\nTerça-feira\nLAB. INFO: Álgebra de vetores, comprimento e ângulo em planilha eletrônica\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nSistemas de Equações Lineares\n\n\n\n6\n26/03\nQuinta-feira\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nLAB. INFO: Lista 2: produto escalar\nSistemas de Equações Lineares\n\n\n\n7\n31/03\nTerça-feira\nLAB. INFO: Lista 2: produto escalar\nSistemas de Equações Lineares: método de eliminação de Gauss e Gauss-Jordan\nSistemas de Equações Lineares\n\n\n\n8\n02/04\nQuinta-feira\nÁlgebra de Matrizes\nÁlgebra de Matrizes\nMatrizes\n\n\n\n9\n07/04\nTerça-feira\nA inversa de uma matriz\nLAB. INFO: Álgebra de matrizes em planilha eletrônica\nMatrizes\nSimilaridade por cosseno - Planilha eletrônica\n\n\n10\n09/04\nQuinta-feira\nLAB. INFO: Álgebra de matrizes em planilha eletrônica\nA inversa de uma matriz\nMatrizes\nSimilaridade por cosseno - Planilha eletrônica\n\n\n11\n14/04\nTerça-feira\nProva 1\nProva 1\n\n\n\n\n12\n16/04\nQuinta-feira\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nMétodo dos Mínimos Quadrados na Regressão Linear Simples\n\n\n\n\n21/04\nTerça-feira\nFeriado (Tiradentes)\n\n\n\n\n\n13\n23/04\nQuinta-feira\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nLAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)\nMétodo dos Mínimos Quadrados na Regressão Linear Simples\n\n\n\n14\n28/04\nTerça-feira\nLAB. INFO: Regressão Linear Simples pelo Método dos Mínimos Quadrados em planilha eletrônica (representação vetorial)\nMétodo dos Mínimos Quadrados regressão linear simples (representação vetorial)\nMétodo dos Mínimos Quadrados na Regressão Linear Simples\n\n\n\n15\n30/04\nQuinta-feira\nMedidas de tendência central e de variação\nMedidas de tendência central e de variação\nMédia AritméticaVariância e Desvio Padrão\n\n\n\n16\n05/05\nTerça-feira\nCovariância e coeficiente de correlação\nCovariância e coeficiente de correlação\nCovariância e Correlação Linear\n\n\n\n17\n07/05\nQuinta-feira\nPartição da soma dos quadrados e coeficiente de determinação na regressão linear\nPartição da soma dos quadrados e coeficiente de determinação na regressão linear\nPartição da Soma dos Quadrados e Coeficiente de Determinação\n\n\n\n18\n12/05\nTerça-feira\nProva 2\nProva 2\n\n\n\n\n19\n14/05\nQuinta-feira\nModelos Matemáticos: funções lineares\nModelos Matemáticos: funções lineares\nFunções lineares\n\n\n\n20\n19/05\nTerça-feira\nModelos Matemáticos: polinômios\nModelos Matemáticos: polinômios\nPolinômios\n\n\n\n21\n21/05\nQuinta-feira\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nLAB. INFO: MMQ na regressão linear simples em Python\nFunções linearesPolinômios\nMMQ na regressão linear simples - Python\n\n\n22\n26/05\nTerça-feira\nLAB. INFO: MMQ na regressão linear simples em Python\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nFunções linearesPolinômios\nMMQ na regressão linear simples - Python\n\n\n23\n28/05\nQuinta-feira\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nLAB. INFO: MMQ na regressão polinomial em Python\nFunções linearesPolinômios\nMMQ na regressão polinomial - Python\n\n\n24\n02/06\nTerça-feira\nLAB. INFO: MMQ na regressão polinomial em Python\nMMQ em funções lineares e polinomiais: qualidade do ajuste\nFunções linearesPolinômios\nMMQ na regressão polinomial - Python\n\n\n\n04/06\nQuinta-feira\nFeriado (Corpus Christi)\n\n\n\n\n\n25\n09/06\nTerça-feira\nProva 3\nProva 3\n\n\n\n\n26\n11/06\nQuinta-feira\nModelos Matemáticos: funções potências e exponenciais\nModelos Matemáticos: funções potências e exponenciais\nFunções potênciasFunções exponenciais e logarítmicas\n\n\n\n27\n16/06\nTerça-feira\nModelos Matemáticos: funções logarítmicas\nModelos Matemáticos: funções logarítmicas\nFunções exponenciais e logarítmicas\n\n\n\n28\n18/06\nQuinta-feira\nMMQ em funções potência, exponenciais e logarítmicas\nMMQ em funções potência, exponenciais e logarítmicas\nFunções potênciasFunções exponenciais e logarítmicas\n\n\n\n29\n23/06\nTerça-feira\nModelos Matemáticos: funções trigonométricas\nLAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python\nFunções trigonométricasFunções potênciasFunções exponenciais e logarítmicas\nFunções potência - Python\n\n\n30\n25/06\nQuinta-feira\nLAB. INFO: MMQ em funções potência, exponenciais e logarítmicas em Python\nModelos Matemáticos: funções trigonométricas\nFunções trigonométricasFunções potênciasFunções exponenciais e logarítmicas\nFunções potência - Python\n\n\n31\n30/06\nTerça-feira\nModelos Matemáticos: funções trigonométricas\nLAB. INFO: MMQ em funções trigonométricas em Python\nFunções trigonométricas\n\n\n\n32\n02/07\nQuinta-feira\nLAB. INFO: MMQ em funções trigonométricas em Python\nModelos Matemáticos: funções trigonométricas\nFunções trigonométricas\n\n\n\n33\n07/07\nTerça-feira\nProva 4\nProva 4\n\n\n\n\n\n09/07\nQuinta-feira\nFeriado (Revolução Constitucionalista)\n\n\n\n\n\n\n14/07\nTerça-feira\nExame",
     "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/funcoes-potencia.html#pacotes-e-bibliotecas",
-    "href": "content/computer-lab/funcoes-potencia.html#pacotes-e-bibliotecas",
-    "title": "Explorando Funções Potências com Python",
-    "section": "",
-    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/funcoes-potencia.html#definição-e-tipos-de-funções-potências",
-    "href": "content/computer-lab/funcoes-potencia.html#definição-e-tipos-de-funções-potências",
-    "title": "Explorando Funções Potências com Python",
-    "section": "2 Definição e Tipos de Funções Potências",
-    "text": "2 Definição e Tipos de Funções Potências\nUma função potência é definida como uma função da forma \\(f(x) = x^k\\), em que \\(k\\) é uma constante.\nO valor da constante \\(k\\) determina a classificação da função potência:\n\nMonômio: para \\(k = n\\), onde \\(n\\) é um inteiro positivo. Exemplos - \\(f(x) = x^2\\) ou \\(f(x) = x^3\\).\nFunção raiz: para \\(k = 1/n\\), onde \\(n\\) é um inteiro positivo. Exemplos - \\(f(x) = x^{1/2}\\) (raiz quadrada) ou \\(f(x) = x^{1/3}\\) (raiz cúbica).\nFunção recíproca: para \\(k = -1\\). Ou seja, \\(f(x) = x^{-1} = 1/x\\).\n\n\n2.1 Definindo e visualizando funções potência em Python\nVamos usar o Python para definir e plotar exemplos de cada tipo de função potência. Isso nos ajudará a entender suas características visuais.\n\n# Definindo a função potência em Python\ndef potencia(x, n):\n    \"\"\"Função potência: f(x) = x^k.\"\"\"\n    return x**n\n\nUtilizando a função criada.\n\n# Gerando um intervalo de valores para x para plotagem\n# Começamos de 0.1 para evitar divisão por zero na função recíproca.\nx_values = np.linspace(0.1, 5, 400) \n# x_values\n\n\n# Gerando valores de y\ny_values = potencia(x_values, 2)\n# y_values\n\n\n# Criando três gráficos lado a lado com diferentes valores de k\n# Criando os subplots\nfig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8, 3))\n\n# Primeiro gráfico: f(x) = x²\nax1.plot(x_values, potencia(x_values, 2), label='f(x) = x²')\nax1.set_title('Monômio')\nax1.set_xlabel('x')\nax1.set_ylabel('f(x)')\nax1.legend()\nax1.grid(True)\n\n# Segundo gráfico: f(x) = x^(1/2)\nax2.plot(x_values, potencia(x_values, 1/2), label='f(x) = x^(1/2)')\nax2.set_title('Função Raiz')\nax2.set_xlabel('x')\nax2.set_ylabel('f(x)')\nax2.legend()\nax2.grid(True)\n\n# Terceiro gráfico: f(x) = x⁻¹\nax3.plot(x_values, potencia(x_values, -1), label='f(x) = x⁻¹')\nax3.set_title('Função Recíproca')\nax3.set_xlabel('x')\nax3.set_ylabel('f(x)')\nax3.legend()\nax3.grid(True)\n\n# Ajustando o layout e salvando a figura\nplt.tight_layout()\nplt.show()",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/funcoes-potencia.html#exemplo-da-relação-espécie-área",
-    "href": "content/computer-lab/funcoes-potencia.html#exemplo-da-relação-espécie-área",
-    "title": "Explorando Funções Potências com Python",
-    "section": "3 Exemplo da Relação Espécie-Área",
-    "text": "3 Exemplo da Relação Espécie-Área\nA função potência é amplamente utilizada em ecologia para modelar fenômenos no mundo real. Um exemplo é a relação entre o número de espécies (\\(S\\)) e a área de uma região (\\(A\\)). A relação entre \\(S\\) e \\(A\\) é geralmente modelada por:\n\\[S(A) = cA^k\\]\nEm que \\(c\\) e \\(k\\) são coeficientes que precisam ser determinados a partir de dados observados.\nConsidere a tabela de dados que mostra valores de área (A) e riqueza de espécies (S):\n\n\n\nObservação\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n\n\n\nA (km²)\n0,25\n0,5\n1\n2\n4\n7,9\n15,9\n31,6\n63\n\n\nS\n6\n10\n13\n14\n17\n19\n22\n24\n28\n\n\n\nPodemos observar essa relação em Python da seguinte forma:\n\n3.1 Definindo a tabela de dados\n\n# Dados da tabela\ndata = {\n    'A': [0.25, 0.5, 1, 2, 4, 7.9, 15.9, 31.6, 63],\n    'S': [6, 10, 13, 14, 17, 19, 22, 24, 28]\n}\ndf = pd.DataFrame(data)\n\n\n\n3.2 Visualizando o gráfico de dispersão\n\nplt.figure(figsize=(8, 5))\nplt.scatter(df['A'], df['S'], label='Dados Observados')\nplt.title('Diagrama de Dispersão: Relação Espécie-Área')\nplt.xlabel('Área (km²)')\nplt.ylabel('Número de Espécies')\nplt.grid(True)\nplt.legend()\nplt.show()",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/funcoes-potencia.html#método-dos-mínimos-quadrados-mmq-para-o-modelo-de-regressão-potência",
-    "href": "content/computer-lab/funcoes-potencia.html#método-dos-mínimos-quadrados-mmq-para-o-modelo-de-regressão-potência",
-    "title": "Explorando Funções Potências com Python",
-    "section": "4 Método dos Mínimos Quadrados (MMQ) para o Modelo de Regressão Potência",
-    "text": "4 Método dos Mínimos Quadrados (MMQ) para o Modelo de Regressão Potência\nPodemos utilizar o MMQ para encontrar os coeficientes da relação de potência. Para isso, precisamos antes linearizar a relação, aplicando o logaritmo em ambos os lados da equação.\n\n\n\n\n\n\nImportanteLinearizando a relação potência\n\n\n\n\nComece com a equação original: \\[S = cA^k\\]\nAplique o logaritmo (de qualquer base) nos dois lados: \\[\\log(S) = \\log(cA^k)\\]\nUse a propriedade do logaritmo do produto \\(\\log(xy) = \\log(x) + \\log(y)\\): \\[\\log(S) = \\log(c) + \\log(A^k)\\]\nUse a propriedade do logaritmo da potência \\(\\log(x^p) = p\\log(x)\\): \\[\\log(S) = \\log(c) + k\\log(A)\\]\n\nAo final, obtemos uma equação linear na forma \\(y = a + bx\\), onde:\n\n\\(y = \\log(S)\\)\n\\(x = \\log(A)\\)\nO coeficiente angular é \\(b = k\\)\nO intercepto linear (onde a reta cruza o eixo y) é \\(a = \\log(c)\\)\n\n\n\nApós a linearização, os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{y}\\), são definidos como segue:\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} \\log(x_1) \\\\ \\log(x_2) \\\\ \\vdots \\\\ \\log(x_n) \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} \\log(y_1) \\\\ \\log(y_2) \\\\ \\vdots \\\\ \\log(y_n) \\end{bmatrix}\\]\nA partir daí, definimos as matrizes \\(X\\) e \\(Y\\) como no modelo linear simples e seguimos com as mesmas operações matriciais.\nVamos criar uma função em Python que implementa o MMQ:\n\n\n\n\n\n\nImportanteFunção em Python para MMQ\n\n\n\n\ndef mmq(x, y):\n    \"\"\"\n    Calcula os coeficientes (B) e o R² de uma regressão linear simples.\n\n    Args:\n        x (list ou np.ndarray): Os valores da variável independente.\n        y (list ou np.ndarray): Os valores da variável dependente.\n\n    Returns:\n        tuple: Uma tupla contendo a matriz de coeficientes B e o valor de R².\n    \"\"\"\n    # 1. Definição das matrizes do sistema\n    n = len(x)\n    # Converte para array numpy para garantir a funcionalidade\n    x_array = np.array(x)\n    f0 = np.ones(n)\n    f1 = x_array.copy()\n\n    X = np.column_stack((f0, f1))\n    Y = np.array(y).reshape(n, 1)\n\n    # 2. Cálculo dos coeficientes\n    XTX = X.T @ X\n    XTY = X.T @ Y\n    XTX_inv = np.linalg.inv(XTX)\n    B = XTX_inv @ XTY\n    \n    return B\n\n\n\nDefinida a função mmq, basta utilizá-la com um conjunto de dados de entrada.\n\n# Ajustando o modelo espécie-área\nB_ea = mmq(np.log(df['A']), np.log(df['S']))\nB_ea\n\narray([[2.4039032 ],\n       [0.24475497]])\n\n\n\n4.1 Visualizando os coeficientes ajustados\n\nc = np.exp(B_ea[0])\nk = B_ea[1]\n\nprint('c: ', c)\nprint('k: ', k)\n\nc:  [11.06628617]\nk:  [0.24475497]\n\n\nO modelo de regressão potência para a riqueza de espécies, com base nos dados fornecidos, foi determinado como\n\\[S(A) = 11.066A^{0.244}\\]\nOs valores de \\(c\\) e \\(k\\) foram, respectivamente, \\(11.066\\) e \\(0.244\\).",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/funcoes-potencia.html#visualizando-o-ajuste-da-curva-de-regressão-potência",
-    "href": "content/computer-lab/funcoes-potencia.html#visualizando-o-ajuste-da-curva-de-regressão-potência",
-    "title": "Explorando Funções Potências com Python",
-    "section": "5 Visualizando o Ajuste da Curva de Regressão Potência",
-    "text": "5 Visualizando o Ajuste da Curva de Regressão Potência\nPodemos criar uma nova função que permitirá encontrar os valores ajustados para o modelo potência a partir dos coeficientes da regressão obtidos.\n\ndef S_modelo(novo_x, c, k):\n    y_fit = c * novo_x ** k\n    return y_fit\n\n\n5.1 Gerando novos valores de x\n\nA_values = np.linspace(np.min(df['A']), np.max(df['A']), 400) \nS_fit = S_modelo(A_values, c, k)\n\n\n\n5.2 Plotando o gráfico\n\n# Plotar os dados e o modelo ajustado\nplt.figure(figsize=(8, 5))\nplt.scatter(df['A'], df['S'], label='Dados Observados')\nplt.plot(A_values, S_fit, color='red', label=f'Modelo Ajustado: S(A) = {c[0]:.3f}A^{k[0]:.3f}')\nplt.title('Modelo de Regressão Potência Ajustado para Relação Espécie-Área')\nplt.xlabel('Área (km²)')\nplt.ylabel('Número de Espécies')\nplt.grid(True)\nplt.legend()\nplt.show()",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
-    ]
-  },
-  {
-    "objectID": "content/computer-lab/funcoes-potencia.html#estimativas-e-previsões-com-o-modelo",
-    "href": "content/computer-lab/funcoes-potencia.html#estimativas-e-previsões-com-o-modelo",
-    "title": "Explorando Funções Potências com Python",
-    "section": "6 Estimativas e Previsões com o Modelo",
-    "text": "6 Estimativas e Previsões com o Modelo\nCom o modelo, podemos estimar a riqueza de espécies para áreas específicas.\n\n# Estimando a riqueza de espécies para áreas específicas\nS_10km2 = S_modelo(10, c, k)\nS_70km2 = S_modelo(70, c, k)\n\nprint(f\"Riqueza estimada para uma área de 10 km²: {S_10km2[0]:.3f} ≈ {round(S_10km2[0])} espécies\")\nprint(f\"Riqueza predita para uma área de 70 km²: {S_70km2[0]:.3f} ≈ {round(S_70km2[0])} espécies\")\n\nRiqueza estimada para uma área de 10 km²: 19.443 ≈ 19 espécies\nRiqueza predita para uma área de 70 km²: 31.304 ≈ 31 espécies\n\n\n\n6.1 Determinação da Área para Exceder uma Riqueza Específica\nO modelo também permite determinar qual área mínima é necessária para que a riqueza de espécies exceda um certo valor. Por exemplo, para exceder 35 espécies, o cálculo é:\n\\[A &gt; \\left( \\frac{35}{c} \\right)^{1/k}\\]\n\n\n\n\n\n\nImportanteDeterminando a área mínima para exceder uma riqueza específica\n\n\n\n\nComece com a equação original: \\[S = cA^k\\]\nEstabeleça a desigualdade para exceder o valor alvo: \\[cA^k &gt; S_{\\text{alvo}}\\]\nDivida ambos os lados por \\(c\\) (como \\(c &gt; 0\\), a desigualdade se mantém): \\[A^k &gt; \\frac{S_{\\text{alvo}}}{c}\\]\nAplique a raiz \\(k\\)-ésima em ambos os lados (como \\(k &gt; 0\\), a desigualdade se mantém): \\[A &gt; \\left( \\frac{S_{\\text{alvo}}}{c} \\right)^{1/k}\\]\n\n\n\n\n\n6.2 Resolvendo a Desigualdade\n\n# Riqueza de espécies alvo\ntarget_species = 35\n\n# Calculando a área necessária\narea_necessaria = (target_species / c)**(1/k)\n\nprint(f\"Para a riqueza exceder {target_species} espécies:\")\nprint(f\"Área deve ser maior que aproximadamente {area_necessaria[0]:.3f} km².\")\n\nPara a riqueza exceder 35 espécies:\nÁrea deve ser maior que aproximadamente 110.441 km².",
-    "crumbs": [
-      "Lab. Informática",
-      "Aulas 29-30 - Funções de potência"
+      "Informações do curso",
+      "Cronograma"
     ]
   },
   {
@@ -627,6 +209,325 @@
     ]
   },
   {
+    "objectID": "content/computer-lab/cossine-similarity.html",
+    "href": "content/computer-lab/cossine-similarity.html",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "",
+    "text": "Considere a situação em que temos 8 espécies de peixes descritas por 6 atributos funcionais (Tabela 1). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar o grau de similaridade entre pares de espécies por meio do índice de similaridade por cossenos.\n\n\n\nTabela 1: Atributos funcionais entre 8 espécies de peixes de riachos. CI: Índice de compressão; RD: Altura relativa; IVF: Índice de achatamento ventral; RAC: Área relativa da nadadeira caudal; REP: Posição relativa do olho; MO: orientação da boca. Bstr: Bryconamericus stramineus; Bsp: Bryconamericus sp.; Cfasc: Characidium fasciatum; Czeb: Characidium zebra; Cih: Cetopsorhamdia iheringi; Imin: Imparfinis minutus; Hsp: Hisonotus sp.; Hypsp: Hypostomus sp.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTraço\nBstr\nBsp\nCfasc\nCzeb\nCih\nImin\nHsp\nHypsp\n\n\n\n\nCI\n1.67\n1.71\n1.41\n1.47\n0.97\n0.69\n0.73\n0.66\n\n\nRD\n0.21\n0.26\n0.21\n0.22\n0.17\n0.12\n0.16\n0.19\n\n\nIVF\n0.57\n0.53\n0.51\n0.49\n0.59\n0.55\n0.39\n0.35\n\n\nRAC\n0.14\n0.13\n0.14\n0.11\n0.22\n0.26\n0.19\n0.3\n\n\nREP\n0.7\n0.68\n0.79\n0.8\n0.91\n0.76\n0.71\n0.85\n\n\nMO\n1.26\n1.74\n3.03\n1.98\n2.06\n2.24\n3.14\n3.14\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBryconamericus stramineus\n\n\n\n\n\n\n\nBryconamericus sp\n\n\n\n\n\n\n\n\n\nCharacidium fasciatum\n\n\n\n\n\n\n\nCharacidium zebra\n\n\n\n\n\n\n\n\n\nCetopsorhamdia iheringi\n\n\n\n\n\n\n\nImparfinis minutus\n\n\n\n\n\n\n\n\n\nHisonotus sp\n\n\n\n\n\n\n\nHypostomus sp\n\n\n\n\n\n\nFigura 1: Espécies da Tabela 1.\n\n\n\nCada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a Tabela 1 como:\n\\[\\mathbf{T} =\n\\begin{bmatrix}\n1.67 & 1.71 & \\dots & 0.66\\\\\n0.21 & 0.26 & \\dots & 0.19\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n1.26 & 1.74 & \\dots & 3.14\n\\end{bmatrix}\n\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#matriz-de-atributos-morfológicos",
+    "href": "content/computer-lab/cossine-similarity.html#matriz-de-atributos-morfológicos",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "",
+    "text": "Considere a situação em que temos 8 espécies de peixes descritas por 6 atributos funcionais (Tabela 1). Atributos funcionais são características morfológicas, fisiológicas ou comportamentais mensuráveis que influenciam diretamente o desempenho ecológico das espécies, determinando como elas interagem com o ambiente e utilizam recursos, como habitat, alimento e abrigo. Espera-se, por exemplo, que espécies similares em seus atributos funcionais ocupem um espaço de nicho semelhante e respondam de forma parecida a pressões ambientais. Nosso objetivo será quantificar o grau de similaridade entre pares de espécies por meio do índice de similaridade por cossenos.\n\n\n\nTabela 1: Atributos funcionais entre 8 espécies de peixes de riachos. CI: Índice de compressão; RD: Altura relativa; IVF: Índice de achatamento ventral; RAC: Área relativa da nadadeira caudal; REP: Posição relativa do olho; MO: orientação da boca. Bstr: Bryconamericus stramineus; Bsp: Bryconamericus sp.; Cfasc: Characidium fasciatum; Czeb: Characidium zebra; Cih: Cetopsorhamdia iheringi; Imin: Imparfinis minutus; Hsp: Hisonotus sp.; Hypsp: Hypostomus sp.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTraço\nBstr\nBsp\nCfasc\nCzeb\nCih\nImin\nHsp\nHypsp\n\n\n\n\nCI\n1.67\n1.71\n1.41\n1.47\n0.97\n0.69\n0.73\n0.66\n\n\nRD\n0.21\n0.26\n0.21\n0.22\n0.17\n0.12\n0.16\n0.19\n\n\nIVF\n0.57\n0.53\n0.51\n0.49\n0.59\n0.55\n0.39\n0.35\n\n\nRAC\n0.14\n0.13\n0.14\n0.11\n0.22\n0.26\n0.19\n0.3\n\n\nREP\n0.7\n0.68\n0.79\n0.8\n0.91\n0.76\n0.71\n0.85\n\n\nMO\n1.26\n1.74\n3.03\n1.98\n2.06\n2.24\n3.14\n3.14\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBryconamericus stramineus\n\n\n\n\n\n\n\nBryconamericus sp\n\n\n\n\n\n\n\n\n\nCharacidium fasciatum\n\n\n\n\n\n\n\nCharacidium zebra\n\n\n\n\n\n\n\n\n\nCetopsorhamdia iheringi\n\n\n\n\n\n\n\nImparfinis minutus\n\n\n\n\n\n\n\n\n\nHisonotus sp\n\n\n\n\n\n\n\nHypostomus sp\n\n\n\n\n\n\nFigura 1: Espécies da Tabela 1.\n\n\n\nCada espécie está representada em uma coluna, e as linhas correspondem às medidas morfológicas associadas aos atributos funcionais das espécies. Em notação matricial, podemos representar a Tabela 1 como:\n\\[\\mathbf{T} =\n\\begin{bmatrix}\n1.67 & 1.71 & \\dots & 0.66\\\\\n0.21 & 0.26 & \\dots & 0.19\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n1.26 & 1.74 & \\dots & 3.14\n\\end{bmatrix}\n\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#calculando-similaridade-por-cossenos",
+    "href": "content/computer-lab/cossine-similarity.html#calculando-similaridade-por-cossenos",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "2 Calculando Similaridade por cossenos",
+    "text": "2 Calculando Similaridade por cossenos\nCada espécie na Tabela 1 pode ser vista como um vetor \\(\\vec{v}\\) ou \\(\\vec{u}\\) com 6 entradas, uma para cada traço funcional. Assim, o cosseno do ângulo \\(\\theta\\) entre os vetores pode ser calculado por:\n\\[\\cos(\\theta) = \\frac{\\vec{v} \\cdot \\vec{u}}{\\|\\vec{v}\\| \\|\\vec{u}\\|}\n\\tag{1}\\]\nOnde:\n\n\\(\\vec{v} \\cdot \\vec{u}\\) é o produto escalar entre os vetores \\(\\vec{v}\\) e \\(\\vec{u}\\).\n\\(\\|\\vec{v}\\|\\) e \\(\\|\\vec{u}\\|\\) são as normas (comprimentos) dos vetores.\n\\(\\theta\\) é o ângulo entre os vetores no espaço multidimensional de 6 dimensões.\n\nO valor do \\(\\cos(\\theta)\\) funciona como um índice de similaridade cuja interpretação ecológica é direta:\n\n\\(\\cos(\\theta) \\approx 1\\) (ângulo próximo a 0°), indica espécies com alta similaridade funcional, compartilhando estratégias ecológicas semelhantes;\n\\(\\cos(\\theta) \\approx 0\\) (ângulo próximo a 90°) revela espécies ecologicamente distintas, com atributos funcionais divergentes.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#exemplo-prático-similaridade-entre-bstr-e-bsp",
+    "href": "content/computer-lab/cossine-similarity.html#exemplo-prático-similaridade-entre-bstr-e-bsp",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "3 Exemplo Prático: Similaridade entre Bstr e Bsp",
+    "text": "3 Exemplo Prático: Similaridade entre Bstr e Bsp\n\nVetores das espécies:\n\n\\[\n\\vec{v}_{\\text{Bstr}} = \\begin{bmatrix}\n1.67 \\\\ 0.21 \\\\ 0.57 \\\\ 0.14 \\\\ 0.7 \\\\ 1.26\n\\end{bmatrix}, \\quad\n\\vec{u}_{\\text{Bsp}} = \\begin{bmatrix}\n1.71 \\\\ 0.26 \\\\ 0.53 \\\\ 0.13 \\\\ 0.68 \\\\ 1.74\n\\end{bmatrix}\n\\]\n\nProduto Escalar:\n\n\\[\\vec{v} \\cdot \\vec{u} = (1.67 \\times 1.71) + (0.21 \\times 0.26) + \\dots + (1.26 \\times 1.74) = 5.899\\]\n\nNormas dos Vetores: \\[\\|\\vec{v}\\| = \\sqrt{1.67^2 + 0.21^2 + \\dots + 1.26^2} \\approx 2.2924\\] \\[\\|\\vec{u}\\| = \\sqrt{1.71^2 + 0.26^2 + \\dots + 1.74^2} \\approx 2.6037\\]\nCosseno do Ângulo: \\[\\cos(\\theta) = \\frac{5.899}{2.2924 \\times 2.6037} \\approx 0.988\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#similaridade-por-cossenos-a-partir-de-operações-matriciais",
+    "href": "content/computer-lab/cossine-similarity.html#similaridade-por-cossenos-a-partir-de-operações-matriciais",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "4 Similaridade por Cossenos a partir de operações matriciais",
+    "text": "4 Similaridade por Cossenos a partir de operações matriciais\nOs passos do item anterior podem ser generalizados para todos os pares de espécies utilizando uma sequência de operações matriciais.\n\nObtenção da Matriz de Produtos Escalares (\\(\\mathbf{E}\\)): \\[\\mathbf{E} = \\mathbf{T}^\\top \\mathbf{T}\\]\n\n\\[\\mathbf{T^\\top} =\n\\begin{bmatrix}\n1.67 & 0.21 & \\dots & 1.26\\\\\n1.71 & 0.26 & \\dots & 1.74\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n0.66 & 0.19 & \\dots & 3.14\n\\end{bmatrix}, \\quad\n\\mathbf{E} =\n\\begin{bmatrix}\ne_{11} & e_{12} & \\dots & e_{18}\\\\\ne_{21} & e_{22} & \\dots & e_{28}\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\ne_{81} & e_{82} & \\dots & e_{88}\n\\end{bmatrix}\n\\]\n\n\n\nObtenção da Matriz \\(\\mathbf{D}\\):\n\nAs normas dos vetores de espécies da matriz \\(\\mathbf{T}\\) podem ser obtidas a partir dos elementos da diagonal da matriz \\(\\mathbf{E}\\), em que:\n\\[\\text{norma}_i = \\sqrt{e_{ii}}\\]\nSabendo disso, obtenha a Matriz \\(\\mathbf{D}\\):\n\\[\\mathbf{D} =\n\\begin{bmatrix}\n\\frac{1}{\\sqrt{e_{11}}} & 0 & \\dots & 0\\\\\n0 & \\frac{1}{\\sqrt{e_{22}}} & \\dots & 0\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n0 & 0 & \\dots & \\frac{1}{\\sqrt{e_{88}}}\n\\end{bmatrix}\n\\]\n\n\nMatriz Final de similaridade por cossenos (\\(\\mathbf{C}\\)):\n\n\\[\\mathbf{C} = \\mathbf{D} \\mathbf{E} \\mathbf{D}\n\\tag{2}\\]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/cossine-similarity.html#roteiro-matriz-de-similaridade-no-google-planilhas",
+    "href": "content/computer-lab/cossine-similarity.html#roteiro-matriz-de-similaridade-no-google-planilhas",
+    "title": "Ecologia Funcional: aplicação da álgebra matricial",
+    "section": "5 Roteiro: Matriz de Similaridade no Google Planilhas",
+    "text": "5 Roteiro: Matriz de Similaridade no Google Planilhas\n\nAcesse sheets.google.com.\nInsira os dados da tabela \\(\\mathbf{T}\\) (Tabela 1). Se necessário, modifique o separador decimal de ponto (.) para vírgula (,).\nCalcule \\(\\mathbf{T}^\\top\\).\n\nDica - utilize a fórmula:\n=TRANSPOR()\n\nCalcule a matriz \\(\\mathbf{E}\\).\n\nDica - utilize a fórmula:\n=MATRIZ.MULT()\n\nCalcule as normas das colunas da matriz \\(\\mathbf{E}\\) e monte a matriz diagonal \\(\\mathbf{D}\\).\n\nDica: A matriz diagonal \\(\\mathbf{D}\\) terá as mesmas dimensões de \\(\\mathbf{E}\\), mas será preenchida com zeros exceto na diagonal principal. Nela, os valores serão \\(\\frac{1}{\\sqrt{e_{ii}}}\\), onde \\(e_{ii}\\) são os elementos da diagonal principal de \\(\\mathbf{E}\\).\n\nCalcule a matriz \\(\\mathbf{C}\\) conforme a Equação 2.\n\nDica - utilize a fórmula:\n=MATRIZ.MULT()\n\nVerificação: calcule o cosseno de \\(\\theta\\) entre algumas espécies utilizando a Equação 1 e verifique se os resultados coincidem com os observados na matriz de similaridade \\(\\mathbf{C}\\).\nVerificação: Considerando as imagens apresentadas na Figura 1, avalie criticamente se a matriz de similaridade representa de maneira fidedigna a semelhança morfométrica entre as espécies.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 9 - 10 - Similaridade por cosseno"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html",
+    "href": "content/reading/particao-soma-quadrados-r2.html",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "",
+    "text": "A ideia central dos mínimos quadrados pode ser apresentada sem matrizes, começando por uma decomposição simples:\n\\[Y_i = \\hat{Y}_i + e_i\\]\nCada valor observado é escrito como parte explicada pelo modelo (\\(\\hat{Y}_i\\)) mais resíduo (\\(e_i\\)), isto é, a parte que o modelo não conseguiu explicar.\nAntes da linguagem matricial, veja um exemplo pequeno com três observações. Suponha que\n\\[\\mathbf{y} = \\begin{bmatrix} 4 \\\\ 3 \\\\ 8 \\end{bmatrix}, \\qquad \\hat{\\mathbf{y}} = \\begin{bmatrix} 3 \\\\ 5 \\\\ 7 \\end{bmatrix}, \\qquad \\bar{Y} = 5\\]\nEntão o vetor de resíduos é\n\\[\\mathbf{e} = \\mathbf{y} - \\hat{\\mathbf{y}} = \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nEsse exemplo já mostra a lógica do ajuste: o modelo produz uma parte prevista, e o que sobra vira resíduo.\nNo caso geral, escrevemos\n\\[\\mathbf{y} = \\mathbf{X}\\hat{\\boldsymbol{\\beta}} + \\mathbf{e}\\]\nonde \\(\\mathbf{y} \\in \\mathbb{R}^n\\) é o vetor de respostas, \\(\\mathbf{X}\\) é a matriz do modelo, \\(\\hat{\\boldsymbol{\\beta}}\\) é o vetor de coeficientes estimados e \\(\\mathbf{e}\\) é o vetor de resíduos.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#ligação-com-os-mínimos-quadrados",
+    "href": "content/reading/particao-soma-quadrados-r2.html#ligação-com-os-mínimos-quadrados",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "",
+    "text": "A ideia central dos mínimos quadrados pode ser apresentada sem matrizes, começando por uma decomposição simples:\n\\[Y_i = \\hat{Y}_i + e_i\\]\nCada valor observado é escrito como parte explicada pelo modelo (\\(\\hat{Y}_i\\)) mais resíduo (\\(e_i\\)), isto é, a parte que o modelo não conseguiu explicar.\nAntes da linguagem matricial, veja um exemplo pequeno com três observações. Suponha que\n\\[\\mathbf{y} = \\begin{bmatrix} 4 \\\\ 3 \\\\ 8 \\end{bmatrix}, \\qquad \\hat{\\mathbf{y}} = \\begin{bmatrix} 3 \\\\ 5 \\\\ 7 \\end{bmatrix}, \\qquad \\bar{Y} = 5\\]\nEntão o vetor de resíduos é\n\\[\\mathbf{e} = \\mathbf{y} - \\hat{\\mathbf{y}} = \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nEsse exemplo já mostra a lógica do ajuste: o modelo produz uma parte prevista, e o que sobra vira resíduo.\nNo caso geral, escrevemos\n\\[\\mathbf{y} = \\mathbf{X}\\hat{\\boldsymbol{\\beta}} + \\mathbf{e}\\]\nonde \\(\\mathbf{y} \\in \\mathbb{R}^n\\) é o vetor de respostas, \\(\\mathbf{X}\\) é a matriz do modelo, \\(\\hat{\\boldsymbol{\\beta}}\\) é o vetor de coeficientes estimados e \\(\\mathbf{e}\\) é o vetor de resíduos.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#os-três-vetores-fundamentais",
+    "href": "content/reading/particao-soma-quadrados-r2.html#os-três-vetores-fundamentais",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "2 Os três vetores fundamentais",
+    "text": "2 Os três vetores fundamentais\nPara estudar a variação total de \\(Y\\), não basta olhar para \\(\\mathbf{y}\\); precisamos comparar \\(\\mathbf{y}\\) com sua média. No exemplo acima, como \\(\\bar{Y} = 5\\),\n\\[\\bar{Y}\\mathbf{1} = \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix}\\]\nO desvio total em relação à média é\n\\[\\mathbf{y} - \\bar{Y}\\mathbf{1} = \\begin{bmatrix} 4 \\\\ 3 \\\\ 8 \\end{bmatrix} - \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix} = \\begin{bmatrix} -1 \\\\ -2 \\\\ 3 \\end{bmatrix}\\]\nA parte explicada pelo modelo, medida em relação à mesma média, é\n\\[\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1} = \\begin{bmatrix} 3 \\\\ 5 \\\\ 7 \\end{bmatrix} - \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix} = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix}\\]\nE o resíduo continua sendo\n\\[\\mathbf{e} = \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nAgora aparece a decomposição mais importante deste capítulo:\n\\[\\underbrace{\\mathbf{y} - \\bar{Y}\\mathbf{1}}_{\\text{desvio total}} = \\underbrace{(\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1})}_{\\text{parte explicada}} + \\underbrace{\\mathbf{e}}_{\\text{resíduo}}\\]\nNo exemplo,\n\\[\\begin{bmatrix} -1 \\\\ -2 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nEssa igualdade resume a interpretação estatística e vetorial da regressão: a variação total em torno da média é decomposta em uma parte explicada pelo modelo e uma parte não explicada.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#quando-a-parte-explicada-e-o-resíduo-ficam-perpendiculares",
+    "href": "content/reading/particao-soma-quadrados-r2.html#quando-a-parte-explicada-e-o-resíduo-ficam-perpendiculares",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "3 Quando a parte explicada e o resíduo ficam perpendiculares",
+    "text": "3 Quando a parte explicada e o resíduo ficam perpendiculares\nNo exemplo anterior, a parte explicada e o resíduo não se misturam. Isso pode ser verificado diretamente pelo produto escalar:\n\\[\\begin{bmatrix} -2 & 0 & 2 \\end{bmatrix}\n\\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix} = (-2)(1) + 0(-2) + 2(1) = 0\\]\nQuando esse produto dá zero, dizemos que os vetores são perpendiculares. Em linguagem técnica, eles são ortogonais.\nEssa perpendicularidade tem uma leitura muito útil em que a parte explicada e o resíduo carregam contribuições diferentes da variação total. O que já foi explicado pelo modelo não reaparece no resíduo.\nNo método dos mínimos quadrados com intercepto, essa propriedade vale em geral:\n\\[ (\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1})^\\top \\mathbf{e} = 0 \\]\nEla é uma consequência do próprio critério de ajuste: os resíduos ficam sem componente na direção explicada pelo modelo.\n\n\n\n\n\nPara um ponto representativo \\((X_k, Y_k)\\): o desvio total (preto) é a soma da parte explicada pelo modelo (verde) e do resíduo (vermelho). A linha tracejada representa \\(\\bar{Y}\\).",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#partição-via-teorema-de-pitágoras",
+    "href": "content/reading/particao-soma-quadrados-r2.html#partição-via-teorema-de-pitágoras",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "4 Partição via Teorema de Pitágoras",
+    "text": "4 Partição via Teorema de Pitágoras\nComo a parte explicada e o resíduo são perpendiculares, o Teorema de Pitágoras pode ser aplicado ao vetor de desvio total:\n\\[\\|\\mathbf{y} - \\bar{Y}\\mathbf{1}\\|^2 = \\|\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1}\\|^2 + \\|\\mathbf{e}\\|^2\\]\nNo exemplo pequeno,\n\\[\\|\\mathbf{y} - \\bar{Y}\\mathbf{1}\\|^2 = (-1)^2 + (-2)^2 + 3^2 = 14\\]\n\\[\\|\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1}\\|^2 = (-2)^2 + 0^2 + 2^2 = 8\\]\n\\[\\|\\mathbf{e}\\|^2 = 1^2 + (-2)^2 + 1^2 = 6\\]\nLogo,\n\\[14 = 8 + 6\\]\nEm linguagem estatística, essas três quantidades são chamadas de somas dos quadrados:\n\n\n\n\n\n\nNotaPartição da soma dos quadrados\n\n\n\n\\[SQ_{Total} = SQ_{Reg} + SQ_{Res}\\]\n\n\n\n\n\n\n\n\nComponente\nDefinição\nLeitura pedagógica\n\n\n\n\n\\(SQ_{Total}\\)\n\\(\\sum (Y_i - \\bar{Y})^2\\)\ncomprimento ao quadrado do desvio total\n\n\n\\(SQ_{Reg}\\)\n\\(\\sum (\\hat{Y}_i - \\bar{Y})^2\\)\ncomprimento ao quadrado da parte explicada\n\n\n\\(SQ_{Res}\\)\n\\(\\sum (Y_i - \\hat{Y}_i)^2\\)\ncomprimento ao quadrado do resíduo\n\n\n\n\n\nNo exemplo do texto: \\(SQ_{Total} = 36.13\\), \\(SQ_{Reg} = 31.032\\), \\(SQ_{Res} = 5.098\\).\nVerificação: \\(31.032 + 5.098 = 36.13\\) \\(\\approx\\) \\(36.13\\) ✓",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#definição-do-coeficiente-de-determinação-r2",
+    "href": "content/reading/particao-soma-quadrados-r2.html#definição-do-coeficiente-de-determinação-r2",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "5 Definição do coeficiente de determinação \\(R^2\\)",
+    "text": "5 Definição do coeficiente de determinação \\(R^2\\)\nDepois da partição, fica natural perguntar: qual fração da variação total ficou na parte explicada pelo modelo?\nA resposta é o coeficiente de determinação:\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = 1 - \\frac{SQ_{Res}}{SQ_{Total}}\\]\nA interpretação geométrica é direta: \\(R^2\\) é a proporção entre comprimentos ao quadrado. Ele compara o tamanho da parte explicada com o tamanho total da variação em torno da média.\nNo exemplo pequeno,\n\\[R^2 = \\frac{8}{14} \\approx 0.5714\\]\nOu seja, cerca de \\(57\\%\\) da variação total ficou na parte explicada.\nNo caso geral, como \\(0 \\leq SQ_{Reg} \\leq SQ_{Total}\\), temos \\(0 \\leq R^2 \\leq 1\\):\n\n\\(R^2 = 0\\): o modelo não explica a variação em torno da média;\n\\(R^2 = 1\\): toda a variação é explicada pelo modelo;\n\\(0 &lt; R^2 &lt; 1\\): parte da variação é explicada e parte permanece no resíduo.\n\nNo exemplo do texto: \\(R^2 = \\dfrac{31.032}{36.13} = 0.8589\\).",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#relação-entre-r2-e-a-correlação-de-pearson",
+    "href": "content/reading/particao-soma-quadrados-r2.html#relação-entre-r2-e-a-correlação-de-pearson",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "6 Relação entre \\(R^2\\) e a correlação de Pearson",
+    "text": "6 Relação entre \\(R^2\\) e a correlação de Pearson\nNa regressão linear simples (com um único preditor \\(X\\)), o coeficiente de determinação é exatamente o quadrado da correlação de Pearson:\n\\[R^2 = r^2\\]\nEssa igualdade mostra que, no caso simples, explicar bem a variação de \\(Y\\) equivale a ter forte alinhamento linear entre as variações de \\(X\\) e \\(Y\\).\nPodemos demonstrar isso a partir da inclinação da reta de mínimos quadrados. No modelo simples,\n\\[\\hat{\\beta}_1 = \\frac{SQ_{XY}}{SQ_X}\\]\nComo\n\\[\\hat{Y}_i - \\bar{Y} = \\hat{\\beta}_1(X_i - \\bar{X})\\]\nsegue que\n\\[SQ_{Reg} = \\sum_{i=1}^n (\\hat{Y}_i - \\bar{Y})^2 = \\hat{\\beta}_1^2 \\sum_{i=1}^n (X_i - \\bar{X})^2 = \\frac{SQ_{XY}^2}{SQ_X^2} \\cdot SQ_X = \\frac{SQ_{XY}^2}{SQ_X}\\]\nPortanto,\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = \\frac{SQ_{XY}^2 / SQ_X}{SQ_Y} = \\frac{SQ_{XY}^2}{SQ_X \\cdot SQ_Y} = \\left(\\frac{SQ_{XY}}{\\sqrt{SQ_X \\cdot SQ_Y}}\\right)^2 = r^2\\]\nNa regressão múltipla, \\(R^2\\) continua sendo a fração da soma dos quadrados explicada pelo modelo, mas já não coincide com o quadrado de uma única correlação bivariada.\nVerificação no exemplo do texto: \\(r = 0.9268\\), \\(r^2 = 0.8589\\), \\(R^2 = 0.8589\\) ✓",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#visualização-da-partição",
+    "href": "content/reading/particao-soma-quadrados-r2.html#visualização-da-partição",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "7 Visualização da partição",
+    "text": "7 Visualização da partição\n\n\n\n\n\nPartição da soma dos quadrados no modelo de regressão. A linha tracejada representa \\(\\bar{Y}\\). Segmentos verdes: parte explicada pelo modelo. Segmentos vermelhos: resíduos.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/particao-soma-quadrados-r2.html#formulação-matricial",
+    "href": "content/reading/particao-soma-quadrados-r2.html#formulação-matricial",
+    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "section": "8 Formulação matricial",
+    "text": "8 Formulação matricial\nDepois de entender a decomposição numericamente, vale registrá-la na forma compacta usada em álgebra linear. Definimos:\n\n\\(\\mathbf{H} = \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top\\): matriz que extrai a parte explicada do vetor de respostas;\n\\(\\mathbf{H}_\\mathbf{1} = \\dfrac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\): matriz que extrai a parte constante associada à média;\n\\(\\mathbf{M} = \\mathbf{I} - \\mathbf{H}_\\mathbf{1}\\): matriz que remove a média e deixa o desvio total em torno dela.\n\nAssim,\n\\[\\hat{\\mathbf{y}} = \\mathbf{H}\\mathbf{y}, \\qquad \\bar{Y}\\mathbf{1} = \\mathbf{H}_\\mathbf{1}\\mathbf{y}, \\qquad \\mathbf{e} = (\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\]\nAs três somas dos quadrados ficam:\n\\[SQ_{Total} = \\|\\mathbf{y} - \\bar{Y}\\mathbf{1}\\|^2 = \\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}\\]\n\\[SQ_{Reg} = \\|\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1}\\|^2 = \\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}\\]\n\\[SQ_{Res} = \\|\\mathbf{e}\\|^2 = \\mathbf{y}^\\top(\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\]\nPortanto,\n\\[R^2 = \\frac{\\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}}{\\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}}\\]\nSó agora vale introduzir os nomes técnicos: \\(\\mathbf{H}\\) e \\(\\mathbf{H}_\\mathbf{1}\\) são matrizes de projeção, pois extraem partes específicas de \\(\\mathbf{y}\\), e aplicá-las duas vezes não altera o resultado já obtido.\n\n\n\n\n\n\nNotaResumo: partição da soma dos quadrados na linguagem matricial\n\n\n\n\n\n\n\n\n\n\n\nComponente\nLeitura pedagógica\nExpressão matricial\n\n\n\n\n\\(SQ_{Total}\\)\ncomprimento ao quadrado do desvio total\n\\(\\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}\\)\n\n\n\\(SQ_{Reg}\\)\ncomprimento ao quadrado da parte explicada\n\\(\\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}\\)\n\n\n\\(SQ_{Res}\\)\ncomprimento ao quadrado do resíduo\n\\(\\mathbf{y}^\\top(\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\)\n\n\n\\(R^2\\)\nfração explicada da variação total\n\\(\\dfrac{\\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}}{\\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}}\\)",
+    "crumbs": [
+      "Material teórico",
+      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+    ]
+  },
+  {
+    "objectID": "content/reading/tendcentral.html",
+    "href": "content/reading/tendcentral.html",
+    "title": "Média Aritmética",
+    "section": "",
+    "text": "Quando observamos um conjunto de dados, a primeira questão que surge é: onde estão concentrados os valores? Uma medida de posição é um único número que representa o “centro” de um conjunto de observações. Ela permite condensar \\(n\\) valores em uma única quantidade informativa — um representante do conjunto.\nNeste capítulo, desenvolvemos rigorosamente a média aritmética, a medida de posição de maior relevância teórica e prática. Sua importância vai além do cálculo elementar: ela possui uma interpretação geométrica precisa e admite uma formulação vetorial e matricial que a conecta diretamente com os demais conceitos da UC.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 15 - Média Aritmética"
+    ]
+  },
+  {
+    "objectID": "content/reading/tendcentral.html#definição-formal",
+    "href": "content/reading/tendcentral.html#definição-formal",
+    "title": "Média Aritmética",
+    "section": "1 Definição formal",
+    "text": "1 Definição formal\nSeja \\(X\\) uma variável com \\(n\\) observações \\(X_1, X_2, \\ldots, X_n\\). A média aritmética de \\(X\\), denotada por \\(\\bar{X}\\), é definida como:\n\\[\\bar{X} = \\frac{X_1 + X_2 + \\cdots + X_n}{n} = \\frac{1}{n}\\sum_{i=1}^n X_i\\]\nA média é, portanto, a soma de todas as observações dividida pelo número de observações. Ela atribui peso igual a cada elemento do conjunto.\nExemplo. Considere a variável \\(X = \\{2,\\ 6,\\ 4,\\ 8,\\ 5\\}\\), com \\(n = 5\\) observações. A média é:\n\\[\\bar{X} = \\frac{2 + 6 + 4 + 8 + 5}{5} = \\frac{25}{5} = 5\\]",
+    "crumbs": [
+      "Material teórico",
+      "Aula 15 - Média Aritmética"
+    ]
+  },
+  {
+    "objectID": "content/reading/tendcentral.html#propriedades-algébricas",
+    "href": "content/reading/tendcentral.html#propriedades-algébricas",
+    "title": "Média Aritmética",
+    "section": "2 Propriedades algébricas",
+    "text": "2 Propriedades algébricas\n\n2.1 A soma dos desvios é sempre zero\nDefina o desvio de cada observação em relação à média como \\(d_i = X_i - \\bar{X}\\). Uma propriedade fundamental da média é que a soma de todos os desvios é exatamente zero:\n\\[\\sum_{i=1}^n (X_i - \\bar{X}) = 0\\]\nDemonstração. Expandindo a soma:\n\\[\\sum_{i=1}^n (X_i - \\bar{X}) = \\sum_{i=1}^n X_i - \\sum_{i=1}^n \\bar{X} = \\sum_{i=1}^n X_i - n\\bar{X}\\]\nSubstituindo \\(\\bar{X} = \\frac{1}{n}\\sum X_i\\):\n\\[= \\sum_{i=1}^n X_i - n \\cdot \\frac{1}{n}\\sum_{i=1}^n X_i = \\sum_{i=1}^n X_i - \\sum_{i=1}^n X_i = 0 \\qquad \\square\\]\nNo exemplo acima, os desvios são \\(d_i = (-3,\\ 1,\\ -1,\\ 3,\\ 0)\\), cuja soma é \\(\\sum d_i = 0\\).\nEsta propriedade tem uma consequência imediata: a média é o único valor \\(c\\) que minimiza \\(\\sum_{i=1}^n (X_i - c)^2\\). Em outras palavras, a média é o ponto de equilíbrio do conjunto de dados — ela equilibra os desvios positivos e negativos.\n\n\n2.2 A média minimiza a soma dos quadrados dos desvios\nPara qualquer constante \\(c\\), pode-se mostrar que:\n\\[\\sum_{i=1}^n (X_i - c)^2 = \\sum_{i=1}^n (X_i - \\bar{X})^2 + n(\\bar{X} - c)^2 \\geq \\sum_{i=1}^n (X_i - \\bar{X})^2\\]\nA igualdade ocorre somente quando \\(c = \\bar{X}\\). Portanto, a média aritmética é o valor que minimiza a soma dos quadrados dos desvios — conexão direta com o método dos mínimos quadrados.\n\n\n\n\n\nA média como ponto de equilíbrio. Cada ponto representa uma observação. Os segmentos indicam os desvios \\(X_i - \\bar{X}\\); segmentos em vermelho correspondem a desvios positivos e em verde a desvios negativos. A soma de todos os desvios é zero.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 15 - Média Aritmética"
+    ]
+  },
+  {
+    "objectID": "content/reading/tendcentral.html#interpretação-geométrica",
+    "href": "content/reading/tendcentral.html#interpretação-geométrica",
+    "title": "Média Aritmética",
+    "section": "3 Interpretação geométrica",
+    "text": "3 Interpretação geométrica\n\n3.1 O exemplo\nConsidere os três valores \\(2\\), \\(5\\) e \\(8\\). Se quisermos representar esse conjunto por um único número constante, esse número gera um vetor com todas as entradas iguais:\n\\[c\\mathbf{1} = c \\times \\begin{bmatrix} 1 \\\\ 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} c \\\\ c \\\\ c \\end{bmatrix}\\]\nVamos comparar três escolhas possíveis:\n\\[\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 5 \\\\ 8 \\end{bmatrix}, \\qquad 4 \\mathbf{1} = \\begin{bmatrix} 4 \\\\ 4 \\\\ 4 \\end{bmatrix}, \\qquad 5\\mathbf{1} = \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix}, \\qquad 6\\mathbf{1} = \\begin{bmatrix} 6 \\\\ 6 \\\\ 6 \\end{bmatrix}\\]\nAs diferenças entre os dados e cada vetor constante são:\n\\[\\mathbf{x} - 4\\mathbf{1} = \\begin{bmatrix} -2 \\\\ 1 \\\\ 4 \\end{bmatrix}, \\qquad \\mathbf{x} - 5\\mathbf{1} = \\begin{bmatrix} -3 \\\\ 0 \\\\ 3 \\end{bmatrix}, \\qquad \\mathbf{x} - 6\\mathbf{1} = \\begin{bmatrix} -4 \\\\ -1 \\\\ 2 \\end{bmatrix}\\]\nSomando os quadrados dessas diferenças, obtemos:\n\\[(-2)^2 + 1^2 + 4^2 = 21, \\qquad (-3)^2 + 0^2 + 3^2 = 18, \\qquad (-4)^2 + (-1)^2 + 2^2 = 21\\]\nLogo, entre esses candidatos, o vetor constante mais próximo de \\(\\mathbf{x}\\) é \\(5\\mathbf{1}\\). E \\(5\\) é justamente a média dos valores \\(2\\), \\(5\\) e \\(8\\).\n\n\n\n\n\n\nA média, representada por \\(\\bar{X}\\mathbf{1}\\) é a melhor aproximação constante para representar o conjunto de dados organizados em um vetor.\n\n\n\n\n\n3.2 A ideia central\nConsidere agora as observações:\n\\[\\mathbf{x} = \\begin{bmatrix} X_1 \\\\ X_2 \\\\ \\vdots \\\\ X_n \\end{bmatrix}\\]\nTambém podemos usar o vetor de uns \\(\\mathbf{1} = (1,1,\\ldots,1)^\\top\\) e multiplicá-lo por uma constante \\(c\\) para produzir um vetor com todas as entradas iguais a \\(c\\). Portanto, o conjunto dos vetores da forma \\(c\\mathbf{1}\\) representa exatamente os vetores constantes, isto é, vetores na direção do vetor de uns.\nA decomposição fundamental da média é:\n\\[\\mathbf{x} = \\bar{X}\\mathbf{1} + \\mathbf{d}\\]\nem que\n\\[\\mathbf{d} = \\mathbf{x} - \\bar{X}\\mathbf{1} = \\begin{bmatrix} X_1 - \\bar{X} \\\\ X_2 - \\bar{X} \\\\ \\vdots \\\\ X_n - \\bar{X} \\end{bmatrix}\\]\nO vetor \\(\\bar{X}\\mathbf{1}\\) é a parte constante que representa o centro dos dados, e o vetor \\(\\mathbf{d}\\) reúne os desvios em relação a esse centro.\nEssa decomposição traduz, em linguagem vetorial, a igualdade escalar\n\\[X_i = \\bar{X} + d_i \\qquad (i = 1,\\ldots,n)\\]\nComo a soma dos desvios é zero, temos:\n\\[\\mathbf{1}^\\top \\mathbf{d} = \\sum_{i=1}^n d_i = 0\\]\nIsso quer dizer que os desvios se compensam e o que fica acima da média é equilibrado pelo que fica abaixo. Dizemos que \\(\\mathbf{d}\\) é perpendicular à direção dos vetores constantes. Formalmente, dizemos que \\(\\bar{X}\\mathbf{1}\\) é a projeção ortogonal de \\(\\mathbf{x}\\) sobre a direção de \\(\\mathbf{1}\\).\n\n\n\n\n\nRepresentação esquemática em \\(\\mathbb{R}^2\\) da decomposição \\(\\mathbf{x} = \\bar{X}\\mathbf{1} + \\mathbf{d}\\). O vetor \\(\\mathbf{x}\\) é decomposto em um vetor constante que representa a média e em um vetor de desvios. O fato de \\(\\mathbf{d}\\) ser perpendicular à direção de \\(\\mathbf{1}\\) equivale à propriedade de que os desvios se compensam.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 15 - Média Aritmética"
+    ]
+  },
+  {
+    "objectID": "content/reading/tendcentral.html#formulação-vetorial",
+    "href": "content/reading/tendcentral.html#formulação-vetorial",
+    "title": "Média Aritmética",
+    "section": "4 Formulação vetorial",
+    "text": "4 Formulação vetorial\nCom a intuição em mãos, podemos escrever a média de forma compacta usando a ideia do produto escalar \\(\\mathbf{1}^\\top\\mathbf{x}\\). No exemplo anterior,\n\\[\\mathbf{1}^\\top\\mathbf{x} = 2 + 5 + 8 = 15 \\qquad \\text{e} \\qquad \\mathbf{1}^\\top\\mathbf{1} = 3\\]\nPortanto,\n\\[\\bar{X} = \\frac{15}{3} = 5\\]\nNo caso geral,\n\\[\\bar{X} = \\frac{\\mathbf{1}^\\top \\mathbf{x}}{n} = \\frac{\\mathbf{1}^\\top \\mathbf{x}}{\\mathbf{1}^\\top \\mathbf{1}}\\]\nEssa expressão mostra que a média pode ser obtida a partir do vetor de dados e do vetor de uns usando apenas soma e divisão pelo número de observações.\nA parte constante associada à média também pode ser escrita de forma compacta:\n\\[\\bar{X}\\mathbf{1} = \\frac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\,\\mathbf{x}\\]\nA matriz\n\\[\\mathbf{H}_\\mathbf{1} = \\frac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\]\ntransforma qualquer vetor no vetor constante correspondente à sua média. Em outras palavras, ela extrai a parte explicada pela média. Assim,\n\\[\\bar{X}\\mathbf{1} = \\mathbf{H}_\\mathbf{1}\\mathbf{x}\\]\nA parte restante é o vetor de desvios:\n\\[\\mathbf{d} = \\mathbf{x} - \\bar{X}\\mathbf{1} = (\\mathbf{I} - \\mathbf{H}_\\mathbf{1})\\mathbf{x} = \\mathbf{M}\\mathbf{x}\\]\nonde\n\\[\\mathbf{M} = \\mathbf{I} - \\frac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\]\né a matriz que remove a média e deixa apenas a parte residual do vetor.\n\n\n\n\n\n\nNotaResumo: a média na linguagem vetorial\n\n\n\n\n\n\n\n\n\n\n\nQuantidade\nLeitura pedagógica\nExpressão vetorial\n\n\n\n\nMédia\nmédia das entradas de \\(\\mathbf{x}\\)\n\\(\\bar{X} = \\dfrac{\\mathbf{1}^\\top \\mathbf{x}}{n}\\)\n\n\nVetor constante da média\nrepete a média em todas as posições\n\\(\\bar{X}\\mathbf{1} = \\mathbf{H}_\\mathbf{1}\\mathbf{x}\\)\n\n\nVetor de desvios\nsobra depois de retirar a média\n\\(\\mathbf{d} = \\mathbf{M}\\mathbf{x}\\)\n\n\nCompensação dos desvios\nsoma dos desvios igual a zero\n\\(\\mathbf{1}^\\top\\mathbf{d} = 0\\)\n\n\nDecomposição\ndados = média + desvios\n\\(\\mathbf{x} = \\mathbf{H}_\\mathbf{1}\\mathbf{x} + \\mathbf{M}\\mathbf{x}\\)",
+    "crumbs": [
+      "Material teórico",
+      "Aula 15 - Média Aritmética"
+    ]
+  },
+  {
+    "objectID": "content/reading/tendcentral.html#formulação-matricial",
+    "href": "content/reading/tendcentral.html#formulação-matricial",
+    "title": "Média Aritmética",
+    "section": "5 Formulação matricial",
+    "text": "5 Formulação matricial\nQuando temos \\(p\\) variáveis observadas em \\(n\\) unidades, organizamos os dados na matriz \\(\\mathbf{X}\\) de dimensão \\(n \\times p\\), onde cada coluna é um vetor de observações de uma variável:\n\\[\\mathbf{X} = \\begin{bmatrix} X_{11} & X_{12} & \\cdots & X_{1p} \\\\ X_{21} & X_{22} & \\cdots & X_{2p} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ X_{n1} & X_{n2} & \\cdots & X_{np} \\end{bmatrix}\\]\nO vetor de médias das colunas é\n\\[\\bar{\\mathbf{x}} = \\frac{1}{n}\\mathbf{X}^\\top\\mathbf{1} = \\begin{bmatrix} \\bar{X}_1 \\\\ \\bar{X}_2 \\\\ \\vdots \\\\ \\bar{X}_p \\end{bmatrix}\\]\nMultiplicar \\(\\mathbf{X}\\) por \\(\\mathbf{H}_\\mathbf{1}\\) à esquerda produz, em cada coluna, o vetor constante associado à respectiva média:\n\\[\\mathbf{H}_\\mathbf{1}\\mathbf{X} = \\mathbf{1}\\bar{\\mathbf{x}}^\\top\\]\nJá a multiplicação por \\(\\mathbf{M}\\) remove essa parte constante e deixa os dados centrados:\n\\[\\tilde{\\mathbf{X}} = \\mathbf{M}\\mathbf{X} = \\mathbf{X} - \\mathbf{1}\\bar{\\mathbf{x}}^\\top\\]\nAssim, cada coluna de \\(\\tilde{\\mathbf{X}}\\) passa a ter média zero. Essa matriz centrada será o ponto de partida para variância, covariância, correlação e, mais adiante, para a linguagem matricial dos mínimos quadrados.\nSe quisermos registrar o nome técnico, dizemos que \\(\\mathbf{H}_\\mathbf{1}\\) é uma matriz de projeção sobre a direção de \\(\\mathbf{1}\\) e que \\(\\mathbf{H}_\\mathbf{1}\\) e \\(\\mathbf{M}\\) são idempotentes, isto é, aplicá-las duas vezes não muda o resultado.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 15 - Média Aritmética"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html",
+    "href": "content/reading/covariancia-correlacao.html",
+    "title": "Covariância e Correlação Linear",
+    "section": "",
+    "text": "Nos capítulos anteriores, construímos a média e a variância como medidas que descrevem uma única variável. O passo natural é perguntar: como duas variáveis variam em conjunto? Para responder, precisamos de medidas que capturem a associação linear entre \\(X\\) e \\(Y\\): a covariância e o coeficiente de correlação de Pearson.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#motivação-associação-entre-duas-variáveis",
+    "href": "content/reading/covariancia-correlacao.html#motivação-associação-entre-duas-variáveis",
+    "title": "Covariância e Correlação Linear",
+    "section": "1 Motivação: associação entre duas variáveis",
+    "text": "1 Motivação: associação entre duas variáveis\n\n\n\n\n\nTrês situações de associação linear entre duas variáveis. À esquerda, covariância negativa: quando \\(X\\) aumenta, \\(Y\\) tende a diminuir. Ao centro, covariância nula: não há padrão linear. À direita, covariância positiva: quando \\(X\\) aumenta, \\(Y\\) também tende a aumentar.\n\n\n\n\nObservamos que a associação pode ser positiva (quando \\(X\\) aumenta, \\(Y\\) também aumenta), negativa (quando \\(X\\) aumenta, \\(Y\\) diminui) ou nula (sem padrão linear aparente). Buscamos uma medida que quantifique a direção e intensidade desse padrão.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#da-variância-à-covariância",
+    "href": "content/reading/covariancia-correlacao.html#da-variância-à-covariância",
+    "title": "Covariância e Correlação Linear",
+    "section": "2 Da variância à covariância",
+    "text": "2 Da variância à covariância\n\n2.1 O exemplo\nA covariância nasce da mesma ideia da variância, mas agora olhando duas variáveis ao mesmo tempo. Considere o exemplo abaixo:\n\\[\\mathbf{x} = \\begin{bmatrix} 1 \\\\ 3 \\\\ 5 \\end{bmatrix}, \\qquad \\mathbf{y} = \\begin{bmatrix} 2 \\\\ 4 \\\\ 6 \\end{bmatrix}\\]\nAs médias são \\(\\bar{X} = 3\\) e \\(\\bar{Y} = 4\\). Depois de centralizar, obtemos:\n\\[\\mathbf{d}_X = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix}, \\qquad \\mathbf{d}_Y = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix}\\]\nAgora, em vez de elevar ao quadrado cada desvio separadamente, multiplicamos os desvios correspondentes:\n\\[(-2)(-2) = 4, \\qquad 0 \\cdot 0 = 0, \\qquad 2 \\cdot 2 = 4\\]\nSomando,\n\\[4 + 0 + 4 = 8\\]\nO resultado é positivo porque, nas três observações, as duas variáveis caminham juntas: quando uma está abaixo da média, a outra também está; quando uma está acima, a outra também está.\nSe trocarmos \\(\\mathbf{y}\\) por\n\\[\\mathbf{y} = \\begin{bmatrix} 6 \\\\ 4 \\\\ 2 \\end{bmatrix}, \\qquad \\mathbf{d}_Y = \\begin{bmatrix} 2 \\\\ 0 \\\\ -2 \\end{bmatrix}\\]\nentão os produtos ficam\n\\[(-2)(2) = -4, \\qquad 0 \\cdot 0 = 0, \\qquad 2(-2) = -4\\]\nLogo,\n\\[-4 + 0 - 4 = -8\\]\nAgora o resultado é negativo: quando uma variável está acima da média, a outra tende a estar abaixo.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#covariância-amostral",
+    "href": "content/reading/covariancia-correlacao.html#covariância-amostral",
+    "title": "Covariância e Correlação Linear",
+    "section": "3 Covariância amostral",
+    "text": "3 Covariância amostral\nA covariância ela mede o alinhamento entre as variações centradas de duas variáveis, isto é, variações de \\(Y\\) e \\(X\\) em torno de suas médias. Quando os desvios crescem juntos, a covariância tende a ser positiva e quando apontam em direções opostas, tende a ser negativa.\nPodemos definir a covariância a partir da soma dos produtos cruzados entre \\(Y\\) e \\(X\\) por:\n\\[SQ_{XY} = \\sum_{i=1}^n (X_i - \\bar{X})(Y_i - \\bar{Y})\\]\n\\(SQ_{XY}\\) desempenha, para duas variáveis, o mesmo papel que \\(SQ\\) desempenha para uma variável só.\nA covariância amostral é a soma dos produtos cruzados dividida por \\(n-1\\):\n\\[s_{XY} = \\frac{SQ_{XY}}{n-1} = \\frac{\\sum_{i=1}^n (X_i - \\bar{X})(Y_i - \\bar{Y})}{n-1}\\]\nA divisão por \\(n-1\\) aparece pelo mesmo motivo já visto na variância: depois de centrar os dados, uma restrição linear é introduzida em cada vetor de desvios.\nPodemos ler o sinal de \\(s_{XY}\\) da seguinte forma:\n\n\\(s_{XY} &gt; 0\\): as duas variáveis tendem a variar na mesma direção;\n\\(s_{XY} &lt; 0\\): as duas variáveis tendem a variar em direções opostas;\n\\(s_{XY} \\approx 0\\): não há alinhamento linear claro entre as variações.\n\nQuando \\(X = Y\\), a covariância vira a própria variância. Portanto, a variância é um caso particular da covariância.\n\n3.1 Exemplo\nPara \\(X = \\{1,\\ 3,\\ 4,\\ 6,\\ 7,\\ 9\\}\\) e \\(Y = \\{2,\\ 4,\\ 3,\\ 7,\\ 6,\\ 8\\}\\):\n\n\n\nCálculo do produto cruzado para o exemplo.\n\n\n\\(i\\)\n\\(X_i\\)\n\\(Y_i\\)\n\\(d_{X_i}\\)\n\\(d_{Y_i}\\)\n\\(d_{X_i} \\cdot d_{Y_i}\\)\n\n\n\n\n1\n1\n2\n-4\n-3\n12\n\n\n2\n3\n4\n-2\n-1\n2\n\n\n3\n4\n3\n-1\n-2\n2\n\n\n4\n6\n7\n1\n2\n2\n\n\n5\n7\n6\n2\n1\n2\n\n\n6\n9\n8\n4\n3\n12\n\n\n\n\n\n\\[SQ_{XY} = 32, \\qquad s_{XY} = \\frac{32}{5} = 6.4\\]\n\n\n3.2 Sinal da covariância: análise por quadrantes\nNo gráfico de dispersão, as retas \\(X = \\bar{X}\\) e \\(Y = \\bar{Y}\\) dividem o plano em quatro regiões. O sinal de cada produto \\((X_i - \\bar{X})(Y_i - \\bar{Y})\\) depende de onde o ponto está:\n\n\n\nQuadrante\n\\(X_i - \\bar{X}\\)\n\\(Y_i - \\bar{Y}\\)\nProduto\n\n\n\n\nI (superior direito)\n\\(+\\)\n\\(+\\)\n\\(+\\)\n\n\nII (superior esquerdo)\n\\(-\\)\n\\(+\\)\n\\(-\\)\n\n\nIII (inferior esquerdo)\n\\(-\\)\n\\(-\\)\n\\(+\\)\n\n\nIV (inferior direito)\n\\(+\\)\n\\(-\\)\n\\(-\\)\n\n\n\n\n\n\n\n\nAnálise por quadrantes para três situações de covariância. As linhas tracejadas indicam as médias de X e Y. A cor de cada ponto indica o sinal do produto cruzado: azul (+) e vermelho (−).\n\n\n\n\nQuando os pontos se concentram nos quadrantes I e III, os produtos cruzados tendem a ser positivos. Quando se concentram nos quadrantes II e IV, tendem a ser negativos. Quando aparecem distribuídos sem padrão linear claro, os sinais positivos e negativos tendem a se compensar.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#normalização-o-coeficiente-de-correlação-de-pearson",
+    "href": "content/reading/covariancia-correlacao.html#normalização-o-coeficiente-de-correlação-de-pearson",
+    "title": "Covariância e Correlação Linear",
+    "section": "4 Normalização: o coeficiente de correlação de Pearson",
+    "text": "4 Normalização: o coeficiente de correlação de Pearson\nA covariância já informa direção e alinhamento, mas ainda depende da escala. Se multiplicarmos todos os desvios de uma variável por 10, a covariância também fica 10 vezes maior, mesmo que a direção conjunta das variações não tenha mudado.\nPara comparar apenas a direção das variações, independentemente do tamanho dos vetores, padronizamos cada vetor de desvios pelo seu próprio comprimento. Isso leva ao coeficiente de correlação de Pearson:\n\\[r = \\frac{s_{XY}}{s_X s_Y}\\]\nComo \\(s_X\\) e \\(s_Y\\) medem o tamanho típico das variações de cada variável, a divisão por \\(s_X s_Y\\) transforma a covariância em uma medida adimensional.\nEm forma expandida,\n\\[r = \\frac{\\sum_{i=1}^n (X_i - \\bar{X})(Y_i - \\bar{Y})}{\\sqrt{\\sum_{i=1}^n (X_i - \\bar{X})^2 \\cdot \\sum_{i=1}^n (Y_i - \\bar{Y})^2}}\\]\nAssim, a correlação compara duas coisas ao mesmo tempo:\n\nse os desvios apontam para a mesma direção ou para direções opostas;\nquão forte é esse alinhamento depois de descontar a escala de cada variável.\n\n\n\n\n\n\n\nNotaCoeficiente de correlação de Pearson\n\n\n\n\\[r = \\frac{s_{XY}}{s_X s_Y}\\]\n\n\\(r \\approx 1\\): as variações apontam quase para a mesma direção;\n\\(r \\approx 0\\): o alinhamento linear é fraco ou inexistente;\n\\(r \\approx -1\\): as variações apontam em direções opostas.\n\n\n\nNo exemplo do texto: \\(r = 0.9331\\).",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores",
+    "href": "content/reading/covariancia-correlacao.html#interpretação-geométrica-o-cosseno-do-ângulo-entre-vetores",
+    "title": "Covariância e Correlação Linear",
+    "section": "5 Interpretação geométrica: o cosseno do ângulo entre vetores",
+    "text": "5 Interpretação geométrica: o cosseno do ângulo entre vetores\nDepois da padronização, a correlação pode ser lida geometricamente. Pense nos vetores centrados \\(\\mathbf{d}_X\\) e \\(\\mathbf{d}_Y\\). Se dividirmos cada um pelo seu comprimento, obtemos dois vetores unitários, isto é, dois vetores de comprimento 1 que preservam apenas a direção:\n\\[\\mathbf{u}_X = \\frac{\\mathbf{d}_X}{\\|\\mathbf{d}_X\\|}, \\qquad \\mathbf{u}_Y = \\frac{\\mathbf{d}_Y}{\\|\\mathbf{d}_Y\\|}\\]\nEsses vetores padronizados permitem comparar direções diretamente.\n\nSe \\(\\mathbf{u}_X\\) e \\(\\mathbf{u}_Y\\) apontam quase para o mesmo lado, a correlação fica perto de \\(1\\).\nSe ficam quase perpendiculares, a correlação fica perto de \\(0\\).\nSe apontam para lados opostos, a correlação fica perto de \\(-1\\).\n\nEm linguagem geométrica, a correlação é o cosseno do ângulo \\(\\theta\\) entre os vetores centrados:\n\\[r = \\frac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{\\|\\mathbf{d}_X\\|\\,\\|\\mathbf{d}_Y\\|} = \\cos\\theta\\]\nEssa fórmula não deve ser lida como um truque algébrico, mas como a tradução exata da ideia de alinhamento: a correlação mede quão parecidas são as direções das variações de \\(X\\) e \\(Y\\).\nNo exemplo do texto, o ângulo entre \\(\\mathbf{d}_X\\) e \\(\\mathbf{d}_Y\\) é \\(\\theta = \\arccos(0.9331) \\approx 21.1°\\).\n\n\n\n\n\nInterpretação geométrica da correlação como comparação entre direções. À esquerda, os vetores apontam quase para a mesma direção. Ao centro, ficam quase perpendiculares. À direita, apontam em direções opostas.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#formulação-vetorial",
+    "href": "content/reading/covariancia-correlacao.html#formulação-vetorial",
+    "title": "Covariância e Correlação Linear",
+    "section": "6 Formulação vetorial",
+    "text": "6 Formulação vetorial\nReunindo os resultados anteriores, a covariância e a correlação podem ser escritas em termos dos vetores centrados:\n\\[\\mathbf{d}_X = \\mathbf{M}\\mathbf{x}, \\qquad \\mathbf{d}_Y = \\mathbf{M}\\mathbf{y}\\]\nA covariância é\n\\[s_{XY} = \\frac{\\mathbf{d}_X^\\top \\mathbf{d}_Y}{n-1} = \\frac{\\mathbf{x}^\\top\\mathbf{M}\\mathbf{y}}{n-1}\\]\nEssa expressão mostra que a covariância é um produto escalar entre vetores centrados, dividido por \\(n-1\\).\nJá a correlação é\n\\[r = \\frac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{\\|\\mathbf{d}_X\\|\\,\\|\\mathbf{d}_Y\\|} = \\cos\\theta\\]\nisto é, a versão padronizada desse produto escalar, usada para comparar direções e não tamanhos.",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
+    "objectID": "content/reading/covariancia-correlacao.html#formulação-matricial",
+    "href": "content/reading/covariancia-correlacao.html#formulação-matricial",
+    "title": "Covariância e Correlação Linear",
+    "section": "7 Formulação matricial",
+    "text": "7 Formulação matricial\nQuando organizamos \\(p\\) variáveis nas colunas de uma matriz \\(\\mathbf{X}\\), a matriz de dados centrados é\n\\[\\tilde{\\mathbf{X}} = \\mathbf{M}\\mathbf{X}\\]\nA partir dela, a matriz de covariâncias resume os alinhamentos par a par entre as variáveis:\n\\[\\mathbf{S} = \\frac{1}{n-1}\\,\\tilde{\\mathbf{X}}^\\top\\tilde{\\mathbf{X}} = \\frac{1}{n-1}\\,\\mathbf{X}^\\top\\mathbf{M}\\mathbf{X}\\]\nO elemento \\((j,k)\\) de \\(\\mathbf{S}\\) é a covariância entre as variáveis \\(j\\) e \\(k\\), enquanto a diagonal guarda as variâncias.\nSe quisermos comparar direções após retirar o efeito da escala, usamos a matriz de correlações. Seja \\(\\mathbf{D}_s = \\operatorname{diag}(s_1, s_2, \\ldots, s_p)\\) a matriz diagonal dos desvios padrão. Então\n\\[\\mathbf{R} = \\mathbf{D}_s^{-1}\\mathbf{S}\\mathbf{D}_s^{-1}\\]\nAssim, \\(\\mathbf{R}\\) resume os alinhamentos padronizados entre todas as variáveis: a diagonal é sempre \\(1\\), e os demais elementos ficam entre \\(-1\\) e \\(1\\).\n\n\n\n\n\n\nNotaResumo: covariância e correlação na linguagem vetorial e matricial\n\n\n\n\n\n\n\n\n\n\n\nQuantidade\nLeitura pedagógica\nExpressão\n\n\n\n\nCovariância amostral\nalinhamento entre vetores centrados\n\\(s_{XY} = \\dfrac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{n-1}\\)\n\n\nCorrelação de Pearson\ncomparação de direções\n\\(r = \\dfrac{\\mathbf{d}_X^\\top\\mathbf{d}_Y}{\\|\\mathbf{d}_X\\|\\,\\|\\mathbf{d}_Y\\|}\\)\n\n\nMatriz de covariâncias\nalinhamentos par a par\n\\(\\mathbf{S} = \\dfrac{1}{n-1}\\mathbf{X}^\\top\\mathbf{M}\\mathbf{X}\\)\n\n\nMatriz de correlações\nalinhamentos após padronização\n\\(\\mathbf{R} = \\mathbf{D}_s^{-1}\\mathbf{S}\\mathbf{D}_s^{-1}\\)",
+    "crumbs": [
+      "Material teórico",
+      "Aula 16 - Covariância e Correlação Linear"
+    ]
+  },
+  {
     "objectID": "content/reading/variacao.html",
     "href": "content/reading/variacao.html",
     "title": "Variância e Desvio Padrão",
@@ -737,102 +638,201 @@
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html",
-    "href": "content/reading/particao-soma-quadrados-r2.html",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "objectID": "content/computer-lab/funcoes-potencia.html",
+    "href": "content/computer-lab/funcoes-potencia.html",
+    "title": "Explorando Funções Potências com Python",
     "section": "",
-    "text": "A ideia central dos mínimos quadrados pode ser apresentada sem matrizes, começando por uma decomposição simples:\n\\[Y_i = \\hat{Y}_i + e_i\\]\nCada valor observado é escrito como parte explicada pelo modelo (\\(\\hat{Y}_i\\)) mais resíduo (\\(e_i\\)), isto é, a parte que o modelo não conseguiu explicar.\nAntes da linguagem matricial, veja um exemplo pequeno com três observações. Suponha que\n\\[\\mathbf{y} = \\begin{bmatrix} 4 \\\\ 3 \\\\ 8 \\end{bmatrix}, \\qquad \\hat{\\mathbf{y}} = \\begin{bmatrix} 3 \\\\ 5 \\\\ 7 \\end{bmatrix}, \\qquad \\bar{Y} = 5\\]\nEntão o vetor de resíduos é\n\\[\\mathbf{e} = \\mathbf{y} - \\hat{\\mathbf{y}} = \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nEsse exemplo já mostra a lógica do ajuste: o modelo produz uma parte prevista, e o que sobra vira resíduo.\nNo caso geral, escrevemos\n\\[\\mathbf{y} = \\mathbf{X}\\hat{\\boldsymbol{\\beta}} + \\mathbf{e}\\]\nonde \\(\\mathbf{y} \\in \\mathbb{R}^n\\) é o vetor de respostas, \\(\\mathbf{X}\\) é a matriz do modelo, \\(\\hat{\\boldsymbol{\\beta}}\\) é o vetor de coeficientes estimados e \\(\\mathbf{e}\\) é o vetor de resíduos.",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#ligação-com-os-mínimos-quadrados",
-    "href": "content/reading/particao-soma-quadrados-r2.html#ligação-com-os-mínimos-quadrados",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
+    "objectID": "content/computer-lab/funcoes-potencia.html#pacotes-e-bibliotecas",
+    "href": "content/computer-lab/funcoes-potencia.html#pacotes-e-bibliotecas",
+    "title": "Explorando Funções Potências com Python",
     "section": "",
-    "text": "A ideia central dos mínimos quadrados pode ser apresentada sem matrizes, começando por uma decomposição simples:\n\\[Y_i = \\hat{Y}_i + e_i\\]\nCada valor observado é escrito como parte explicada pelo modelo (\\(\\hat{Y}_i\\)) mais resíduo (\\(e_i\\)), isto é, a parte que o modelo não conseguiu explicar.\nAntes da linguagem matricial, veja um exemplo pequeno com três observações. Suponha que\n\\[\\mathbf{y} = \\begin{bmatrix} 4 \\\\ 3 \\\\ 8 \\end{bmatrix}, \\qquad \\hat{\\mathbf{y}} = \\begin{bmatrix} 3 \\\\ 5 \\\\ 7 \\end{bmatrix}, \\qquad \\bar{Y} = 5\\]\nEntão o vetor de resíduos é\n\\[\\mathbf{e} = \\mathbf{y} - \\hat{\\mathbf{y}} = \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nEsse exemplo já mostra a lógica do ajuste: o modelo produz uma parte prevista, e o que sobra vira resíduo.\nNo caso geral, escrevemos\n\\[\\mathbf{y} = \\mathbf{X}\\hat{\\boldsymbol{\\beta}} + \\mathbf{e}\\]\nonde \\(\\mathbf{y} \\in \\mathbb{R}^n\\) é o vetor de respostas, \\(\\mathbf{X}\\) é a matriz do modelo, \\(\\hat{\\boldsymbol{\\beta}}\\) é o vetor de coeficientes estimados e \\(\\mathbf{e}\\) é o vetor de resíduos.",
+    "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#os-três-vetores-fundamentais",
-    "href": "content/reading/particao-soma-quadrados-r2.html#os-três-vetores-fundamentais",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "2 Os três vetores fundamentais",
-    "text": "2 Os três vetores fundamentais\nPara estudar a variação total de \\(Y\\), não basta olhar para \\(\\mathbf{y}\\); precisamos comparar \\(\\mathbf{y}\\) com sua média. No exemplo acima, como \\(\\bar{Y} = 5\\),\n\\[\\bar{Y}\\mathbf{1} = \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix}\\]\nO desvio total em relação à média é\n\\[\\mathbf{y} - \\bar{Y}\\mathbf{1} = \\begin{bmatrix} 4 \\\\ 3 \\\\ 8 \\end{bmatrix} - \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix} = \\begin{bmatrix} -1 \\\\ -2 \\\\ 3 \\end{bmatrix}\\]\nA parte explicada pelo modelo, medida em relação à mesma média, é\n\\[\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1} = \\begin{bmatrix} 3 \\\\ 5 \\\\ 7 \\end{bmatrix} - \\begin{bmatrix} 5 \\\\ 5 \\\\ 5 \\end{bmatrix} = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix}\\]\nE o resíduo continua sendo\n\\[\\mathbf{e} = \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nAgora aparece a decomposição mais importante deste capítulo:\n\\[\\underbrace{\\mathbf{y} - \\bar{Y}\\mathbf{1}}_{\\text{desvio total}} = \\underbrace{(\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1})}_{\\text{parte explicada}} + \\underbrace{\\mathbf{e}}_{\\text{resíduo}}\\]\nNo exemplo,\n\\[\\begin{bmatrix} -1 \\\\ -2 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} -2 \\\\ 0 \\\\ 2 \\end{bmatrix} + \\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix}\\]\nEssa igualdade resume a interpretação estatística e vetorial da regressão: a variação total em torno da média é decomposta em uma parte explicada pelo modelo e uma parte não explicada.",
+    "objectID": "content/computer-lab/funcoes-potencia.html#definição-e-tipos-de-funções-potências",
+    "href": "content/computer-lab/funcoes-potencia.html#definição-e-tipos-de-funções-potências",
+    "title": "Explorando Funções Potências com Python",
+    "section": "2 Definição e Tipos de Funções Potências",
+    "text": "2 Definição e Tipos de Funções Potências\nUma função potência é definida como uma função da forma \\(f(x) = x^k\\), em que \\(k\\) é uma constante.\nO valor da constante \\(k\\) determina a classificação da função potência:\n\nMonômio: para \\(k = n\\), onde \\(n\\) é um inteiro positivo. Exemplos - \\(f(x) = x^2\\) ou \\(f(x) = x^3\\).\nFunção raiz: para \\(k = 1/n\\), onde \\(n\\) é um inteiro positivo. Exemplos - \\(f(x) = x^{1/2}\\) (raiz quadrada) ou \\(f(x) = x^{1/3}\\) (raiz cúbica).\nFunção recíproca: para \\(k = -1\\). Ou seja, \\(f(x) = x^{-1} = 1/x\\).\n\n\n2.1 Definindo e visualizando funções potência em Python\nVamos usar o Python para definir e plotar exemplos de cada tipo de função potência. Isso nos ajudará a entender suas características visuais.\n\n# Definindo a função potência em Python\ndef potencia(x, n):\n    \"\"\"Função potência: f(x) = x^k.\"\"\"\n    return x**n\n\nUtilizando a função criada.\n\n# Gerando um intervalo de valores para x para plotagem\n# Começamos de 0.1 para evitar divisão por zero na função recíproca.\nx_values = np.linspace(0.1, 5, 400) \n# x_values\n\n\n# Gerando valores de y\ny_values = potencia(x_values, 2)\n# y_values\n\n\n# Criando três gráficos lado a lado com diferentes valores de k\n# Criando os subplots\nfig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(8, 3))\n\n# Primeiro gráfico: f(x) = x²\nax1.plot(x_values, potencia(x_values, 2), label='f(x) = x²')\nax1.set_title('Monômio')\nax1.set_xlabel('x')\nax1.set_ylabel('f(x)')\nax1.legend()\nax1.grid(True)\n\n# Segundo gráfico: f(x) = x^(1/2)\nax2.plot(x_values, potencia(x_values, 1/2), label='f(x) = x^(1/2)')\nax2.set_title('Função Raiz')\nax2.set_xlabel('x')\nax2.set_ylabel('f(x)')\nax2.legend()\nax2.grid(True)\n\n# Terceiro gráfico: f(x) = x⁻¹\nax3.plot(x_values, potencia(x_values, -1), label='f(x) = x⁻¹')\nax3.set_title('Função Recíproca')\nax3.set_xlabel('x')\nax3.set_ylabel('f(x)')\nax3.legend()\nax3.grid(True)\n\n# Ajustando o layout e salvando a figura\nplt.tight_layout()\nplt.show()",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#quando-a-parte-explicada-e-o-resíduo-ficam-perpendiculares",
-    "href": "content/reading/particao-soma-quadrados-r2.html#quando-a-parte-explicada-e-o-resíduo-ficam-perpendiculares",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "3 Quando a parte explicada e o resíduo ficam perpendiculares",
-    "text": "3 Quando a parte explicada e o resíduo ficam perpendiculares\nNo exemplo anterior, a parte explicada e o resíduo não se misturam. Isso pode ser verificado diretamente pelo produto escalar:\n\\[\\begin{bmatrix} -2 & 0 & 2 \\end{bmatrix}\n\\begin{bmatrix} 1 \\\\ -2 \\\\ 1 \\end{bmatrix} = (-2)(1) + 0(-2) + 2(1) = 0\\]\nQuando esse produto dá zero, dizemos que os vetores são perpendiculares. Em linguagem técnica, eles são ortogonais.\nEssa perpendicularidade tem uma leitura muito útil em que a parte explicada e o resíduo carregam contribuições diferentes da variação total. O que já foi explicado pelo modelo não reaparece no resíduo.\nNo método dos mínimos quadrados com intercepto, essa propriedade vale em geral:\n\\[ (\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1})^\\top \\mathbf{e} = 0 \\]\nEla é uma consequência do próprio critério de ajuste: os resíduos ficam sem componente na direção explicada pelo modelo.\n\n\n\n\n\nPara um ponto representativo \\((X_k, Y_k)\\): o desvio total (preto) é a soma da parte explicada pelo modelo (verde) e do resíduo (vermelho). A linha tracejada representa \\(\\bar{Y}\\).",
+    "objectID": "content/computer-lab/funcoes-potencia.html#exemplo-da-relação-espécie-área",
+    "href": "content/computer-lab/funcoes-potencia.html#exemplo-da-relação-espécie-área",
+    "title": "Explorando Funções Potências com Python",
+    "section": "3 Exemplo da Relação Espécie-Área",
+    "text": "3 Exemplo da Relação Espécie-Área\nA função potência é amplamente utilizada em ecologia para modelar fenômenos no mundo real. Um exemplo é a relação entre o número de espécies (\\(S\\)) e a área de uma região (\\(A\\)). A relação entre \\(S\\) e \\(A\\) é geralmente modelada por:\n\\[S(A) = cA^k\\]\nEm que \\(c\\) e \\(k\\) são coeficientes que precisam ser determinados a partir de dados observados.\nConsidere a tabela de dados que mostra valores de área (A) e riqueza de espécies (S):\n\n\n\nObservação\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n\n\n\nA (km²)\n0,25\n0,5\n1\n2\n4\n7,9\n15,9\n31,6\n63\n\n\nS\n6\n10\n13\n14\n17\n19\n22\n24\n28\n\n\n\nPodemos observar essa relação em Python da seguinte forma:\n\n3.1 Definindo a tabela de dados\n\n# Dados da tabela\ndata = {\n    'A': [0.25, 0.5, 1, 2, 4, 7.9, 15.9, 31.6, 63],\n    'S': [6, 10, 13, 14, 17, 19, 22, 24, 28]\n}\ndf = pd.DataFrame(data)\n\n\n\n3.2 Visualizando o gráfico de dispersão\n\nplt.figure(figsize=(8, 5))\nplt.scatter(df['A'], df['S'], label='Dados Observados')\nplt.title('Diagrama de Dispersão: Relação Espécie-Área')\nplt.xlabel('Área (km²)')\nplt.ylabel('Número de Espécies')\nplt.grid(True)\nplt.legend()\nplt.show()",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#partição-via-teorema-de-pitágoras",
-    "href": "content/reading/particao-soma-quadrados-r2.html#partição-via-teorema-de-pitágoras",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "4 Partição via Teorema de Pitágoras",
-    "text": "4 Partição via Teorema de Pitágoras\nComo a parte explicada e o resíduo são perpendiculares, o Teorema de Pitágoras pode ser aplicado ao vetor de desvio total:\n\\[\\|\\mathbf{y} - \\bar{Y}\\mathbf{1}\\|^2 = \\|\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1}\\|^2 + \\|\\mathbf{e}\\|^2\\]\nNo exemplo pequeno,\n\\[\\|\\mathbf{y} - \\bar{Y}\\mathbf{1}\\|^2 = (-1)^2 + (-2)^2 + 3^2 = 14\\]\n\\[\\|\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1}\\|^2 = (-2)^2 + 0^2 + 2^2 = 8\\]\n\\[\\|\\mathbf{e}\\|^2 = 1^2 + (-2)^2 + 1^2 = 6\\]\nLogo,\n\\[14 = 8 + 6\\]\nEm linguagem estatística, essas três quantidades são chamadas de somas dos quadrados:\n\n\n\n\n\n\nNotaPartição da soma dos quadrados\n\n\n\n\\[SQ_{Total} = SQ_{Reg} + SQ_{Res}\\]\n\n\n\n\n\n\n\n\nComponente\nDefinição\nLeitura pedagógica\n\n\n\n\n\\(SQ_{Total}\\)\n\\(\\sum (Y_i - \\bar{Y})^2\\)\ncomprimento ao quadrado do desvio total\n\n\n\\(SQ_{Reg}\\)\n\\(\\sum (\\hat{Y}_i - \\bar{Y})^2\\)\ncomprimento ao quadrado da parte explicada\n\n\n\\(SQ_{Res}\\)\n\\(\\sum (Y_i - \\hat{Y}_i)^2\\)\ncomprimento ao quadrado do resíduo\n\n\n\n\n\nNo exemplo do texto: \\(SQ_{Total} = 36.13\\), \\(SQ_{Reg} = 31.032\\), \\(SQ_{Res} = 5.098\\).\nVerificação: \\(31.032 + 5.098 = 36.13\\) \\(\\approx\\) \\(36.13\\) ✓",
+    "objectID": "content/computer-lab/funcoes-potencia.html#método-dos-mínimos-quadrados-mmq-para-o-modelo-de-regressão-potência",
+    "href": "content/computer-lab/funcoes-potencia.html#método-dos-mínimos-quadrados-mmq-para-o-modelo-de-regressão-potência",
+    "title": "Explorando Funções Potências com Python",
+    "section": "4 Método dos Mínimos Quadrados (MMQ) para o Modelo de Regressão Potência",
+    "text": "4 Método dos Mínimos Quadrados (MMQ) para o Modelo de Regressão Potência\nPodemos utilizar o MMQ para encontrar os coeficientes da relação de potência. Para isso, precisamos antes linearizar a relação, aplicando o logaritmo em ambos os lados da equação.\n\n\n\n\n\n\nImportanteLinearizando a relação potência\n\n\n\n\nComece com a equação original: \\[S = cA^k\\]\nAplique o logaritmo (de qualquer base) nos dois lados: \\[\\log(S) = \\log(cA^k)\\]\nUse a propriedade do logaritmo do produto \\(\\log(xy) = \\log(x) + \\log(y)\\): \\[\\log(S) = \\log(c) + \\log(A^k)\\]\nUse a propriedade do logaritmo da potência \\(\\log(x^p) = p\\log(x)\\): \\[\\log(S) = \\log(c) + k\\log(A)\\]\n\nAo final, obtemos uma equação linear na forma \\(y = a + bx\\), onde:\n\n\\(y = \\log(S)\\)\n\\(x = \\log(A)\\)\nO coeficiente angular é \\(b = k\\)\nO intercepto linear (onde a reta cruza o eixo y) é \\(a = \\log(c)\\)\n\n\n\nApós a linearização, os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{y}\\), são definidos como segue:\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} \\log(x_1) \\\\ \\log(x_2) \\\\ \\vdots \\\\ \\log(x_n) \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} \\log(y_1) \\\\ \\log(y_2) \\\\ \\vdots \\\\ \\log(y_n) \\end{bmatrix}\\]\nA partir daí, definimos as matrizes \\(X\\) e \\(Y\\) como no modelo linear simples e seguimos com as mesmas operações matriciais.\nVamos criar uma função em Python que implementa o MMQ:\n\n\n\n\n\n\nImportanteFunção em Python para MMQ\n\n\n\n\ndef mmq(x, y):\n    \"\"\"\n    Calcula os coeficientes (B) e o R² de uma regressão linear simples.\n\n    Args:\n        x (list ou np.ndarray): Os valores da variável independente.\n        y (list ou np.ndarray): Os valores da variável dependente.\n\n    Returns:\n        tuple: Uma tupla contendo a matriz de coeficientes B e o valor de R².\n    \"\"\"\n    # 1. Definição das matrizes do sistema\n    n = len(x)\n    # Converte para array numpy para garantir a funcionalidade\n    x_array = np.array(x)\n    f0 = np.ones(n)\n    f1 = x_array.copy()\n\n    X = np.column_stack((f0, f1))\n    Y = np.array(y).reshape(n, 1)\n\n    # 2. Cálculo dos coeficientes\n    XTX = X.T @ X\n    XTY = X.T @ Y\n    XTX_inv = np.linalg.inv(XTX)\n    B = XTX_inv @ XTY\n    \n    return B\n\n\n\nDefinida a função mmq, basta utilizá-la com um conjunto de dados de entrada.\n\n# Ajustando o modelo espécie-área\nB_ea = mmq(np.log(df['A']), np.log(df['S']))\nB_ea\n\narray([[2.4039032 ],\n       [0.24475497]])\n\n\n\n4.1 Visualizando os coeficientes ajustados\n\nc = np.exp(B_ea[0])\nk = B_ea[1]\n\nprint('c: ', c)\nprint('k: ', k)\n\nc:  [11.06628617]\nk:  [0.24475497]\n\n\nO modelo de regressão potência para a riqueza de espécies, com base nos dados fornecidos, foi determinado como\n\\[S(A) = 11.066A^{0.244}\\]\nOs valores de \\(c\\) e \\(k\\) foram, respectivamente, \\(11.066\\) e \\(0.244\\).",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#definição-do-coeficiente-de-determinação-r2",
-    "href": "content/reading/particao-soma-quadrados-r2.html#definição-do-coeficiente-de-determinação-r2",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "5 Definição do coeficiente de determinação \\(R^2\\)",
-    "text": "5 Definição do coeficiente de determinação \\(R^2\\)\nDepois da partição, fica natural perguntar: qual fração da variação total ficou na parte explicada pelo modelo?\nA resposta é o coeficiente de determinação:\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = 1 - \\frac{SQ_{Res}}{SQ_{Total}}\\]\nA interpretação geométrica é direta: \\(R^2\\) é a proporção entre comprimentos ao quadrado. Ele compara o tamanho da parte explicada com o tamanho total da variação em torno da média.\nNo exemplo pequeno,\n\\[R^2 = \\frac{8}{14} \\approx 0.5714\\]\nOu seja, cerca de \\(57\\%\\) da variação total ficou na parte explicada.\nNo caso geral, como \\(0 \\leq SQ_{Reg} \\leq SQ_{Total}\\), temos \\(0 \\leq R^2 \\leq 1\\):\n\n\\(R^2 = 0\\): o modelo não explica a variação em torno da média;\n\\(R^2 = 1\\): toda a variação é explicada pelo modelo;\n\\(0 &lt; R^2 &lt; 1\\): parte da variação é explicada e parte permanece no resíduo.\n\nNo exemplo do texto: \\(R^2 = \\dfrac{31.032}{36.13} = 0.8589\\).",
+    "objectID": "content/computer-lab/funcoes-potencia.html#visualizando-o-ajuste-da-curva-de-regressão-potência",
+    "href": "content/computer-lab/funcoes-potencia.html#visualizando-o-ajuste-da-curva-de-regressão-potência",
+    "title": "Explorando Funções Potências com Python",
+    "section": "5 Visualizando o Ajuste da Curva de Regressão Potência",
+    "text": "5 Visualizando o Ajuste da Curva de Regressão Potência\nPodemos criar uma nova função que permitirá encontrar os valores ajustados para o modelo potência a partir dos coeficientes da regressão obtidos.\n\ndef S_modelo(novo_x, c, k):\n    y_fit = c * novo_x ** k\n    return y_fit\n\n\n5.1 Gerando novos valores de x\n\nA_values = np.linspace(np.min(df['A']), np.max(df['A']), 400) \nS_fit = S_modelo(A_values, c, k)\n\n\n\n5.2 Plotando o gráfico\n\n# Plotar os dados e o modelo ajustado\nplt.figure(figsize=(8, 5))\nplt.scatter(df['A'], df['S'], label='Dados Observados')\nplt.plot(A_values, S_fit, color='red', label=f'Modelo Ajustado: S(A) = {c[0]:.3f}A^{k[0]:.3f}')\nplt.title('Modelo de Regressão Potência Ajustado para Relação Espécie-Área')\nplt.xlabel('Área (km²)')\nplt.ylabel('Número de Espécies')\nplt.grid(True)\nplt.legend()\nplt.show()",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#relação-entre-r2-e-a-correlação-de-pearson",
-    "href": "content/reading/particao-soma-quadrados-r2.html#relação-entre-r2-e-a-correlação-de-pearson",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "6 Relação entre \\(R^2\\) e a correlação de Pearson",
-    "text": "6 Relação entre \\(R^2\\) e a correlação de Pearson\nNa regressão linear simples (com um único preditor \\(X\\)), o coeficiente de determinação é exatamente o quadrado da correlação de Pearson:\n\\[R^2 = r^2\\]\nEssa igualdade mostra que, no caso simples, explicar bem a variação de \\(Y\\) equivale a ter forte alinhamento linear entre as variações de \\(X\\) e \\(Y\\).\nPodemos demonstrar isso a partir da inclinação da reta de mínimos quadrados. No modelo simples,\n\\[\\hat{\\beta}_1 = \\frac{SQ_{XY}}{SQ_X}\\]\nComo\n\\[\\hat{Y}_i - \\bar{Y} = \\hat{\\beta}_1(X_i - \\bar{X})\\]\nsegue que\n\\[SQ_{Reg} = \\sum_{i=1}^n (\\hat{Y}_i - \\bar{Y})^2 = \\hat{\\beta}_1^2 \\sum_{i=1}^n (X_i - \\bar{X})^2 = \\frac{SQ_{XY}^2}{SQ_X^2} \\cdot SQ_X = \\frac{SQ_{XY}^2}{SQ_X}\\]\nPortanto,\n\\[R^2 = \\frac{SQ_{Reg}}{SQ_{Total}} = \\frac{SQ_{XY}^2 / SQ_X}{SQ_Y} = \\frac{SQ_{XY}^2}{SQ_X \\cdot SQ_Y} = \\left(\\frac{SQ_{XY}}{\\sqrt{SQ_X \\cdot SQ_Y}}\\right)^2 = r^2\\]\nNa regressão múltipla, \\(R^2\\) continua sendo a fração da soma dos quadrados explicada pelo modelo, mas já não coincide com o quadrado de uma única correlação bivariada.\nVerificação no exemplo do texto: \\(r = 0.9268\\), \\(r^2 = 0.8589\\), \\(R^2 = 0.8589\\) ✓",
+    "objectID": "content/computer-lab/funcoes-potencia.html#estimativas-e-previsões-com-o-modelo",
+    "href": "content/computer-lab/funcoes-potencia.html#estimativas-e-previsões-com-o-modelo",
+    "title": "Explorando Funções Potências com Python",
+    "section": "6 Estimativas e Previsões com o Modelo",
+    "text": "6 Estimativas e Previsões com o Modelo\nCom o modelo, podemos estimar a riqueza de espécies para áreas específicas.\n\n# Estimando a riqueza de espécies para áreas específicas\nS_10km2 = S_modelo(10, c, k)\nS_70km2 = S_modelo(70, c, k)\n\nprint(f\"Riqueza estimada para uma área de 10 km²: {S_10km2[0]:.3f} ≈ {round(S_10km2[0])} espécies\")\nprint(f\"Riqueza predita para uma área de 70 km²: {S_70km2[0]:.3f} ≈ {round(S_70km2[0])} espécies\")\n\nRiqueza estimada para uma área de 10 km²: 19.443 ≈ 19 espécies\nRiqueza predita para uma área de 70 km²: 31.304 ≈ 31 espécies\n\n\n\n6.1 Determinação da Área para Exceder uma Riqueza Específica\nO modelo também permite determinar qual área mínima é necessária para que a riqueza de espécies exceda um certo valor. Por exemplo, para exceder 35 espécies, o cálculo é:\n\\[A &gt; \\left( \\frac{35}{c} \\right)^{1/k}\\]\n\n\n\n\n\n\nImportanteDeterminando a área mínima para exceder uma riqueza específica\n\n\n\n\nComece com a equação original: \\[S = cA^k\\]\nEstabeleça a desigualdade para exceder o valor alvo: \\[cA^k &gt; S_{\\text{alvo}}\\]\nDivida ambos os lados por \\(c\\) (como \\(c &gt; 0\\), a desigualdade se mantém): \\[A^k &gt; \\frac{S_{\\text{alvo}}}{c}\\]\nAplique a raiz \\(k\\)-ésima em ambos os lados (como \\(k &gt; 0\\), a desigualdade se mantém): \\[A &gt; \\left( \\frac{S_{\\text{alvo}}}{c} \\right)^{1/k}\\]\n\n\n\n\n\n6.2 Resolvendo a Desigualdade\n\n# Riqueza de espécies alvo\ntarget_species = 35\n\n# Calculando a área necessária\narea_necessaria = (target_species / c)**(1/k)\n\nprint(f\"Para a riqueza exceder {target_species} espécies:\")\nprint(f\"Área deve ser maior que aproximadamente {area_necessaria[0]:.3f} km².\")\n\nPara a riqueza exceder 35 espécies:\nÁrea deve ser maior que aproximadamente 110.441 km².",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 29-30 - Funções de potência"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#visualização-da-partição",
-    "href": "content/reading/particao-soma-quadrados-r2.html#visualização-da-partição",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "7 Visualização da partição",
-    "text": "7 Visualização da partição\n\n\n\n\n\nPartição da soma dos quadrados no modelo de regressão. A linha tracejada representa \\(\\bar{Y}\\). Segmentos verdes: parte explicada pelo modelo. Segmentos vermelhos: resíduos.",
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "",
+    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão linear simples.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\) e \\(\\beta_1\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x\\) que melhor se ajustam aos nossos dados.",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
     ]
   },
   {
-    "objectID": "content/reading/particao-soma-quadrados-r2.html#formulação-matricial",
-    "href": "content/reading/particao-soma-quadrados-r2.html#formulação-matricial",
-    "title": "Partição da Soma dos Quadrados e Coeficiente de Determinação",
-    "section": "8 Formulação matricial",
-    "text": "8 Formulação matricial\nDepois de entender a decomposição numericamente, vale registrá-la na forma compacta usada em álgebra linear. Definimos:\n\n\\(\\mathbf{H} = \\mathbf{X}(\\mathbf{X}^\\top\\mathbf{X})^{-1}\\mathbf{X}^\\top\\): matriz que extrai a parte explicada do vetor de respostas;\n\\(\\mathbf{H}_\\mathbf{1} = \\dfrac{\\mathbf{1}\\mathbf{1}^\\top}{n}\\): matriz que extrai a parte constante associada à média;\n\\(\\mathbf{M} = \\mathbf{I} - \\mathbf{H}_\\mathbf{1}\\): matriz que remove a média e deixa o desvio total em torno dela.\n\nAssim,\n\\[\\hat{\\mathbf{y}} = \\mathbf{H}\\mathbf{y}, \\qquad \\bar{Y}\\mathbf{1} = \\mathbf{H}_\\mathbf{1}\\mathbf{y}, \\qquad \\mathbf{e} = (\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\]\nAs três somas dos quadrados ficam:\n\\[SQ_{Total} = \\|\\mathbf{y} - \\bar{Y}\\mathbf{1}\\|^2 = \\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}\\]\n\\[SQ_{Reg} = \\|\\hat{\\mathbf{y}} - \\bar{Y}\\mathbf{1}\\|^2 = \\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}\\]\n\\[SQ_{Res} = \\|\\mathbf{e}\\|^2 = \\mathbf{y}^\\top(\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\]\nPortanto,\n\\[R^2 = \\frac{\\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}}{\\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}}\\]\nSó agora vale introduzir os nomes técnicos: \\(\\mathbf{H}\\) e \\(\\mathbf{H}_\\mathbf{1}\\) são matrizes de projeção, pois extraem partes específicas de \\(\\mathbf{y}\\), e aplicá-las duas vezes não altera o resultado já obtido.\n\n\n\n\n\n\nNotaResumo: partição da soma dos quadrados na linguagem matricial\n\n\n\n\n\n\n\n\n\n\n\nComponente\nLeitura pedagógica\nExpressão matricial\n\n\n\n\n\\(SQ_{Total}\\)\ncomprimento ao quadrado do desvio total\n\\(\\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}\\)\n\n\n\\(SQ_{Reg}\\)\ncomprimento ao quadrado da parte explicada\n\\(\\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}\\)\n\n\n\\(SQ_{Res}\\)\ncomprimento ao quadrado do resíduo\n\\(\\mathbf{y}^\\top(\\mathbf{I} - \\mathbf{H})\\mathbf{y}\\)\n\n\n\\(R^2\\)\nfração explicada da variação total\n\\(\\dfrac{\\mathbf{y}^\\top(\\mathbf{H} - \\mathbf{H}_\\mathbf{1})\\mathbf{y}}{\\mathbf{y}^\\top\\mathbf{M}\\mathbf{y}}\\)",
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#introdução",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#introdução",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "",
+    "text": "DicaObjetivos\n\n\n\nNeste tutorial, vamos implementar o Método dos Mínimos Quadrados (MMQ) em Python para ajustar um modelo de regressão linear simples.\nObjetivo: Encontrar os coeficientes \\(\\beta_0\\) e \\(\\beta_1\\) da equação \\(\\hat{y} = \\beta_0 + \\beta_1 x\\) que melhor se ajustam aos nossos dados.",
     "crumbs": [
-      "Material teórico",
-      "Aula 17 - Partição da Soma dos Quadrados e Coeficiente de Determinação"
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#importando-as-bibliotecas",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#importando-as-bibliotecas",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "2 Importando as Bibliotecas",
+    "text": "2 Importando as Bibliotecas\nPrimeiro, vamos importar as bibliotecas que usaremos:\n\nimport matplotlib.pyplot as plt  # Para criação e manipulação gráfica\nimport numpy as np           # Para operações matemáticas e matriciais\n\nDica: No Google Colab, essas bibliotecas já vêm instaladas!",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#inserindo-os-dados",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#inserindo-os-dados",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "3 Inserindo os Dados",
+    "text": "3 Inserindo os Dados\nVamos trabalhar um exemplo simples em que \\(x\\) e \\(y\\) são inseridos como listas em Python:\n\n# Nossos dados de exemplo\nx = [0, 1, 2, 3, 4]  # Variável independente (preditora)\ny = [0, 1, 1, 4, 4]  # Variável dependente (resposta)\n\nCaso deseje visualizar se os objetos x e y foram criados corretamente podemos utilizar a função print().\n\nprint(\"Valores de x:\", x)\nprint(\"Valores de y:\", y)\n\nValores de x: [0, 1, 2, 3, 4]\nValores de y: [0, 1, 1, 4, 4]",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-os-dados",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-os-dados",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "4 Visualizando os Dados",
+    "text": "4 Visualizando os Dados\nAntes de ajustar o modelo, vamos visualizar nossos dados em um gráfico de dispersão utilizando a função scatter() da biblioteca Matplotlib:\n\n# Criando o gráfico de dispersão\nplt.figure(figsize=(8, 6))\nplt.scatter(x, y, color = '#0072B2', s=120, label='Dados observados')\n\n# Configurando o layout gráfico\nplt.title('Gráfico de Dispersão dos Dados', fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\nObservação: O gráfico sugere uma relação linear entre as variáveis, o que justifica o uso da regressão linear simples, que iremos ajustar por meio do MMQ.",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#implementando-o-mmq---passo-a-passo",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#implementando-o-mmq---passo-a-passo",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "5 Implementando o MMQ - Passo a Passo",
+    "text": "5 Implementando o MMQ - Passo a Passo\n\n5.1 Criando os Vetores Base\nLembre-se da teoria: inicialmente, precisamos definir os vetores \\(\\vec{f}_0\\), \\(\\vec{f}_1\\) e \\(\\vec{y}\\):\n\\[\\vec{f}_0 = \\begin{bmatrix} 1 \\\\ 1 \\\\ \\vdots \\\\ 1 \\end{bmatrix} \\quad \\text{,} \\quad \\vec{f}_1 = \\begin{bmatrix} x_1 \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{bmatrix} \\quad \\text{e} \\quad \\vec{y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Número de observações\nn = len(x)\n\n# Vetor f0: vetor de 1's (para o intercepto β₀)\nf0 = [1] * n  # Cria uma lista com n elementos iguais a 1\n\n# Vetor f1: nossos valores de x (para o coeficiente β₁)\nf1 = x.copy()  # Copia os valores de x para um novo objeto denominado f1\n\nVisualizando os vetores \\(\\vec{f}_0\\) e \\(\\vec{f}_1\\).\n\nprint(\"Vetor f0 (intercepto):\", f0)\nprint(\"Vetor f1 (coeficiente):\", f1)\n\nVetor f0 (intercepto): [1, 1, 1, 1, 1]\nVetor f1 (coeficiente): [0, 1, 2, 3, 4]\n\n\n\n\n5.2 Construindo as Matrizes X e Y\nAgora vamos montar as matrizes do sistema:\n\\[X = \\begin{bmatrix} \\vec{f}_0 & \\vec{f}_1 \\end{bmatrix} = \\begin{bmatrix} 1 & x_1 \\\\ 1 & x_2 \\\\ \\vdots & \\vdots \\\\ 1 & x_n \\end{bmatrix} \\quad \\text{e} \\quad Y = \\begin{bmatrix} \\vec{y} \\end{bmatrix} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix}\\]\n\n# Matriz X: combinando f0 e f1 em colunas\nX = np.column_stack((f0, f1))\n\n# Matriz Y: transformando y em matriz com n linhas e 1 coluna \nY = np.array(y).reshape(n, 1)\n\nVisualizando as matrizes \\(X\\) e \\(Y\\).\n\nprint(\"Matriz X:\")\nprint(X)\nprint(\"\\nMatriz Y:\")\nprint(Y)\nprint(f\"\\nDimensões - X: {X.shape}, Y: {Y.shape}\")\n\nMatriz X:\n[[1 0]\n [1 1]\n [1 2]\n [1 3]\n [1 4]]\n\nMatriz Y:\n[[0]\n [1]\n [1]\n [4]\n [4]]\n\nDimensões - X: (5, 2), Y: (5, 1)\n\n\nNote agora que a matriz \\(X\\) tem 5 linhas e 2 colunas, enquanto a matriz \\(Y\\) tem 5 linhas e 1 colunas.\n\n\n5.3 Resolvendo o Sistema Normal\nAgora vamos calcular os coeficientes usando as operações matriciais: \\[B = (X^T X)^{-1} X^T Y\\]\n\n# Calculando X transposta vezes X\nXTX = np.dot(X.T, X)  # X.T é a transposta de X\n# Calculando X transposta vezes Y\nXTY = np.dot(X.T, Y)\n# Calculando a matriz inversa (X^T X)^(-1)\nXTX_inv = np.linalg.inv(XTX)  # Inversa de X^T X\n# Coeficientes de regressão\nB = np.dot(XTX_inv, XTY)\n\nVisualizando os objetos\n\n# Calculando X transposta vezes X\nprint(\"X^T X:\")\nprint(XTX)\n\nprint(\"\\nX^T Y:\")\nprint(XTY)\n\nprint(\"\\nB:\")\nprint(B)\n\nX^T X:\n[[ 5 10]\n [10 30]]\n\nX^T Y:\n[[10]\n [31]]\n\nB:\n[[-0.2]\n [ 1.1]]\n\n\n\n\n\n\n\n\nNota\n\n\n\n\nA função ´np.dot()´ em Python pode ser substituída pelo símbolo @. Teste os códigos abaixo e verifique que os resultados coincidem:\n\n\nprint(\"Usando np.dot()\")\nprint(np.dot(X.T, X))\n\nUsando np.dot()\n[[ 5 10]\n [10 30]]\n\n\n\nprint(\"Usando '@'\")\nprint(X.T @ X)\n\nUsando '@'\n[[ 5 10]\n [10 30]]\n\n\n\nOs elementos internos de uma matriz podem ser acessados destacando suas posições na linha e na coluna. Considere a matriz B. O coeficiente \\(\\beta_0\\) pode ser acessado na linha 1 e coluna 1, enquanto \\(\\beta_1\\) pode ser acessado na linha 2 e coluna 1.\n\n\nprint(B[0,0]) # Beta 0\n\n-0.1999999999999993\n\n\n\nprint(B[1,0]) # Beta 1\n\n1.1\n\n\n\n\n\n\n5.4 Obtendo os Valores Ajustados de y\nTendo obtido os coeficientes de regressão, os valores ajustados de \\(y\\) (\\(\\hat{y}\\)) podem ser obtidos pela multiplicação matricial:\n\\[F = X B = \\begin{bmatrix} 1 & x_1 \\\\ 1 & x_2 \\\\ \\vdots & \\vdots \\\\ 1 & x_n \\end{bmatrix} \\begin{bmatrix} \\hat{\\beta}_0 \\\\ \\hat{\\beta}_1 \\end{bmatrix}\\]\nObs.: denominamos \\(F\\) a matriz de valores ajustados de \\(y\\).\n\n# Valores ajustados (preditos)\nF = np.dot(X, B)\n\n\n# Valores ajustados (preditos)\nprint(F)\n\n[[-0.2]\n [ 0.9]\n [ 2. ]\n [ 3.1]\n [ 4.2]]\n\n\n\n\n5.5 Avaliando a Qualidade do Ajuste\n\n5.5.1 Calculando a Soma dos Quadrados dos Resíduos (\\(SQ_{res}\\))\n\\(SQ_{res}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{res} = \\boldsymbol{e}^T \\boldsymbol{e}\\]\nEm que \\(\\boldsymbol{e}\\) é a matriz coluna dos resíduos obtida pela diferença entre os valores observados e ajustados de \\(y\\):\n\\[\\boldsymbol{e} = Y - F = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\hat{y}_1 \\\\ \\hat{y}_2 \\\\ \\vdots \\\\ \\hat{y}_n \\end{bmatrix} = \\begin{bmatrix} e_1 \\\\ e_2 \\\\ \\vdots \\\\ e_n \\end{bmatrix}\\]\n\n# Resíduos: diferença entre valores observados e ajustados\ne = Y - F\n\n# Soma dos Quadrados dos Resíduos\nSQres = np.dot(e.T, e)[0, 0]\n\n\n\n5.5.2 Calculando a Soma dos Quadrados Totais (\\(SQ_{tot}\\))\n\\(SQ_{tot}\\) pode ser obtida pela multiplicação matricial:\n\\[SQ_{tot} = \\boldsymbol{D}^T \\boldsymbol{D}\\]\nEm que \\(\\boldsymbol{D}\\) é a matriz coluna dos desvios da média obtida pela diferença entre os valores observados de \\(y\\) e a média de \\(\\overline{y}\\):\n\\[\\boldsymbol{D} = Y - \\overline{Y} = \\begin{bmatrix} y_1 \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} - \\begin{bmatrix} \\overline{y} \\\\ \\overline{y} \\\\ \\vdots \\\\ \\overline{y} \\end{bmatrix} = \\begin{bmatrix} d_1 \\\\ d_2 \\\\ \\vdots \\\\ d_n \\end{bmatrix}\\]\n\n# Soma dos Quadrados Total\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = np.dot(D.T, D)[0, 0]\n\n\n\n5.5.3 Calculando o coeficiente de determinação \\(R^2\\):\nO \\(R^2\\) é dado pela expressão:\n\\[R^2 = 1 - \\frac{SQ_{res}}{SQ_{tot}}\\]\n\n# Coeficiente de Determinação R²\nR2 = 1 - (SQres / SQtot)\n\n\nVisualizando os resultados:\n\nprint(\" Medidas de Qualidade do Ajuste:\")\nprint(f\"Soma dos Quadrados dos Resíduos (SQres): {SQres:.4f}\")\nprint(f\"Soma dos Quadrados Total (SQtot): {SQtot:.4f}\")\nprint(f\"Coeficiente de Determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\n\n Medidas de Qualidade do Ajuste:\nSoma dos Quadrados dos Resíduos (SQres): 1.9000\nSoma dos Quadrados Total (SQtot): 14.0000\nCoeficiente de Determinação (R²): 0.8643\nPorcentagem da variação explicada: 86.43%\n\n\nInterpretação do \\(R^2\\):\n\nVaria de 0 a 1\nQuanto mais próximo de 1, melhor o ajuste\nRepresenta a proporção da variação em \\(y\\) explicada pelo modelo",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-o-resultado-final",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#visualizando-o-resultado-final",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "6 Visualizando o Resultado Final",
+    "text": "6 Visualizando o Resultado Final\nVamos plotar os dados originais junto com a reta ajustada:\n\n# Criando o gráfico final\nplt.figure(figsize=(8, 6))\n\n# Pontos observados\nplt.scatter(x, y, \n            color = '#0072B2', s=120,\n            label=f'Dados observados (n={n})')\n\n# Valores ajustados\nplt.scatter(x, F[:,0],\n            color='#000000', marker='*', s=120, \n            label='Valores ajustados')\n\n# Reta ajustada\nplt.plot(x, F[:,0], color='#D55E00', \n         label=fr'Reta de regressão: $\\hat{{y}} = {B[0,0]:.3f} + {B[1,0]:.3f}x$')\n\n# Configurações do gráfico\nplt.title(f'Regressão Linear Simples - MMQ\\nR² = {R2:.4f}', \n          fontsize=14, fontweight='bold')\nplt.xlabel('Variável X', fontsize=12)\nplt.ylabel('Variável Y', fontsize=12)\nplt.grid(True, alpha=0.3)\nplt.legend(fontsize=10)\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-dos-resultados",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-dos-resultados",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "7 Resumo dos Resultados",
+    "text": "7 Resumo dos Resultados\n\nprint(\"=\"*50)\nprint(\"         RESUMO DA REGRESSÃO LINEAR\")\nprint(\"=\"*50)\nprint(f\"Equação ajustada: y = {B[0,0]:.4f} + {B[1,0]:.4f}x\")\nprint(f\"Coeficiente de determinação (R²): {R2:.4f}\")\nprint(f\"Porcentagem da variação explicada: {R2*100:.2f}%\")\nprint(\"=\"*50)\n\n==================================================\n         RESUMO DA REGRESSÃO LINEAR\n==================================================\nEquação ajustada: y = -0.2000 + 1.1000x\nCoeficiente de determinação (R²): 0.8643\nPorcentagem da variação explicada: 86.43%\n==================================================",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-do-código",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#resumo-do-código",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "8 Resumo do Código",
+    "text": "8 Resumo do Código\n\nInserção dos Dados\n\n\nx = [0, 1, 2, 3, 4]\ny = [0, 1, 1, 4, 4]\n\n\nDefinição das matrizes do sistema\n\n\nn = len(x)\nf0 = [1] * n\nf1 = x.copy()\n\nX = np.column_stack((f0, f1))\nY = np.array(y).reshape(n, 1)\n\n\nCálculo dos coeficientes\n\n\nXTX = X.T @ X\nXTY = X.T @ Y\nXTX_inv = np.linalg.inv(XTX)\nB = XTX_inv @ XTY\n\n\nQualidade do ajuste\n\n\nF = X @ B\ne = Y - F\nSQres = (e.T @ e)[0, 0]\n\nY_medio = np.mean(Y)\nD = Y - Y_medio\nSQtot = (D.T @ D)[0, 0]\n\nR2 = 1 - (SQres / SQtot)",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "content/computer-lab/mmq-regressao-linear-simples.html#exercício-prático",
+    "href": "content/computer-lab/mmq-regressao-linear-simples.html#exercício-prático",
+    "title": "Método dos Mínimos Quadrados na Regressão Linear Simples",
+    "section": "9 Exercício Prático",
+    "text": "9 Exercício Prático\nImplemente o MMQ com novos dados:\n\n# Experimente com estes dados:\nx_novo = [1, 2, 3, 4, 5, 6]\ny_novo = [2, 4, 5, 4, 5, 7]\n\n# Dica: você pode copiar e adaptar o código acima!",
+    "crumbs": [
+      "Lab. Informática",
+      "Aulas 21-22 - MMQ na regressão linear simples"
+    ]
+  },
+  {
+    "objectID": "course-info/uc-id.html",
+    "href": "course-info/uc-id.html",
+    "title": "Identificação da Unidade Curricular",
+    "section": "",
+    "text": "Campus\n\nBaixada Santista\n\nCurso\n\nBacharelado Interdisciplinar em Ciência e Tecnologia do Mar\n\nUnidade Curricular (UC)\n\n10768 - Bases da Matemática e Estatística\n\nDocentes responsáveis\n\nFabio Cop (fcferreira@unifesp.br)\n\n\nWilliam Remo Pedroso Conti (wrpconti@unifesp.br)\n\nAno letivo\n\n1\\(^o\\) semestre de 2026\n\n\n1\\(^o\\) termo\n\nCarga horária total\n\n80 h\n\nDias e horários - vide Semana Padrão\n\nTerças e Quintas feiras\n\n\n14h - 15:45h (Vespertino)\n\n\n19h - 20:45h (Noturno)\n\nLocais - vide Cronograma\n\nSala 205\n\n\nLaboratório de Informática\n\nÁREA DO(A) ESTUDANTE\n\nSEGRAD IMar",
+    "crumbs": [
+      "Informações do curso",
+      "Identificação da UC"
     ]
   }
 ]

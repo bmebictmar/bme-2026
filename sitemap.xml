@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bmebictmar.github.io/bme-2026/content/reading/covariancia-correlacao.html</loc>
-    <lastmod>2026-04-08T12:04:34.641Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bmebictmar.github.io/bme-2026/content/reading/tendcentral.html</loc>
-    <lastmod>2026-04-08T12:04:34.641Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/cossine-similarity.html</loc>
-    <lastmod>2026-04-08T12:04:34.625Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/mmq-regressao-linear-simples.html</loc>
-    <lastmod>2026-04-08T12:04:34.641Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bmebictmar.github.io/bme-2026/course-info/uc-id.html</loc>
-    <lastmod>2026-04-08T12:04:34.679Z</lastmod>
+    <loc>https://bmebictmar.github.io/bme-2026/course-info/syllabus.html</loc>
+    <lastmod>2026-05-06T15:21:53.855Z</lastmod>
   </url>
   <url>
     <loc>https://bmebictmar.github.io/bme-2026/index.html</loc>
-    <lastmod>2026-04-08T12:04:34.680Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bmebictmar.github.io/bme-2026/course-info/syllabus.html</loc>
-    <lastmod>2026-04-08T12:04:34.679Z</lastmod>
-  </url>
-  <url>
-    <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/funcoes-potencia.html</loc>
-    <lastmod>2026-04-08T12:04:34.625Z</lastmod>
+    <lastmod>2026-05-06T15:21:53.858Z</lastmod>
   </url>
   <url>
     <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/mmq-regressao-polinomial.html</loc>
-    <lastmod>2026-04-08T12:04:34.641Z</lastmod>
+    <lastmod>2026-05-06T15:21:53.814Z</lastmod>
   </url>
   <url>
-    <loc>https://bmebictmar.github.io/bme-2026/content/reading/variacao.html</loc>
-    <lastmod>2026-04-08T12:04:34.641Z</lastmod>
+    <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/cossine-similarity.html</loc>
+    <lastmod>2026-05-06T15:21:53.796Z</lastmod>
   </url>
   <url>
     <loc>https://bmebictmar.github.io/bme-2026/content/reading/particao-soma-quadrados-r2.html</loc>
-    <lastmod>2026-04-08T12:04:34.641Z</lastmod>
+    <lastmod>2026-05-06T15:21:53.815Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/tendcentral.html</loc>
+    <lastmod>2026-05-06T15:21:53.815Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/covariancia-correlacao.html</loc>
+    <lastmod>2026-05-06T15:21:53.815Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/reading/variacao.html</loc>
+    <lastmod>2026-05-06T15:21:53.815Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/funcoes-potencia.html</loc>
+    <lastmod>2026-05-06T15:21:53.796Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/content/computer-lab/mmq-regressao-linear-simples.html</loc>
+    <lastmod>2026-05-06T15:21:53.814Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bmebictmar.github.io/bme-2026/course-info/uc-id.html</loc>
+    <lastmod>2026-05-06T15:21:53.855Z</lastmod>
   </url>
 </urlset>
