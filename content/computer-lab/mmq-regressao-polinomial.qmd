@@ -34,6 +34,12 @@ import numpy as np           # Para operações matemáticas e matriciais
 
 Vamos trabalhar com dados que apresentam uma relação quadrática. Em vez de digitarmos diretamente os valores de $y$ e $x$ como listas, iremos ler os dados a partir do arquivo local [regressao_polinomial_exemplo.csv](data/regressao_polinomial_exemplo.csv){target="_blank"}. O arquivo está no formato `.csv`, em que cada coluna é separada por vírgulas, um tipo de formatação muito comum.
 
+::: {.callout-tip title="Usuários do Google Colab"}
+
+Se você estiver usando o **Google Colab**, o arquivo `regressao_polinomial_exemplo.csv` precisa ser carregado manualmente antes de executar a célula abaixo. Siga as instruções em [Importando data frames a partir de arquivos CSV](https://fcopf.github.io/mead/content/manipulacao-dados-python/importa-dados-python.html){target="_blank"} para baixar o arquivo e adicioná-lo ao seu ambiente no Colab.
+
+:::
+
 ```{python}
 df = pd.read_csv('data/regressao_polinomial_exemplo.csv')
 ```
